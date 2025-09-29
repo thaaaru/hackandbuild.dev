@@ -1,0 +1,1 @@
+https://dashboard.webshare.io/11892502/proxy/list?authenticationMethod=%22username_password%22&proxyControl=%220%22&filterByCountryOpen=false&exampleCodeOpen=false&connectionMethod=%22backbone%22&rowsPerPage=10&page=0&order=%22asc%22&orderBy=null&searchValue=%22%22&removeType=%22refresh_all%22&modals=eyJkb3dubG9hZFByb3h5TGlzdE9wZW4iOmZhbHNlfQ%253D%253D
