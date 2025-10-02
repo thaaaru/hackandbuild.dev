@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Security Career Roadmap</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the roadmap look and feel */
+        :root {
+            --primary-color: #10b981; /* Emerald 500 */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .roadmap-card {
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .roadmap-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Connecting Line */
+        .roadmap-stage:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -2.5rem; /* Space between cards */
+            width: 4px;
+            height: 2.5rem;
+            background-color: var(--primary-color);
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+        
+        /* Mobile adjustment for line (left side) */
+        @media (max-width: 767px) {
+            .roadmap-stage:not(:last-child)::after {
+                left: 1.5rem; /* Align with mobile dot */
+            }
+        }
+
+        /* Stage Dot */
+        .roadmap-card::before {
+            content: '';
+            position: absolute;
+            top: 1rem;
+            left: -1.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background-color: var(--primary-color);
+            border: 4px solid #f3f4f6;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        /* Hide the default mobile dot on desktop view */
+        @media (min-width: 768px) {
+            .roadmap-card::before {
+                display: none;
+            }
+        }
+
+        /* Desktop view: Stage position marker */
+        .roadmap-stage {
+            position: relative;
+            margin-bottom: 5rem;
+        }
+        .roadmap-stage:not(:last-child)::after {
+            /* Desktop connecting line */
+            content: '';
+            position: absolute;
+            top: calc(100% + 1rem); /* Starts 1rem below the card */
+            left: 50%;
+            width: 4px;
+            height: 4rem;
+            background-color: var(--primary-color);
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+        .roadmap-stage:last-child {
+            margin-bottom: 2rem;
+        }
+
+        /* Sri Lankan Context Highlight */
+        .sl-context-highlight {
+            background-color: #ecfdf5; /* Green 50 */
+            border-left: 4px solid #059669; /* Emerald 600 */
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div id="app" class="max-w-4xl mx-auto">
+        <header class="text-center mb-10 bg-white p-6 rounded-xl shadow-lg">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-2">
+                Information Security Career Roadmap
+            </h1>
+            <p class="text-lg text-gray-600">
+                A guide to progression, skills, and certifications in Cybersecurity.
+            </p>
+            <div class="mt-4 flex items-center justify-center space-x-3 text-sm text-gray-700">
+                <label for="sl-toggle" class="font-medium">Highlight Sri Lankan Context</label>
+                <input type="checkbox" id="sl-toggle" class="sr-only peer" onchange="toggleSriLankaContext(this.checked)">
+                <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-emerald-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600 cursor-pointer"></div>
+            </div>
+        </header>
+
+        <main id="roadmap-container" class="space-y-16">
+            <!-- Roadmap stages will be rendered here -->
+        </main>
+
+        <footer class="text-center mt-10 p-4 text-gray-500 text-sm border-t pt-6">
+            <p>This roadmap is for guidance and is tailored with notes for the Sri Lankan job market.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Data structure for the career roadmap
+        const careerData = [
+            {
+                stage: "Entry-Level / Foundation",
+                roles: ["SOC Analyst", "Junior Penetration Tester", "Incident Response Associate", "IT Support / Network Admin (stepping stone)"],
+                skills: ["Networking basics (TCP/IP, firewalls)", "Operating systems (Linux, Windows)", "Log analysis, SIEM tools", "Scripting basics (Python, Bash, PowerShell)"],
+                certs: ["CompTIA Security+", "CCNA (Networking)", "CEH (Practical/Basic)"],
+                context: "Many start in SOC analyst jobs at Virtusa, TechCERT, or BPO security operations."
+            },
+            {
+                stage: "Mid-Level / Specialist",
+                roles: ["Security Engineer", "Penetration Tester / Red Teamer", "Threat Hunter / Blue Team", "Digital Forensics Analyst", "Application Security Engineer", "Cloud Security Engineer", "Risk Analyst / Compliance Specialist"],
+                skills: ["Secure system design", "Exploitation, vulnerability analysis", "Forensics tools (Autopsy, EnCase)", "Secure coding, SDLC", "Cloud security (AWS, Azure, GCP)", "Risk & compliance frameworks (ISO 27001, SOC 2, GDPR, HIPAA)"],
+                certs: ["OSCP (offensive security)", "GIAC certs (GCIH, GCFA, GCIA)", "CCSK / AWS/Azure Security", "ISO 27001 Lead Implementer / Auditor"],
+                context: "Cloud Security and AppSec engineers are in high demand at banks, telcos, and startups."
+            },
+            {
+                stage: "Senior / Architect",
+                roles: ["Security Architect", "Cloud Security Architect", "DevSecOps Lead", "Purple Team Lead", "Security Program Manager", "Risk Manager"],
+                skills: ["Enterprise security architecture", "Cloud strategy, zero trust, IAM", "Automation & orchestration", "Governance, risk management", "Leadership & cross-team collaboration"],
+                certs: ["CISSP (broad security leadership)", "CISM (management)", "CRISC (risk management)", "SABSA (architecture framework)"],
+                context: "Architects are rare, making it a high-value career step locally."
+            },
+            {
+                stage: "Leadership / Executive",
+                roles: ["Director of Security", "Chief Information Security Officer (CISO)", "Chief Risk Officer (CRO)", "Consultant / Advisor / Board Member"],
+                skills: ["Executive leadership & communication", "Strategic alignment with business", "Policy, compliance, legal issues", "Budgeting, culture building", "Board-level reporting"],
+                certs: ["C-CISO", "CISM (if not already)", "MBA (business & leadership)", "Board governance courses"],
+                context: "CISOs are mostly seen in banks, telcos, and government (ICTA, CBSL, SLT-Mobitel)."
+            }
+        ];
+
+        // Global state to track context visibility
+        let isSLContextVisible = false;
+
+        /**
+         * Toggles the visibility and highlight of the Sri Lankan context notes.
+         * @param {boolean} checked - True if the toggle is on, false otherwise.
+         */
+        function toggleSriLankaContext(checked) {
+            isSLContextVisible = checked;
+            const contextElements = document.querySelectorAll('.sl-context');
+            contextElements.forEach(el => {
+                if (checked) {
+                    el.classList.remove('hidden');
+                    el.classList.add('sl-context-highlight');
+                } else {
+                    el.classList.add('hidden');
+                    el.classList.remove('sl-context-highlight');
+                }
+            });
+        }
+
+        /**
+         * Renders the entire roadmap based on the careerData.
+         */
+        function renderRoadmap() {
+            const container = document.getElementById('roadmap-container');
+            container.innerHTML = careerData.map((data, index) => {
+                const isOdd = index % 2 !== 0;
+
+                // Determine alignment classes for desktop view (alternating left/right)
+                const alignmentClasses = isOdd ? 'md:flex-row-reverse' : 'md:flex-row';
+                const contentAlignClasses = isOdd ? 'md:text-right' : 'md:text-left';
+
+                return `
+                    <div class="roadmap-stage">
+                        <div class="flex flex-col md:flex-row items-start ${alignmentClasses} justify-between space-y-4 md:space-y-0 md:space-x-8">
+                            
+                            <!-- Stage Title on Desktop (Center Position) -->
+                            <div class="hidden md:block absolute top-0 left-1/2 transform -translate-x-1/2 w-48 text-center bg-emerald-500 text-white font-bold p-3 rounded-xl shadow-lg z-10">
+                                ${data.stage}
+                            </div>
+
+                            <!-- Roadmap Card -->
+                            <div class="roadmap-card bg-white p-6 rounded-xl shadow-lg w-full md:w-5/12 border-t-4 border-emerald-500 ${contentAlignClasses}">
+                                
+                                <!-- Stage Title on Mobile -->
+                                <h2 class="text-xl font-bold text-gray-800 mb-4 md:hidden">
+                                    ${data.stage}
+                                </h2>
+
+                                <!-- Roles -->
+                                <div class="mb-4">
+                                    <h3 class="font-semibold text-lg text-emerald-600 flex items-center">
+                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20v-2c0-.656-.126-1.307-.356-1.857M20 10V6a2 2 0 00-2-2h-4v6h6zm-4 0V4m-4 0H6a2 2 0 00-2 2v4h6zm-6 0h6m-2 4h4m-4 4h4m-6 2h4"></path></svg>
+                                        Roles
+                                    </h3>
+                                    <ul class="list-none space-y-1 mt-2 text-gray-600">
+                                        ${data.roles.map(role => `<li>${role}</li>`).join('')}
+                                    </ul>
+                                </div>
+
+                                <!-- Key Skills -->
+                                <div class="mb-4">
+                                    <h3 class="font-semibold text-lg text-emerald-600 flex items-center">
+                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.24c1.292 1.308 1.487 3.256.467 4.908l-5.6 9.176a2 2 0 01-3.414 0l-5.6-9.176c-1.02-1.652-.825-3.6 0.467-4.908l4.992-5.004a4 4 0 015.656 0l4.992 5.004z"></path></svg>
+                                        Key Skills
+                                    </h3>
+                                    <div class="flex flex-wrap gap-2 mt-2">
+                                        ${data.skills.map(skill => `<span class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-0.5 rounded-full">${skill}</span>`).join('')}
+                                    </div>
+                                </div>
+
+                                <!-- Certifications -->
+                                <div class="mb-4">
+                                    <h3 class="font-semibold text-lg text-emerald-600 flex items-center">
+                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11.05V6.5m0 0a3.5 3.5 0 00-3.5 3.5v1.5a2 2 0 002 2h3a2 2 0 002-2v-1.5a3.5 3.5 0 00-3.5-3.5zM12 18h.01M16.5 18H7.5"></path></svg>
+                                        Certifications
+                                    </h3>
+                                    <div class="flex flex-wrap gap-2 mt-2">
+                                        ${data.certs.map(cert => `<span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">${cert}</span>`).join('')}
+                                    </div>
+                                </div>
+
+                                <!-- Sri Lankan Context Note -->
+                                <div class="sl-context mt-5 p-3 rounded-lg text-sm text-gray-800 hidden">
+                                    <h4 class="font-bold text-emerald-700 mb-1">🇱🇰 Local Context:</h4>
+                                    <p>${data.context}</p>
+                                </div>
+
+                            </div>
+                            
+                            <!-- Spacer for desktop alignment -->
+                            <div class="hidden md:block w-5/12"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Initialize roadmap rendering on page load
+        window.onload = renderRoadmap;
+    </script>
+</body>
+</html>

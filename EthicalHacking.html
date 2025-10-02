@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethical Hacking & Cybersecurity Core Skills</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* slate-900 */
+        }
+        .info-card {
+            background-color: #1e293b; /* slate-800 */
+            border-top-width: 4px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        }
+        .card-title {
+            color: #e2e8f0; /* slate-200 */
+        }
+        .card-icon {
+            width: 3rem;
+            height: 3rem;
+            stroke-width: 1.5;
+        }
+        code {
+            background-color: #334155; /* slate-700 */
+            color: #f1f5f9; /* slate-100 */
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 0.9em;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .tcp-stack-item {
+            background-color: #334155;
+            margin-bottom: 4px;
+            padding: 8px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body class="text-gray-300">
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-2">Ethical Hacking & Cybersecurity</h1>
+            <p class="text-xl text-cyan-400 font-medium">Core Skills Infographic</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Networking Fundamentals -->
+            <section class="info-card rounded-xl shadow-lg p-6 border-cyan-500">
+                <div class="flex items-center mb-4">
+                    <svg class="card-icon text-cyan-400 mr-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V8.25a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 8.25v10.5A2.25 2.25 0 006.75 21z" /></svg>
+                    <h2 class="text-2xl font-bold card-title">1. Networking Fundamentals</h2>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="font-semibold text-lg text-cyan-300 mb-2">TCP/IP Model</h3>
+                        <div class="text-sm">
+                            <div class="tcp-stack-item bg-cyan-900/50"><b>Application:</b> HTTP, DNS, SMTP</div>
+                            <div class="tcp-stack-item bg-cyan-800/60"><b>Transport:</b> TCP, UDP, Ports</div>
+                            <div class="tcp-stack-item bg-cyan-700/70"><b>Internet:</b> IP Addressing, Routing</div>
+                            <div class="tcp-stack-item bg-cyan-600/80"><b>Link:</b> MAC, ARP, Physical</div>
+                        </div>
+                    </div>
+                     <div>
+                        <h3 class="font-semibold text-lg text-cyan-300">IP Addressing & CIDR</h3>
+                        <ul class="list-disc list-inside text-sm space-y-1 mt-1">
+                            <li>IPv4 Format: <code>192.168.1.1</code></li>
+                            <li>CIDR: <code>/24</code> = <code>255.255.255.0</code></li>
+                            <li>Private Ranges: <code>10.0/8</code>, <code>172.16/12</code>, <code>192.168/16</code></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-cyan-300">Common Ports</h3>
+                        <p class="text-sm"><code>22</code> SSH, <code>53</code> DNS, <code>80</code> HTTP, <code>443</code> HTTPS, <code>3389</code> RDP</p>
+                    </div>
+                     <div>
+                        <h3 class="font-semibold text-lg text-cyan-300">Tools & Commands</h3>
+                        <p class="text-sm"><code>nmap -sC -sV &lt;target&gt;</code></p>
+                        <p class="text-sm"><code>tcpdump -i eth0 port 80</code></p>
+                        <p class="text-sm"><code>ip addr</code> (Linux), <code>ipconfig /all</code> (Win)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Operating Systems -->
+            <section class="info-card rounded-xl shadow-lg p-6 border-green-500">
+                <div class="flex items-center mb-4">
+                    <svg class="card-icon text-green-400 mr-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" /></svg>
+                    <h2 class="text-2xl font-bold card-title">2. Operating Systems</h2>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="font-semibold text-lg text-green-300">Linux Core Skills</h3>
+                        <ul class="list-disc list-inside text-sm space-y-1 mt-1">
+                            <li>Navigation: <code>ls</code>, <code>cd</code>, <code>find</code>, <code>cat</code></li>
+                            <li>Permissions: <code>chmod 4755 file</code> (SUID)</li>
+                            <li>Services: <code>systemctl status sshd</code></li>
+                            <li>Networking: <code>ss -tuln</code>, <code>ip route</code></li>
+                             <li>Logs: <code>/var/log/auth.log</code></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-green-300">Windows Core Skills</h3>
+                        <ul class="list-disc list-inside text-sm space-y-1 mt-1">
+                            <li>PowerShell: <code>Get-Service</code>, <code>Get-Process</code></li>
+                            <li>Event Logs: <code>Get-WinEvent -LogName Security</code></li>
+                            <li>User Mgmt: <code>net user</code>, <code>whoami /priv</code></li>
+                            <li>Services: <code>sc query</code></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-green-300">Practical Tasks</h3>
+                        <p class="text-sm"><b>Linux:</b> Find SUID binary for privesc.</p>
+                        <p class="text-sm"><b>Windows:</b> Find cleartext creds in scheduled tasks.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Web Technologies -->
+            <section class="info-card rounded-xl shadow-lg p-6 border-purple-500">
+                <div class="flex items-center mb-4">
+                    <svg class="card-icon text-purple-400 mr-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>
+                    <h2 class="text-2xl font-bold card-title">3. Web Technologies</h2>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="font-semibold text-lg text-purple-300">HTTP Methods & Status</h3>
+                        <p class="text-sm"><b>Methods:</b> GET, POST, PUT, DELETE</p>
+                        <p class="text-sm"><b>Codes:</b> 200 (OK), 302 (Redirect), 403 (Forbidden), 404 (Not Found), 500 (Server Error)</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-purple-300">Cookies & Sessions</h3>
+                        <ul class="list-disc list-inside text-sm space-y-1 mt-1">
+                            <li><b>Attributes:</b> <code>HttpOnly</code>, <code>Secure</code>, <code>SameSite</code></li>
+                            <li><b>Risks:</b> Session fixation, XSS stealing tokens.</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h3 class="font-semibold text-lg text-purple-300">Data Flow Threat Points</h3>
+                        <p class="text-sm">User Input ➔ Client ➔ <b class="text-red-400">HTTP Request</b> ➔ Server ➔ <b class="text-red-400">DB</b> ➔ Response</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-purple-300">Tools</h3>
+                        <p class="text-sm">Browser DevTools (Inspect, Network)</p>
+                        <p class="text-sm">Burp Suite (Intercept, Replay, Fuzz)</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Programming / Scripting -->
+            <section class="info-card rounded-xl shadow-lg p-6 border-orange-500">
+                 <div class="flex items-center mb-4">
+                    <svg class="card-icon text-orange-400 mr-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 12l4.179 2.25M21.75 12l-4.179-2.25v4.5l4.179-2.25zM12 21.75V12M12 2.25v9.75" /></svg>
+                    <h2 class="text-2xl font-bold card-title">4. Programming & Scripting</h2>
+                </div>
+                 <div class="space-y-4">
+                    <div>
+                        <h3 class="font-semibold text-lg text-orange-300">Why Scripting Matters</h3>
+                        <p class="text-sm">Automate scans, parse logs, craft custom payloads, and chain tools together.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-orange-300">Python Basics</h3>
+                        <ul class="list-disc list-inside text-sm space-y-1 mt-1">
+                            <li><code>requests</code> for HTTP</li>
+                            <li><code>re</code> (regex) for parsing</li>
+                            <li><code>socket</code> for custom clients</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-orange-300">Bash & PowerShell</h3>
+                        <p class="text-sm"><b>Bash:</b> Use <code>awk</code>, <code>sed</code>, <code>grep</code> to process text.</p>
+                        <p class="text-sm"><b>PowerShell:</b> Object-based pipeline, <code>Invoke-RestMethod</code>.</p>
+                    </div>
+                     <div>
+                        <h3 class="font-semibold text-lg text-orange-300">Best Practices</h3>
+                        <p class="text-sm">Use rate limits, avoid hardcoding credentials, and always scan politely.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Security Concepts -->
+            <section class="info-card rounded-xl shadow-lg p-6 border-blue-500">
+                <div class="flex items-center mb-4">
+                    <svg class="card-icon text-blue-400 mr-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" /></svg>
+                    <h2 class="text-2xl font-bold card-title">5. Security Concepts</h2>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="font-semibold text-lg text-blue-300">Auth & Access Control</h3>
+                        <p class="text-sm"><b>Authentication:</b> Who you are.</p>
+                        <p class="text-sm"><b>Authorization:</b> What you can do.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-blue-300">Encryption</h3>
+                        <ul class="list-disc list-inside text-sm space-y-1 mt-1">
+                            <li><b>Symmetric vs. Asymmetric</b></li>
+                            <li><b>TLS:</b> Secures data in transit.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-blue-300">OWASP Top 10 (Concepts)</h3>
+                         <ul class="list-disc list-inside text-sm space-y-1 mt-1">
+                            <li><b>A1:</b> Injection (e.g., SQLi)</li>
+                            <li><b>A2:</b> Broken Authentication</li>
+                            <li><b>A5:</b> Broken Access Control</li>
+                            <li><b>A7:</b> Cross-Site Scripting (XSS)</li>
+                         </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Legal and Ethics -->
+            <section class="info-card rounded-xl shadow-lg p-6 border-yellow-500">
+                <div class="flex items-center mb-4">
+                    <svg class="card-icon text-yellow-400 mr-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
+                    <h2 class="text-2xl font-bold card-title">6. Legal & Ethics</h2>
+                </div>
+                 <div class="space-y-4">
+                    <div>
+                        <h3 class="font-semibold text-lg text-yellow-300">Core Ethical Rules</h3>
+                        <ul class="list-disc list-inside text-sm space-y-1 mt-1">
+                            <li><b>Get Written Consent:</b> Never test without permission.</li>
+                            <li><b>Define Scope:</b> Know what's in and out of bounds.</li>
+                             <li><b>Respect Privacy:</b> Avoid accessing or exfiltrating real user data.</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h3 class="font-semibold text-lg text-yellow-300">Rules of Engagement</h3>
+                        <p class="text-sm">Document allowed methods, testing hours, and emergency contacts before starting.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-yellow-300">Responsible Disclosure</h3>
+                        <p class="text-sm">Report findings privately to the owner, provide clear PoCs, and agree on a timeline for fixing.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
