@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Certificate in Machine Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Neutrals -->
+    <!-- Application Structure Plan: The application is designed as a top-down exploratory dashboard. It starts with a high-level summary (key stats, duration) to immediately orient the user. The core is an interactive, accordion-style curriculum explorer, allowing users to drill down into modules and sessions without being overwhelmed by a wall of text. This is more user-friendly than a linear document, promoting active exploration. Following the curriculum, visual dashboards for 'Assessment Breakdown' and 'Course Focus' use charts to make quantitative data easily digestible. The 'Tech Stack' section uses a visual grid instead of a list for better engagement. This structure guides the user from a broad overview to specific details in a controlled, interactive manner. -->
+    <!-- Visualization & Content Choices: 
+        - Course Curriculum: Report Info -> Goal: Organize/Inform -> Viz: Interactive Accordion -> Interaction: Click to expand modules/sessions -> Justification: Manages high information density, preventing user overload by revealing details on demand. -> Method: HTML/JS.
+        - Assessment Structure: Report Info -> Goal: Compare/Inform -> Viz: Doughnut Chart -> Interaction: Hover for tooltips -> Justification: Instantly communicates the proportional weight of formative vs. summative assessments. -> Library: Chart.js/Canvas.
+        - Course Focus: Report Info -> Goal: Compare/Inform -> Viz: Bar Chart -> Interaction: Hover for tooltips -> Justification: Visually represents the time and session allocation across different ML domains, showing course priorities. -> Library: Chart.js/Canvas.
+        - Tech Stack: Report Info -> Goal: Inform -> Viz: Icon-like grid -> Interaction: Static display -> Justification: Modern, scannable, and more visually appealing than a simple bulleted list. -> Method: HTML/Tailwind.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .module-content, .session-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .module-content.open, .session-content.open {
+            max-height: 2000px; 
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-slate-900">Machine Learning Certificate</h1>
+            <div class="hidden md:flex space-x-6">
+                <a href="#overview" class="text-slate-600 hover:text-blue-600 transition-colors">Overview</a>
+                <a href="#curriculum" class="text-slate-600 hover:text-blue-600 transition-colors">Curriculum</a>
+                <a href="#assessment" class="text-slate-600 hover:text-blue-600 transition-colors">Assessment</a>
+                <a href="#tech" class="text-slate-600 hover:text-blue-600 transition-colors">Tech Stack</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 md:py-16">
+
+        <section id="overview" class="text-center mb-16 md:mb-24">
+            <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-4">Professional Certificate in Machine Learning</h2>
+            <p class="max-w-3xl mx-auto text-lg text-slate-600 mb-10">An intensive, hands-on journey from Python fundamentals to deploying advanced deep learning models in the cloud. Transform your career and become a machine learning practitioner.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-4xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                    <div class="text-3xl font-bold text-blue-600">4</div>
+                    <div class="text-slate-500">Months</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                    <div class="text-3xl font-bold text-blue-600">10</div>
+                    <div class="text-slate-500">Modules</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                    <div class="text-3xl font-bold text-blue-600">128+</div>
+                    <div class="text-slate-500">Contact Hours</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                    <div class="text-3xl font-bold text-blue-600">1</div>
+                    <div class="text-slate-500">Capstone Project</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="curriculum" class="mb-16 md:mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-3">Interactive Curriculum Explorer</h2>
+                <p class="max-w-3xl mx-auto text-slate-600">This curriculum is designed to be a comprehensive, step-by-step guide into the world of machine learning. Click on any module to expand its sessions, and click on a session to view the detailed topics covered. Start your journey from foundational Python to advanced MLOps.</p>
+            </div>
+            <div id="curriculum-container" class="space-y-4">
+            </div>
+        </section>
+
+        <section id="assessment" class="mb-16 md:mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-3">Course Structure & Assessment</h2>
+                <p class="max-w-3xl mx-auto text-slate-600">Your performance is evaluated through a combination of continuous assessments and summative projects, ensuring a thorough grasp of both theoretical concepts and practical application. Below is a visual breakdown of the course's primary focus areas and how you'll be assessed.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+                    <h3 class="text-xl font-bold text-center mb-4 text-slate-700">Assessment Breakdown</h3>
+                    <div class="chart-container">
+                        <canvas id="assessmentChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+                    <h3 class="text-xl font-bold text-center mb-4 text-slate-700">Course Focus by Session Count</h3>
+                     <div class="chart-container h-96">
+                        <canvas id="focusChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech" class="text-center">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-3">Tools & Technology Stack</h2>
+                <p class="max-w-3xl mx-auto text-slate-600">You will gain hands-on experience with the most popular and powerful tools and platforms used in the machine learning industry today. This practical experience is crucial for building a professional portfolio and preparing for real-world challenges.</p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-w-5xl mx-auto">
+                <div class="bg-white p-4 text-center rounded-lg shadow-md border border-slate-200"><span class="font-bold">Python</span></div>
+                <div class="bg-white p-4 text-center rounded-lg shadow-md border border-slate-200"><span class="font-bold">NumPy</span></div>
+                <div class="bg-white p-4 text-center rounded-lg shadow-md border border-slate-200"><span class="font-bold">Pandas</span></div>
+                <div class="bg-white p-4 text-center rounded-lg shadow-md border border-slate-200"><span class="font-bold">Scikit-learn</span></div>
+                <div class="bg-white p-4 text-center rounded-lg shadow-md border border-slate-200"><span class="font-bold">TensorFlow</span></div>
+                <div class="bg-white p-4 text-center rounded-lg shadow-md border border-slate-200"><span class="font-bold">Keras</span></div>
+                <div class="bg-white p-4 text-center rounded-lg shadow-md border border-slate-200"><span class="font-bold">Matplotlib</span></div>
+                <div class="bg-white p-4 text-center rounded-lg shadow-md border border-slate-200"><span class="font-bold">Seaborn</span></div>
+                <div class="bg-white p-4 text-center rounded-lg shadow-md border border-slate-200"><span class="font-bold">AWS</span></div>
+                <div class="bg-white p-4 text-center rounded-lg shadow-md border border-slate-200"><span class="font-bold">Azure</span></div>
+                <div class="bg-white p-4 text-center rounded-lg shadow-md border border-slate-200"><span class="font-bold">GCP</span></div>
+                <div class="bg-white p-4 text-center rounded-lg shadow-md border border-slate-200"><span class="font-bold">Docker</span></div>
+                <div class="bg-white p-4 text-center rounded-lg shadow-md border border-slate-200"><span class="font-bold">Git & GitHub</span></div>
+                <div class="bg-white p-4 text-center rounded-lg shadow-md border border-slate-200"><span class="font-bold">Jupyter</span></div>
+                 <div class="bg-white p-4 text-center rounded-lg shadow-md border border-slate-200"><span class="font-bold">Flask/FastAPI</span></div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-white mt-16 md:mt-24">
+        <div class="container mx-auto px-6 py-8 text-center text-slate-400">
+            <p>&copy; 2025 Machine Learning Professional Certificate. All rights reserved.</p>
+            <p class="text-sm mt-2">An interactive course brochure designed for exploration.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const courseData = [
+                {
+                    module: "Module 1: Introduction to Machine Learning",
+                    weeks: "1-2",
+                    sessions: [
+                        { title: "Session 1: Course Introduction & ML Fundamentals", topics: ["Course structure, assessment, and expectations", "What is Machine Learning? Definition and scope", "History and evolution of ML", "Real-world applications across industries - Healthcare (diagnosis, drug discovery) - Finance (fraud detection, trading) - E-commerce (recommendation systems) - Manufacturing (predictive maintenance)", "Types of Machine Learning - Supervised Learning - Unsupervised Learning - Semi-supervised Learning - Reinforcement Learning", "ML workflow and lifecycle", "Data-driven decision making", "Ethics and bias in ML systems"] },
+                        { title: "Session 2: ML Problem Formulation & Data Understanding", topics: ["Identifying ML problems vs traditional programming problems", "Problem types: Regression vs Classification vs Clustering", "Understanding datasets - Features, labels, and target variables - Training, validation, and test sets - Data quality and preprocessing importance", "Introduction to common ML datasets (Iris, MNIST, Titanic)", "Model performance concepts - Underfitting vs Overfitting - Bias-Variance tradeoff - Generalization", "Setting up the development environment - Anaconda/Miniconda installation - Jupyter Notebook/JupyterLab - Google Colab setup"] }
+                    ]
+                },
+                {
+                    module: "Module 2: Python Fundamentals for Machine Learning",
+                    weeks: "3-5",
+                    sessions: [
+                        { title: "Session 3: Python Basics - Part 1", topics: ["Python syntax and structure", "Variables and data types - Integers, floats, strings, booleans - Type conversion and type checking", "Operators - Arithmetic, comparison, logical, assignment", "Control structures - if-elif-else statements - Nested conditionals", "Input/output operations", "Comments and documentation", "Basic debugging techniques"] },
+                        { title: "Session 4: Python Basics - Part 2", topics: ["Loops and iterations - for loops with range and iterables - while loops - break, continue, and pass statements - Nested loops", "Data structures - Lists: creation, indexing, slicing, methods - Tuples: immutability and use cases - Dictionaries: key-value pairs, methods - Sets: unique elements and operations", "List comprehensions", "String manipulation and formatting"] },
+                        { title: "Session 5: Python for Data Science - Part 1", topics: ["Functions - Defining functions with def - Parameters and arguments (positional, keyword, default) - Return values - Scope (local vs global variables) - Lambda functions", "File handling - Reading and writing text files - CSV file operations - JSON data handling", "Error handling - try-except blocks - Common exceptions - Raising custom exceptions"] },
+                        { title: "Session 6: Python for Data Science - Part 2", topics: ["NumPy fundamentals - Arrays vs lists - Creating arrays (zeros, ones, arange, linspace) - Array indexing and slicing - Array operations and broadcasting - Mathematical functions - Array reshaping and manipulation", "Pandas basics - Series and DataFrames - Reading data (CSV, Excel, JSON) - Data inspection (head, tail, info, describe) - Selecting and filtering data - Handling missing values - Basic aggregations and groupby"] },
+                        { title: "Session 7: Data Visualization & EDA", topics: ["Importance of Exploratory Data Analysis (EDA)", "Matplotlib basics - Line plots, scatter plots, bar charts - Customization (labels, titles, legends, colors) - Subplots and figure management", "Seaborn for statistical visualization - Distribution plots (histograms, KDE) - Categorical plots (boxplots, violinplots) - Relationship plots (scatter, pairplots) - Heatmaps for correlation matrices", "Best practices for data visualization"] },
+                        { title: "Session 8: Object-Oriented Programming for ML", topics: ["OOP concepts and importance in ML", "Classes and objects - Defining classes - Constructors (__init__) - Instance variables and methods", "Encapsulation and data hiding", "Inheritance - Single inheritance - Method overriding", "Polymorphism", "Special methods (dunder methods)", "Practical OOP in ML context - Creating custom transformers - Building model classes"] }
+                    ]
+                },
+                {
+                    module: "Module 3: Supervised Learning - Regression",
+                    weeks: "6-7",
+                    sessions: [
+                        { title: "Session 9: Introduction to Supervised Learning & Linear Regression", topics: ["Supervised learning paradigm", "Regression problem definition", "Simple Linear Regression - Mathematical foundation ($$y = mx + b$$) - Ordinary Least Squares (OLS) method - Cost function (Mean Squared Error) - Gradient descent intuition", "Assumptions of linear regression", "Implementing linear regression from scratch", "Introduction to scikit-learn - Library structure and API - LinearRegression class - fit() and predict() methods"] },
+                        { title: "Session 10: Multiple Linear Regression & Polynomial Regression", topics: ["Multiple Linear Regression - Multiple features - Vectorized implementation - Coefficient interpretation", "Feature scaling and normalization - StandardScaler - MinMaxScaler - When and why to scale", "Polynomial Regression - Feature engineering with polynomial features - Degree selection - Overfitting risks", "Regularization techniques - Ridge Regression (L2) - Lasso Regression (L1) - ElasticNet - Hyperparameter tuning (alpha)"] },
+                        { title: "Session 11: Regression Model Evaluation", topics: ["Performance metrics for regression - Mean Absolute Error (MAE) - Mean Squared Error (MSE) - Root Mean Squared Error (RMSE) - R-squared (R²) score - Adjusted R-squared", "Residual analysis - Residual plots - Normality of residuals - Homoscedasticity", "Cross-validation - k-fold cross-validation - Leave-one-out cross-validation - Stratified cross-validation", "Train-test split strategies", "Practical regression project: House price prediction"] }
+                    ]
+                },
+                 {
+                    module: "Module 4: Supervised Learning - Classification",
+                    weeks: "8-10",
+                    sessions: [
+                        { title: "Session 12: Logistic Regression - Part 1", topics: ["Classification problem definition", "Binary vs Multiclass classification", "Logistic function (Sigmoid function)", "Mathematical foundation of logistic regression", "Decision boundary concept", "Log loss (Binary Cross-Entropy)", "Gradient descent for logistic regression", "Implementing logistic regression with scikit-learn", "Probability predictions vs class predictions"] },
+                        { title: "Session 13: Logistic Regression - Part 2 & Model Evaluation", topics: ["Multiclass logistic regression - One-vs-Rest (OvR) - Multinomial/Softmax regression", "Regularization in logistic regression", "Classification metrics - Accuracy and its limitations - Confusion matrix - Precision, Recall, F1-score - Sensitivity and Specificity - ROC curve and AUC - Precision-Recall curve", "Handling imbalanced datasets - Class weights - Sampling techniques (SMOTE, undersampling)", "Threshold tuning", "Practical project: Customer churn prediction"] },
+                        { title: "Session 14: K-Nearest Neighbors (KNN)", topics: ["Instance-based learning concept", "KNN algorithm intuition", "Distance metrics - Euclidean distance - Manhattan distance - Minkowski distance - Cosine similarity", "Choosing K value - Effects of small vs large K - Cross-validation for K selection", "KNN for classification and regression", "Weighted KNN", "Curse of dimensionality", "Computational complexity considerations", "Feature scaling importance for KNN", "Implementing KNN with scikit-learn", "Practical application: Handwritten digit recognition"] },
+                        { title: "Session 15: Support Vector Machines (SVM) - Part 1", topics: ["Maximum margin classifier concept", "Linear SVM - Hyperplane and decision boundary - Support vectors - Margin maximization - Hard margin vs Soft margin - C hyperparameter", "Handling non-linearly separable data", "Hinge loss function", "Implementing linear SVM with scikit-learn", "SVM for binary and multiclass classification"] },
+                        { title: "Session 16: Support Vector Machines (SVM) - Part 2", topics: ["Kernel trick - Polynomial kernel - Radial Basis Function (RBF) kernel - Sigmoid kernel", "Kernel hyperparameters (gamma)", "Non-linear decision boundaries", "Grid search for hyperparameter tuning", "SVM advantages and limitations", "Computational considerations", "SVM vs Logistic Regression comparison", "Practical project: Image classification with SVM"] }
+                    ]
+                },
+                {
+                    module: "Module 5: Tree-Based Methods",
+                    weeks: "11-12",
+                    sessions: [
+                        { title: "Session 17: Decision Trees - Part 1", topics: ["Tree-based learning paradigm", "Decision tree structure - Root node, internal nodes, leaf nodes - Splits and branches", "Classification trees - Information Gain - Entropy and Gini impurity - Splitting criteria", "Regression trees - Variance reduction - Mean Squared Error for splits", "Growing a decision tree", "Feature importance"] },
+                        { title: "Session 18: Decision Trees - Part 2 & Ensemble Methods", topics: ["Overfitting in decision trees", "Pruning techniques - Pre-pruning (early stopping) - Post-pruning", "Hyperparameters - max_depth - min_samples_split - min_samples_leaf - max_features", "DecisionTreeClassifier and DecisionTreeRegressor in scikit-learn", "Tree visualization", "Introduction to Ensemble Learning - Bagging (Bootstrap Aggregating) - Boosting - Stacking"] },
+                        { title: "Session 19: Random Forests", topics: ["Random Forest algorithm", "Bootstrap sampling", "Feature randomness", "Aggregation methods - Voting for classification - Averaging for regression", "Out-of-bag (OOB) error", "Feature importance in Random Forests", "Hyperparameter tuning - n_estimators - max_features - max_depth", "RandomForestClassifier and RandomForestRegressor", "Advantages over single decision trees", "Practical project: Customer segmentation prediction"] },
+                        { title: "Session 20: Gradient Boosting Methods", topics: ["Boosting concept and intuition", "AdaBoost (Adaptive Boosting) - Weighted training instances - Sequential learning", "Gradient Boosting Machines (GBM) - Gradient descent in function space - Learning rate and n_estimators tradeoff", "XGBoost (Extreme Gradient Boosting) - Regularization - Parallel processing - Handling missing values", "LightGBM and CatBoost overview", "Hyperparameter tuning for gradient boosting", "Comparison: Random Forest vs Gradient Boosting", "Practical application: Kaggle-style competition problem"] }
+                    ]
+                },
+                {
+                    module: "Module 6: Unsupervised Learning - Clustering",
+                    weeks: "13-14",
+                    sessions: [
+                        { title: "Session 21: Introduction to Clustering & K-Means", topics: ["Unsupervised learning paradigm", "Clustering concepts and applications", "K-Means algorithm - Initialization methods - Assignment step - Update step - Convergence criteria", "Choosing K - Elbow method - Silhouette analysis - Gap statistic", "K-Means++ initialization", "Mini-batch K-Means", "Limitations of K-Means", "Implementing K-Means with scikit-learn"] },
+                        { title: "Session 22: Advanced Clustering Techniques", topics: ["Hierarchical Clustering - Agglomerative clustering - Divisive clustering - Linkage methods (single, complete, average, Ward) - Dendrograms", "DBSCAN (Density-Based Spatial Clustering) - Core points, border points, noise points - Epsilon and min_samples parameters - Advantages for arbitrary-shaped clusters", "Mean Shift clustering", "Gaussian Mixture Models (GMM) - Probabilistic clustering - Expectation-Maximization (EM) algorithm", "Clustering validation metrics - Silhouette coefficient - Davies-Bouldin index - Calinski-Harabasz index", "Practical project: Customer segmentation analysis"] },
+                        { title: "Session 23: Dimensionality Reduction", topics: ["Curse of dimensionality", "Feature extraction vs Feature selection", "Principal Component Analysis (PCA) - Variance maximization - Eigenvalues and eigenvectors - Explained variance ratio - Choosing number of components - PCA implementation with scikit-learn", "t-SNE (t-Distributed Stochastic Neighbor Embedding) - Non-linear dimensionality reduction - Visualization of high-dimensional data - Perplexity parameter", "Other techniques overview - Linear Discriminant Analysis (LDA) - Independent Component Analysis (ICA) - Autoencoders (preview to neural networks)", "Practical application: Visualization of high-dimensional datasets"] }
+                    ]
+                },
+                {
+                    module: "Module 7: Neural Networks & Deep Learning",
+                    weeks: "15-18",
+                    sessions: [
+                        { title: "Session 24: Introduction to Neural Networks", topics: ["Biological inspiration", "Perceptron model", "Multi-layer perceptron (MLP)", "Neural network architecture - Input layer, hidden layers, output layer - Neurons and weights - Biases", "Activation functions - Sigmoid - Tanh - ReLU, Leaky ReLU, ELU - Softmax for output layer", "Forward propagation", "Loss functions - MSE for regression - Cross-entropy for classification", "Introduction to Keras and TensorFlow", "Building a simple neural network"] },
+                        { title: "Session 25: Training Neural Networks", topics: ["Backpropagation algorithm - Chain rule of calculus - Gradient computation", "Optimization algorithms - Stochastic Gradient Descent (SGD) - Momentum - RMSprop - Adam optimizer", "Learning rate scheduling", "Batch size considerations", "Epochs and iterations", "Regularization techniques - L1 and L2 regularization - Dropout - Early stopping - Batch normalization", "Weight initialization strategies", "Implementing neural networks with Keras"] },
+                        { title: "Session 26: Deep Learning Architectures - Part 1", topics: ["Deep neural networks", "Vanishing and exploding gradients", "Deep learning frameworks comparison", "Keras Sequential API", "Keras Functional API for complex architectures", "Model compilation - Loss functions - Optimizers - Metrics", "Model training - fit() method - Callbacks (ModelCheckpoint, EarlyStopping, ReduceLROnPlateau)", "Model evaluation and prediction", "Saving and loading models", "Practical project: Image classification with MLP"] },
+                        { title: "Session 27: Convolutional Neural Networks (CNN) - Part 1", topics: ["Introduction to computer vision problems", "Limitations of fully connected networks for images", "Convolution operation", "CNN architecture components - Convolutional layers - Filters/kernels - Feature maps - Stride and padding", "Pooling layers - Max pooling - Average pooling", "Flattening", "Fully connected layers", "CNN design patterns"] },
+                        { title: "Session 28: Convolutional Neural Networks (CNN) - Part 2", topics: ["Building CNNs with Keras", "Data augmentation - Rotation, flipping, zooming - ImageDataGenerator", "Transfer learning - Pre-trained models (VGG, ResNet, Inception) - Feature extraction - Fine-tuning", "Batch normalization in CNNs", "Popular CNN architectures - LeNet - AlexNet - VGG - ResNet - Inception", "Object detection overview (YOLO, R-CNN)", "Practical project: Image classification (CIFAR-10, Fashion-MNIST)"] },
+                        { title: "Session 29: Recurrent Neural Networks (RNN) - Part 1", topics: ["Sequential data problems", "Limitations of feedforward networks for sequences", "RNN architecture - Hidden state - Temporal dynamics - Weight sharing", "Backpropagation Through Time (BPTT)", "Vanishing gradient problem in RNNs", "Applications of RNNs - Time series forecasting - Natural language processing - Speech recognition", "Many-to-one, one-to-many, many-to-many architectures"] },
+                        { title: "Session 30: Long Short-Term Memory (LSTM) & Advanced RNNs", topics: ["LSTM architecture - Cell state - Forget gate - Input gate - Output gate", "Advantages of LSTM over vanilla RNN", "Gated Recurrent Unit (GRU)", "Bidirectional RNNs", "Sequence-to-sequence models", "Attention mechanism overview", "Building RNNs and LSTMs with Keras", "Text preprocessing for NLP - Tokenization - Padding - Word embeddings (Word2Vec, GloVe) - Embedding layer in Keras", "Practical projects - Sentiment analysis - Time series forecasting (stock prices, weather) - Text generation"] }
+                    ]
+                },
+                {
+                    module: "Module 8: Advanced Topics & Model Evaluation",
+                    weeks: "19-20",
+                    sessions: [
+                        { title: "Session 31: Comprehensive Model Evaluation & Selection", topics: ["Model evaluation framework", "Cross-validation strategies - Stratified k-fold - Time series cross-validation - Leave-one-out CV", "Hyperparameter tuning - Grid search - Random search - Bayesian optimization", "Model selection criteria", "Pipeline creation in scikit-learn", "Feature engineering techniques - Creating interaction features - Binning and discretization - Feature extraction from dates", "Feature selection methods - Filter methods (correlation, chi-square) - Wrapper methods (RFE) - Embedded methods (feature importance)", "Handling missing data - Imputation strategies - Deletion strategies", "Handling categorical variables - One-hot encoding - Label encoding - Target encoding", "Model interpretation - Feature importance - Partial dependence plots - SHAP values - LIME"] },
+                        { title: "Session 32: Recent Developments in Machine Learning", topics: ["AutoML (Automated Machine Learning) - Auto-sklearn - TPOT - Google AutoML", "Neural Architecture Search (NAS)", "Transformer architecture - Self-attention mechanism - BERT, GPT overview", "Generative models - Generative Adversarial Networks (GANs) - Variational Autoencoders (VAEs)", "Reinforcement Learning basics - Agent, environment, rewards - Q-learning overview - Applications in robotics and games", "Federated Learning", "Explainable AI (XAI)", "Edge AI and TinyML", "Quantum Machine Learning prospects", "Ethical AI and fairness - Bias detection and mitigation - Privacy-preserving ML - Responsible AI principles"] }
+                    ]
+                },
+                 {
+                    module: "Module 9: ML in Production & Cloud Deployment",
+                    weeks: "21-22",
+                    sessions: [
+                        { title: "Session 33: MLOps & Model Deployment Fundamentals", topics: ["ML lifecycle in production", "MLOps concepts and importance", "Model versioning", "Experiment tracking - MLflow - Weights & Biases - TensorBoard", "Model packaging - Pickle and joblib - ONNX format - TensorFlow SavedModel", "API development for ML models - Flask basics - FastAPI for ML - Building REST APIs", "Containerization with Docker - Dockerfile creation - Container images - Docker Compose", "Monitoring and logging", "A/B testing for models"] },
+                        { title: "Session 34: Cloud-Based Machine Learning - AWS", topics: ["Introduction to cloud computing for ML", "AWS ML services overview", "Amazon SageMaker - SageMaker Studio - Built-in algorithms - Training jobs - Hyperparameter tuning - Model deployment - Endpoints and inference", "AWS S3 for data storage", "AWS Lambda for serverless ML", "Amazon Rekognition for computer vision", "Amazon Comprehend for NLP", "Cost optimization strategies", "Hands-on: Deploy a model on SageMaker"] },
+                        { title: "Session 35: Cloud-Based Machine Learning - Azure & GCP", topics: ["Microsoft Azure ML services - Azure Machine Learning Studio - Azure ML Designer - Automated ML in Azure - Azure Cognitive Services - Model deployment and monitoring", "Google Cloud Platform (GCP) ML services - Vertex AI - AI Platform - BigQuery ML - Google Cloud AutoML - TensorFlow Extended (TFX)", "Comparison of cloud providers", "Choosing the right platform", "Multi-cloud strategies", "Hands-on: Deploy models on Azure or GCP"] },
+                        { title: "Session 36: Scalable ML & Big Data Integration", topics: ["Distributed computing concepts", "Apache Spark for ML - PySpark basics - MLlib library - Distributed training", "Handling large datasets", "Streaming ML with Kafka and Spark Streaming", "GPU acceleration - CUDA basics - TensorFlow GPU usage - Multi-GPU training", "Model serving at scale - TensorFlow Serving - TorchServe - KubeFlow", "Real-time inference vs Batch inference", "Practical project: End-to-end ML pipeline deployment"] }
+                    ]
+                },
+                {
+                    module: "Module 10: Research & Capstone Project",
+                    weeks: "23-24",
+                    sessions: [
+                        { title: "Session 37: Research Opportunities in Machine Learning", topics: ["Current research trends", "Reading research papers effectively", "Popular ML conferences and journals - NeurIPS, ICML, CVPR, ACL - arXiv for preprints", "Research areas - Few-shot learning - Meta-learning - Self-supervised learning - Continual learning - Adversarial robustness - Interpretability research", "Academia vs Industry research", "Publishing and peer review process", "Staying updated with ML research - Papers with Code - Arxiv Sanity - Research blogs (Google AI, OpenAI, DeepMind)", "Building a research profile", "Opportunities in Sri Lanka and globally"] },
+                        { title: "Session 38: Capstone Project - Part 1", topics: ["Project requirements and expectations", "Problem definition and scoping", "Dataset selection and acquisition", "Project planning and timeline", "Literature review for project domain", "Data exploration and preprocessing", "Initial model baseline", "Project presentation guidelines", "Team formation and roles (if applicable)", "Individual project work and consultation"] },
+                        { title: "Session 39: Capstone Project - Part 2", topics: ["Model development and iteration", "Hyperparameter tuning and optimization", "Model comparison and selection", "Results analysis and interpretation", "Documentation best practices", "Creating project reports", "Code organization and GitHub usage", "Individual project work and consultation", "Mid-project presentations and feedback"] },
+                        { title: "Session 40: Capstone Project - Final Presentations", topics: ["Final model evaluation", "Project documentation completion", "Creating effective presentations", "Final project presentations", "Peer review and feedback", "Discussion on project challenges and learnings", "Next steps and career guidance", "Course feedback and evaluation", "Certificate distribution"] }
+                    ]
+                }
+            ];
+
+            const curriculumContainer = document.getElementById('curriculum-container');
+            courseData.forEach((module, moduleIndex) => {
+                const moduleElement = document.createElement('div');
+                moduleElement.className = 'bg-white rounded-lg shadow-md border border-slate-200 overflow-hidden';
+                
+                let moduleHTML = `
+                    <div class="module-header p-5 cursor-pointer flex justify-between items-center bg-slate-100 hover:bg-slate-200 transition-colors" data-module="${moduleIndex}">
+                        <div>
+                            <h3 class="text-lg md:text-xl font-bold text-slate-800">${module.module}</h3>
+                            <p class="text-sm text-slate-500">Weeks: ${module.weeks}</p>
+                        </div>
+                        <svg class="w-6 h-6 transform transition-transform text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="module-content" data-module-content="${moduleIndex}">
+                        <div class="p-5 border-t border-slate-200 space-y-3">
+                `;
+
+                module.sessions.forEach((session, sessionIndex) => {
+                    moduleHTML += `
+                        <div class="session-container border border-slate-200 rounded-md overflow-hidden">
+                           <div class="session-header p-4 cursor-pointer bg-white hover:bg-slate-50 flex justify-between items-center" data-session="${moduleIndex}-${sessionIndex}">
+                                <h4 class="font-semibold text-slate-700">${session.title}</h4>
+                                <svg class="w-5 h-5 transform transition-transform text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                           </div>
+                           <div class="session-content" data-session-content="${moduleIndex}-${sessionIndex}">
+                               <div class="p-4 border-t border-slate-200">
+                                   <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                       ${session.topics.map(topic => `<li>${topic}</li>`).join('')}
+                                   </ul>
+                               </div>
+                           </div>
+                        </div>
+                    `;
+                });
+
+                moduleHTML += `</div></div>`;
+                moduleElement.innerHTML = moduleHTML;
+                curriculumContainer.appendChild(moduleElement);
+            });
+
+            curriculumContainer.addEventListener('click', function(e) {
+                const moduleHeader = e.target.closest('.module-header');
+                if (moduleHeader) {
+                    const moduleIndex = moduleHeader.dataset.module;
+                    const content = curriculumContainer.querySelector(`[data-module-content="${moduleIndex}"]`);
+                    const icon = moduleHeader.querySelector('svg');
+                    content.classList.toggle('open');
+                    icon.classList.toggle('rotate-180');
+                }
+
+                const sessionHeader = e.target.closest('.session-header');
+                if (sessionHeader) {
+                    const sessionIndex = sessionHeader.dataset.session;
+                    const content = curriculumContainer.querySelector(`[data-session-content="${sessionIndex}"]`);
+                    const icon = sessionHeader.querySelector('svg');
+                    content.classList.toggle('open');
+                    icon.classList.toggle('rotate-180');
+                }
+            });
+            
+            const assessmentCtx = document.getElementById('assessmentChart').getContext('2d');
+            new Chart(assessmentCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Summative Assessments (60%)', 'Formative Assessments (40%)'],
+                    datasets: [{
+                        data: [60, 40],
+                        backgroundColor: ['#3b82f6', '#60a5fa'],
+                        borderColor: ['#ffffff'],
+                        borderWidth: 4,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const focusCtx = document.getElementById('focusChart').getContext('2d');
+            new Chart(focusCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Foundations', 'Supervised ML', 'Unsupervised ML', 'Deep Learning', 'Advanced & MLOps'],
+                    datasets: [{
+                        label: 'Number of Sessions',
+                        data: [8, 8, 3, 7, 10], 
+                        backgroundColor: ['#93c5fd', '#60a5fa', '#3b82f6', '#2563eb', '#1d4ed8'],
+                        borderColor: '#ffffff',
+                        borderWidth: 2,
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                         tooltip: {
+                             bodyFont: {
+                                size: 14,
+                             }
+                         }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                             grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
