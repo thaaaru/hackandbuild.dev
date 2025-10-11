@@ -1,0 +1,51 @@
+[
+  {
+    "file": "EthicalHacking.html",
+    "title": "Ethical Hacking",
+    "description": "Start here for a practical security testing roadmap.",
+    "category": "security",
+    "dateAdded": "2024-01-15"
+  },
+  {
+    "file": "InformationSecurityCareerRoadmap.html",
+    "title": "Information Security Career Roadmap",
+    "description": "Roles, skills, and steps from beginner to architect.",
+    "category": "security",
+    "dateAdded": "2024-01-20"
+  },
+  {
+    "file": "InteractiveDIKWHierarchyExplorer.html",
+    "title": "Interactive DIKW Hierarchy Explorer",
+    "description": "From data to wisdom with hands-on examples.",
+    "category": "general",
+    "dateAdded": "2024-02-01"
+  },
+  {
+    "file": "InteractiveGuidetoLearningMethods.html",
+    "title": "Interactive Guide to Learning Methods",
+    "description": "Techniques that help you learn faster and better.",
+    "category": "general",
+    "dateAdded": "2024-02-05"
+  },
+  {
+    "file": "InteractiveGuidetoMachineLearning.html",
+    "title": "Interactive Guide to Machine Learning",
+    "description": "A guided tour of core ML ideas.",
+    "category": "ml",
+    "dateAdded": "2024-02-10"
+  },
+  {
+    "file": "ML.html",
+    "title": "Machine Learning Roadmap",
+    "description": "Pathways, tools, and projects.",
+    "category": "ml",
+    "dateAdded": "2024-02-15"
+  },
+  {
+    "file": "knowledge-webpage.html",
+    "title": "Knowledge Webpage",
+    "description": "A general knowledge hub and notes.",
+    "category": "general",
+    "dateAdded": "2024-02-20"
+  }
+]
