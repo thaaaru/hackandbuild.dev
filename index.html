@@ -372,42 +372,40 @@
         }
 
         // Render roadmap items
-        function renderRoadmaps(roadmaps) {
-            const container = document.getElementById('roadmapList');
-            container.innerHTML = '';
+       function renderRoadmaps(roadmaps) {
+    const container = document.getElementById('roadmapList');
+    container.innerHTML = '';
 
-            // Normalize roadmaps to objects with file and folder properties
-            const normalizedRoadmaps = roadmaps.map(item => {
-                if (typeof item === 'string') {
-                    return { file: item, folder: '' };
-                }
-                return item;
-            });
-
-            normalizedRoadmaps.forEach(roadmap => {
-                // Build the full path
-                const folderPath = roadmap.folder ? `${roadmap.folder}/` : '';
-                const url = `roadmaps/${folderPath}${roadmap.file}`;
-                const title = roadmap.title || formatTitle(roadmap.file);
-                const description = roadmap.description || '';
-                
-                // Show folder location if it exists
-                const locationTag = roadmap.folder ? `<span style="color: var(--accent); font-size: 0.875rem; font-family: var(--mono);">${roadmap.folder}/</span>` : '';
-
-                const item = document.createElement('div');
-                item.className = 'roadmap-item';
-                item.innerHTML = `
-                    <div class="roadmap-info">
-                        <h3>${title}</h3>
-                        ${locationTag}
-                        ${description ? `<p>${description.substring(0, 120)}${description.length > 120 ? '...' : ''}</p>` : ''}
-                    </div>
-                    <a href="${url}" class="roadmap-link" target="_blank" rel="noopener noreferrer">Open →</a>
-                `;
-                container.appendChild(item);
-            });
+    // Normalize roadmaps to objects with file and folder properties
+    const normalizedRoadmaps = roadmaps.map(item => {
+        if (typeof item === 'string') {
+            return { file: item, folder: '' };
         }
+        return item;
+    });
 
+    normalizedRoadmaps.forEach(roadmap => {
+        // Build the full path (in root now)
+        const url = roadmap.folder ? `${roadmap.folder}/${roadmap.file}` : `${roadmap.file}`;
+        const title = roadmap.title || formatTitle(roadmap.file);
+        const description = roadmap.description || '';
+        
+        // Show folder location if it exists
+        const locationTag = roadmap.folder ? `<span style="color: var(--accent); font-size: 0.875rem; font-family: var(--mono);">${roadmap.folder}/</span>` : '';
+
+        const item = document.createElement('div');
+        item.className = 'roadmap-item';
+        item.innerHTML = `
+            <div class="roadmap-info">
+                <h3>${title}</h3>
+                ${locationTag}
+                ${description ? `<p>${description.substring(0, 120)}${description.length > 120 ? '...' : ''}</p>` : ''}
+            </div>
+            <a href="${url}" class="roadmap-link" target="_blank" rel="noopener noreferrer">Open →</a>
+        `;
+        container.appendChild(item);
+    });
+}
         // Discover HTML files in roadmaps folder
         async function discoverRoadmaps() {
             try {
