@@ -3,94 +3,434 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hack and Build - Share knowledge. Learn deeply. Add value.</title>
-    <meta name="description" content="A fast, minimal portal for IT and cybersecurity learning roadmaps. Share knowledge and build skills.">
-    <link rel="stylesheet" href="assets/style.css">
+    <meta name="description" content="Hack and Build - Open learning portal for IT and cybersecurity roadmaps">
+    <title>Hack and Build - Learning Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --accent: #2563eb;
+            --border: #e5e7eb;
+            --card-bg: #f9fafb;
+            --mono: 'Courier New', monospace;
+            --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --text: #e2e8f0;
+            --accent: #60a5fa;
+            --border: #334155;
+            --card-bg: #1e293b;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        header {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--mono);
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent);
+        }
+
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: var(--mono);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.125rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+        }
+
+        .how-it-works {
+            padding: 4rem 0;
+            background: var(--card-bg);
+        }
+
+        h2 {
+            font-family: var(--mono);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .card h3 {
+            font-family: var(--mono);
+            margin-bottom: 0.75rem;
+            color: var(--accent);
+        }
+
+        .roadmaps {
+            padding: 4rem 0;
+        }
+
+        .roadmap-list {
+            display: grid;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .roadmap-item {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .roadmap-item:hover {
+            border-color: var(--accent);
+        }
+
+        .roadmap-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.125rem;
+        }
+
+        .roadmap-info p {
+            color: var(--text);
+            opacity: 0.7;
+            font-size: 0.9375rem;
+        }
+
+        .roadmap-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .roadmap-link:hover {
+            text-decoration: underline;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            opacity: 0.6;
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .roadmap-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <header class="site-header">
+    <header>
         <div class="container">
-            <h1>Hack and Build</h1>
-            <button id="dark-mode-toggle" aria-label="Toggle Dark Mode">🌙</button>
+            <div class="header-content">
+                <div class="logo">hack_and_build</div>
+                <button class="theme-toggle" id="themeToggle">Toggle Dark Mode</button>
+            </div>
         </div>
     </header>
 
-    <main class="container">
-
-        <section id="hero" class="hero-section">
-            <h2 class="hero-title">Hack and Build</h2>
-            <p class="hero-subtitle">Share knowledge. Learn deeply. Add value.</p>
-            <p class="hero-description">This is an open knowledge-sharing project built by and for the IT community. We focus on **practical roadmaps** and a **bias toward doing**, encouraging you to build skills through hands-on learning, not just reading.</p>
-            <div class="hero-actions">
-                <a href="#roadmaps-list" class="button primary">Browse Roadmaps</a>
-                <a href="https://github.com/assets/" target="_blank" rel="noopener noreferrer" class="button secondary">Contribute</a>
-            </div>
-        </section>
-
-        <hr>
-
-        <section id="how-it-works">
-            <h2 class="section-heading">How it works</h2>
-            <div class="grid-3">
-                <div class="card">
-                    <h3>Learn 🧠</h3>
-                    <p>Follow a curated roadmap to build foundational and advanced skills.</p>
-                </div>
-                <div class="card">
-                    <h3>Build 🛠️</h3>
-                    <p>Apply your knowledge with practical, hands-on projects recommended in the guides.</p>
-                </div>
-                <div class="card">
-                    <h3>Share 🧑‍🤝‍🧑</h3>
-                    <p>Add new roadmaps or improve existing ones to give back to the community.</p>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Hack and Build</h1>
+                <p class="subtitle">Share knowledge. Learn deeply. Add value.</p>
+                <p>An open learning portal for IT and cybersecurity professionals. Explore practical roadmaps, build real skills, and contribute to a growing knowledge base that helps others succeed.</p>
+                <div class="cta-buttons">
+                    <a href="#roadmaps" class="btn btn-primary">Browse Roadmaps</a>
+                    <a href="https://github.com/yourusername/hackandbuild" class="btn btn-secondary">Contribute</a>
                 </div>
             </div>
         </section>
 
-        <hr>
-
-        <section id="roadmaps-list">
-            <h2 class="section-heading">Roadmaps and Guides</h2>
-            <div id="roadmaps-container" class="grid-2">
+        <section class="how-it-works">
+            <div class="container">
+                <h2>How It Works</h2>
+                <div class="cards">
+                    <div class="card">
+                        <h3>Learn</h3>
+                        <p>Follow structured roadmaps designed for real-world IT and security careers.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Build</h3>
+                        <p>Apply knowledge through hands-on projects and practical exercises.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Share</h3>
+                        <p>Contribute your own guides and help others on their learning journey.</p>
+                    </div>
                 </div>
+            </div>
         </section>
 
-        <hr>
-
-        <section id="contribution">
-            <h2 class="section-heading">Contribute a Roadmap</h2>
-            <p>We welcome new roadmaps! To add one, simply drop a new HTML file into the `/roadmaps` folder and update the **`pages.json`** manifest. This keeps the site fast and easy to maintain.</p>
-            
-            <h3>`pages.json` Format</h3>
-            <pre><code>[
-    {
-        "filename": "ExampleRoadmap.html",
-        "title": "A Great Roadmap Example",
-        "description": "A brief, one-sentence summary of what this roadmap covers."
-    },
-    {
-        "filename": "AnotherGuide.html",
-        "title": "My Second Guide",
-        "description": "Focuses on advanced topics in IT."
-    }
-]</code></pre>
-            <p>The **`filename`** is required, and **`title`** and **`description`** are highly recommended for the best display.</p>
-            <a href="https://github.com/placeholder/hackandbuild" target="_blank" rel="noopener noreferrer" class="button primary">Get Started Contributing</a>
+        <section class="roadmaps" id="roadmaps">
+            <div class="container">
+                <h2>Roadmaps and Guides</h2>
+                <div class="roadmap-list" id="roadmapList">
+                    <div class="loading">Loading roadmaps...</div>
+                </div>
+            </div>
         </section>
-
     </main>
 
-    <footer class="site-footer">
+    <footer>
         <div class="container">
-            <p>&copy; <span id="current-year"></span> Hack and Build. &nbsp;|&nbsp; <a href="#" target="_blank">License</a> &nbsp;|&nbsp; <a href="mailto:contact@hackandbuild.dev">Contact</a></p>
+            <p>&copy; 2025 Hack and Build | <a href="#license">MIT License</a> | <a href="mailto:contact@hackandbuild.dev">Contact</a></p>
         </div>
     </footer>
 
-    <script src="assets/script.js"></script>
     <script>
-        // Set current year in footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Default roadmaps list
+        const defaultRoadmaps = [
+            { file: 'EthicalHacking.html', title: 'Ethical Hacking' },
+            { file: 'InformationSecurityCareerRoadmap.html', title: 'Information Security Career Roadmap' },
+            { file: 'InteractiveDIKWHierarchyExplorer.html', title: 'Interactive DIKW Hierarchy Explorer' },
+            { file: 'InteractiveGuidetoLearningMethods.html', title: 'Interactive Guide to Learning Methods' },
+            { file: 'InteractiveGuidetoMachineLearning.html', title: 'Interactive Guide to Machine Learning' },
+            { file: 'ML.html', title: 'Machine Learning' },
+            { file: 'knowledge-webpage.html', title: 'Knowledge Webpage' }
+        ];
+
+        // Format filename to readable title
+        function formatTitle(filename) {
+            return filename
+                .replace('.html', '')
+                .replace(/([A-Z])/g, ' $1')
+                .replace(/[-_]/g, ' ')
+                .trim()
+                .split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ');
+        }
+
+        // Fetch title and description from page
+        async function fetchPageMeta(url) {
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                
+                const h1 = doc.querySelector('h1');
+                const p = doc.querySelector('p');
+                
+                return {
+                    title: h1 ? h1.textContent.trim() : null,
+                    description: p ? p.textContent.trim() : null
+                };
+            } catch (error) {
+                return { title: null, description: null };
+            }
+        }
+
+        // Render roadmap items
+        async function renderRoadmaps(roadmaps) {
+            const container = document.getElementById('roadmapList');
+            container.innerHTML = '';
+
+            for (const roadmap of roadmaps) {
+                const url = `/roadmaps/${roadmap.file}`;
+                let title = roadmap.title || formatTitle(roadmap.file);
+                let description = roadmap.description || '';
+
+                // Try to fetch meta from page
+                if (!roadmap.title || !roadmap.description) {
+                    const meta = await fetchPageMeta(url);
+                    title = meta.title || title;
+                    description = meta.description || description;
+                }
+
+                const item = document.createElement('div');
+                item.className = 'roadmap-item';
+                item.innerHTML = `
+                    <div class="roadmap-info">
+                        <h3>${title}</h3>
+                        ${description ? `<p>${description.substring(0, 120)}${description.length > 120 ? '...' : ''}</p>` : ''}
+                    </div>
+                    <a href="${url}" class="roadmap-link">Open →</a>
+                `;
+                container.appendChild(item);
+            }
+        }
+
+        // Load roadmaps
+        async function loadRoadmaps() {
+            try {
+                const response = await fetch('/roadmaps/pages.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    await renderRoadmaps(data.pages || data);
+                } else {
+                    throw new Error('JSON not found');
+                }
+            } catch (error) {
+                console.log('Using default roadmap list');
+                await renderRoadmaps(defaultRoadmaps);
+            }
+        }
+
+        // Initialize
+        loadRoadmaps();
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
     </script>
 </body>
 </html>
