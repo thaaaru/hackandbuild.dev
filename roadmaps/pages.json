@@ -1,12 +1,39 @@
-[
+{
+  "pages": [
     {
-        "filename": "ExampleRoadmap.html",
-        "title": "A Great Roadmap Example",
-        "description": "A brief, one-sentence summary of what this roadmap covers."
+      "file": "EthicalHacking.html",
+      "title": "Ethical Hacking",
+      "description": "Complete roadmap for aspiring ethical hackers covering penetration testing, vulnerability assessment, and security tools."
     },
     {
-        "filename": "AnotherGuide.html",
-        "title": "My Second Guide",
-        "description": "Focuses on advanced topics in IT."
+      "file": "InformationSecurityCareerRoadmap.html",
+      "title": "Information Security Career Roadmap",
+      "description": "Navigate your career path in information security with guidance on roles, certifications, and skill development."
+    },
+    {
+      "file": "InteractiveDIKWHierarchyExplorer.html",
+      "title": "Interactive DIKW Hierarchy Explorer",
+      "description": "Explore the Data-Information-Knowledge-Wisdom hierarchy through interactive examples and practical applications."
+    },
+    {
+      "file": "InteractiveGuidetoLearningMethods.html",
+      "title": "Interactive Guide to Learning Methods",
+      "description": "Discover effective learning techniques and methodologies to accelerate your skill development in IT."
+    },
+    {
+      "file": "InteractiveGuidetoMachineLearning.html",
+      "title": "Interactive Guide to Machine Learning",
+      "description": "Hands-on introduction to machine learning concepts, algorithms, and real-world implementations."
+    },
+    {
+      "file": "ML.html",
+      "title": "Machine Learning",
+      "description": "Comprehensive guide to machine learning fundamentals, tools, and practical applications."
+    },
+    {
+      "file": "knowledge-webpage.html",
+      "title": "Knowledge Management",
+      "description": "Understanding knowledge systems, management strategies, and organizational learning."
     }
-]
+  ]
+}
