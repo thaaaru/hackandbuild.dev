@@ -273,7 +273,6 @@
                 <p>An open learning portal for IT and cybersecurity professionals. Explore practical roadmaps, build real skills, and contribute to a growing knowledge base that helps others succeed.</p>
                 <div class="cta-buttons">
                     <a href="#roadmaps" class="btn btn-primary">Browse Roadmaps</a>
-                    <a href="https://github.com/yourusername/hackandbuild" class="btn btn-secondary">Contribute</a>
                 </div>
             </div>
         </section>
@@ -329,15 +328,15 @@
             localStorage.setItem('theme', newTheme);
         });
 
-        // Default roadmaps list
+        // Default roadmaps list - these files exist in /roadmaps
         const defaultRoadmaps = [
-            { file: 'EthicalHacking.html', title: 'Ethical Hacking' },
-            { file: 'InformationSecurityCareerRoadmap.html', title: 'Information Security Career Roadmap' },
-            { file: 'InteractiveDIKWHierarchyExplorer.html', title: 'Interactive DIKW Hierarchy Explorer' },
-            { file: 'InteractiveGuidetoLearningMethods.html', title: 'Interactive Guide to Learning Methods' },
-            { file: 'InteractiveGuidetoMachineLearning.html', title: 'Interactive Guide to Machine Learning' },
-            { file: 'ML.html', title: 'Machine Learning' },
-            { file: 'knowledge-webpage.html', title: 'Knowledge Webpage' }
+            'EthicalHacking.html',
+            'InformationSecurityCareerRoadmap.html',
+            'InteractiveDIKWHierarchyExplorer.html',
+            'InteractiveGuidetoLearningMethods.html',
+            'InteractiveGuidetoMachineLearning.html',
+            'ML.html',
+            'knowledge-webpage.html'
         ];
 
         // Format filename to readable title
@@ -377,7 +376,15 @@
             const container = document.getElementById('roadmapList');
             container.innerHTML = '';
 
-            for (const roadmap of roadmaps) {
+            // Normalize roadmaps to objects with file property
+            const normalizedRoadmaps = roadmaps.map(item => {
+                if (typeof item === 'string') {
+                    return { file: item };
+                }
+                return item;
+            });
+
+            for (const roadmap of normalizedRoadmaps) {
                 const url = `/roadmaps/${roadmap.file}`;
                 let title = roadmap.title || formatTitle(roadmap.file);
                 let description = roadmap.description || '';
