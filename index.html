@@ -402,17 +402,62 @@
             }
         }
 
+        // Discover HTML files in roadmaps folder
+        async function discoverRoadmaps() {
+            try {
+                // Try to fetch the roadmaps directory listing
+                const response = await fetch('/roadmaps/');
+                if (!response.ok) throw new Error('Directory listing not available');
+                
+                const html = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                
+                // Extract .html file links from directory listing
+                const links = doc.querySelectorAll('a[href]');
+                const htmlFiles = [];
+                
+                links.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href && href.endsWith('.html') && !href.includes('../')) {
+                        htmlFiles.push({
+                            file: href,
+                            title: formatTitle(href)
+                        });
+                    }
+                });
+                
+                if (htmlFiles.length > 0) {
+                    return htmlFiles;
+                }
+                
+                throw new Error('No HTML files found');
+            } catch (error) {
+                console.log('Auto-discovery failed, using default list');
+                return null;
+            }
+        }
+
         // Load roadmaps
         async function loadRoadmaps() {
             try {
+                // First, try to fetch pages.json
                 const response = await fetch('/roadmaps/pages.json');
                 if (response.ok) {
                     const data = await response.json();
                     await renderRoadmaps(data.pages || data);
-                } else {
-                    throw new Error('JSON not found');
+                    return;
                 }
             } catch (error) {
+                console.log('pages.json not found, trying auto-discovery');
+            }
+            
+            // Try auto-discovery
+            const discovered = await discoverRoadmaps();
+            if (discovered) {
+                await renderRoadmaps(discovered);
+            } else {
+                // Fall back to default list
                 console.log('Using default roadmap list');
                 await renderRoadmaps(defaultRoadmaps);
             }
