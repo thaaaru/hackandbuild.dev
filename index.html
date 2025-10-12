@@ -270,7 +270,7 @@
             <div class="container">
                 <h1>Hack and Build</h1>
                 <p class="subtitle">Share knowledge. Learn deeply. Add value.</p>
-                <p>An open learning portal for IT and cybersecurity professionals. Explore practical roadmaps, build real skills, and contribute to a growing knowledge base that helps others succeed.</p>
+                <p>An open learning portal for IT and cybersecurity professionals. Explore practical roadmaps, build real skills, and contribute to a growing knowledge base that helps others succeed.<[...]
                 <div class="cta-buttons">
                     <a href="#roadmaps" class="btn btn-primary">Browse Roadmaps</a>
                 </div>
@@ -402,7 +402,7 @@
                         ${locationTag}
                         ${description ? `<p>${description.substring(0, 120)}${description.length > 120 ? '...' : ''}</p>` : ''}
                     </div>
-                    <a href="${url}" class="roadmap-link">Open →</a>
+                    <a href="${url}" class="roadmap-link" target="_blank" rel="noopener noreferrer">Open →</a>
                 `;
                 container.appendChild(item);
             });
@@ -478,11 +478,27 @@
                 });
         }
 
+        // --- Make all .html links open in new tab (even dynamically rendered) ---
+        function setLinksToOpenInNewTab() {
+            document.querySelectorAll('a[href$=".html"]').forEach(function(link) {
+                link.setAttribute('target', '_blank');
+                link.setAttribute('rel', 'noopener noreferrer');
+            });
+        }
+
+        // Patch renderRoadmaps to always set links to open in new tab
+        const origRenderRoadmaps = renderRoadmaps;
+        window.renderRoadmaps = function(...args) {
+            origRenderRoadmaps.apply(this, args);
+            setLinksToOpenInNewTab();
+        };
+
         // Initialize
         console.log('Script loaded');
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM loaded, initializing...');
             loadRoadmaps();
+            setLinksToOpenInNewTab();
         });
 
         // Smooth scroll for anchor links
