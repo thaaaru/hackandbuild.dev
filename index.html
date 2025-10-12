@@ -376,15 +376,7 @@
             const container = document.getElementById('roadmapList');
             container.innerHTML = '';
 
-            // Normalize roadmaps to objects with file property
-            const normalizedRoadmaps = roadmaps.map(item => {
-                if (typeof item === 'string') {
-                    return { file: item };
-                }
-                return item;
-            });
-
-            for (const roadmap of normalizedRoadmaps) {
+            for (const roadmap of roadmaps) {
                 const url = `/roadmaps/${roadmap.file}`;
                 let title = roadmap.title || formatTitle(roadmap.file);
                 let description = roadmap.description || '';
