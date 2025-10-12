@@ -17,6 +17,8 @@
     <title>Hack and Build - Learning Portal</title>
     <!-- Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Hack font CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/hack@5.0.16/index.min.css">
     <style>
         :root {
             --bg: #ffffff;
@@ -24,7 +26,7 @@
             --accent: #2563eb;
             --border: #e5e7eb;
             --card-bg: #f9fafb;
-            --mono: 'Courier New', monospace;
+            --mono: 'Hack', 'Courier New', monospace;
             --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
@@ -207,6 +209,10 @@
             background: #eaf1fd;
             transform: translateY(-1.5px) scale(1.011);
         }
+        [data-theme="dark"] .roadmap-tile:hover {
+            background: #162039;
+            border-color: #77b3fa;
+        }
         .roadmap-tile-icon {
             flex-shrink: 0;
             width: 36px;
@@ -229,6 +235,7 @@
             flex-direction: column;
             justify-content: flex-start;
             overflow: hidden;
+            font-family: var(--mono);
         }
         .roadmap-info h3 {
             margin: 0 0 0.33rem 0;
