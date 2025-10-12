@@ -440,9 +440,20 @@
 
         // Load roadmaps
         function loadRoadmaps() {
+            console.log('loadRoadmaps called');
+            console.log('Default roadmaps:', defaultRoadmaps);
+            
             // For now, just use the default list immediately
             // This ensures the links show up right away
-            renderRoadmaps(defaultRoadmaps);
+            try {
+                renderRoadmaps(defaultRoadmaps);
+                console.log('Roadmaps rendered successfully');
+            } catch (error) {
+                console.error('Error rendering roadmaps:', error);
+                // Show error message to user
+                const container = document.getElementById('roadmapList');
+                container.innerHTML = '<div class="loading">Error loading roadmaps. Please refresh the page.</div>';
+            }
             
             // Optionally try to load pages.json in the background
             fetch('roadmaps/pages.json')
@@ -453,15 +464,20 @@
                     throw new Error('No pages.json');
                 })
                 .then(data => {
+                    console.log('Loaded pages.json:', data);
                     renderRoadmaps(data.pages || data);
                 })
                 .catch(error => {
-                    console.log('Using default roadmap list');
+                    console.log('Using default roadmap list:', error.message);
                 });
         }
 
         // Initialize
-        loadRoadmaps();
+        console.log('Script loaded');
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing...');
+            loadRoadmaps();
+        });
 
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
