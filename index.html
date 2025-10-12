@@ -15,6 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Hack and Build - Open learning portal for IT and cybersecurity roadmaps">
     <title>Hack and Build - Learning Portal</title>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         :root {
             --bg: #ffffff;
@@ -185,9 +187,9 @@
             border-radius: 10px;
             background: var(--card-bg);
             padding: 1.1rem 1.1rem 1rem 1.1rem;
-            height: 7em;
+            height: 7.6em;
+            max-height: 8.7em;
             min-height: unset;
-            max-height: 8.5em;
             box-shadow: 0 2px 9px 0 rgba(60, 60, 90, 0.05);
             display: flex;
             flex-direction: row;
@@ -216,11 +218,9 @@
             border-radius: 50%;
             margin-top: 0.2em;
         }
-        .roadmap-tile-icon svg {
-            width: 22px;
-            height: 22px;
-            display: block;
+        .roadmap-tile-icon i {
             color: #fff;
+            font-size: 1.4em;
         }
         .roadmap-info {
             flex: 1 1 auto;
@@ -228,6 +228,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
+            overflow: hidden;
         }
         .roadmap-info h3 {
             margin: 0 0 0.33rem 0;
@@ -235,19 +236,22 @@
             font-family: var(--mono);
             font-weight: 600;
             text-overflow: ellipsis;
-            white-space: nowrap;
             overflow: hidden;
             line-height: 1.25;
+            white-space: normal;
         }
         .roadmap-info p {
             color: var(--text);
             opacity: 0.8;
             font-size: 0.95rem;
             margin: 0;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
             line-height: 1.2;
+            word-break: break-word;
+            white-space: normal;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         .roadmap-info .location-tag {
             font-size: 0.88rem;
@@ -399,49 +403,18 @@
             { file: 'knowledge-webpage.html', folder: '' }
         ];
 
-        // Icons map for titles
-        function getTileIcon(title) {
-            const icons = {
-                // Ethical hacking: shield/lock/bug/terminal
-                'Ethical Hacking': `
-                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l7 4v5c0 5.25-3.28 9.74-7 11-3.72-1.26-7-5.75-7-11V6l7-4z" fill="currentColor"/><path d="M9 10l2 2 4-4" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                `,
-                // InfoSec Roadmap: compass/map
-                'Information Security Career Roadmap': `
-                  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M15.5 8.5l-5.5 2-2 5.5 5.5-2 2-5.5z" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
-                `,
-                // DIKW: hierarchy tree
-                'Interactive DIKW Hierarchy Explorer': `
-                  <svg viewBox="0 0 24 24" fill="none"><rect x="10" y="3" width="4" height="4" rx="2" fill="currentColor"/><rect x="3" y="17" width="4" height="4" rx="2" fill="currentColor"/><rect x="17" y="17" width="4" height="4" rx="2" fill="currentColor"/><path d="M12 7v3m0 0l-5 7m5-7l5 7" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                `,
-                // Learning Methods: bulb
-                'Interactive Guide to Learning Methods': `
-                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 2a7 7 0 0 1 7 7c0 3.5-2 5-3 6.5a4 4 0 0 1-8 0C7 14 5 12.5 5 9a7 7 0 0 1 7-7z" fill="currentColor"/><path d="M10 20h4m-2 0v2" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg>
-                `,
-                // Machine Learning: brain
-                'Interactive Guide to Machine Learning': `
-                  <svg viewBox="0 0 24 24" fill="none"><ellipse cx="8" cy="12" rx="6" ry="8" fill="currentColor"/><ellipse cx="16" cy="12" rx="6" ry="8" fill="currentColor" opacity="0.7"/><path d="M8 7v10M16 7v10" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/></svg>
-                `,
-                // ML: gear
-                'Ml': `
-                  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="7" fill="currentColor"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/></svg>
-                `,
-                // Knowledge webpage: web/globe
-                'Knowledge Webpage': `
-                  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M2 12h20M12 2c2.5 2.5 5.5 7.5 0 20-5.5-12.5-2.5-17.5 0-20z" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/></svg>
-                `
-            };
-            // Matching by normalized title logic
+        // FontAwesome icon mapping
+        function getTileIconClass(title) {
             const norm = title.trim().replace(/\s+/g, ' ').replace(/-/g, ' ').toLowerCase();
-            if(norm.includes("ethical hacking")) return icons['Ethical Hacking'];
-            if(norm.includes("information security career roadmap")) return icons['Information Security Career Roadmap'];
-            if(norm.includes("dikw")) return icons['Interactive DIKW Hierarchy Explorer'];
-            if(norm.includes("learning method")) return icons['Interactive Guide to Learning Methods'];
-            if(norm.includes("machine learning")) return icons['Interactive Guide to Machine Learning'];
-            if(norm === "ml") return icons['Ml'];
-            if(norm.includes("knowledge")) return icons['Knowledge Webpage'];
+            if(norm.includes("ethical hacking")) return "fa-user-secret";
+            if(norm.includes("information security career roadmap")) return "fa-compass";
+            if(norm.includes("dikw")) return "fa-sitemap";
+            if(norm.includes("learning method")) return "fa-lightbulb";
+            if(norm.includes("machine learning")) return "fa-brain";
+            if(norm === "ml") return "fa-gears";
+            if(norm.includes("knowledge")) return "fa-globe";
             // fallback: book
-            return `<svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="14" rx="2.5" fill="currentColor"/><path d="M8 7h8M8 10h8M8 13h6" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/></svg>`;
+            return "fa-book";
         }
 
         // Format filename to readable title
@@ -476,11 +449,7 @@
                 const locationTag = roadmap.folder ? `<span class="location-tag">${roadmap.folder}/</span>` : '';
 
                 // Icon logic
-                const iconSVG = `
-                    <span class="roadmap-tile-icon" aria-hidden="true">
-                        ${getTileIcon(title)}
-                    </span>
-                `;
+                const iconClass = getTileIconClass(title);
 
                 // Whole tile is a link
                 const tile = document.createElement('a');
@@ -489,11 +458,13 @@
                 tile.setAttribute('target', '_blank');
                 tile.setAttribute('rel', 'noopener noreferrer');
                 tile.innerHTML = `
-                    ${iconSVG}
+                    <span class="roadmap-tile-icon" aria-hidden="true">
+                        <i class="fa-solid ${iconClass}"></i>
+                    </span>
                     <div class="roadmap-info">
                         <h3>${title}</h3>
                         ${locationTag}
-                        ${description ? `<p>${description.substring(0, 170)}${description.length > 170 ? '...' : ''}</p>` : ''}
+                        ${description ? `<p>${description}</p>` : ''}
                     </div>
                     <span class="roadmap-tile-arrow" aria-hidden="true">&rarr;</span>
                 `;
