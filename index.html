@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X70YJR4WSV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-X70YJR4WSV');
-</script>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Hack and Build - Open learning portal for IT and cybersecurity roadmaps">
@@ -181,47 +171,67 @@
 
         .roadmap-list {
             display: grid;
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
             margin-top: 2rem;
         }
 
         .roadmap-item {
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.5rem;
+            border-radius: 12px;
+            background: var(--card-bg);
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            min-height: 180px;
+            box-shadow: 0 2px 12px 0 rgba(60, 60, 90, 0.06);
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            transition: border-color 0.2s;
+            transition: box-shadow 0.18s, border-color 0.18s, transform 0.15s;
+            position: relative;
         }
-
         .roadmap-item:hover {
             border-color: var(--accent);
+            box-shadow: 0 6px 20px 0 rgba(60, 60, 120, 0.11);
+            transform: translateY(-2px) scale(1.02);
         }
-
         .roadmap-info h3 {
             margin-bottom: 0.5rem;
-            font-size: 1.125rem;
+            font-size: 1.15rem;
+            font-family: var(--mono);
         }
-
         .roadmap-info p {
             color: var(--text);
-            opacity: 0.7;
-            font-size: 0.9375rem;
+            opacity: 0.8;
+            font-size: 0.96rem;
+            margin-bottom: 0.4rem;
         }
-
         .roadmap-link {
+            margin-top: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-weight: 500;
             color: var(--accent);
             text-decoration: none;
-            font-weight: 500;
-            white-space: nowrap;
+            font-size: 1.04rem;
+            background: none;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            transition: color 0.16s;
+            gap: 0.4em;
         }
-
-        .roadmap-link:hover {
-            text-decoration: underline;
+        .roadmap-link:after {
+            content: "→";
+            margin-left: 0.4em;
+            font-size: 1.16em;
+            line-height: 1;
+            transition: margin-left 0.13s;
         }
-
+        .roadmap-link:hover,
+        .roadmap-item:hover .roadmap-link {
+            color: #1b4fd7;
+        }
         .loading {
             text-align: center;
             padding: 2rem;
@@ -258,9 +268,12 @@
                 padding: 3rem 0;
             }
 
+            .roadmap-list {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
             .roadmap-item {
-                flex-direction: column;
-                align-items: flex-start;
+                padding: 1.2rem 1rem;
             }
         }
     </style>
@@ -280,7 +293,9 @@
             <div class="container">
                 <h1>Hack and Build</h1>
                 <p class="subtitle">Share knowledge. Learn deeply. Add value.</p>
-                <p>An open learning portal for IT and cybersecurity professionals. Explore practical roadmaps, build real skills, and contribute to a growing knowledge base that helps others succeed.<[...]
+                <p>
+                  An open learning portal for IT and cybersecurity professionals. Explore practical roadmaps, build real skills, and contribute to a growing knowledge base that helps others succeed.
+                </p>
                 <div class="cta-buttons">
                     <a href="#roadmaps" class="btn btn-primary">Browse Roadmaps</a>
                 </div>
@@ -327,7 +342,7 @@
         // Theme toggle
         const themeToggle = document.getElementById('themeToggle');
         const html = document.documentElement;
-        
+
         const savedTheme = localStorage.getItem('theme') || 'light';
         html.setAttribute('data-theme', savedTheme);
 
@@ -338,14 +353,14 @@
             localStorage.setItem('theme', newTheme);
         });
 
-        // Default roadmaps list - these files exist in /roadmaps and subdirectories
+        // Default roadmaps list - files in the ROOT directory
         const defaultRoadmaps = [
             { file: 'EthicalHacking.html', folder: '' },
             { file: 'InformationSecurityCareerRoadmap.html', folder: '' },
             { file: 'InteractiveDIKWHierarchyExplorer.html', folder: '' },
             { file: 'InteractiveGuidetoLearningMethods.html', folder: '' },
             { file: 'InteractiveGuidetoMachineLearning.html', folder: '' },
-            { file: 'MachineLearning.html', folder: '' },
+            { file: 'ML.html', folder: '' },
             { file: 'knowledge-webpage.html', folder: '' }
         ];
 
@@ -368,10 +383,10 @@
                 const text = await response.text();
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(text, 'text/html');
-                
+
                 const h1 = doc.querySelector('h1');
                 const p = doc.querySelector('p');
-                
+
                 return {
                     title: h1 ? h1.textContent.trim() : null,
                     description: p ? p.textContent.trim() : null
@@ -381,96 +396,57 @@
             }
         }
 
-        // Render roadmap items
-       function renderRoadmaps(roadmaps) {
-    const container = document.getElementById('roadmapList');
-    container.innerHTML = '';
+        // Render roadmap items AS TILES
+        function renderRoadmaps(roadmaps) {
+            const container = document.getElementById('roadmapList');
+            container.innerHTML = '';
 
-    // Normalize roadmaps to objects with file and folder properties
-    const normalizedRoadmaps = roadmaps.map(item => {
-        if (typeof item === 'string') {
-            return { file: item, folder: '' };
-        }
-        return item;
-    });
-
-    normalizedRoadmaps.forEach(roadmap => {
-        // Build the full path (in root now)
-        const url = roadmap.folder ? `${roadmap.folder}/${roadmap.file}` : `${roadmap.file}`;
-        const title = roadmap.title || formatTitle(roadmap.file);
-        const description = roadmap.description || '';
-        
-        // Show folder location if it exists
-        const locationTag = roadmap.folder ? `<span style="color: var(--accent); font-size: 0.875rem; font-family: var(--mono);">${roadmap.folder}/</span>` : '';
-
-        const item = document.createElement('div');
-        item.className = 'roadmap-item';
-        item.innerHTML = `
-            <div class="roadmap-info">
-                <h3>${title}</h3>
-                ${locationTag}
-                ${description ? `<p>${description.substring(0, 120)}${description.length > 120 ? '...' : ''}</p>` : ''}
-            </div>
-            <a href="${url}" class="roadmap-link" target="_blank" rel="noopener noreferrer">Open →</a>
-        `;
-        container.appendChild(item);
-    });
-}
-        // Discover HTML files in roadmaps folder
-        async function discoverRoadmaps() {
-            try {
-                // Try to fetch the roadmaps directory listing
-                const response = await fetch('/roadmaps/');
-                if (!response.ok) throw new Error('Directory listing not available');
-                
-                const html = await response.text();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                
-                // Extract .html file links from directory listing
-                const links = doc.querySelectorAll('a[href]');
-                const htmlFiles = [];
-                
-                links.forEach(link => {
-                    const href = link.getAttribute('href');
-                    if (href && href.endsWith('.html') && !href.includes('../')) {
-                        htmlFiles.push({
-                            file: href,
-                            title: formatTitle(href)
-                        });
-                    }
-                });
-                
-                if (htmlFiles.length > 0) {
-                    return htmlFiles;
+            // Normalize roadmaps to objects with file and folder properties
+            const normalizedRoadmaps = roadmaps.map(item => {
+                if (typeof item === 'string') {
+                    return { file: item, folder: '' };
                 }
-                
-                throw new Error('No HTML files found');
-            } catch (error) {
-                console.log('Auto-discovery failed, using default list');
-                return null;
-            }
+                return item;
+            });
+
+            normalizedRoadmaps.forEach(roadmap => {
+                // Build the full path (in root now)
+                const url = roadmap.folder ? `${roadmap.folder}/${roadmap.file}` : `${roadmap.file}`;
+                const title = roadmap.title || formatTitle(roadmap.file);
+                const description = roadmap.description || '';
+                const locationTag = roadmap.folder ? `<span style="color: var(--accent); font-size: 0.875rem; font-family: var(--mono);">${roadmap.folder}/</span>` : '';
+
+                const item = document.createElement('div');
+                item.className = 'roadmap-item';
+                item.innerHTML = `
+                    <div class="roadmap-info">
+                        <h3>${title}</h3>
+                        ${locationTag}
+                        ${description ? `<p>${description.substring(0, 120)}${description.length > 120 ? '...' : ''}</p>` : ''}
+                    </div>
+                    <a href="${url}" class="roadmap-link" target="_blank" rel="noopener noreferrer">Open</a>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        // Discover HTML files in root
+        async function discoverRoadmaps() {
+            // Not implemented: Directory listing in root is not available in most static hosts.
+            // This function could be implemented for environments that expose / directory as HTML.
+            return null;
         }
 
         // Load roadmaps
         function loadRoadmaps() {
-            console.log('loadRoadmaps called');
-            console.log('Default roadmaps:', defaultRoadmaps);
-            
-            // For now, just use the default list immediately
-            // This ensures the links show up right away
             try {
                 renderRoadmaps(defaultRoadmaps);
-                console.log('Roadmaps rendered successfully');
             } catch (error) {
-                console.error('Error rendering roadmaps:', error);
-                // Show error message to user
                 const container = document.getElementById('roadmapList');
                 container.innerHTML = '<div class="loading">Error loading roadmaps. Please refresh the page.</div>';
             }
-            
             // Optionally try to load pages.json in the background
-            fetch('roadmaps/pages.json')
+            fetch('pages.json')
                 .then(response => {
                     if (response.ok) {
                         return response.json();
@@ -478,12 +454,9 @@
                     throw new Error('No pages.json');
                 })
                 .then(data => {
-                    console.log('Loaded pages.json:', data);
                     renderRoadmaps(data.pages || data);
                 })
-                .catch(error => {
-                    console.log('Using default roadmap list:', error.message);
-                });
+                .catch(error => {});
         }
 
         // --- Make all .html links open in new tab (even dynamically rendered) ---
@@ -502,9 +475,7 @@
         };
 
         // Initialize
-        console.log('Script loaded');
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, initializing...');
             loadRoadmaps();
             setLinksToOpenInNewTab();
         });
