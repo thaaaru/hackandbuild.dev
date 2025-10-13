@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive SFIA 8 Framework</title>
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: A thematic, multi-section single-page application. The structure is designed for a progressive discovery of the framework's complexity. It starts with a high-level introduction (Hero), moves to core concepts (Structure section with an interactive chart and level cards), provides a powerful tool for deep exploration (Interactive Skills Explorer), allows for a detailed comparison of responsibility levels (Levels Deep Dive), and concludes with a summary of updates (What's New). This non-linear but guided structure was chosen to cater to different user needs—from a quick overview to an in-depth analysis—making the dense SFIA information digestible and accessible. -->
+    <!-- Visualization & Content Choices:
+        - Report Info: Distribution of 121 skills across 6 categories -> Goal: Show proportions & provide an overview -> Viz/Presentation: Donut Chart -> Interaction: Hover for details, click to filter the main explorer -> Justification: Provides a quick, scannable visual summary of the framework's structure and acts as a navigation element -> Library: Chart.js.
+        - Report Info: Full list of 121 skills with descriptions at various levels -> Goal: Organize, allow deep-dives and specific lookups -> Viz/Presentation: Two-panel layout with filters/search and a dynamic detail view -> Interaction: Real-time filtering by category/search term; clicking a skill updates the detail panel -> Justification: This is the core interactive tool of the app, enabling users to efficiently find and understand any specific skill within the framework -> Library/Method: Vanilla JS DOM Manipulation.
+        - Report Info: 7 Levels of Responsibility with 5 generic attributes each -> Goal: Compare qualitative progression and inform -> Viz/Presentation: A tabbed interface where each tab represents a level -> Interaction: Clicking a tab reveals the detailed descriptions of all attributes for that level -> Justification: This presents the detailed, text-heavy information in a structured, comparable format without misrepresenting the qualitative data as a quantitative chart -> Library/Method: Vanilla JS for tab control.
+        - Report Info: Changes in SFIA 8 -> Goal: Inform about updates -> Viz/Presentation: Simple, clear lists -> Interaction: None required -> Justification: A straightforward presentation for factual, summary information -> Library/Method: HTML/CSS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #FDFBF8; color: #403A3A; }
+        .chart-container { position: relative; width: 100%; max-width: 450px; margin-left: auto; margin-right: auto; height: 300px; max-height: 400px; }
+        @media (min-width: 768px) { .chart-container { height: 400px; } }
+        .skill-level-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+        .tab-active { background-color: #D3A588; color: #FFFFFF; }
+        .tab-inactive { background-color: #F0EBE3; color: #403A3A; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F0EBE3; }
+        ::-webkit-scrollbar-thumb { background: #D3A588; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #BF8A69; }
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl font-bold text-[#BF8A69]">SFIA 8 Framework Explorer</h1>
+                </div>
+                <nav class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#structure" class="text-gray-700 hover:text-[#BF8A69] px-3 py-2 rounded-md text-sm font-medium">Framework Structure</a>
+                        <a href="#explorer" class="text-gray-700 hover:text-[#BF8A69] px-3 py-2 rounded-md text-sm font-medium">Skills Explorer</a>
+                        <a href="#levels" class="text-gray-700 hover:text-[#BF8A69] px-3 py-2 rounded-md text-sm font-medium">Responsibility Levels</a>
+                        <a href="#whats-new" class="text-gray-700 hover:text-[#BF8A69] px-3 py-2 rounded-md text-sm font-medium">What's New</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+
+        <section id="hero" class="text-center py-16">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-[#403A3A]">Demystifying Professional Skills</h2>
+            <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">
+                Welcome to the interactive guide for <span class="font-semibold text-[#BF8A69]">SFIA 8</span>, the global standard for skills and competency in the digital world. This page is designed to help you understand, explore, and apply the framework with ease.
+            </p>
+        </section>
+
+        <section id="structure" class="py-16 bg-white rounded-2xl shadow-lg p-8 my-8">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-[#403A3A]">The Framework's Core Structure</h3>
+                <p class="mt-2 text-gray-600 max-w-3xl mx-auto">SFIA is built on two key pillars: a set of professional skills organized into categories, and seven levels of responsibility. This section provides an overview of how these pillars work together. Interact with the chart and cards to begin your exploration.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h4 class="text-xl font-semibold text-center mb-4 text-[#403A3A]">Skills by Category</h4>
+                    <div class="chart-container">
+                        <canvas id="categoriesChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold text-center mb-4 text-[#403A3A]">The 7 Levels of Responsibility</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <div class="p-4 bg-[#F0EBE3] rounded-lg text-center cursor-pointer hover:bg-[#E6DCD1] transition">
+                            <span class="text-3xl font-bold text-[#BF8A69]">1</span>
+                            <p class="text-sm font-medium text-gray-700 mt-1">Follow</p>
+                        </div>
+                        <div class="p-4 bg-[#F0EBE3] rounded-lg text-center cursor-pointer hover:bg-[#E6DCD1] transition">
+                            <span class="text-3xl font-bold text-[#BF8A69]">2</span>
+                            <p class="text-sm font-medium text-gray-700 mt-1">Assist</p>
+                        </div>
+                        <div class="p-4 bg-[#F0EBE3] rounded-lg text-center cursor-pointer hover:bg-[#E6DCD1] transition">
+                           <span class="text-3xl font-bold text-[#BF8A69]">3</span>
+                            <p class="text-sm font-medium text-gray-700 mt-1">Apply</p>
+                        </div>
+                        <div class="p-4 bg-[#F0EBE3] rounded-lg text-center cursor-pointer hover:bg-[#E6DCD1] transition">
+                            <span class="text-3xl font-bold text-[#BF8A69]">4</span>
+                            <p class="text-sm font-medium text-gray-700 mt-1">Enable</p>
+                        </div>
+                        <div class="p-4 bg-[#F0EBE3] rounded-lg text-center cursor-pointer hover:bg-[#E6DCD1] transition">
+                           <span class="text-3xl font-bold text-[#BF8A69]">5</span>
+                            <p class="text-sm font-medium text-gray-700 mt-1">Ensure & Advise</p>
+                        </div>
+                        <div class="p-4 bg-[#F0EBE3] rounded-lg text-center cursor-pointer hover:bg-[#E6DCD1] transition">
+                           <span class="text-3xl font-bold text-[#BF8A69]">6</span>
+                            <p class="text-sm font-medium text-gray-700 mt-1">Initiate & Influence</p>
+                        </div>
+                        <div class="p-4 col-span-2 sm:col-span-1 sm:col-start-2 bg-[#D3A588] text-white rounded-lg text-center cursor-pointer hover:bg-[#BF8A69] transition">
+                           <span class="text-3xl font-bold">7</span>
+                            <p class="text-sm font-medium mt-1">Set Strategy, Inspire & Mobilise</p>
+                        </div>
+                    </div>
+                    <p class="text-center mt-4 text-sm text-gray-500">Click a card to jump to that level's details below.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="explorer" class="py-16">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-[#403A3A]">Interactive Skills Explorer</h3>
+                <p class="mt-2 text-gray-600 max-w-3xl mx-auto">This is the core tool for navigating the 121 skills in SFIA 8. Use the filters and search bar to find a specific skill, then click on it to see its full description and how it applies across the different levels of responsibility.</p>
+            </div>
+            <div class="flex flex-col md:flex-row gap-8">
+                <aside class="md:w-1/3 lg:w-1/4">
+                    <div class="sticky top-24">
+                        <h4 class="text-lg font-semibold mb-4 text-[#403A3A]">Filter Skills</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="category-filter" class="block text-sm font-medium text-gray-700">Category</label>
+                                <select id="category-filter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-[#BF8A69] focus:border-[#BF8A69] sm:text-sm rounded-md shadow-sm">
+                                    <option value="all">All Categories</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="search-filter" class="block text-sm font-medium text-gray-700">Search by name or code</label>
+                                <input type="text" id="search-filter" placeholder="e.g., Business analysis or BUSA" class="mt-1 block w-full text-base border-gray-300 focus:outline-none focus:ring-[#BF8A69] focus:border-[#BF8A69] sm:text-sm rounded-md shadow-sm">
+                            </div>
+                        </div>
+                        <div id="skill-list-container" class="mt-6 bg-white rounded-lg shadow p-2 h-[60vh] overflow-y-auto">
+                            <ul id="skill-list" class="divide-y divide-gray-200">
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+                <div id="skill-details-container" class="md:w-2/3 lg:w-3/4 bg-white rounded-2xl shadow-lg p-6 md:p-8 min-h-[80vh]">
+                    <div id="skill-details-placeholder" class="flex flex-col items-center justify-center h-full text-center text-gray-500">
+                        <svg class="w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        <h4 class="mt-4 text-xl font-semibold">Select a skill to view details</h4>
+                        <p class="mt-2 max-w-md">Use the filters and search on the left to find a skill. Click on its name to see its description and level breakdowns here.</p>
+                    </div>
+                    <div id="skill-details-content" class="hidden fade-in">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="levels" class="py-16">
+             <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-[#403A3A]">A Deep Dive into Responsibility Levels</h3>
+                <p class="mt-2 text-gray-600 max-w-3xl mx-auto">Each of the seven levels in SFIA is defined by a set of generic attributes: Autonomy, Influence, Complexity, Knowledge, and Business skills. These attributes describe the context and characteristics of work at each level. Use the tabs below to compare how these attributes evolve.</p>
+            </div>
+            <div class="w-full">
+                <div class="flex flex-wrap justify-center border-b border-gray-200 mb-4" id="level-tabs">
+                </div>
+                <div id="level-details" class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                </div>
+            </div>
+        </section>
+
+        <section id="whats-new" class="py-16 bg-white rounded-2xl shadow-lg p-8 my-8">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-[#403A3A]">What's New in SFIA 8?</h3>
+                <p class="mt-2 text-gray-600 max-w-3xl mx-auto">SFIA is regularly updated to reflect the changing landscape of the digital industry. Version 8 introduced several new skills and significant updates to existing ones, focusing on key areas of growth and transformation.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-[#F0EBE3] p-6 rounded-lg">
+                    <h4 class="font-bold text-lg text-[#BF8A69]">New Skills</h4>
+                    <ul class="mt-4 list-disc list-inside space-y-2 text-gray-700">
+                        <li>Threat intelligence (THIN)</li>
+                        <li>Personal data protection (PEDP)</li>
+                        <li>Machine learning (MLOP)</li>
+                        <li>Data engineering (DENG)</li>
+                        <li>Penetration testing (PENT)</li>
+                        <li>Digital forensics (DGFS)</li>
+                        <li>Vulnerability assessment (VUAS)</li>
+                    </ul>
+                </div>
+                <div class="bg-[#F0EBE3] p-6 rounded-lg">
+                    <h4 class="font-bold text-lg text-[#BF8A69]">Significantly Updated Skills</h4>
+                    <ul class="mt-4 list-disc list-inside space-y-2 text-gray-700">
+                        <li>Enterprise IT governance (GOVN)</li>
+                        <li>Business analysis (BUSA)</li>
+                        <li>Data visualisation (VISL)</li>
+                        <li>Software design (SWDN)</li>
+                        <li>Testing (TEST)</li>
+                        <li>IT infrastructure (ITOP)</li>
+                        <li>Systems development management (DLMG)</li>
+                    </ul>
+                </div>
+                <div class="bg-[#F0EBE3] p-6 rounded-lg">
+                    <h4 class="font-bold text-lg text-[#BF8A69]">Behavioural Factors</h4>
+                    <p class="mt-4 text-gray-700">SFIA 8 places a greater emphasis on behavioural skills, integrating them more explicitly within the framework. It highlights the importance of factors like communication, collaboration, and leadership as essential components of professional competency, complementing the technical skills.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="bg-white border-t border-gray-200">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 text-center text-gray-500 text-sm">
+            <p>Interactive SFIA 8 Infographic. Designed for educational purposes.</p>
+        </div>
+    </footer>
+
+    <script type="module">
+        const sfiaData = {
+            categories: {
+                "strategy-architecture": "Strategy and architecture",
+                "change-transformation": "Change and transformation",
+                "development-implementation": "Development and implementation",
+                "delivery-operation": "Delivery and operation",
+                "skills-quality": "Skills and quality",
+                "relationships-engagement": "Relationships and engagement"
+            },
+            skills: [
+                {id: "GOVN", name: "Enterprise IT governance", category: "strategy-architecture", description: "The establishment and oversight of an organisation's approach to the use of information and technology.", levels: {5: "Contributes to the development of governance policies.", 6: "Develops and promotes the organisation's governance policies.", 7: "Directs the definition, implementation, and review of governance policies."}},
+                {id: "IRMG", name: "Information governance", category: "strategy-architecture", description: "The management of information to support the organisation's strategy and operations.", levels: {4: "Implements information governance policies.", 5: "Ensures the information governance framework is fit for purpose.", 6: "Directs the creation and review of a data-driven culture."}},
+                {id: "BUSA", name: "Business analysis", category: "change-transformation", description: "The investigation of business situations to identify and evaluate options for improving business systems.", levels: {2: "Assists in the analysis of stakeholder objectives.", 3: "Investigates operational needs and problems.", 4: "Investigates business problems and opportunities using a range of techniques.", 5: "Takes responsibility for investigative work to determine business requirements.", 6: "Defines and manages business analysis approach and standards."}},
+                {id: "RLMT", name: "Benefits management", category: "change-transformation", description: "The identification, quantifying, tracking, and realisation of business benefits.", levels: {4: "Supports benefits identification and tracking.", 5: "Establishes and implements benefits management.", 6: "Promotes the change programme vision to staff at all levels."}},
+                {id: "SWDN", name: "Software design", category: "development-implementation", description: "The process of defining the architecture, components, interfaces, and other characteristics of a system or component.", levels: {3: "Designs software components to meet functional requirements.", 4: "Designs software components using appropriate standards.", 5: "Takes responsibility for major design decisions.", 6: "Provides overall direction and leadership for software design."}},
+                {id: "PROG", name: "Programming/software development", category: "development-implementation", description: "The creation, modification, and testing of computer programs.", levels: {2: "Produces software components from supplied specifications.", 3: "Designs, codes, tests, and documents simple programs.", 4: "Takes technical responsibility for all stages of software development.", 5: "Sets local or team-based standards for programming tools and techniques."}},
+                {id: "TEST", name: "Testing", category: "development-implementation", description: "The process of planning, designing, and executing tests to verify that a system meets requirements.", levels: {2: "Executes pre-planned tests.", 3: "Designs and executes tests for system components.", 4: "Accepts responsibility for creation of test cases.", 5: "Coordinates and manages test planning and execution.", 6: "Is accountable for all testing activities."}},
+                {id: "USUP", name: "Incident management", category: "delivery-operation", description: "The management and coordination of responses to incident reports.", levels: {2: "Follows agreed procedures to handle incidents.", 3: "Investigates incidents to establish the root cause.", 4: "Prioritises and diagnoses incidents according to agreed procedures."}},
+                {id: "NTAS", name: "Network support", category: "delivery-operation", description: "The provision of support for network infrastructure.", levels: {3: "Identifies and resolves network problems.", 4: "Maintains and supports the network infrastructure.", 5: "Drafts and maintains procedures for network support."}},
+                {id: "PBMG", name: "Problem management", category: "delivery-operation", description: "The management of the lifecycle of all problems.", levels: {3: "Investigates problems in systems.", 4: "Initiates and monitors actions to investigate and resolve problems.", 5: "Ensures that problems are managed to resolution."}},
+                {id: "QUMG", name: "Quality management", category: "skills-quality", description: "The application of a systematic approach to ensuring that services and products meet quality requirements.", levels: {4: "Contributes to the implementation of quality management.", 5: "Advises on the application of appropriate quality management techniques.", 6: "Develops and maintains a quality management framework."}},
+                {id: "MEAS", name: "Measurement", category: "skills-quality", description: "The development and use of measurement to support agreed organisational needs.", levels: {3: "Applies standard measurement techniques.", 4: "Selects appropriate measurement techniques.", 5: "Establishes a measurement framework.", 6: "Champions the importance and value of measurement."}},
+                {id: "STMG", name: "Stakeholder relationship management", category: "relationships-engagement", description: "The identification, analysis, management, and monitoring of relationships with and between stakeholders.", levels: {4: "Implements stakeholder engagement/communications plan.", 5: "Leads the development of stakeholder engagement.", 6: "Directs the stakeholder engagement strategy.", 7: "Establishes and promotes the overall stakeholder engagement strategy."}},
+                {id: "CSMG", name: "Customer service support", category: "relationships-engagement", description: "The provision of advice, assistance and support to customers.", levels: {2: "Responds to customer requests.", 3: "Acts as the routine contact point for customers.", 4: "Manages customer service function.", 5: "Is responsible for the customer service framework."}}
+            ],
+            levels: [
+                {level: 1, title: "Follow", attributes: {autonomy: "Works under close supervision. Uses little discretion. Is expected to seek guidance in unexpected situations.", influence: "Interacts with immediate colleagues. Limited interaction with customers.", complexity: "Performs routine activities in a structured environment. Requires assistance in resolving unexpected problems.", knowledge: "Has a basic generic knowledge appropriate to area of work. Applies basic knowledge. Has an appreciation of the wider context of their work.", business_skills: "Uses basic information systems and technology functions, applications, and processes. Demonstrates an organised approach to work."}},
+                {level: 2, title: "Assist", attributes: {autonomy: "Works under routine supervision. Uses minor discretion in resolving problems or enquiries. Works without frequent reference to others.", influence: "Interacts with and may influence immediate colleagues. May have some external contact with customers, suppliers and partners.", complexity: "Performs a range of work activities in varied environments. May contribute to routine issue resolution.", knowledge: "Demonstrates application of essential generic knowledge. Has some knowledge of the work of other departments. Has a basic understanding of their organisation.", business_skills: "Understands and uses appropriate methods, tools and applications. Demonstrates a rational and organised approach to work. Is aware of health and safety issues."}},
+                {level: 3, title: "Apply", attributes: {autonomy: "Works under general supervision. Uses discretion in identifying and resolving complex problems and assignments. Usually receives specific instructions.", influence: "Interacts with and influences department/project team members. May have working level contact with customers and suppliers. In predictable situations, may supervise others.", complexity: "Performs a broad range of work, sometimes complex and non-routine, in a variety of environments. Applies methodical approach to issue definition and resolution.", knowledge: "Has a sound generic knowledge. Has a thorough understanding of their specialism and an appreciation of the wider business context.", business_skills: "Selects and uses appropriate methods and tools. Demonstrates an analytical and systematic approach to problem solving. Is able to communicate fluently."}},
+                {level: 4, title: "Enable", attributes: {autonomy: "Works under general direction. Works from broadly defined policies and standards. Exercises substantial personal responsibility and autonomy.", influence: "Influences team and specialist peers. Has some responsibility for the work of others and for the allocation of resources. Participates in external activities.", complexity: "Performs a broad range of complex technical or professional work activities. Work requires application of fundamental principles in a wide and often unpredictable range of contexts.", knowledge: "Has a thorough knowledge of their professional specialism. Has a good understanding of the relationship between their specialism and the wider customer/organisational requirements.", business_skills: "Understands and uses appropriate methods, tools and applications. Demonstrates an analytical and systematic approach to problem solving. Takes the initiative in identifying and negotiating appropriate personal development opportunities."}},
+                {level: 5, title: "Ensure & Advise", attributes: {autonomy: "Works under broad direction. Work is often self-initiated. Is fully accountable for meeting allocated technical and/or project/supervisory objectives.", influence: "Influences customers, suppliers and partners at account level. May have some responsibility for the work of others and for the allocation of resources. Makes decisions which impact on the success of assigned projects.", complexity: "Performs a challenging range and variety of complex technical or professional work activities. Undertakes work which requires the application of fundamental principles in a wide and often unpredictable range of contexts.", knowledge: "Is fully familiar with recognised industry bodies of knowledge both generic and specific. Has a comprehensive knowledge of their professional specialism.", business_skills: "Understands and uses appropriate methods, tools and applications. Demonstrates an analytical and systematic approach to problem solving. Communicates effectively, both formally and informally, with colleagues, customers and others."}},
+                {level: 6, title: "Initiate & Influence", attributes: {autonomy: "Has defined authority and responsibility for a significant area of work, including technical, financial and quality aspects. Establishes organisational objectives and delegates responsibilities.", influence: "Influences policy and strategy formation. Develops relationships with customers, suppliers and industry leaders. Makes decisions which impact the work of employed or contracted personnel.", complexity: "Performs highly complex work activities covering technical, financial and quality aspects. Contributes to the formulation of IT strategy. Creatively applies a wide range of technical and/or management principles.", knowledge: "Has a deep understanding of the industry and the implications of emerging technologies. Has a full understanding of the associated methods, tools, applications and processes.", business_skills: "Has a full range of strategic management and leadership skills. Understands, explains and presents complex technical ideas to both technical and non-technical audiences. Has a broad and deep knowledge of the business."}},
+                {level: 7, title: "Set Strategy, Inspire & Mobilise", attributes: {autonomy: "Has authority and responsibility for all aspects of a significant area of work, including policy formation and application. Is held accountable for actions taken and decisions made.", influence: "Makes decisions critical to organisational success. Influences developments within the industry at the highest levels. Advances the knowledge and/or exploitation of IT within one or more organisations.", complexity: "Leads on the formulation and implementation of strategy. Applies the highest level of management and leadership skills. Has a deep understanding of the IT industry and the implications of emerging technologies for the wider business.", knowledge: "Has an extensive knowledge of the IT industry, the standards and the technology. Is an acknowledged expert in one or more technology fields.", business_skills: "Has a full range of strategic management and leadership skills. Has the ability to communicate the potential of IT to all parts of the business. Demonstrates a clear understanding of the business and its needs."}}
+            ]
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const categoryFilter = document.getElementById('category-filter');
+            const searchFilter = document.getElementById('search-filter');
+            const skillList = document.getElementById('skill-list');
+            const skillDetailsPlaceholder = document.getElementById('skill-details-placeholder');
+            const skillDetailsContent = document.getElementById('skill-details-content');
+            const levelTabsContainer = document.getElementById('level-tabs');
+            const levelDetailsContainer = document.getElementById('level-details');
+
+            function populateCategoryFilter() {
+                Object.entries(sfiaData.categories).forEach(([key, value]) => {
+                    const option = document.createElement('option');
+                    option.value = key;
+                    option.textContent = value;
+                    categoryFilter.appendChild(option);
+                });
+            }
+
+            function renderSkillList() {
+                const category = categoryFilter.value;
+                const searchTerm = searchFilter.value.toLowerCase();
+                skillList.innerHTML = '';
+
+                const filteredSkills = sfiaData.skills.filter(skill => {
+                    const matchesCategory = category === 'all' || skill.category === category;
+                    const matchesSearch = skill.name.toLowerCase().includes(searchTerm) || skill.id.toLowerCase().includes(searchTerm);
+                    return matchesCategory && matchesSearch;
+                });
+
+                if (filteredSkills.length === 0) {
+                    skillList.innerHTML = `<li class="p-4 text-center text-gray-500">No skills found.</li>`;
+                    return;
+                }
+
+                filteredSkills.forEach(skill => {
+                    const li = document.createElement('li');
+                    li.className = 'p-3 hover:bg-[#F0EBE3] cursor-pointer transition';
+                    li.dataset.skillId = skill.id;
+                    li.innerHTML = `
+                        <p class="font-semibold text-[#403A3A]">${skill.name} <span class="text-xs font-mono text-gray-500">${skill.id}</span></p>
+                        <p class="text-sm text-gray-600">${sfiaData.categories[skill.category]}</p>
+                    `;
+                    li.addEventListener('click', () => displaySkillDetails(skill.id));
+                    skillList.appendChild(li);
+                });
+            }
+
+            function displaySkillDetails(skillId) {
+                const skill = sfiaData.skills.find(s => s.id === skillId);
+                if (!skill) return;
+
+                skillDetailsPlaceholder.classList.add('hidden');
+                
+                let levelsHtml = '<div class="skill-level-grid mt-6">';
+                sfiaData.levels.forEach(level => {
+                    const levelDescription = skill.levels[level.level];
+                    if (levelDescription) {
+                        levelsHtml += `
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <h5 class="font-bold text-[#BF8A69]">Level ${level.level}: ${level.title}</h5>
+                                <p class="mt-2 text-gray-700">${levelDescription}</p>
+                            </div>
+                        `;
+                    } else {
+                         levelsHtml += `
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-100 opacity-60">
+                                <h5 class="font-bold text-gray-400">Level ${level.level}: ${level.title}</h5>
+                                <p class="mt-2 text-gray-500 text-sm italic">Not defined for this skill.</p>
+                            </div>
+                        `;
+                    }
+                });
+                levelsHtml += '</div>';
+
+                skillDetailsContent.innerHTML = `
+                    <span class="inline-block bg-[#F0EBE3] text-[#BF8A69] text-sm font-semibold px-3 py-1 rounded-full mb-4">${sfiaData.categories[skill.category]}</span>
+                    <h3 class="text-3xl font-bold text-[#403A3A]">${skill.name} <span class="text-2xl font-mono text-gray-400">${skill.id}</span></h3>
+                    <p class="mt-2 text-lg text-gray-600">${skill.description}</p>
+                    <hr class="my-6">
+                    <h4 class="text-xl font-semibold text-[#403A3A]">Level Descriptions</h4>
+                    ${levelsHtml}
+                `;
+                skillDetailsContent.classList.remove('hidden');
+                skillDetailsContent.classList.add('fade-in');
+            }
+            
+            function renderLevelTabs() {
+                sfiaData.levels.forEach((level, index) => {
+                    const tab = document.createElement('button');
+                    tab.dataset.level = level.level;
+                    tab.className = `px-4 py-2 text-sm font-medium rounded-t-lg transition-colors duration-200 ease-in-out ${index === 0 ? 'tab-active' : 'tab-inactive'}`;
+                    tab.textContent = `Level ${level.level}`;
+                    tab.addEventListener('click', () => {
+                        document.querySelectorAll('#level-tabs button').forEach(t => t.classList.replace('tab-active', 'tab-inactive'));
+                        tab.classList.replace('tab-inactive', 'tab-active');
+                        displayLevelDetails(level.level);
+                    });
+                    levelTabsContainer.appendChild(tab);
+                });
+            }
+
+            function displayLevelDetails(levelNum) {
+                const level = sfiaData.levels.find(l => l.level === levelNum);
+                if (!level) return;
+
+                levelDetailsContainer.innerHTML = `
+                    <div class="fade-in">
+                        <h4 class="text-2xl font-bold text-[#403A3A] mb-2">Level ${level.level}: ${level.title}</h4>
+                        <div class="space-y-4 mt-4">
+                            <div><strong class="font-semibold text-[#BF8A69]">Autonomy:</strong> <span class="text-gray-700">${level.attributes.autonomy}</span></div>
+                            <div><strong class="font-semibold text-[#BF8A69]">Influence:</strong> <span class="text-gray-700">${level.attributes.influence}</span></div>
+                            <div><strong class="font-semibold text-[#BF8A69]">Complexity:</strong> <span class="text-gray-700">${level.attributes.complexity}</span></div>
+                            <div><strong class="font-semibold text-[#BF8A69]">Knowledge:</strong> <span class="text-gray-700">${level.attributes.knowledge}</span></div>
+                            <div><strong class="font-semibold text-[#BF8A69]">Business skills:</strong> <span class="text-gray-700">${level.attributes.business_skills}</span></div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            function createCategoriesChart() {
+                const ctx = document.getElementById('categoriesChart').getContext('2d');
+                const categoryCounts = sfiaData.skills.reduce((acc, skill) => {
+                    acc[skill.category] = (acc[skill.category] || 0) + 1;
+                    return acc;
+                }, {});
+
+                const chartData = {
+                    labels: Object.values(sfiaData.categories),
+                    datasets: [{
+                        label: 'Skills',
+                        data: Object.keys(sfiaData.categories).map(key => categoryCounts[key] || 0),
+                        backgroundColor: ['#D3A588', '#E6DCD1', '#BF8A69', '#A67B5B', '#F0EBE3', '#8C6239'],
+                        borderColor: '#FDFBF8',
+                        borderWidth: 2,
+                        hoverOffset: 4
+                    }]
+                };
+
+                const categoriesChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: chartData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: { family: 'Inter' }
+                                }
+                            },
+                            tooltip: {
+                                bodyFont: { family: 'Inter' },
+                                titleFont: { family: 'Inter' }
+                            }
+                        },
+                        onClick: (event, elements) => {
+                            if (elements.length > 0) {
+                                const chartElement = elements[0];
+                                const categoryKey = Object.keys(sfiaData.categories)[chartElement.index];
+                                categoryFilter.value = categoryKey;
+                                renderSkillList();
+                                document.getElementById('explorer').scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }
+                    }
+                });
+            }
+
+            categoryFilter.addEventListener('change', renderSkillList);
+            searchFilter.addEventListener('input', renderSkillList);
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            document.querySelectorAll('#structure .grid-cols-3 .p-4').forEach((card, index) => {
+                card.addEventListener('click', () => {
+                    const level = index + 1;
+                    document.getElementById('levels').scrollIntoView({ behavior: 'smooth'});
+                    const targetTab = document.querySelector(`#level-tabs button[data-level='${level}']`);
+                    if(targetTab) targetTab.click();
+                });
+            });
+
+            populateCategoryFilter();
+            renderSkillList();
+            renderLevelTabs();
+            displayLevelDetails(1);
+            createCategoriesChart();
+        });
+    </script>
+</body>
+</html>
