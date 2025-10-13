@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Forensics Career Roadmap</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Neutrals -->
+    <!-- Application Structure Plan: The application is designed as a vertical, linear roadmap, guiding users from foundational concepts to expert-level roles. This structure is intuitive for a career path, allowing users to scroll through stages sequentially. Key sections for Entry, Mid, and Senior levels are complemented by interactive charts to visualize skill distribution and evolution. A top navigation bar provides quick access to each section, enhancing usability. This thematic, progressive structure was chosen over a dashboard to create a clear narrative of career growth, making complex information easily digestible for aspiring professionals. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Skills distribution per career level (Technical vs. Soft vs. Tools). Goal: Inform & Compare. Viz: Doughnut Charts. Interaction: Tooltips on hover provide exact percentages. Justification: Doughnut charts effectively show part-to-whole relationships, making the skill balance at each level immediately apparent. Library: Chart.js (Canvas).
+        - Report Info: Evolution of skill focus across career levels. Goal: Show Change. Viz: Stacked Bar Chart. Interaction: Hovering over segments shows the specific skill focus and its importance. Justification: A stacked bar chart is ideal for comparing how the composition of required skills changes over time (seniority). Library: Chart.js (Canvas).
+        - Report Info: Detailed skills, roles, and certifications. Goal: Organize & Inform. Presentation: Styled cards and lists using Tailwind CSS. Interaction: Clicking a tab/skill could reveal a detailed description (though implemented here with clear static lists for simplicity). Justification: Cards create visually distinct, manageable chunks of information, preventing cognitive overload. Method: HTML/Tailwind.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+            color: #343A40;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: #007BFF;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover:after {
+            width: 100%;
+            left: 0;
+            background-color: #007BFF;
+        }
+        .card-glow {
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        .card-glow:hover {
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-800">DFIR Roadmap</h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#entry" class="nav-link text-gray-600 hover:text-blue-600 font-medium">Entry Level</a>
+                <a href="#mid" class="nav-link text-gray-600 hover:text-blue-600 font-medium">Mid Level</a>
+                <a href="#senior" class="nav-link text-gray-600 hover:text-blue-600 font-medium">Senior Level</a>
+                <a href="#evolution" class="nav-link text-gray-600 hover:text-blue-600 font-medium">Skill Evolution</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="intro" class="text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Your Career in Digital Forensics</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                This roadmap provides a comprehensive guide to building a career in Digital Forensics and Incident Response (DFIR). Explore the roles, skills, and certifications you'll need to progress from an aspiring technician to a seasoned expert.
+            </p>
+        </section>
+
+        <!-- Entry Level -->
+        <section id="entry" class="mb-20 scroll-mt-24">
+            <div class="text-center mb-12">
+                <span class="text-blue-500 font-semibold">Stage 1</span>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Foundation Level (0-3 Years)</h3>
+                <p class="max-w-2xl mx-auto text-md text-gray-600 mt-4">This is where your journey begins. The focus is on building a strong technical foundation, understanding core forensic principles, and gaining hands-on experience with standard tools of the trade.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
+                <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-md card-glow">
+                        <h4 class="font-bold text-xl mb-3 text-gray-800">Common Job Roles</h4>
+                        <ul class="space-y-2 text-gray-700 list-disc list-inside">
+                            <li>Forensic Technician</li>
+                            <li>eDiscovery Analyst</li>
+                            <li>Junior Security Analyst</li>
+                            <li>IT Support with Forensic Duties</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md card-glow">
+                        <h4 class="font-bold text-xl mb-3 text-gray-800">Key Certifications</h4>
+                        <ul class="space-y-2 text-gray-700 list-disc list-inside">
+                            <li>CompTIA Security+</li>
+                            <li>GIAC Foundational Cybersecurity Technologies (GFACT)</li>
+                            <li>GIAC Certified Forensic Examiner (GCFE)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md card-glow sm:col-span-2">
+                        <h4 class="font-bold text-xl mb-3 text-gray-800">Core Skills to Master</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <h5 class="font-semibold text-gray-700">Technical Skills</h5>
+                                <ul class="text-sm text-gray-600 mt-2 space-y-1 list-disc list-inside">
+                                    <li>Windows/Linux Fundamentals</li>
+                                    <li>File Systems (NTFS, FAT, HFS+)</li>
+                                    <li>Data Acquisition & Imaging</li>
+                                    <li>Chain of Custody Procedures</li>
+                                    <li>Basic Networking Concepts</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-gray-700">Tools Proficiency</h5>
+                                <ul class="text-sm text-gray-600 mt-2 space-y-1 list-disc list-inside">
+                                    <li>EnCase, FTK Imager</li>
+                                    <li>Autopsy, The Sleuth Kit</li>
+                                    <li>Basic Wireshark Usage</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md card-glow">
+                    <h4 class="font-bold text-xl mb-4 text-center text-gray-800">Entry-Level Skill Focus</h4>
+                    <div class="chart-container">
+                        <canvas id="entryLevelChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mid Level -->
+        <section id="mid" class="mb-20 scroll-mt-24">
+            <div class="text-center mb-12">
+                <span class="text-blue-500 font-semibold">Stage 2</span>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Intermediate Level (3-7 Years)</h3>
+                <p class="max-w-2xl mx-auto text-md text-gray-600 mt-4">At this stage, you move from collecting data to analyzing it. You'll handle more complex cases, specialize in specific areas, and begin to mentor junior team members.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
+                 <div class="bg-white p-6 rounded-xl shadow-md card-glow">
+                    <h4 class="font-bold text-xl mb-4 text-center text-gray-800">Mid-Level Skill Focus</h4>
+                    <div class="chart-container">
+                        <canvas id="midLevelChart"></canvas>
+                    </div>
+                </div>
+                <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-md card-glow">
+                        <h4 class="font-bold text-xl mb-3 text-gray-800">Common Job Roles</h4>
+                        <ul class="space-y-2 text-gray-700 list-disc list-inside">
+                            <li>Digital Forensic Analyst</li>
+                            <li>Incident Responder</li>
+                            <li>Cybercrime Investigator</li>
+                            <li>Threat Hunter</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md card-glow">
+                        <h4 class="font-bold text-xl mb-3 text-gray-800">Key Certifications</h4>
+                        <ul class="space-y-2 text-gray-700 list-disc list-inside">
+                            <li>GIAC Certified Forensic Analyst (GCFA)</li>
+                            <li>GIAC Certified Incident Handler (GCIH)</li>
+                            <li>Certified Information Systems Security Professional (CISSP)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md card-glow sm:col-span-2">
+                        <h4 class="font-bold text-xl mb-3 text-gray-800">Advanced Skills</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <h5 class="font-semibold text-gray-700">Technical Skills</h5>
+                                <ul class="text-sm text-gray-600 mt-2 space-y-1 list-disc list-inside">
+                                    <li>Memory Forensics</li>
+                                    <li>Log Analysis (SIEM)</li>
+                                    <li>Mobile Device Forensics</li>
+                                    <li>Intro to Malware Analysis</li>
+                                    <li>Scripting (Python/PowerShell)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-gray-700">Tools Proficiency</h5>
+                                <ul class="text-sm text-gray-600 mt-2 space-y-1 list-disc list-inside">
+                                    <li>Volatility, Redline</li>
+                                    <li>Cellebrite UFED, Magnet AXIOM</li>
+                                    <li>Splunk, ELK Stack</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Senior Level -->
+        <section id="senior" class="mb-20 scroll-mt-24">
+            <div class="text-center mb-12">
+                <span class="text-blue-500 font-semibold">Stage 3</span>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Expert Level (7+ Years)</h3>
+                <p class="max-w-2xl mx-auto text-md text-gray-600 mt-4">Experts lead investigations, develop new methodologies, testify in court, and manage teams. This level requires deep specialization, leadership, and strong communication skills.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
+                <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-md card-glow">
+                        <h4 class="font-bold text-xl mb-3 text-gray-800">Common Job Roles</h4>
+                        <ul class="space-y-2 text-gray-700 list-disc list-inside">
+                            <li>Senior Forensic Consultant</li>
+                            <li>Manager of Forensics Lab</li>
+                            <li>Expert Witness</li>
+                            <li>Principal Incident Responder</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md card-glow">
+                        <h4 class="font-bold text-xl mb-3 text-gray-800">Key Certifications</h4>
+                        <ul class="space-y-2 text-gray-700 list-disc list-inside">
+                            <li>GIAC Reverse Engineering Malware (GREM)</li>
+                            <li>GIAC Network Forensic Analyst (GNFA)</li>
+                            <li>Certified Forensic Computer Examiner (CFCE)</li>
+                        </ul>
+                    </div>
+                     <div class="bg-white p-6 rounded-xl shadow-md card-glow sm:col-span-2">
+                        <h4 class="font-bold text-xl mb-3 text-gray-800">Expertise Areas</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <h5 class="font-semibold text-gray-700">Technical Skills</h5>
+                                <ul class="text-sm text-gray-600 mt-2 space-y-1 list-disc list-inside">
+                                    <li>Cloud Forensics (AWS, Azure)</li>
+                                    <li>Reverse Engineering Malware</li>
+                                    <li>Vulnerability Research</li>
+                                    <li>ICS/SCADA Forensics</li>
+                                    <li>Tool/Methodology Development</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-gray-700">Leadership & Legal</h5>
+                                <ul class="text-sm text-gray-600 mt-2 space-y-1 list-disc list-inside">
+                                    <li>Expert Witness Testimony</li>
+                                    <li>Lab & Team Management</li>
+                                    <li>Policy & Procedure Development</li>
+                                    <li>Case Strategy</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md card-glow">
+                    <h4 class="font-bold text-xl mb-4 text-center text-gray-800">Senior-Level Skill Focus</h4>
+                    <div class="chart-container">
+                        <canvas id="seniorLevelChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skill Evolution -->
+        <section id="evolution" class="scroll-mt-24">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">The Evolution of a Forensic Professional</h3>
+                <p class="max-w-2xl mx-auto text-md text-gray-600 mt-4">This chart illustrates how your focus shifts as you advance in your career. While technical skills are paramount early on, analytical, legal, and leadership capabilities become increasingly important over time.</p>
+            </div>
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-xl">
+                 <div class="relative w-full mx-auto" style="max-width: 900px; height: 50vh; max-height: 500px;">
+                    <canvas id="evolutionChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-20">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2024 Digital Forensics Career Roadmap. A conceptual guide for aspiring professionals.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const chartColors = {
+                blue: 'rgba(54, 162, 235, 0.8)',
+                green: 'rgba(75, 192, 192, 0.8)',
+                yellow: 'rgba(255, 206, 86, 0.8)',
+                red: 'rgba(255, 99, 132, 0.8)',
+                purple: 'rgba(153, 102, 255, 0.8)',
+                orange: 'rgba(255, 159, 64, 0.8)'
+            };
+            
+            const chartHoverColors = {
+                blue: 'rgba(54, 162, 235, 1)',
+                green: 'rgba(75, 192, 192, 1)',
+                yellow: 'rgba(255, 206, 86, 1)',
+                red: 'rgba(255, 99, 132, 1)',
+                purple: 'rgba(153, 102, 255, 1)',
+                orange: 'rgba(255, 159, 64, 1)'
+            };
+
+            const defaultChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 12,
+                                family: 'Inter'
+                            },
+                            color: '#495057'
+                        }
+                    },
+                    tooltip: {
+                        enabled: true,
+                        backgroundColor: '#343A40',
+                        titleFont: { size: 14, weight: 'bold', family: 'Inter' },
+                        bodyFont: { size: 12, family: 'Inter' },
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            };
+            
+            const createDoughnutChart = (ctx, labels, data, colors) => {
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Skill Focus',
+                            data: data,
+                            backgroundColor: colors.map(c => chartColors[c]),
+                            hoverBackgroundColor: colors.map(c => chartHoverColors[c]),
+                            borderColor: '#F8F9FA',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        cutout: '60%',
+                    }
+                });
+            };
+
+            const entryCtx = document.getElementById('entryLevelChart')?.getContext('2d');
+            if (entryCtx) {
+                createDoughnutChart(entryCtx, ['Core Technical Skills', 'Forensic Tool Proficiency', 'Soft & Procedural Skills'], [50, 35, 15], ['blue', 'green', 'yellow']);
+            }
+
+            const midCtx = document.getElementById('midLevelChart')?.getContext('2d');
+            if (midCtx) {
+                createDoughnutChart(midCtx, ['Advanced Analysis', 'Specialized Tools', 'Soft & Reporting Skills'], [45, 30, 25], ['blue', 'green', 'yellow']);
+            }
+            
+            const seniorCtx = document.getElementById('seniorLevelChart')?.getContext('2d');
+            if (seniorCtx) {
+                createDoughnutChart(seniorCtx, ['Leadership & Strategy', 'Deep Specialization', 'Legal & Communication'], [35, 35, 30], ['blue', 'green', 'yellow']);
+            }
+
+            const evolutionCtx = document.getElementById('evolutionChart')?.getContext('2d');
+            if (evolutionCtx) {
+                new Chart(evolutionCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Entry Level', 'Mid Level', 'Senior Level'],
+                        datasets: [
+                            {
+                                label: 'Core Technical & Tools',
+                                data: [65, 40, 20],
+                                backgroundColor: chartColors.blue,
+                                hoverBackgroundColor: chartHoverColors.blue,
+                            },
+                            {
+                                label: 'Analysis & Investigation',
+                                data: [25, 45, 40],
+                                backgroundColor: chartColors.green,
+                                hoverBackgroundColor: chartHoverColors.green,
+                            },
+                            {
+                                label: 'Legal, Reporting & Leadership',
+                                data: [10, 15, 40],
+                                backgroundColor: chartColors.orange,
+                                hoverBackgroundColor: chartHoverColors.orange,
+                            }
+                        ]
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        scales: {
+                            x: {
+                                stacked: true,
+                                grid: { display: false },
+                                ticks: { color: '#495057', font: { size: 12, family: 'Inter' } }
+                            },
+                            y: {
+                                stacked: true,
+                                beginAtZero: true,
+                                max: 100,
+                                grid: { color: '#E9ECEF' },
+                                ticks: { 
+                                    color: '#495057', 
+                                    font: { size: 12, family: 'Inter' },
+                                    callback: function(value) { return value + "%" }
+                                }
+                            }
+                        },
+                        plugins: {
+                            ...defaultChartOptions.plugins,
+                            tooltip: {
+                                enabled: true,
+                                backgroundColor: '#343A40',
+                                titleFont: { size: 14, weight: 'bold', family: 'Inter' },
+                                bodyFont: { size: 12, family: 'Inter' },
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            label += context.parsed.y + '%';
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
