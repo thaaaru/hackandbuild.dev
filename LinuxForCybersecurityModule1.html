@@ -1,473 +1,446 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linux for Cybersecurity - Module 1: Foundation</title>
+    
+    <!-- Page Title and Meta Description -->
+    <title>Linux for Cybersecurity – Module 1: Foundation (Basics & Navigation) | HackAndBuild.dev</title>
+    <meta name="description" content="Learn the Linux fundamentals every cybersecurity professional must master. This 20-minute-per-topic training from HackAndBuild.dev builds the foundation for ethical hacking, SOC analysis, and cybersecurity engineering.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-cyan': '#06b6d4', // cyan-500
+                        'brand-emerald': '#10b981', // emerald-500
+                    }
+                },
+            },
+        }
+    </script>
+    
+    <!-- Inline Styles for a few elements -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #1a1a1a;
-            color: #e0e0e0;
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
         }
-
-        .slide {
-            min-height: 100vh;
-            padding: 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            page-break-after: always;
-        }
-
-        .slide h1 {
-            font-size: 3.5rem;
-            margin-bottom: 30px;
-            color: #00ff88;
-            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
-        }
-
-        .slide h2 {
-            font-size: 2.8rem;
-            margin-bottom: 40px;
-            color: #ff6b6b;
-            border-bottom: 3px solid #ff6b6b;
-            padding-bottom: 15px;
-        }
-
-        .slide h3 {
-            font-size: 2.2rem;
-            margin-bottom: 25px;
-            color: #4ecdc4;
-        }
-
-        .slide h4 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #ffe66d;
-        }
-
-        .slide p {
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-            max-width: 800px;
-        }
-
-        .slide ul {
-            text-align: left;
-            font-size: 1.3rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .slide li {
-            margin-bottom: 15px;
-            padding-left: 20px;
-        }
-
-        .code-block {
-            background: #2d2d2d;
-            border: 2px solid #00ff88;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 20px 0;
-            font-family: 'Courier New', monospace;
-            font-size: 1.2rem;
-            color: #00ff88;
-            text-align: left;
-            overflow-x: auto;
-            box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
-        }
-
-        .security-context {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 30px 0;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
-        }
-
-        .security-context h4 {
-            color: white;
-            font-size: 1.6rem;
-            margin-bottom: 15px;
-        }
-
-        .highlight {
-            background: rgba(255, 230, 109, 0.2);
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: #ffe66d;
-        }
-
-        .brand {
-            position: absolute;
-            bottom: 30px;
-            right: 30px;
-            font-size: 1rem;
-            color: #888;
-        }
-
-        .cover-slide {
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-        }
-
-        .cover-slide .subtitle {
-            font-size: 1.8rem;
-            color: #4ecdc4;
-            margin-bottom: 50px;
-        }
-
-        .cover-slide .instructor {
-            font-size: 1.5rem;
-            color: #ffe66d;
-            margin-bottom: 30px;
-        }
-
-        .final-slide {
-            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
-        }
-
-        .final-slide .disclaimer {
-            font-size: 1.2rem;
-            color: #888;
-            margin-top: 50px;
-        }
-
-        @media print {
-            .slide {
-                page-break-after: always;
-            }
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
         }
     </style>
 </head>
-<body>
-    <!-- Cover Slide -->
-    <div class="slide cover-slide">
-        <h1>Linux for Cybersecurity</h1>
-        <div class="subtitle">Module 1: Foundation (Basics & Navigation)</div>
-        <div class="instructor">Instructor: Tharaka Mahabage</div>
-        <p>Free Google Meet Session</p>
-        <div class="brand">HackAndBuild.dev</div>
-    </div>
+<body class="bg-slate-900 text-slate-300 antialiased">
 
-    <!-- Topic 1: Introduction to Linux for Cybersecurity -->
-    <div class="slide">
-        <h2>1. Introduction to Linux for Cybersecurity</h2>
-        <h3>Why Linux Matters in Security</h3>
-        <ul>
-            <li>Most servers run Linux (90%+ of web servers)</li>
-            <li>Penetration testing tools are Linux-native</li>
-            <li>Forensic analysis often requires Linux</li>
-            <li>Cloud infrastructure is Linux-based</li>
-            <li>Open source = transparent security</li>
-        </ul>
-    </div>
-
-    <div class="slide">
-        <h3>Linux Distributions for Security</h3>
-        <ul>
-            <li><span class="highlight">Kali Linux</span> - Penetration testing</li>
-            <li><span class="highlight">Parrot Security</span> - Digital forensics</li>
-            <li><span class="highlight">Ubuntu</span> - General purpose</li>
-            <li><span class="highlight">CentOS/RHEL</span> - Enterprise servers</li>
-            <li><span class="highlight">Arch Linux</span> - Custom builds</li>
-        </ul>
-    </div>
-
-    <div class="slide">
-        <h3>Linux vs Windows in Security</h3>
-        <div class="code-block">
-Linux Advantages:
-• User privilege separation
-• Package management
-• Open source transparency
-• Minimal attack surface
-• Command-line efficiency
-
-Windows Advantages:
-• GUI familiarity
-• Enterprise integration
-• Commercial support
+    <!-- Header / Hero Section -->
+    <header class="hero-gradient py-20 md:py-32">
+        <div class="container mx-auto max-w-5xl px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight">
+                Linux for Cybersecurity – Module 1: Foundation (Basics & Navigation)
+            </h1>
+            <p class="mt-6 text-lg md:text-xl text-slate-300 max-w-3xl mx-auto">
+                Master Linux from the ground up — the language of ethical hackers and cybersecurity professionals.
+            </p>
+            <div class="mt-10 flex flex-wrap justify-center gap-4">
+                <!-- CTA Button 1 -->
+                <a href="#" class="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-cyan px-6 py-3 text-base font-semibold text-white shadow-lg transition-transform duration-200 hover:-translate-y-0.5 hover:bg-cyan-400">
+                    <!-- Video Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    Watch the Video Lessons
+                </a>
+                <!-- CTA Button 2 -->
+                <a href="#" class="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-700 px-6 py-3 text-base font-semibold text-white shadow-lg transition-transform duration-200 hover:-translate-y-0.5 hover:bg-slate-600">
+                    <!-- Settings Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                    Start the Lab Setup
+                </a>
+                <!-- CTA Button 3 -->
+                <a href="#" class="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-600 px-6 py-3 text-base font-semibold text-slate-300 shadow-lg transition-colors duration-200 hover:border-slate-500 hover:text-white">
+                    Next Module – System Operations
+                    <!-- Arrow Right Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+            </div>
         </div>
-    </div>
+    </header>
 
-    <div class="slide">
-        <div class="security-context">
-            <h4>🔒 Security Context</h4>
-            <p><strong>Real-world scenario:</strong> A security analyst needs to analyze a compromised server. The server runs Linux, and most forensic tools (Volatility, Autopsy, etc.) are Linux-based. Understanding Linux is crucial for effective incident response and digital forensics.</p>
+    <!-- Main Content -->
+    <main>
+
+        <!-- Section 1: Why Linux Is Non-Negotiable -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto max-w-5xl px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-white text-center">
+                    Why Linux Is Non-Negotiable for Cybersecurity
+                </h2>
+                
+                <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
+                    <!-- Problem -->
+                    <div class="rounded-lg border border-slate-700 bg-slate-800/50 p-6 shadow-lg">
+                        <h3 class="text-lg font-semibold text-red-400">Problem</h3>
+                        <p class="mt-2 text-slate-300">
+                            Many aspiring ethical hackers skip Linux basics and jump straight to hacking tools.
+                        </p>
+                    </div>
+                    <!-- Impact -->
+                    <div class="rounded-lg border border-slate-700 bg-slate-800/50 p-6 shadow-lg">
+                        <h3 class="text-lg font-semibold text-yellow-400">Impact</h3>
+                        <p class="mt-2 text-slate-300">
+                            Without understanding the command line, users struggle to analyze logs, manage systems, or investigate incidents effectively.
+                        </p>
+                    </div>
+                    <!-- Mitigation -->
+                    <div class="rounded-lg border border-slate-700 bg-slate-800/50 p-6 shadow-lg">
+                        <h3 class="text-lg font-semibold text-brand-emerald">Mitigation</h3>
+                        <p class="mt-2 text-slate-300">
+                            HackAndBuild.dev bridges that gap by teaching Linux in a cybersecurity-first way — hands-on, concise, and practical.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Learning Outcomes -->
+                <div class="mt-16 rounded-lg bg-slate-800 p-8 shadow-xl">
+                    <h3 class="text-2xl font-semibold text-white">Learning Outcomes</h3>
+                    <ul class="mt-6 space-y-4">
+                        <li class="flex items-start gap-3">
+                            <!-- Check Icon -->
+                            <svg class="mt-1 h-5 w-5 flex-shrink-0 text-brand-emerald" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            <span>Understand how Linux underpins every cybersecurity tool and operation.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="mt-1 h-5 w-5 flex-shrink-0 text-brand-emerald" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            <span>Learn to navigate, configure, and harden systems confidently.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="mt-1 h-5 w-5 flex-shrink-0 text-brand-emerald" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            <span>Prepare for ethical hacking labs and SOC environments.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Lessons in Module 1 -->
+        <section class="bg-slate-800 py-16 md:py-24">
+            <div class="container mx-auto max-w-5xl px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-white text-center">
+                    Lessons in Module 1
+                </h2>
+
+                <div class="mt-12 space-y-6">
+                    <!-- Lesson 1 -->
+                    <details class="group rounded-lg border border-slate-700 bg-slate-800/50 shadow-lg" open>
+                        <summary class="flex cursor-pointer items-center justify-between p-6">
+                            <h3 class="text-xl font-semibold text-white">
+                                1️⃣ Introduction to Linux for Cybersecurity
+                            </h3>
+                            <svg class="h-5 w-5 text-slate-400 transition-transform duration-200 group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                        </summary>
+                        <div class="border-t border-slate-700 p-6">
+                            <ul class="list-disc space-y-2 pl-5 text-slate-300">
+                                <li>Why cybersecurity professionals rely on Linux.</li>
+                                <li>Overview of security-focused distributions: Ubuntu, Kali, Parrot OS.</li>
+                                <li>Setting up your own lab using VMware or VirtualBox with ISOs.</li>
+                                <li>Demo: Installing Kali Linux safely and performing first boot configuration.</li>
+                            </ul>
+                            <p class="mt-4 rounded-md border-l-4 border-cyan-500 bg-cyan-900/30 p-4 text-cyan-300">
+                                <strong class="font-semibold text-cyan-200">Security Angle:</strong> Recognize where attackers hide scripts or modify configs.
+                            </p>
+                        </div>
+                    </details>
+
+                    <!-- Lesson 2 -->
+                    <details class="group rounded-lg border border-slate-700 bg-slate-800/50 shadow-lg">
+                        <summary class="flex cursor-pointer items-center justify-between p-6">
+                            <h3 class="text-xl font-semibold text-white">
+                                2️⃣ Linux Filesystem Deep Dive
+                            </h3>
+                            <svg class="h-5 w-5 text-slate-400 transition-transform duration-200 group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                        </summary>
+                        <div class="border-t border-slate-700 p-6">
+                            <ul class="list-disc space-y-4 pl-5 text-slate-300">
+                                <li>
+                                    <strong>Directory Hierarchy (FHS):</strong>
+                                    <ul class="mt-2 list-['>'] space-y-2 pl-5">
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">/etc</code>: System configuration files (passwords, service configs).</li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">/var</code>: Variable data, like logs (<code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">/var/log</code>) and web content (<code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">/var/www</code>).</li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">/usr</code>: User-installed software and binaries.</li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">/home</code>: User's personal directories.</li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">/tmp</code>:
+                                        Temporary files (often world-writable, a common target for attackers).</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <strong>Navigation & Listing Commands:</strong>
+                                    <ul class="mt-2 list-['>'] space-y-2 pl-5">
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">pwd</code>: Print Working Directory (shows where you are).</li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">cd</code>: Change Directory (<code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">cd ..</code> to go up, <code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">cd ~</code> for home).</li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">ls</code>: List directory contents.
+                                            <ul class="mt-2 list-['-'] space-y-1 pl-5">
+                                                <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">ls -la</code>: List all files (including hidden) in long format (shows permissions, owner, size).</li>
+                                                <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">ls -lt</code>: Sort by modification time.</li>
+                                            </ul>
+                                        </li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">tree</code>: View directory structure as a tree (may need to be installed).</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p class="mt-4 rounded-md border-l-4 border-cyan-500 bg-cyan-900/30 p-4 text-cyan-300">
+                                <strong class="font-semibold text-cyan-200">Security Angle:</strong> Recognize where attackers hide scripts (e.g., hidden files in <code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">/tmp</code>) or modify configs in <code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">/etc</code>.
+                            </p>
+                        </div>
+                    </details>
+                    
+                    <!-- Lesson 3 -->
+                    <details class="group rounded-lg border border-slate-700 bg-slate-800/50 shadow-lg">
+                        <summary class="flex cursor-pointer items-center justify-between p-6">
+                            <h3 class="text-xl font-semibold text-white">
+                                3️⃣ Essential Linux Commands for Daily Use
+                            </h3>
+                            <svg class="h-5 w-5 text-slate-400 transition-transform duration-200 group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                        </summary>
+                        <div class="border-t border-slate-700 p-6">
+                            <ul class="list-disc space-y-4 pl-5 text-slate-300">
+                                <li>
+                                    <strong>File Operations (View & Edit):</strong>
+                                    <ul class="mt-2 list-['>'] space-y-2 pl-5">
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">cat</code>: Concatenate and print files. Use <code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">cat -n</code> to show line numbers.</li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">less</code>: View large files page by page (press 'q' to quit, '/' to search).</li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">nano</code>: A simple, beginner-friendly text editor.</li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">vi / vim</code>: A powerful, modal text editor. Essential for servers.</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <strong>File Management (Move, Copy, Delete):</strong>
+                                    <ul class="mt-2 list-['>'] space-y-2 pl-5">
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">cp</code>: Copy files/directories. Use <code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">cp -r</code> for recursive copy (directories).</li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">mv</code>: Move or rename files/directories.</li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">rm</code>: Remove files. Use <code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">rm -r</code> to remove directories and <code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">rm -f</code> to force removal. (Use with caution!)</li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">find</code>: Search for files. Ex: <code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">find / -name "config.txt"</code>.</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <strong>Command Chaining (Pipes & Redirects):</strong>
+                                    <ul class="mt-2 list-['>'] space-y-2 pl-5">
+                                        <li><strong>Pipe <code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">|</code></strong>: Sends the output of one command as the input to another. Ex: <code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">cat /var/log/syslog | grep "error"</code>.</li>
+                                        <li><strong>Redirect <code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">></code></strong>: Overwrites a file with command output.</li>
+                                        <li><strong>Append <code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">>></code></strong>: Appends command output to the end of a file.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p class="mt-4 rounded-md border-l-4 border-cyan-500 bg-cyan-900/30 p-4 text-cyan-300">
+                                <strong class="font-semibold text-cyan-200">Security Angle:</strong> Learn how analysts search for indicators in files and logs.
+                            </p>
+                        </div>
+                    </details>
+                    
+                    <!-- Lesson 4 -->
+                    <details class="group rounded-lg border border-slate-700 bg-slate-800/50 shadow-lg">
+                        <summary class="flex cursor-pointer items-center justify-between p-6">
+                            <h3 class="text-xl font-semibold text-white">
+                                4️⃣ Managing Users and Groups
+                            </h3>
+                            <svg class="h-5 w-5 text-slate-400 transition-transform duration-200 group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                        </summary>
+                        <div class="border-t border-slate-700 p-6">
+                            <ul class="list-disc space-y-4 pl-5 text-slate-300">
+                                <li><strong>User Management:</strong>
+                                    <ul class="mt-2 list-['>'] space-y-2 pl-5">
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">useradd hacker</code>: Creates a new user named 'hacker'.</li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">passwd hacker</code>: Set (or change) the password for 'hacker'.</li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">usermod -aG sudo hacker</code>: Add user 'hacker' to the 'sudo' group (grant admin rights).</li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">userdel -r hacker</code>: Remove user 'hacker' and their home directory.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Group Management:</strong>
+                                    <ul class="mt-2 list-['>'] space-y-2 pl-5">
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">groupadd analysts</code>: Create a new group 'analysts'.</li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">gpasswd -a user1 analysts</code>: Add 'user1' to the 'analysts' group.</li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">gpasswd -d user1 analysts</code>: Remove 'user1' from the 'analysts' group.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Privilege Management:</strong>
+                                    <ul class="mt-2 list-['>'] space-y-2 pl-5">
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">sudo [command]</code>: Run a command with root (admin) privileges.</li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">visudo</code> or <code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">nano /etc/sudoers</code>: Edit the file that defines who can use <code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">sudo</code>. (Very sensitive!)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p class="mt-4 rounded-md border-l-4 border-cyan-500 bg-cyan-900/30 p-4 text-cyan-300">
+                                <strong class="font-semibold text-cyan-200">Security Angle:</strong> Understand how attackers add rogue users or add themselves to the 'sudo' group to maintain persistent access and escalate privileges.
+                            </p>
+                        </div>
+                    </details>
+                    
+                    <!-- Lesson 5 -->
+                    <details class="group rounded-lg border border-slate-700 bg-slate-800/50 shadow-lg">
+                        <summary class="flex cursor-pointer items-center justify-between p-6">
+                            <h3 class="text-xl font-semibold text-white">
+                                5️⃣ File Permissions and Ownership
+                            </h3>
+                            <svg class="h-5 w-5 text-slate-400 transition-transform duration-200 group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                        </summary>
+                        <div class="border-t border-slate-700 p-6">
+                            <ul class="list-disc space-y-4 pl-5 text-slate-300">
+                                <li><strong>Understanding Permissions (rwx):</strong>
+                                    <ul class="mt-2 list-['>'] space-y-2 pl-5">
+                                        <li>Permissions are set for <strong>U</strong>ser (owner), <strong>G</strong>roup, and <strong>O</strong>ther (everyone else).</li>
+                                        <li><strong>r (read)</strong>: View file contents / list directory contents.</li>
+                                        <li><strong>w (write)</strong>: Modify file / create or delete files in directory.</li>
+                                        <li><strong>x (execute)</strong>: Run a script / enter a directory.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Changing Permissions (chmod):</strong>
+                                    <ul class="mt-2 list-['>'] space-y-2 pl-5">
+                                        <li><strong>Symbolic Mode:</strong> <code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">chmod u+x script.sh</code> (adds execute for user). <code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">chmod o-w file.txt</code> (removes write for other).</li>
+                                        <li><strong>Octal (Numeric) Mode:</strong> r=4, w=2, x=1.
+                                            <ul class="mt-2 list-['-'] space-y-1 pl-5">
+                                                <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">chmod 755 script.sh</code> (User=rwx, Group=r-x, Other=r-x). This is common for scripts.</li>
+                                                <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">chmod 600 key.pem</code> (User=rw-, Group=---, Other=---). This is secure for private keys.</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><strong>Changing Ownership (chown):</strong>
+                                    <ul class="mt-2 list-['>'] space-y-2 pl-5">
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">chown user:group file.txt</code>: Change the owner and group of a file.</li>
+                                        <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">chown -R user:group /var/www</code>: Recursively change ownership for a directory.</li>
+                                    </ul>
+                                </li>
+                                 <li><code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">umask</code>: Sets the default permissions for newly created files.</li>
+                                <li>Real Case: How misconfigured file access led to the Polkit privilege escalation (CVE-2021-4034).</li>
+                            </ul>
+                            <p class="mt-4 rounded-md border-l-4 border-cyan-500 bg-cyan-900/30 p-4 text-cyan-300">
+                                <strong class="font-semibold text-cyan-200">Security Angle:</strong> Attackers hunt for world-writable files (<code class="rounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">chmod 777</code>) to inject malware. Misconfigured SUID bits (another permission type) are a classic privilege escalation vector.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Recap & Next Steps -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto max-w-5xl px-6">
+                <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+                    <!-- Key Takeaways -->
+                    <div>
+                        <h2 class="text-3xl font-bold text-white">Recap: Key Takeaways</h2>
+                        <ul class="mt-6 list-disc space-y-3 pl-5 text-slate-300">
+                            <li>Linux is the operational backbone of cybersecurity.</li>
+                            <li>Secure configuration starts with mastering users and permissions.</li>
+                            <li>Real-world attacks often exploit poor Linux hygiene — this module prevents that.</li>
+                        </ul>
+                    </div>
+                    <!-- Next Up -->
+                    <div class="rounded-lg bg-slate-800 p-8 shadow-xl">
+                        <h3 class="text-sm font-semibold uppercase tracking-wider text-brand-cyan">Next Up</h3>
+                        <h2 class="mt-2 text-2xl font-bold text-white">
+                            Module 2 – System Operations & Network Basics
+                        </h2>
+                        <p class="mt-3 text-slate-300">
+                            Process management, services, and essential networking tools for defenders.
+                        </p>
+                        <a href="#" class="mt-6 inline-flex items-center gap-2 rounded-lg bg-brand-cyan px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition-transform duration-200 hover:-translate-y-0.5 hover:bg-cyan-400">
+                            Go to Module 2
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Resources & Downloads -->
+        <section class="bg-slate-800 py-16 md:py-24">
+            <div class="container mx-auto max-w-5xl px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-white text-center">
+                    Resources & Downloads
+                </h2>
+                <p class="mt-4 text-center text-lg text-slate-400">
+                    Tools and references to support your learning.
+                </p>
+                
+                <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    <a href="#" class="group flex items-center gap-3 rounded-lg border border-slate-700 bg-slate-800/50 p-4 transition-colors duration-200 hover:border-brand-cyan hover:bg-slate-700/50">
+                        <svg class="h-5 w-5 flex-shrink-0 text-slate-400 group-hover:text-brand-cyan" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span class="font-medium text-slate-200">Ubuntu ISO</span>
+                    </a>
+                    <a href="#" class="group flex items-center gap-3 rounded-lg border border-slate-700 bg-slate-800/50 p-4 transition-colors duration-200 hover:border-brand-cyan hover:bg-slate-700/50">
+                        <svg class="h-5 w-5 flex-shrink-0 text-slate-400 group-hover:text-brand-cyan" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span class="font-medium text-slate-200">Kali Linux ISO</span>
+                    </a>
+                    <a href="#" class="group flex items-center gap-3 rounded-lg border border-slate-700 bg-slate-800/50 p-4 transition-colors duration-200 hover:border-brand-cyan hover:bg-slate-700/50">
+                        <svg class="h-5 w-5 flex-shrink-0 text-slate-400 group-hover:text-brand-cyan" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span class="font-medium text-slate-200">Parrot Security OS</span>
+                    </a>
+                    <a href="#" class="group flex items-center gap-3 rounded-lg border border-slate-700 bg-slate-800/50 p-4 transition-colors duration-200 hover:border-brand-cyan hover:bg-slate-700/50">
+                        <svg class="h-5 w-5 flex-shrink-0 text-slate-400 group-hover:text-brand-cyan" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        <span class="font-medium text-slate-200">CIS Linux Benchmark</span>
+                    </a>
+                    <a href="#" class="group flex items-center gap-3 rounded-lg border border-slate-700 bg-slate-800/50 p-4 transition-colors duration-200 hover:border-brand-cyan hover:bg-slate-700/50">
+                        <svg class="h-5 w-5 flex-shrink-0 text-slate-400 group-hover:text-brand-cyan" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        <span class="font-medium text-slate-200">TryHackMe: Linux Fundamentals Room</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: About HackAndBuild.dev -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto max-w-5xl px-6">
+                <div class="rounded-lg bg-slate-800 p-8 text-center shadow-xl md:p-12">
+                    <h2 class="text-3xl font-bold text-white">
+                        About HackAndBuild.dev
+                    </h2>
+                    <p class="mt-6 text-lg text-slate-300">
+                        HackAndBuild.dev is a practical cybersecurity learning initiative by <strong>Tharaka Mahabage</strong>,
+                    </p>
+                    <p class="mt-2 text-base text-brand-cyan">
+                        Director – SL CERT | Enterprise Cybersecurity Architect | Lecturer in Cybersecurity
+                    </p>
+                    
+                    <div class="mx-auto mt-8 max-w-2xl border-t border-slate-700 pt-8">
+                        <h3 class="text-xl font-semibold text-white">Mission</h3>
+                        <p class="mt-3 text-slate-300">
+                            To empower learners in Sri Lanka and beyond to build cybersecurity skills through hands-on, short-format learning — from Linux and networking to ethical hacking and red teaming.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 py-12">
+        <div class="container mx-auto max-w-5xl px-6 text-center text-slate-500">
+            <div class="text-lg font-bold text-slate-300">
+                HackAndBuild.dev
+            </div>
+            <p class="mt-2 text-sm">Learn. Build. Defend.</p>
+            <p class="mt-6 text-sm">
+                © 2025 HackAndBuild.dev | Designed for learners who build through practice.
+            </p>
+            <div class="mt-6 flex justify-center gap-6">
+                <a href="#" class="text-sm text-slate-400 hover:text-brand-cyan">Privacy Policy</a>
+                <a href="#" class="text-sm text-slate-400 hover:text-brand-cyan">Contact</a>
+                <a href="#" class="text-sm text-slate-400 hover:text-brand-cyan">Subscribe to YouTube Channel</a>
+            </div>
         </div>
-    </div>
+    </footer>
 
-    <!-- Topic 2: Linux Filesystem Deep Dive -->
-    <div class="slide">
-        <h2>2. Linux Filesystem Deep Dive</h2>
-        <h3>Filesystem Hierarchy Standard (FHS)</h3>
-        <div class="code-block">
-/ (root)
-├── /bin     - Essential binaries
-├── /etc     - Configuration files
-├── /home    - User directories
-├── /var     - Variable data
-├── /tmp     - Temporary files
-├── /usr     - User programs
-└── /opt     - Optional software
-        </div>
-    </div>
-
-    <div class="slide">
-        <h3>Critical Security Directories</h3>
-        <ul>
-            <li><span class="highlight">/etc/passwd</span> - User accounts</li>
-            <li><span class="highlight">/etc/shadow</span> - Password hashes</li>
-            <li><span class="highlight">/etc/ssh/</span> - SSH configuration</li>
-            <li><span class="highlight">/var/log/</span> - System logs</li>
-            <li><span class="highlight">/proc/</span> - Process information</li>
-        </ul>
-    </div>
-
-    <div class="slide">
-        <h3>Navigation Commands</h3>
-        <div class="code-block">
-# Basic navigation
-pwd                    # Print working directory
-ls -la                # List files with details
-cd /path/to/directory  # Change directory
-cd ~                  # Go to home directory
-cd ..                 # Go up one level
-
-# Finding files
-find / -name "filename" 2>/dev/null
-locate filename
-which command_name
-        </div>
-    </div>
-
-    <div class="slide">
-        <div class="security-context">
-            <h4>🔒 Security Context</h4>
-            <p><strong>Incident Response:</strong> During a security breach, analysts must quickly navigate the filesystem to locate malicious files, check system logs, and understand the attack vector. Knowledge of critical directories like /var/log/ and /etc/ is essential for effective forensics.</p>
-        </div>
-    </div>
-
-    <!-- Topic 3: Essential Linux Commands for Daily Use -->
-    <div class="slide">
-        <h2>3. Essential Linux Commands for Daily Use</h2>
-        <h3>File Operations</h3>
-        <div class="code-block">
-# File manipulation
-cp source destination    # Copy files
-mv old_name new_name     # Move/rename files
-rm filename             # Remove files
-mkdir directory_name     # Create directory
-rmdir directory_name     # Remove empty directory
-
-# File viewing
-cat filename            # Display file content
-less filename           # Page through file
-head -n 10 filename     # First 10 lines
-tail -n 10 filename     # Last 10 lines
-        </div>
-    </div>
-
-    <div class="slide">
-        <h3>Text Processing</h3>
-        <div class="code-block">
-# Text manipulation
-grep "pattern" file     # Search for pattern
-grep -r "pattern" /dir  # Recursive search
-awk '{print $1}' file   # Print first column
-sed 's/old/new/g' file  # Replace text
-sort file              # Sort lines
-uniq file              # Remove duplicates
-        </div>
-    </div>
-
-    <div class="slide">
-        <h3>System Information</h3>
-        <div class="code-block">
-# System monitoring
-ps aux                 # Running processes
-top                    # Real-time processes
-htop                   # Enhanced process viewer
-df -h                  # Disk usage
-free -h                # Memory usage
-uname -a               # System information
-whoami                 # Current user
-id                     # User/group IDs
-        </div>
-    </div>
-
-    <div class="slide">
-        <div class="security-context">
-            <h4>🔒 Security Context</h4>
-            <p><strong>Threat Hunting:</strong> Security analysts use commands like <code>ps aux</code> to identify suspicious processes, <code>grep</code> to search through logs for indicators of compromise, and <code>netstat</code> to detect unusual network connections during threat hunting activities.</p>
-        </div>
-    </div>
-
-    <!-- Topic 4: Managing Users and Groups -->
-    <div class="slide">
-        <h2>4. Managing Users and Groups</h2>
-        <h3>User Management Commands</h3>
-        <div class="code-block">
-# User operations
-sudo useradd username           # Create user
-sudo userdel username           # Delete user
-sudo usermod -aG group user     # Add user to group
-sudo passwd username            # Change password
-id username                     # Show user info
-who                             # Show logged in users
-last                            # Show login history
-        </div>
-    </div>
-
-    <div class="slide">
-        <h3>Group Management</h3>
-        <div class="code-block">
-# Group operations
-sudo groupadd groupname         # Create group
-sudo groupdel groupname         # Delete group
-groups username                 # Show user groups
-sudo gpasswd -a user group      # Add user to group
-sudo gpasswd -d user group      # Remove user from group
-        </div>
-    </div>
-
-    <div class="slide">
-        <h3>Important Files</h3>
-        <ul>
-            <li><span class="highlight">/etc/passwd</span> - User account information</li>
-            <li><span class="highlight">/etc/shadow</span> - Encrypted passwords</li>
-            <li><span class="highlight">/etc/group</span> - Group information</li>
-            <li><span class="highlight">/etc/sudoers</span> - Sudo permissions</li>
-        </ul>
-    </div>
-
-    <div class="slide">
-        <div class="security-context">
-            <h4>🔒 Security Context</h4>
-            <p><strong>Access Control:</strong> In enterprise environments, proper user and group management is critical for implementing the principle of least privilege. Security teams must regularly audit user accounts, remove inactive users, and ensure appropriate group memberships to prevent unauthorized access.</p>
-        </div>
-    </div>
-
-    <!-- Topic 5: File Permissions and Ownership -->
-    <div class="slide">
-        <h2>5. File Permissions and Ownership</h2>
-        <h3>Understanding Permissions</h3>
-        <div class="code-block">
-# Permission structure
--rwxrwxrwx
-- rwx rwx rwx
-|  |   |   |
-|  |   |   └── Other (o)
-|  |   └────── Group (g)
-|  └────────── Owner (u)
-└────────────── File type (- = file, d = directory)
-        </div>
-    </div>
-
-    <div class="slide">
-        <h3>Permission Commands</h3>
-        <div class="code-block">
-# Change permissions
-chmod 755 filename              # rwxr-xr-x
-chmod u+x filename              # Add execute for owner
-chmod g-w filename              # Remove write for group
-chmod o-r filename              # Remove read for others
-
-# Change ownership
-sudo chown user:group filename  # Change owner and group
-sudo chown user filename        # Change owner only
-sudo chgrp group filename       # Change group only
-        </div>
-    </div>
-
-    <div class="slide">
-        <h3>Common Permission Values</h3>
-        <div class="code-block">
-# Numeric permissions
-7 = rwx (read, write, execute)
-6 = rw- (read, write)
-5 = r-x (read, execute)
-4 = r-- (read only)
-3 = -wx (write, execute)
-2 = -w- (write only)
-1 = --x (execute only)
-0 = --- (no permissions)
-
-# Common combinations
-755 = rwxr-xr-x (executable files)
-644 = rw-r--r-- (regular files)
-700 = rwx------ (private files)
-        </div>
-    </div>
-
-    <div class="slide">
-        <h3>Special Permissions</h3>
-        <div class="code-block">
-# Setuid, Setgid, Sticky bit
-chmod u+s filename              # Setuid (run as owner)
-chmod g+s filename              # Setgid (run as group)
-chmod +t directory              # Sticky bit (only owner can delete)
-
-# Examples
--rwsr-xr-x  # Setuid executable
--rwxr-sr-x  # Setgid executable
-drwxrwxrwt  # Sticky bit directory
-        </div>
-    </div>
-
-    <div class="slide">
-        <div class="security-context">
-            <h4>🔒 Security Context</h4>
-            <p><strong>Privilege Escalation:</strong> Attackers often exploit misconfigured file permissions to escalate privileges. Security professionals must understand how to properly set permissions, identify dangerous setuid/setgid binaries, and audit file ownership to prevent unauthorized access to sensitive files.</p>
-        </div>
-    </div>
-
-    <!-- Summary Slide -->
-    <div class="slide">
-        <h2>Summary</h2>
-        <h3>What We Covered</h3>
-        <ul>
-            <li>Linux importance in cybersecurity</li>
-            <li>Filesystem structure and navigation</li>
-            <li>Essential command-line operations</li>
-            <li>User and group management</li>
-            <li>File permissions and ownership</li>
-        </ul>
-    </div>
-
-    <!-- Next Steps Slide -->
-    <div class="slide">
-        <h2>Next Steps</h2>
-        <h3>Practice and Learn More</h3>
-        <ul>
-            <li>Set up a Linux virtual machine</li>
-            <li>Practice commands daily</li>
-            <li>Explore security-focused distributions</li>
-            <li>Join Linux security communities</li>
-            <li>Stay tuned for Module 2: Network Security</li>
-        </ul>
-    </div>
-
-    <!-- Final Slide -->
-    <div class="slide final-slide">
-        <h1>Thank You!</h1>
-        <p>Questions & Discussion</p>
-        <div class="disclaimer">
-            Recorded on Google Meet – For Educational Use Only<br>
-            HackAndBuild.dev | Tharaka Mahabage
-        </div>
-    </div>
 </body>
 </html>
