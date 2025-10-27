@@ -410,7 +410,8 @@
             { file: 'InformationSecurityCareerRoadmap.html', folder: '' },
             { file: 'MachineLearningGuide.html', folder: '' },
             { file: 'MachineLearning.html', folder: '' },
-            { file: 'SkillsFrameworkForTheInformationAge.html', folder: '' }
+            { file: 'SkillsFrameworkForTheInformationAge.html', folder: '' },
+            { file: 'LinuxForCybersecurityModule1.html', folder: '', title: 'Linux for Cybersecurity - Module 1', description: 'Foundation course covering Linux basics, navigation, and essential commands for cybersecurity professionals.' }
             
         ];
 
@@ -423,6 +424,7 @@
             if(norm.includes("learning method")) return "fa-lightbulb";
             if(norm.includes("machine learning")) return "fa-brain";
             if(norm === "ml") return "fa-gears";
+            if(norm.includes("linux")) return "fa-terminal";
             if(norm.includes("knowledge")) return "fa-globe";
             // fallback: book
             return "fa-book";
