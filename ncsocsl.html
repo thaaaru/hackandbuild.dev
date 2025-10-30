@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+      <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);} 
+  gtag('js', new Date());
+
+  gtag('config', 'G-X70YJR4WSV');
+</script>
+
+      
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Security Operations Center (SOC) Maturity Model Framework with SFIA-Aligned Skills and Competency Levels">
+  <title>SOC Maturity Model Framework | SFIA-Aligned</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/hack@5.0.16/index.min.css">
+  <style>
+        :root {
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --accent: #2563eb;
+            --border: #e5e7eb;
+            --card-bg: #f9fafb;
+            --mono: 'Hack', 'Courier New', monospace;
+            --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --text: #e2e8f0;
+            --accent: #60a5fa;
+            --border: #334155;
+            --card-bg: #1e293b;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        header {
+            padding: 0.6rem 0 0.6rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--mono);
+            font-size: 1.18rem;
+            font-weight: bold;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 0.35rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.84rem;
+            transition: all 0.2s;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent);
+        }
+
+        main {
+            padding: 2rem 0 2.2rem 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--mono);
+        }
+
+        h1 { font-size: 2rem; margin-bottom: 0.4rem; }
+        h2 { font-size: 1.35rem; margin-top: 1.8rem; margin-bottom: 0.6rem; }
+        h3 { font-size: 1.1rem; margin-top: 1.2rem; margin-bottom: 0.4rem; color: var(--accent); }
+        h4 { font-size: 1rem; margin-top: 1rem; margin-bottom: 0.35rem; }
+
+        .subtitle {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 1.2rem 0;
+        }
+
+        .note {
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+
+        .section-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem 1rem;
+            margin: 1rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.8rem 0 1.1rem 0;
+            font-size: 0.96rem;
+        }
+        th, td {
+            border: 1px solid var(--border);
+            padding: 0.6rem 0.55rem;
+            vertical-align: top;
+        }
+        th {
+            background: var(--card-bg);
+            text-align: left;
+        }
+        code, .mono { font-family: var(--mono); }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 1.2rem 0 1rem 0;
+            text-align: center;
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.05rem; }
+            table { display: block; overflow-x: auto; white-space: nowrap; }
+        }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">hack_and_build</div>
+        <button class="theme-toggle" id="themeToggle">Toggle Dark Mode</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="hero">
+        <h1>Security Operations Center (SOC) Maturity Model Framework</h1>
+        <p class="subtitle">With SFIA-Aligned Skills and Competency Levels</p>
+      </section>
+
+      <hr>
+
+      <section>
+        <h2>SFIA Level Reference Guide</h2>
+        <p><strong>Level 1 (Follow):</strong> Works under close supervision, uses limited discretion</p>
+        <p><strong>Level 2 (Assist):</strong> Works under general direction, applies knowledge in routine contexts</p>
+        <p><strong>Level 3 (Apply):</strong> Works under general direction, exercises discretion, applies skills in varied contexts</p>
+        <p><strong>Level 4 (Enable):</strong> Works under general direction, fully responsible for meeting objectives, influences others</p>
+        <p><strong>Level 5 (Ensure, Advise):</strong> Ensures correct application of standards, provides authoritative advice</p>
+        <p><strong>Level 6 (Initiate, Influence):</strong> Sets policy, initiates and leads activities of strategic importance</p>
+        <p><strong>Level 7 (Set Strategy, Inspire):</strong> Sets organizational strategy, inspires the industry</p>
+      </section>
+
+      <hr>
+
+      <section>
+        <h2><strong>Level 1: Initial (Ad-Hoc)</strong></h2>
+        <h3>Organizational Characteristics</h3>
+        <p>The SOC operates reactively with minimal formal processes. Security monitoring is inconsistent, with limited tooling and undefined responsibilities. Incident response is chaotic and driven by individual heroics rather than documented procedures.</p>
+
+        <h3>SFIA Skills Required by Role</h3>
+
+        <h4><strong>SOC Analyst (Tier 1) - Junior/Entry Level</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>INCA</strong></td><td>Incident management</td><td><strong>Level 2</strong></td><td>Assist with logging and tracking security incidents using basic ticketing systems</td></tr>
+            <tr><td><strong>SCAD</strong></td><td>Security administration</td><td><strong>Level 2</strong></td><td>Assist with monitoring basic security tools (antivirus, firewall logs)</td></tr>
+            <tr><td><strong>NTAS</strong></td><td>Network support</td><td><strong>Level 2</strong></td><td>Understand basic network protocols and connectivity for incident context</td></tr>
+            <tr><td><strong>USUP</strong></td><td>User support</td><td><strong>Level 2</strong></td><td>Respond to user-reported security concerns and provide initial guidance</td></tr>
+            <tr><td><strong>Know</strong></td><td>Knowledge management</td><td><strong>Level 1-2</strong></td><td>Document incident activities and maintain basic records</td></tr>
+          </tbody>
+        </table>
+
+        <h4><strong>SOC Analyst (Tier 2) - Intermediate Level</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>INCA</strong></td><td>Incident management</td><td><strong>Level 3</strong></td><td>Apply incident response procedures independently for common scenarios</td></tr>
+            <tr><td><strong>FORS</strong></td><td>IT forensics</td><td><strong>Level 2-3</strong></td><td>Assist with or apply basic forensic evidence collection</td></tr>
+            <tr><td><strong>SCAD</strong></td><td>Security administration</td><td><strong>Level 3</strong></td><td>Apply security controls and respond to security events</td></tr>
+            <tr><td><strong>VISL</strong></td><td>Vulnerability assessment</td><td><strong>Level 2</strong></td><td>Assist with vulnerability identification and basic analysis</td></tr>
+          </tbody>
+        </table>
+
+        <h4><strong>SOC Manager</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>IRMG</strong></td><td>Information security</td><td><strong>Level 3-4</strong></td><td>Apply security principles and enable basic security operations</td></tr>
+            <tr><td><strong>INCA</strong></td><td>Incident management</td><td><strong>Level 4</strong></td><td>Enable effective incident response and ensure team capability</td></tr>
+            <tr><td><strong>PEDG</strong></td><td>People management</td><td><strong>Level 3-4</strong></td><td>Apply team management and enable performance under constraints</td></tr>
+            <tr><td><strong>BURM</strong></td><td>Business risk management</td><td><strong>Level 3</strong></td><td>Apply risk assessment to security decisions</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Real-World Example</h3>
+        <p>A small healthcare clinic with 200 employees has one IT person handling security reactively, checking antivirus alerts when time permits, with no formal processes or documentation.</p>
+      </section>
+
+      <hr>
+
+      <section>
+        <h2><strong>Level 2: Developing (Repeatable)</strong></h2>
+        <h3>Organizational Characteristics</h3>
+        <p>The SOC has defined basic processes and some automation. Security monitoring occurs during business hours with documented escalation paths. Basic playbooks exist for common scenarios.</p>
+
+        <h3>SFIA Skills Required by Role</h3>
+
+        <h4><strong>SOC Analyst (Tier 1) - Foundational Level</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>INCA</strong></td><td>Incident management</td><td><strong>Level 3</strong></td><td>Apply documented playbooks and escalation procedures independently</td></tr>
+            <tr><td><strong>SCAD</strong></td><td>Security administration</td><td><strong>Level 3</strong></td><td>Apply SIEM queries and monitor security events using defined processes</td></tr>
+            <tr><td><strong>BUAN</strong></td><td>Business analysis</td><td><strong>Level 2-3</strong></td><td>Analyze alert patterns and identify false positives</td></tr>
+            <tr><td><strong>EMRG</strong></td><td>Vulnerability research</td><td><strong>Level 2</strong></td><td>Assist with identifying and categorizing security vulnerabilities</td></tr>
+            <tr><td><strong>KNOW</strong></td><td>Knowledge management</td><td><strong>Level 2-3</strong></td><td>Contribute to knowledge base and document procedures</td></tr>
+            <tr><td><strong>ITMG</strong></td><td>IT management</td><td><strong>Level 2</strong></td><td>Understand the IT environment and business context for incidents</td></tr>
+          </tbody>
+        </table>
+
+        <h4><strong>SOC Analyst (Tier 2) - Intermediate Level</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>FORS</strong></td><td>IT forensics</td><td><strong>Level 3</strong></td><td>Apply forensic techniques to investigate incidents independently</td></tr>
+            <tr><td><strong>INCA</strong></td><td>Incident management</td><td><strong>Level 3-4</strong></td><td>Apply advanced incident analysis and enable team response</td></tr>
+            <tr><td><strong>SCAD</strong></td><td>Security administration</td><td><strong>Level 3-4</strong></td><td>Apply security controls and enable threat detection capabilities</td></tr>
+            <tr><td><strong>PROG</strong></td><td>Programming/software development</td><td><strong>Level 2-3</strong></td><td>Assist with or apply scripting for automation (Python, PowerShell)</td></tr>
+            <tr><td><strong>VISL</strong></td><td>Vulnerability assessment</td><td><strong>Level 3</strong></td><td>Apply vulnerability analysis and prioritization</td></tr>
+            <tr><td><strong>EMRG</strong></td><td>Vulnerability research</td><td><strong>Level 3</strong></td><td>Apply threat research and IoC analysis</td></tr>
+            <tr><td><strong>MALW</strong></td><td>Malware analysis*</td><td><strong>Level 2-3</strong></td><td>Assist with or apply basic malware identification and analysis</td></tr>
+          </tbody>
+        </table>
+        <p class="note">*Note: MALW is not a standard SFIA code but represents specialized security analysis</p>
+
+        <h4><strong>SOC Analyst (Tier 3) / Threat Hunter</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>EMRG</strong></td><td>Vulnerability research</td><td><strong>Level 3-4</strong></td><td>Apply threat hunting techniques and enable proactive defense</td></tr>
+            <tr><td><strong>INCA</strong></td><td>Incident management</td><td><strong>Level 4</strong></td><td>Enable complex incident response and mentor junior analysts</td></tr>
+            <tr><td><strong>BUAN</strong></td><td>Business analysis</td><td><strong>Level 3-4</strong></td><td>Apply behavioral analysis and anomaly detection</td></tr>
+            <tr><td><strong>SCAD</strong></td><td>Security administration</td><td><strong>Level 4</strong></td><td>Enable custom detection rule development</td></tr>
+          </tbody>
+        </table>
+
+        <h4><strong>SOC Manager</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>IRMG</strong></td><td>Information security</td><td><strong>Level 4</strong></td><td>Enable security operations aligned with frameworks (NIST, SANS)</td></tr>
+            <tr><td><strong>INCA</strong></td><td>Incident management</td><td><strong>Level 4-5</strong></td><td>Enable effective incident management and ensure process maturity</td></tr>
+            <tr><td><strong>PEDG</strong></td><td>People management</td><td><strong>Level 4</strong></td><td>Enable team performance through leadership and development</td></tr>
+            <tr><td><strong>BURM</strong></td><td>Business risk management</td><td><strong>Level 4</strong></td><td>Enable risk-based decision making for security operations</td></tr>
+            <tr><td><strong>CFMG</strong></td><td>Financial management</td><td><strong>Level 3-4</strong></td><td>Apply budget management for SOC operations</td></tr>
+            <tr><td><strong>SUPP</strong></td><td>Supplier management</td><td><strong>Level 3-4</strong></td><td>Apply vendor management for security tools and services</td></tr>
+            <tr><td><strong>MEAS</strong></td><td>Measurement</td><td><strong>Level 3-4</strong></td><td>Apply metrics tracking (MTTD, MTTR) and reporting</td></tr>
+          </tbody>
+        </table>
+
+        <h4><strong>Security Engineer</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>SCAD</strong></td><td>Security administration</td><td><strong>Level 3-4</strong></td><td>Apply SIEM administration and enable tool integration</td></tr>
+            <tr><td><strong>ARCH</strong></td><td>Solution architecture</td><td><strong>Level 3</strong></td><td>Apply security architecture principles to SOC infrastructure</td></tr>
+            <tr><td><strong>DESN</strong></td><td>Systems design</td><td><strong>Level 3</strong></td><td>Apply design principles for security tool deployment</td></tr>
+            <tr><td><strong>SYSP</strong></td><td>Systems integration</td><td><strong>Level 3-4</strong></td><td>Apply integration of security tools via APIs and agents</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Real-World Example</h3>
+        <p>A financial services company with 1,000 employees operates a 5-person SOC (8x5). They use a SIEM with documented playbooks for ransomware, phishing, and DDoS attacks, following standardized procedures with defined escalation paths.</p>
+      </section>
+
+      <hr>
+
+      <section>
+        <h2><strong>Level 3: Defined (Managed)</strong></h2>
+        <h3>Organizational Characteristics</h3>
+        <p>The SOC operates 24x7 with clear roles, standardized processes, and continuous improvement. Proactive threat hunting occurs regularly with strong integration across security functions and business units.</p>
+
+        <h3>SFIA Skills Required by Role</h3>
+
+        <h4><strong>SOC Analyst (Tier 1) - Foundational Level</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>INCA</strong></td><td>Incident management</td><td><strong>Level 3-4</strong></td><td>Apply complex incident procedures and enable automated workflows</td></tr>
+            <tr><td><strong>SCAD</strong></td><td>Security administration</td><td><strong>Level 4</strong></td><td>Enable SIEM mastery and multi-source alert correlation</td></tr>
+            <tr><td><strong>BUAN</strong></td><td>Business analysis</td><td><strong>Level 3</strong></td><td>Apply cloud security monitoring and alert correlation</td></tr>
+            <tr><td><strong>ITMG</strong></td><td>IT management</td><td><strong>Level 3</strong></td><td>Apply knowledge of IT infrastructure including cloud (AWS/Azure/GCP)</td></tr>
+            <tr><td><strong>VISL</strong></td><td>Vulnerability assessment</td><td><strong>Level 3</strong></td><td>Apply vulnerability context to security events</td></tr>
+            <tr><td><strong>GOVN</strong></td><td>Governance</td><td><strong>Level 2-3</strong></td><td>Assist with or apply compliance requirements (PCI-DSS, HIPAA, ISO 27001)</td></tr>
+            <tr><td><strong>EMRG</strong></td><td>Vulnerability research</td><td><strong>Level 3</strong></td><td>Apply threat intelligence consumption and IoC analysis</td></tr>
+          </tbody>
+        </table>
+
+        <h4><strong>SOC Analyst (Tier 2) - Intermediate Level</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>FORS</strong></td><td>IT forensics</td><td><strong>Level 4</strong></td><td>Enable network and memory forensics investigations</td></tr>
+            <tr><td><strong>INCA</strong></td><td>Incident management</td><td><strong>Level 4</strong></td><td>Enable advanced incident response including APT investigations</td></tr>
+            <tr><td><strong>SCAD</strong></td><td>Security administration</td><td><strong>Level 4</strong></td><td>Enable security across hybrid and cloud environments</td></tr>
+            <tr><td><strong>PROG</strong></td><td>Programming/software development</td><td><strong>Level 3-4</strong></td><td>Apply scripting and enable automation development</td></tr>
+            <tr><td><strong>EMRG</strong></td><td>Vulnerability research</td><td><strong>Level 4</strong></td><td>Enable malware reverse engineering and threat actor profiling</td></tr>
+            <tr><td><strong>METL</strong></td><td>Methods and tools</td><td><strong>Level 4</strong></td><td>Enable MITRE ATT&CK framework application and kill chain analysis</td></tr>
+            <tr><td><strong>ARCH</strong></td><td>Solution architecture</td><td><strong>Level 3</strong></td><td>Apply understanding of cloud architecture security</td></tr>
+            <tr><td><strong>NTAS</strong></td><td>Network support</td><td><strong>Level 4</strong></td><td>Enable deep packet inspection and network forensics</td></tr>
+          </tbody>
+        </table>
+
+        <h4><strong>SOC Analyst (Tier 3) / Threat Hunter - Advanced Level</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>EMRG</strong></td><td>Vulnerability research</td><td><strong>Level 4-5</strong></td><td>Enable hypothesis-driven threat hunting and ensure detection effectiveness</td></tr>
+            <tr><td><strong>INCA</strong></td><td>Incident management</td><td><strong>Level 4-5</strong></td><td>Enable complex investigations and ensure team capability</td></tr>
+            <tr><td><strong>BUAN</strong></td><td>Business analysis</td><td><strong>Level 4</strong></td><td>Enable statistical analysis and behavioral anomaly detection</td></tr>
+            <tr><td><strong>SCAD</strong></td><td>Security administration</td><td><strong>Level 4-5</strong></td><td>Enable custom detection engineering at scale</td></tr>
+            <tr><td><strong>DTAN</strong></td><td>Data analysis</td><td><strong>Level 4</strong></td><td>Enable data science for security analytics</td></tr>
+            <tr><td><strong>PROG</strong></td><td>Programming/software development</td><td><strong>Level 4</strong></td><td>Enable automation and tool development (Python, R)</td></tr>
+            <tr><td><strong>METL</strong></td><td>Methods and tools</td><td><strong>Level 4-5</strong></td><td>Enable TTPs mapping and ensure MITRE ATT&CK utilization</td></tr>
+          </tbody>
+        </table>
+
+        <h4><strong>Incident Response Lead</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>INCA</strong></td><td>Incident management</td><td><strong>Level 5</strong></td><td>Ensure effective incident command and coordination</td></tr>
+            <tr><td><strong>FORS</strong></td><td>IT forensics</td><td><strong>Level 4-5</strong></td><td>Enable DFIR and ensure forensic integrity</td></tr>
+            <tr><td><strong>BURM</strong></td><td>Business risk management</td><td><strong>Level 4-5</strong></td><td>Enable business impact analysis and ensure risk communication</td></tr>
+            <tr><td><strong>RLMT</strong></td><td>Relationship management</td><td><strong>Level 4-5</strong></td><td>Enable stakeholder coordination including legal and regulatory</td></tr>
+            <tr><td><strong>GOVN</strong></td><td>Governance</td><td><strong>Level 4</strong></td><td>Enable compliance during incident response</td></tr>
+            <tr><td><strong>КОМ</strong></td><td>Communication*</td><td><strong>Level 5</strong></td><td>Ensure effective crisis communication</td></tr>
+          </tbody>
+        </table>
+        <p class="note">*Note: Using approximation as SFIA doesn't have direct "communication" code</p>
+
+        <h4><strong>SOC Manager</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>IRMG</strong></td><td>Information security</td><td><strong>Level 5</strong></td><td>Ensure strategic security operations aligned with business objectives</td></tr>
+            <tr><td><strong>INCA</strong></td><td>Incident management</td><td><strong>Level 5</strong></td><td>Ensure program effectiveness and advise on incident management strategy</td></tr>
+            <tr><td><strong>PEDG</strong></td><td>People management</td><td><strong>Level 4-5</strong></td><td>Enable team development and ensure succession planning</td></tr>
+            <tr><td><strong>BURM</strong></td><td>Business risk management</td><td><strong>Level 4-5</strong></td><td>Enable risk frameworks and ensure risk-based decisions</td></tr>
+            <tr><td><strong>CFMG</strong></td><td>Financial management</td><td><strong>Level 4-5</strong></td><td>Enable budget optimization and resource allocation</td></tr>
+            <tr><td><strong>PRMG</strong></td><td>Programme management</td><td><strong>Level 4</strong></td><td>Enable SOC improvement programs and initiatives</td></tr>
+            <tr><td><strong>RLMT</strong></td><td>Relationship management</td><td><strong>Level 4-5</strong></td><td>Enable executive communication and stakeholder management</td></tr>
+            <tr><td><strong>MEAS</strong></td><td>Measurement</td><td><strong>Level 4-5</strong></td><td>Enable advanced metrics and ensure performance reporting</td></tr>
+          </tbody>
+        </table>
+
+        <h4><strong>Security Engineer/Architect</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>ARCH</strong></td><td>Solution architecture</td><td><strong>Level 4-5</strong></td><td>Enable security architecture design and ensure alignment</td></tr>
+            <tr><td><strong>SCAD</strong></td><td>Security administration</td><td><strong>Level 4-5</strong></td><td>Enable SIEM/SOAR engineering and ensure optimization</td></tr>
+            <tr><td><strong>PROG</strong></td><td>Programming/software development</td><td><strong>Level 4</strong></td><td>Enable API development and integration</td></tr>
+            <tr><td><strong>DESN</strong></td><td>Systems design</td><td><strong>Level 4</strong></td><td>Enable security infrastructure design</td></tr>
+            <tr><td><strong>EMRG</strong></td><td>Vulnerability research</td><td><strong>Level 4</strong></td><td>Enable detection engineering at scale</td></tr>
+            <tr><td><strong>HCEV</strong></td><td>Systems development management</td><td><strong>Level 3-4</strong></td><td>Apply infrastructure as code (Terraform, Ansible)</td></tr>
+          </tbody>
+        </table>
+
+        <h4><strong>Threat Intelligence Analyst</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>EMRG</strong></td><td>Vulnerability research</td><td><strong>Level 4</strong></td><td>Enable OSINT collection and threat actor tracking</td></tr>
+            <tr><td><strong>INCA</strong></td><td>Incident management</td><td><strong>Level 3-4</strong></td><td>Apply intelligence to incident context</td></tr>
+            <tr><td><strong>BUAN</strong></td><td>Business analysis</td><td><strong>Level 4</strong></td><td>Enable intelligence analysis and reporting</td></tr>
+            <tr><td><strong>INFO</strong></td><td>Information management</td><td><strong>Level 4</strong></td><td>Enable indicator management and sharing (STIX, TAXII)</td></tr>
+            <tr><td><strong>KNOW</strong></td><td>Knowledge management</td><td><strong>Level 4</strong></td><td>Enable intelligence documentation and dissemination</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Real-World Example</h3>
+        <p>A multinational manufacturing company with 10,000 employees operates a 15-person SOC across two geographies. When behavioral analytics detect anomalous database queries at 2 AM, automated enrichment workflows trigger, SOAR platform creates tickets, and automated containment actions execute while the Tier 2 analyst investigates credential compromise.</p>
+      </section>
+
+      <hr>
+
+      <section>
+        <h2><strong>Level 4: Managed (Quantitatively Controlled)</strong></h2>
+        <h3>Organizational Characteristics</h3>
+        <p>The SOC operates as a strategic business enabler with predictable, measurable outcomes. Advanced analytics, machine learning, and threat intelligence drive decision-making. Performance is measured against industry benchmarks with continuous optimization.</p>
+
+        <h3>SFIA Skills Required by Role</h3>
+
+        <h4><strong>SOC Analyst (Tier 1) - Foundational Level</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>INCA</strong></td><td>Incident management</td><td><strong>Level 4</strong></td><td>Enable advanced automation and orchestration workflows</td></tr>
+            <tr><td><strong>SCAD</strong></td><td>Security administration</td><td><strong>Level 4-5</strong></td><td>Enable cross-domain correlation and ensure detection quality</td></tr>
+            <tr><td><strong>BUAN</strong></td><td>Business analysis</td><td><strong>Level 4</strong></td><td>Enable ML alert interpretation and risk-based prioritization</td></tr>
+            <tr><td><strong>DTAN</strong></td><td>Data analysis</td><td><strong>Level 3-4</strong></td><td>Apply advanced analytics to security data</td></tr>
+            <tr><td><strong>GOVN</strong></td><td>Governance</td><td><strong>Level 3-4</strong></td><td>Apply compliance automation and reporting</td></tr>
+          </tbody>
+        </table>
+
+        <h4><strong>SOC Analyst (Tier 2) - Intermediate Level</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>FORS</strong></td><td>IT forensics</td><td><strong>Level 4-5</strong></td><td>Enable advanced forensics and ensure investigative excellence</td></tr>
+            <tr><td><strong>INCA</strong></td><td>Incident management</td><td><strong>Level 4-5</strong></td><td>Enable complex response and ensure incident handling quality</td></tr>
+            <tr><td><strong>EMRG</strong></td><td>Vulnerability research</td><td><strong>Level 5</strong></td><td>Ensure threat research quality and advise on emerging threats</td></tr>
+            <tr><td><strong>PROG</strong></td><td>Programming/software development</td><td><strong>Level 4-5</strong></td><td>Enable tool development and automation at scale</td></tr>
+            <tr><td><strong>SCAD</strong></td><td>Security administration</td><td><strong>Level 5</strong></td><td>Ensure security control effectiveness across enterprise</td></tr>
+            <tr><td><strong>METL</strong></td><td>Methods and tools</td><td><strong>Level 5</strong></td><td>Ensure methodology application and tool optimization</td></tr>
+          </tbody>
+        </table>
+
+        <h4><strong>SOC Analyst (Tier 3) / Threat Hunter - Expert Level</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>EMRG</strong></td><td>Vulnerability research</td><td><strong>Level 5-6</strong></td><td>Ensure advanced threat detection and initiate hunting programs</td></tr>
+            <tr><td><strong>DTAN</strong></td><td>Data analysis</td><td><strong>Level 5</strong></td><td>Ensure analytics-driven threat detection and predictive modeling</td></tr>
+            <tr><td><strong>INCA</strong></td><td>Incident management</td><td><strong>Level 5</strong></td><td>Ensure hunting program effectiveness and advise on threats</td></tr>
+            <tr><td><strong>SCAD</strong></td><td>Security administration</td><td><strong>Level 5</strong></td><td>Ensure detection engineering excellence</td></tr>
+            <tr><td><strong>BUAN</strong></td><td>Business analysis</td><td><strong>Level 5</strong></td><td>Ensure behavioral analytics and business-aligned threat priorities</td></tr>
+            <tr><td><strong>PROG</strong></td><td>Programming/software development</td><td><strong>Level 5</strong></td><td>Ensure automation and advanced tool development</td></tr>
+            <tr><td><strong>KNOW</strong></td><td>Knowledge management</td><td><strong>Level 5</strong></td><td>Ensure knowledge sharing and industry contribution</td></tr>
+          </tbody>
+        </table>
+
+        <h4><strong>Incident Response Lead / DFIR Manager</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>INCA</strong></td><td>Incident management</td><td><strong>Level 5-6</strong></td><td>Ensure IR program excellence and initiate strategic improvements</td></tr>
+            <tr><td><strong>FORS</strong></td><td>IT forensics</td><td><strong>Level 5-6</strong></td><td>Ensure forensic program quality and initiate advanced capabilities</td></tr>
+            <tr><td><strong>BURM</strong></td><td>Business risk management</td><td><strong>Level 5</strong></td><td>Ensure risk quantification and advise executives</td></tr>
+            <tr><td><strong>RLMT</strong></td><td>Relationship management</td><td><strong>Level 5</strong></td><td>Ensure stakeholder engagement including law enforcement</td></tr>
+            <tr><td><strong>GOVN</strong></td><td>Governance</td><td><strong>Level 5</strong></td><td>Ensure regulatory compliance and advise on legal matters</td></tr>
+            <tr><td><strong>METL</strong></td><td>Methods and tools</td><td><strong>Level 5</strong></td><td>Ensure methodology adherence and continuous improvement</td></tr>
+          </tbody>
+        </table>
+
+        <h4><strong>SOC Manager / SOC Director</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>IRMG</strong></td><td>Information security</td><td><strong>Level 5-6</strong></td><td>Ensure security operations excellence and initiate strategic programs</td></tr>
+            <tr><td><strong>INCA</strong></td><td>Incident management</td><td><strong>Level 5-6</strong></td><td>Ensure incident program maturity and initiate industry improvements</td></tr>
+            <tr><td><strong>PEDG</strong></td><td>People management</td><td><strong>Level 5-6</strong></td><td>Ensure team excellence and initiate talent development programs</td></tr>
+            <tr><td><strong>BURM</strong></td><td>Business risk management</td><td><strong>Level 5-6</strong></td><td>Ensure risk-based operations and initiate risk management strategy</td></tr>
+            <tr><td><strong>CFMG</strong></td><td>Financial management</td><td><strong>Level 5</strong></td><td>Ensure budget effectiveness and value demonstration</td></tr>
+            <tr><td><strong>PRMG</strong></td><td>Programme management</td><td><strong>Level 5</strong></td><td>Ensure program delivery and strategic initiative success</td></tr>
+            <tr><td><strong>RLMT</strong></td><td>Relationship management</td><td><strong>Level 5-6</strong></td><td>Ensure executive alignment and initiate strategic partnerships</td></tr>
+            <tr><td><strong>MEAS</strong></td><td>Measurement</td><td><strong>Level 5</strong></td><td>Ensure metrics program and predictive performance analysis</td></tr>
+            <tr><td><strong>GOVN</strong></td><td>Governance</td><td><strong>Level 5</strong></td><td>Ensure compliance and advise on security governance</td></tr>
+          </tbody>
+        </table>
+
+        <h4><strong>Principal Security Architect</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>ARCH</strong></td><td>Solution architecture</td><td><strong>Level 5-6</strong></td><td>Ensure architecture excellence and initiate strategic designs</td></tr>
+            <tr><td><strong>SCAD</strong></td><td>Security administration</td><td><strong>Level 5-6</strong></td><td>Ensure platform excellence and initiate next-gen capabilities</td></tr>
+            <tr><td><strong>TECH</strong></td><td>Emerging technology monitoring</td><td><strong>Level 5</strong></td><td>Ensure awareness of emerging threats and technologies</td></tr>
+            <tr><td><strong>DESN</strong></td><td>Systems design</td><td><strong>Level 5</strong></td><td>Ensure design quality and innovation</td></tr>
+            <tr><td><strong>PROG</strong></td><td>Programming/software development</td><td><strong>Level 5</strong></td><td>Ensure development standards and automation architecture</td></tr>
+            <tr><td><strong>IRMG</strong></td><td>Information security</td><td><strong>Level 5</strong></td><td>Ensure security architecture alignment with strategy</td></tr>
+          </tbody>
+        </table>
+
+        <h4><strong>Lead Threat Intelligence Analyst</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>EMRG</strong></td><td>Vulnerability research</td><td><strong>Level 5-6</strong></td><td>Ensure intelligence program quality and initiate threat research</td></tr>
+            <tr><td><strong>BUAN</strong></td><td>Business analysis</td><td><strong>Level 5</strong></td><td>Ensure intelligence drives business decisions</td></tr>
+            <tr><td><strong>INFO</strong></td><td>Information management</td><td><strong>Level 5</strong></td><td>Ensure intelligence sharing and industry collaboration</td></tr>
+            <tr><td><strong>KNOW</strong></td><td>Knowledge management</td><td><strong>Level 5</strong></td><td>Ensure knowledge dissemination and thought leadership</td></tr>
+            <tr><td><strong>RLMT</strong></td><td>Relationship management</td><td><strong>Level 5</strong></td><td>Ensure external intelligence partnerships (ISACs, law enforcement)</td></tr>
+          </tbody>
+        </table>
+
+        <h4><strong>Security Data Scientist</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>DTAN</strong></td><td>Data analysis</td><td><strong>Level 5</strong></td><td>Ensure advanced analytics and predictive modeling</td></tr>
+            <tr><td><strong>PROG</strong></td><td>Programming/software development</td><td><strong>Level 4-5</strong></td><td>Enable ML/AI model development for security</td></tr>
+            <tr><td><strong>SCAD</strong></td><td>Security administration</td><td><strong>Level 4</strong></td><td>Enable security data pipeline and analytics integration</td></tr>
+            <tr><td><strong>METL</strong></td><td>Methods and tools</td><td><strong>Level 5</strong></td><td>Ensure analytical methodology and statistical rigor</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Real-World Example</h3>
+        <p>A global technology company with 50,000 employees operates a 40-person SOC with predictive threat modeling. Machine learning detects credential stuffing patterns before widespread compromise. Automated SOAR playbooks handle 85% of routine incidents. The SOC publishes threat research, shares intelligence with ISACs, and regularly briefs the board with quantified risk metrics. Annual red team exercises show measurable year-over-year improvements in detection and response times.</p>
+      </section>
+
+      <hr>
+
+      <section>
+        <h2><strong>Level 5: Optimizing (Continuously Improving)</strong></h2>
+        <h3>Organizational Characteristics</h3>
+        <p>The SOC is an industry leader driving innovation in threat detection and response. Continuous optimization through advanced research, automation, and strategic intelligence. The organization influences industry standards and contributes to the global security community.</p>
+
+        <h3>SFIA Skills Required by Role</h3>
+
+        <h4><strong>SOC Leadership (Director/VP Level)</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>IRMG</strong></td><td>Information security</td><td><strong>Level 6-7</strong></td><td>Initiate industry-leading security operations and set organizational strategy</td></tr>
+            <tr><td><strong>INCA</strong></td><td>Incident management</td><td><strong>Level 6</strong></td><td>Initiate global incident response capabilities and influence industry standards</td></tr>
+            <tr><td><strong>STPL</strong></td><td>Strategic planning</td><td><strong>Level 6-7</strong></td><td>Set security operations strategy aligned with business transformation</td></tr>
+            <tr><td><strong>BURM</strong></td><td>Business risk management</td><td><strong>Level 6</strong></td><td>Initiate risk management innovation and influence enterprise risk strategy</td></tr>
+            <tr><td><strong>ORDI</strong></td><td>Organizational design</td><td><strong>Level 5-6</strong></td><td>Ensure organizational structure supports innovation and strategic goals</td></tr>
+            <tr><td><strong>PEDG</strong></td><td>People management</td><td><strong>Level 6</strong></td><td>Initiate talent programs and inspire security professionals globally</td></tr>
+            <tr><td><strong>RLMT</strong></td><td>Relationship management</td><td><strong>Level 6-7</strong></td><td>Initiate strategic partnerships and influence industry direction</td></tr>
+          </tbody>
+        </table>
+
+        <h4><strong>Principal/Distinguished Engineer</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>ARCH</strong></td><td>Solution architecture</td><td><strong>Level 6-7</strong></td><td>Initiate revolutionary security architectures and set industry direction</td></tr>
+            <tr><td><strong>TECH</strong></td><td>Emerging technology monitoring</td><td><strong>Level 6</strong></td><td>Initiate research programs and influence technology adoption</td></tr>
+            <tr><td><strong>EMRG</strong></td><td>Vulnerability research</td><td><strong>Level 6</strong></td><td>Initiate advanced research and publish industry-recognized findings</td></tr>
+            <tr><td><strong>IRMG</strong></td><td>Information security</td><td><strong>Level 6</strong></td><td>Initiate security innovation and influence global security practices</td></tr>
+          </tbody>
+        </table>
+
+        <h4><strong>Senior Staff Roles (All Functions)</strong></h4>
+        <table>
+          <thead>
+            <tr>
+              <th>SFIA Skill Code</th>
+              <th>Skill Name</th>
+              <th>Required Level</th>
+              <th>Application in Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>KNOW</strong></td><td>Knowledge management</td><td><strong>Level 6</strong></td><td>Initiate knowledge sharing programs and influence industry education</td></tr>
+            <tr><td><strong>METL</strong></td><td>Methods and tools</td><td><strong>Level 6</strong></td><td>Initiate methodology development and set industry standards</td></tr>
+            <tr><td><strong>GOVN</strong></td><td>Governance</td><td><strong>Level 6</strong></td><td>Initiate governance frameworks and influence regulatory approaches</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Real-World Example</h3>
+        <p>A Fortune 100 financial institution operates a 100+ person global SOC that has published multiple CVEs, contributes to MITRE ATT&CK, and partners with national CERTs. Their custom ML models predict zero-day exploitation with 72-hour lead time. They've open-sourced threat hunting frameworks used by 500+ organizations globally. The CISO regularly testifies before regulatory bodies on cybersecurity best practices.</p>
+      </section>
+
+      <hr>
+
+      <section>
+        <h2>Implementation Guidance for Organizations</h2>
+        <h3>Assessing Current Maturity</h3>
+        <ol>
+          <li><strong>Conduct SFIA skills assessment</strong> for each SOC team member</li>
+          <li><strong>Map current capabilities</strong> against target maturity level</li>
+          <li><strong>Identify skill gaps</strong> using the framework above</li>
+          <li><strong>Prioritize training and hiring</strong> based on business-critical gaps</li>
+        </ol>
+
+        <h3>Career Progression Planning</h3>
+        <ul>
+          <li>Define clear <strong>SFIA level progression paths</strong> for each role</li>
+          <li>Establish <strong>competency assessments</strong> tied to SFIA levels</li>
+          <li>Create <strong>professional development plans</strong> targeting specific SFIA skills</li>
+          <li>Implement <strong>certification requirements</strong> aligned with SFIA competencies</li>
+        </ul>
+
+        <h3>Training Recommendations by SFIA Level</h3>
+        <p><strong>Levels 1-2 (Follow/Assist):</strong></p>
+        <ul>
+          <li>Security+, Network+, CySA+</li>
+          <li>Vendor certifications (Splunk, Microsoft Security)</li>
+          <li>Basic scripting courses</li>
+        </ul>
+        <p><strong>Levels 3-4 (Apply/Enable):</strong></p>
+        <ul>
+          <li>GCIH, GCIA, GCFA, GMON</li>
+          <li>CISSP, CISM</li>
+          <li>Cloud security certifications (AWS/Azure Security Specialty)</li>
+          <li>Advanced programming courses</li>
+        </ul>
+        <p><strong>Levels 5-6 (Ensure/Initiate):</strong></p>
+        <ul>
+          <li>GIAC Advanced certifications (GSE)</li>
+          <li>CISM, CISA, CRISC</li>
+          <li>Executive security programs</li>
+          <li>Research and publication</li>
+        </ul>
+
+        <h3>Sri Lankan Context Considerations</h3>
+        <ul>
+          <li>Adapt training to local certification availability</li>
+          <li>Consider remote/online options for advanced certifications</li>
+          <li>Leverage regional ISACA, (ISC)², and SANS events</li>
+          <li>Build partnerships with local universities for talent pipeline</li>
+          <li>Account for salary benchmarks appropriate to Sri Lankan market when defining roles</li>
+        </ul>
+      </section>
+
+      <hr>
+
+      <section>
+        <h2>Exam-Style Assessment Questions</h2>
+        <p><strong>Question 1:</strong> Analyze a SOC operating with SIEM deployed but no documented playbooks, 8x5 coverage, and manual incident response. Identify the maturity level and list five SFIA skills (with target levels) that must be developed to progress to the next maturity level.</p>
+        <p><strong>Question 2:</strong> A SOC Manager (IRMG Level 4, INCA Level 4) wants to implement threat hunting capabilities. Map the required SFIA skills and levels for a new Threat Hunter role at Maturity Level 3. Justify each skill selection.</p>
+        <p><strong>Question 3:</strong> Compare the SFIA skill requirements for a Tier 2 SOC Analyst at Maturity Level 2 versus Level 4. Explain how the FORS, EMRG, and PROG skills evolve across these levels.</p>
+        <p>This framework provides a structured, SFIA-aligned approach to SOC maturity assessment and workforce development suitable for academic instruction, professional development, and organizational planning.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Hack and Build | <a href="/Users/tharaka/hackandbuild/hackandbuild.dev/index.html">Home</a></p>
+    </div>
+  </footer>
+
+  <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+  </script>
+</body>
+</html>
+
