@@ -424,7 +424,8 @@
             { file: 'LinuxForCybersecurityModule1.html', folder: '', title: 'Linux for Cybersecurity - Module 1', description: 'Foundation course covering Linux basics, navigation, and essential commands for cybersecurity professionals.' },
             { file: 'linux101-01.html', folder: '' },
             { file: 'soc.html', folder: '' },
-            { file: 'tharaka.html', folder: '' }
+            { file: 'tharaka.html', folder: '' },
+            { file: 'owasptop10llm.html', folder: '' }
         ];
 
         // FontAwesome icon mapping
@@ -438,6 +439,7 @@
             if(norm === "ml") return "fa-gears";
             if(norm.includes("linux")) return "fa-terminal";
             if(norm.includes("soc") || norm.includes("security operations")) return "fa-shield-halved";
+            if(norm.includes("owasp")) return "fa-shield";
             if(norm.includes("knowledge")) return "fa-globe";
             // fallback: book
             return "fa-book";
