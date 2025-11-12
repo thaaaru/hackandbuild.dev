@@ -342,7 +342,16 @@
                 <h1>Hack and Build</h1>
                 <p class="subtitle">Share knowledge. Learn deeply. Add value.</p>
                 <p>
-                 An interactive knowledge portal offering curated roadmaps across IT, cybersecurity, and emerging technologies. Explore ideas, follow structured learning paths, and uncover insights that connect curiosity with real-world mastery.
+                    Hackandbuild.dev is a community for people who want to learn by building.
+                </p>
+                <p>
+                    We bridge the gap between theory and practice. Here, you learn by doing, turning ideas into real projects.
+                </p>
+                <p>
+                    Each roadmap is a practical guide. Each insight helps you build new skills.
+                </p>
+                <p>
+                    If you believe the best way to gain knowledge is to apply it, this is the place for you.
                 </p>
                 <div class="cta-buttons">
                     <a href="#roadmaps" class="btn btn-primary">Browse Roadmaps</a>
@@ -412,8 +421,9 @@
             { file: 'MachineLearningGuide.html', folder: '' },
             { file: 'MachineLearning.html', folder: '' },
             { file: 'SkillsFrameworkForTheInformationAge.html', folder: '' },
-            { file: 'LinuxForCybersecurityModule1.html', folder: '', title: 'Linux for Cybersecurity - Module 1', description: 'Foundation course covering Linux basics, navigation, and essential commands for cybersecurity professionals.' }
-            
+            { file: 'LinuxForCybersecurityModule1.html', folder: '', title: 'Linux for Cybersecurity - Module 1', description: 'Foundation course covering Linux basics, navigation, and essential commands for cybersecurity professionals.' },
+            { file: 'linux101-01.html', folder: '' },
+            { file: 'soc.html', folder: '' }
         ];
 
         // FontAwesome icon mapping
@@ -426,6 +436,7 @@
             if(norm.includes("machine learning")) return "fa-brain";
             if(norm === "ml") return "fa-gears";
             if(norm.includes("linux")) return "fa-terminal";
+            if(norm.includes("soc") || norm.includes("security operations")) return "fa-shield-halved";
             if(norm.includes("knowledge")) return "fa-globe";
             // fallback: book
             return "fa-book";
