@@ -28,6 +28,7 @@ npm install @stripe/stripe-js @stripe/react-stripe-js
 
 ### 3. Use Payment Form
 
+{% raw %}
 ```tsx
 import { Elements } from '@stripe/react-stripe-js';
 import { stripePromise, CheckoutForm } from './stripe/CheckoutForm';
@@ -56,12 +57,14 @@ function App() {
   );
 }
 ```
+{% endraw %}
 
 ## 🔧 Component Description
 
 ### CheckoutForm - Complete Payment Solution
 Includes Stripe initialization and payment form logic:
 
+{% raw %}
 ```tsx
 import { Elements } from '@stripe/react-stripe-js';
 import { stripePromise, CheckoutForm } from './stripe/CheckoutForm';
@@ -79,6 +82,7 @@ import { stripePromise, CheckoutForm } from './stripe/CheckoutForm';
   />
 </Elements>
 ```
+{% endraw %}
 
 ### Exportable Features
 - `stripePromise` - Stripe instance
