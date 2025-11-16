@@ -28,7 +28,6 @@ npm install @stripe/stripe-js @stripe/react-stripe-js
 
 ### 3. Use Payment Form
 
-{% raw %}
 ```tsx
 import { Elements } from '@stripe/react-stripe-js';
 import { stripePromise, CheckoutForm } from './stripe/CheckoutForm';
@@ -37,7 +36,7 @@ function App() {
   return (
     <Elements stripe={stripePromise}>
       <CheckoutForm
-        paymentData={{
+        paymentData={&#123;&#123;
           amount: 9900,  // $99.00 USD (in cents)
           currency: 'usd',
           productIds: ['product-1'],
@@ -45,7 +44,7 @@ function App() {
             name: 'John Doe',
             email: 'john@example.com'
           }
-        }}
+        &#125;&#125;}
         onSuccess={(paymentIntent) => {
           console.log('Payment successful!', paymentIntent);
         }}
@@ -57,32 +56,29 @@ function App() {
   );
 }
 ```
-{% endraw %}
 
 ## 🔧 Component Description
 
 ### CheckoutForm - Complete Payment Solution
 Includes Stripe initialization and payment form logic:
 
-{% raw %}
 ```tsx
 import { Elements } from '@stripe/react-stripe-js';
 import { stripePromise, CheckoutForm } from './stripe/CheckoutForm';
 
 <Elements stripe={stripePromise}>
   <CheckoutForm
-    paymentData={{
+    paymentData={&#123;&#123;
       amount: 5000,
       currency: 'usd',
       productIds: ['prod-1'],
       customerInfo: { name: 'User', email: 'user@example.com' }
-    }}
+    &#125;&#125;}
     onSuccess={(paymentIntent) => {/* Handle success */}}
     onError={(error) => {/* Handle error */}}
   />
 </Elements>
 ```
-{% endraw %}
 
 ### Exportable Features
 - `stripePromise` - Stripe instance
