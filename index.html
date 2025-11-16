@@ -426,7 +426,7 @@
             { file: 'soc.html', folder: '' },
             { file: 'tharaka.html', folder: '' },
             { file: 'owasptop10llm.html', folder: '' },
-            { file: 'aimodelcomparison.html', folder: 'AI_Models' }
+            { file: 'aimodelcomparison.html', folder: 'AI_Models', title: 'AI Models Comparison', description: 'Comprehensive comparison of leading AI models including ChatGPT, Gemini, Claude, Perplexity, DeepSeek, and Qwen.' }
         ];
 
         // FontAwesome icon mapping
@@ -438,6 +438,7 @@
             if(norm.includes("learning method")) return "fa-lightbulb";
             if(norm.includes("machine learning")) return "fa-brain";
             if(norm === "ml") return "fa-gears";
+            if(norm.includes("ai model")) return "fa-robot";
             if(norm.includes("linux")) return "fa-terminal";
             if(norm.includes("soc") || norm.includes("security operations")) return "fa-shield-halved";
             if(norm.includes("owasp")) return "fa-shield";
