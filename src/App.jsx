@@ -630,7 +630,7 @@ const App = () => {
         ))}
 
         <footer className="text-center text-slate-500 pt-12 border-t border-slate-800">
-          <p>© Ethical Hacking Fundamentals. {lang === 'en' ? 'Built for the curious.' : 'කුතුහලයෙන් පිරි අය වෙනුවෙන් නිර්මාණය කරන ලදී.'}</p>
+          <p>© Ethical Hacking Fundamentals. {lang === 'en' ? 'Built for the curious.' : 'කුතුහලයෙන් පිරි අය වෙනුවෙන් නිර්මාණය කරන ලදී.'} | Based on content from hackandbuild.dev</p>
         </footer>
 
       </main>
