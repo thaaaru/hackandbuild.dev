@@ -1,376 +1,548 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X70YJR4WSV"></script>
-<script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Knowledge - Educational Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-X70YJR4WSV');
 </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive DIKW Hierarchy Explorer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Neutrals -->
-    <!-- Application Structure Plan: The application is designed as a single-page app with a clean top navigation bar separating the content into three logical, thematic sections: "The DIKW Hierarchy," "Types of Knowledge," and "History." This structure was chosen over a simple linear document to facilitate non-linear exploration, allowing users to directly access the information most relevant to them. The core content, the DIKW hierarchy, is presented as an interactive pyramid to transform passive reading into an active learning experience. This user-centric design encourages engagement and improves comprehension of the abstract concepts by making the relationships between data, information, knowledge, and wisdom tangible and explorable. -->
-    <!-- Visualization & Content Choices: 1. DIKW Hierarchy -> Goal: Explain the progressive and hierarchical nature of the concepts. -> Viz/Presentation Method: An interactive pyramid built with HTML/CSS. -> Interaction: Clicking on each level of the pyramid reveals detailed information (definition, example, key question). -> Justification: This method is highly visual and intuitive, directly representing the "pyramid" model and encouraging user interaction for discovery, which is more effective than static text. -> Library/Method: Vanilla JS & Tailwind CSS. 2. Types of Knowledge -> Goal: Compare and contrast different knowledge dichotomies. -> Viz/Presentation Method: Side-by-side content cards within a grid layout. -> Interaction: Subtle hover effects on cards for visual feedback. -> Justification: This layout provides a clear, direct comparison of related concepts like Explicit vs. Tacit knowledge. -> Library/Method: Tailwind CSS. 3. Ackoff's Mind Composition -> Goal: Visualize a specific quantitative claim from the report's historical section. -> Viz/Presentation Method: A Doughnut Chart. -> Interaction: Hovering over segments reveals tooltips with details. -> Justification: The chart adds a data visualization element to an otherwise qualitative report, making a specific statistic more impactful and memorable. -> Library/Method: Chart.js. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#f0f9ff',
+                            primary: '#0ea5e9',
+                            dark: '#0f172a',
+                            accent: '#f59e0b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FDFBF8;
-            color: #4A4A4A;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
         }
-        .nav-link {
-            transition: all 0.3s ease;
-            border-bottom: 2px solid transparent;
+        
+        .pyramid-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
         }
-        .nav-link.active, .nav-link:hover {
-            color: #C0846E;
-            border-bottom-color: #C0846E;
-        }
+
         .pyramid-level {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 600;
             color: white;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: default;
+            position: relative;
+            clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
         }
+
         .pyramid-level:hover {
-            transform: scale(1.05);
-            filter: brightness(1.1);
-        }
-        .pyramid-level.active {
-            filter: brightness(1.2);
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            transform: scale(1.02);
             z-index: 10;
         }
-        .pyramid-level-clip {
-            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+
+        /* Ladder Styling */
+        .ladder-step {
+            position: relative;
+            transition: all 0.3s ease;
         }
-        .content-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .ladder-step:hover {
+            transform: translateX(10px);
         }
-        .content-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        .ladder-step::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #e2e8f0;
         }
-        .chart-container {
-            position: relative; 
-            width: 100%; 
-            max-width: 400px; 
-            margin-left: auto; 
-            margin-right: auto; 
-            height: 40vh; 
-            max-height: 400px;
+        .ladder-step::after {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 50%;
+            width: 16px;
+            height: 16px;
+            background: #0ea5e9;
+            border-radius: 50%;
+            transform: translateY(-50%);
+            border: 4px solid white;
+        }
+
+        /* Cycle Animation */
+        .cycle-item {
+            transition: all 0.3s ease;
+        }
+        .cycle-item:hover .icon-box {
+            transform: rotate(360deg);
+            background-color: #0ea5e9;
+            color: white;
+        }
+
+        .hero-pattern {
+            background-color: #0f172a;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e293b' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
     </style>
 </head>
-<body class="antialiased">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen flex flex-col">
-        <header class="text-center mb-10">
-            <h1 class="text-4xl md:text-5xl font-bold text-[#3a3a3a]">The DIKW Hierarchy</h1>
-            <p class="mt-2 text-lg text-gray-600">An Interactive Exploration of Data, Information, Knowledge, and Wisdom</p>
-        </header>
+<body class="bg-slate-50 text-slate-800 font-sans">
 
-        <nav class="flex justify-center border-b border-gray-200 mb-12">
-            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500">
-                <li class="mr-2">
-                    <a href="#" id="nav-hierarchy" class="nav-link inline-block p-4 active">
-                        The DIKW Hierarchy
-                    </a>
-                </li>
-                <li class="mr-2">
-                    <a href="#" id="nav-types" class="nav-link inline-block p-4">
-                        Types of Knowledge
-                    </a>
-                </li>
-                <li>
-                    <a href="#" id="nav-history" class="nav-link inline-block p-4">
-                        History & Context
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        <main class="flex-grow">
-            <section id="content-hierarchy">
-                <div class="text-center max-w-3xl mx-auto mb-12">
-                     <p class="text-base md:text-lg text-gray-700 leading-relaxed">The Data, Information, Knowledge, and Wisdom (DIKW) hierarchy is a model that illustrates how raw data can be transformed into actionable wisdom. Each level builds upon the previous one, adding context and understanding. This section features an interactive pyramid; click on each level to explore its definition, the question it answers, and a practical example.</p>
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-brain text-brand-primary text-2xl"></i>
+                    <span class="font-bold text-xl tracking-tight text-slate-900">Knowledge<span class="text-brand-primary">Guide</span></span>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <div class="w-full max-w-sm mx-auto h-96 flex flex-col-reverse">
-                        <div id="pyramid-data" data-level="data" class="pyramid-level w-full h-1/4 bg-[#D9BFA9]" style="clip-path: polygon(0 100%, 100% 100%, 87.5% 0, 12.5% 0);"><span>Data</span></div>
-                        <div id="pyramid-information" data-level="information" class="pyramid-level w-3/4 h-1/4 mx-auto bg-[#C0A98E]" style="clip-path: polygon(0 100%, 100% 100%, 83.33% 0, 16.67% 0);"><span>Information</span></div>
-                        <div id="pyramid-knowledge" data-level="knowledge" class="pyramid-level w-1/2 h-1/4 mx-auto bg-[#A69276]" style="clip-path: polygon(0 100%, 100% 100%, 75% 0, 25% 0);"><span>Knowledge</span></div>
-                        <div id="pyramid-wisdom" data-level="wisdom" class="pyramid-level w-1/4 h-1/4 mx-auto bg-[#8C7B5F]" style="clip-path: polygon(0 100%, 100% 100%, 50% 0, 50% 0);"><span>Wisdom</span></div>
+                <div class="hidden md:flex gap-6 text-sm font-semibold text-slate-600">
+                    <a href="#definition" class="hover:text-brand-primary transition">DIKW Model</a>
+                    <a href="#types" class="hover:text-brand-primary transition">Types</a>
+                    <a href="#ladder" class="hover:text-brand-primary transition">Learning Ladder</a>
+                    <a href="#cycle" class="hover:text-brand-primary transition">Cycle</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-pattern text-white py-20 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <span class="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-300 text-sm font-semibold mb-4 border border-blue-500/30">
+                A Simple Guide for Students & Teachers
+            </span>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                Understanding <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Knowledge</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+                Knowledge is like cooking. Data is the ingredients, Information is the recipe, and Wisdom is knowing when to bake the cake.
+            </p>
+            <div class="flex justify-center gap-4 flex-wrap">
+                <a href="#definition" class="bg-brand-primary hover:bg-sky-600 text-white px-8 py-3 rounded-lg font-semibold transition shadow-lg shadow-sky-500/20">
+                    Start Learning
+                </a>
+                <a href="#analogies" class="bg-slate-700 hover:bg-slate-600 text-white px-8 py-3 rounded-lg font-semibold transition">
+                    View Analogies
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 1: DIKW Pyramid -->
+    <section id="definition" class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl font-bold mb-2">The DIKW Pyramid</h2>
+                <p class="text-slate-600 mb-8">The hierarchy of value: moving from raw signals to applied judgment.</p>
+                
+                <div class="space-y-6">
+                    <div class="flex gap-4 items-start">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0 text-purple-600">
+                            <i class="fa-solid fa-scale-balanced text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-900">Wisdom</h3>
+                            <p class="text-slate-600 text-sm">Applied judgment. Knowing "when" and "why" to use knowledge.</p>
+                        </div>
                     </div>
-                    <div id="pyramid-content-display" class="bg-white p-6 rounded-lg shadow-md min-h-[24rem]">
-                        <h3 id="content-title" class="text-2xl font-bold mb-2 text-[#8C7B5F]"></h3>
-                        <p id="content-question" class="text-sm font-semibold text-gray-500 mb-4 italic"></p>
-                        <p id="content-description" class="text-gray-700 mb-4"></p>
-                        <div class="border-t pt-4">
-                             <h4 class="font-semibold mb-2">Example:</h4>
-                             <p id="content-example" class="text-gray-600 bg-gray-50 p-3 rounded-md"></p>
+                    <div class="flex gap-4 items-start">
+                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 text-green-600">
+                            <i class="fa-solid fa-lightbulb text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-900">Knowledge</h3>
+                            <p class="text-slate-600 text-sm">Understanding & Context. The "how it works" mechanics.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 text-blue-600">
+                            <i class="fa-solid fa-chart-bar text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-900">Information</h3>
+                            <p class="text-slate-600 text-sm">Data with meaning. "What it means."</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 text-red-600">
+                            <i class="fa-solid fa-database text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-900">Data</h3>
+                            <p class="text-slate-600 text-sm">Raw facts and numbers. The building blocks.</p>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+
+            <!-- Pyramid Visual -->
+            <div class="pyramid-container p-8 bg-slate-50 rounded-2xl border border-slate-100 shadow-inner">
+                <!-- Wisdom -->
+                <div class="pyramid-level bg-gradient-to-r from-purple-500 to-indigo-600 w-32 h-20 shadow-lg z-40">
+                    <div class="flex flex-col items-center">
+                        <i class="fa-solid fa-crown mb-1 text-yellow-300"></i>
+                        <span class="text-xs tracking-widest uppercase">Wisdom</span>
+                    </div>
+                </div>
+                <!-- Knowledge -->
+                <div class="pyramid-level bg-gradient-to-r from-green-400 to-emerald-600 w-56 h-24 shadow-lg z-30 -mt-1">
+                    <div class="flex flex-col items-center">
+                        <i class="fa-solid fa-network-wired mb-1"></i>
+                        <span class="text-xs tracking-widest uppercase">Knowledge</span>
+                    </div>
+                </div>
+                <!-- Information -->
+                <div class="pyramid-level bg-gradient-to-r from-blue-400 to-cyan-600 w-80 h-28 shadow-lg z-20 -mt-1">
+                    <div class="flex flex-col items-center">
+                        <i class="fa-solid fa-file-lines mb-1"></i>
+                        <span class="text-xs tracking-widest uppercase">Information</span>
+                    </div>
+                </div>
+                <!-- Data -->
+                <div class="pyramid-level bg-gradient-to-r from-red-400 to-rose-600 w-full max-w-sm h-32 shadow-lg z-10 -mt-1">
+                    <div class="flex flex-col items-center">
+                        <i class="fa-solid fa-binary mb-1"></i>
+                        <span class="text-xs tracking-widest uppercase">Data</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: 4 Types of Knowledge -->
+    <section id="types" class="py-20 px-4 bg-slate-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-brand-primary font-bold tracking-wider uppercase text-sm">Classification</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2">4 Types of Knowledge</h2>
+                <p class="text-slate-600 mt-4 max-w-2xl mx-auto">Different ways we store and access what we know.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Explicit -->
+                <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
+                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-book-open text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Explicit</h3>
+                    <p class="text-slate-500 text-sm mb-4">Written down, easy to share. Books, manuals, recipes.</p>
+                    <ul class="text-xs text-slate-400 space-y-1">
+                        <li><i class="fa-solid fa-check mr-1 text-blue-500"></i> Manuals</li>
+                        <li><i class="fa-solid fa-check mr-1 text-blue-500"></i> Recipes</li>
+                    </ul>
+                </div>
+
+                <!-- Tacit -->
+                <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
+                    <div class="w-14 h-14 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600 mb-4 group-hover:bg-purple-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-person-biking text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Tacit</h3>
+                    <p class="text-slate-500 text-sm mb-4">Experience-based, hard to explain. "Gut feeling" or skill.</p>
+                    <ul class="text-xs text-slate-400 space-y-1">
+                        <li><i class="fa-solid fa-check mr-1 text-purple-500"></i> Riding a bike</li>
+                        <li><i class="fa-solid fa-check mr-1 text-purple-500"></i> Muscle memory</li>
+                    </ul>
+                </div>
+
+                <!-- Procedural -->
+                <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
+                    <div class="w-14 h-14 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600 mb-4 group-hover:bg-amber-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-gears text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Procedural</h3>
+                    <p class="text-slate-500 text-sm mb-4">Step-by-step "how to". Processes and guides.</p>
+                    <ul class="text-xs text-slate-400 space-y-1">
+                        <li><i class="fa-solid fa-check mr-1 text-amber-500"></i> Installation guides</li>
+                        <li><i class="fa-solid fa-check mr-1 text-amber-500"></i> GPS directions</li>
+                    </ul>
+                </div>
+
+                <!-- Declarative -->
+                <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 mb-4 group-hover:bg-emerald-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-quote-left text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Declarative</h3>
+                    <p class="text-slate-500 text-sm mb-4">Facts and definitions. The "What is" knowledge.</p>
+                    <ul class="text-xs text-slate-400 space-y-1">
+                        <li><i class="fa-solid fa-check mr-1 text-emerald-500"></i> Paris is in France</li>
+                        <li><i class="fa-solid fa-check mr-1 text-emerald-500"></i> Water boils at 100°C</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Learning Ladder -->
+    <section id="ladder" class="py-20 px-4 bg-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-slate-50 -skew-x-12 opacity-50 pointer-events-none"></div>
+        
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="text-center mb-12">
+                <span class="text-brand-primary font-bold tracking-wider uppercase text-sm">Bloom's Taxonomy</span>
+                <h2 class="text-3xl font-bold mt-2">The Learning Ladder</h2>
+                <p class="text-slate-600">Ascending from basic recall to creative mastery.</p>
+            </div>
+
+            <div class="space-y-6 ml-4 md:ml-12 border-l-2 border-slate-100 pl-8">
+                <!-- Step 6 -->
+                <div class="ladder-step flex items-start gap-4">
+                    <div class="flex-1 bg-gradient-to-r from-purple-600 to-purple-800 text-white p-5 rounded-lg shadow-lg">
+                        <div class="flex justify-between items-center mb-1">
+                            <h3 class="font-bold text-lg"><i class="fa-solid fa-wand-magic-sparkles mr-2"></i>6. CREATE</h3>
+                            <span class="text-xs bg-white/20 px-2 py-1 rounded">Highest</span>
+                        </div>
+                        <p class="text-purple-100 text-sm">Make something new. Design a system, plan a route.</p>
+                    </div>
+                </div>
+                <!-- Step 5 -->
+                <div class="ladder-step flex items-start gap-4 opacity-90">
+                    <div class="flex-1 bg-white border border-slate-200 p-5 rounded-lg shadow-sm hover:shadow-md transition">
+                        <h3 class="font-bold text-purple-700 mb-1"><i class="fa-solid fa-gavel mr-2"></i>5. EVALUATE</h3>
+                        <p class="text-slate-600 text-sm">Judge quality. Is this strong? Was that good?</p>
+                    </div>
+                </div>
+                <!-- Step 4 -->
+                <div class="ladder-step flex items-start gap-4 opacity-90">
+                    <div class="flex-1 bg-white border border-slate-200 p-5 rounded-lg shadow-sm hover:shadow-md transition">
+                        <h3 class="font-bold text-indigo-600 mb-1"><i class="fa-solid fa-microscope mr-2"></i>4. ANALYZE</h3>
+                        <p class="text-slate-600 text-sm">Break it down. Why did it fail? Why did it happen?</p>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="ladder-step flex items-start gap-4 opacity-90">
+                    <div class="flex-1 bg-white border border-slate-200 p-5 rounded-lg shadow-sm hover:shadow-md transition">
+                        <h3 class="font-bold text-blue-600 mb-1"><i class="fa-solid fa-hand-holding-hand mr-2"></i>3. APPLY</h3>
+                        <p class="text-slate-600 text-sm">Use it. Configure the firewall, drive the car.</p>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="ladder-step flex items-start gap-4 opacity-90">
+                    <div class="flex-1 bg-white border border-slate-200 p-5 rounded-lg shadow-sm hover:shadow-md transition">
+                        <h3 class="font-bold text-cyan-600 mb-1"><i class="fa-solid fa-comments mr-2"></i>2. UNDERSTAND</h3>
+                        <p class="text-slate-600 text-sm">Explain it. How does encryption work?</p>
+                    </div>
+                </div>
+                <!-- Step 1 -->
+                <div class="ladder-step flex items-start gap-4 opacity-90">
+                    <div class="flex-1 bg-slate-100 border border-slate-200 p-5 rounded-lg">
+                        <h3 class="font-bold text-slate-600 mb-1"><i class="fa-solid fa-memory mr-2"></i>1. REMEMBER</h3>
+                        <p class="text-slate-500 text-sm">Recall facts. Definitions and names.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: KM Cycle -->
+    <section id="cycle" class="py-20 px-4 bg-slate-900 text-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-16">Knowledge Management Cycle</h2>
             
-            <section id="content-types" class="hidden">
-                 <div class="text-center max-w-3xl mx-auto mb-12">
-                     <p class="text-base md:text-lg text-gray-700 leading-relaxed">Knowledge isn't a single entity; it exists in various forms. Understanding these distinctions is crucial for fields like education, artificial intelligence, and management. Below, we explore two fundamental dichotomies: knowledge that is easily documented versus knowledge gained from experience, and knowledge derived from logic versus knowledge from observation.</p>
-                </div>
+            <div class="flex flex-wrap justify-center gap-8 relative">
+                <!-- Connecting Line (Desktop) -->
+                <div class="hidden lg:block absolute top-1/2 left-10 right-10 h-1 bg-slate-700 -z-10 transform -translate-y-1/2"></div>
 
-                <div class="mb-12">
-                    <h2 class="text-3xl font-bold text-center mb-8 text-[#3a3a3a]">Explicit vs. Tacit Knowledge</h2>
-                    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                        <div class="content-card bg-white p-6 rounded-lg shadow-md border-l-4 border-[#C0846E]">
-                            <h3 class="text-2xl font-bold mb-3">Explicit Knowledge</h3>
-                            <p class="text-gray-700 mb-4">This is knowledge that is easily articulated, documented, and shared. It's often codified in manuals, databases, textbooks, and procedures. It's the "know-what" that can be written down.</p>
-                            <div class="mt-4">
-                                <h4 class="font-semibold mb-2 text-gray-600">Examples:</h4>
-                                <ul class="list-disc list-inside text-gray-600 space-y-1">
-                                    <li>A user manual for a smartphone</li>
-                                    <li>A recipe for a cake</li>
-                                    <li>A list of facts about the solar system</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="content-card bg-white p-6 rounded-lg shadow-md border-l-4 border-[#A69276]">
-                            <h3 class="text-2xl font-bold mb-3">Tacit Knowledge</h3>
-                            <p class="text-gray-700 mb-4">This is personal, experience-based knowledge that is difficult to articulate or write down. It's the "know-how" or intuition transferred through observation and practice.</p>
-                            <div class="mt-4">
-                                <h4 class="font-semibold mb-2 text-gray-600">Examples:</h4>
-                                <ul class="list-disc list-inside text-gray-600 space-y-1">
-                                    <li>Knowing how to ride a bike</li>
-                                    <li>A chef's instinct for balancing flavors</li>
-                                    <li>Reading a customer's non-verbal cues</li>
-                                </ul>
-                            </div>
-                        </div>
+                <!-- Items -->
+                <div class="cycle-item flex flex-col items-center gap-4 w-40">
+                    <div class="icon-box w-20 h-20 rounded-full bg-slate-800 border-2 border-brand-primary flex items-center justify-center text-3xl shadow-lg shadow-blue-500/20 z-10 transition duration-500">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="font-bold text-lg text-brand-primary">1. CAPTURE</h4>
+                        <p class="text-slate-400 text-sm">Document it</p>
                     </div>
                 </div>
-                 <div>
-                    <h2 class="text-3xl font-bold text-center mb-8 text-[#3a3a3a]">A Priori vs. A Posteriori Knowledge</h2>
-                    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                        <div class="content-card bg-white p-6 rounded-lg shadow-md border-l-4 border-[#C0846E]">
-                            <h3 class="text-2xl font-bold mb-3">A Priori Knowledge</h3>
-                            <p class="text-gray-700 mb-4">Knowledge that is independent of sensory experience. It is justified by pure reason, logic, or deduction. These truths do not require empirical observation to be known.</p>
-                            <div class="mt-4">
-                                <h4 class="font-semibold mb-2 text-gray-600">Examples:</h4>
-                                <ul class="list-disc list-inside text-gray-600 space-y-1">
-                                    <li>All bachelors are unmarried men.</li>
-                                    <li>The sum of a triangle's angles is 180°.</li>
-                                    <li>2 + 2 = 4</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="content-card bg-white p-6 rounded-lg shadow-md border-l-4 border-[#A69276]">
-                            <h3 class="text-2xl font-bold mb-3">A Posteriori Knowledge</h3>
-                            <p class="text-gray-700 mb-4">Knowledge that is dependent on sensory experience or empirical evidence. It is gained through observation, experimentation, and personal experience.</p>
-                            <div class="mt-4">
-                                <h4 class="font-semibold mb-2 text-gray-600">Examples:</h4>
-                                <ul class="list-disc list-inside text-gray-600 space-y-1">
-                                    <li>The sky is blue.</li>
-                                    <li>A dog has four legs.</li>
-                                    <li>The Earth revolves around the Sun.</li>
-                                </ul>
-                            </div>
-                        </div>
+
+                <div class="cycle-item flex flex-col items-center gap-4 w-40">
+                    <div class="icon-box w-20 h-20 rounded-full bg-slate-800 border-2 border-purple-500 flex items-center justify-center text-3xl shadow-lg shadow-purple-500/20 z-10 transition duration-500">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="font-bold text-lg text-purple-400">2. STORE</h4>
+                        <p class="text-slate-400 text-sm">Organize it</p>
                     </div>
                 </div>
-            </section>
 
-            <section id="content-history" class="hidden">
-                 <div class="text-center max-w-3xl mx-auto mb-12">
-                     <p class="text-base md:text-lg text-gray-700 leading-relaxed">While the concepts themselves are ancient, their formal combination into the DIKW hierarchy is a relatively modern construct in information science. This section provides a brief overview of its origins and the thinkers who shaped it, offering context to the model's enduring influence and its occasional critiques.</p>
-                </div>
-                <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-                    <div class="bg-white p-8 rounded-lg shadow-md">
-                        <h2 class="text-2xl font-bold mb-4 text-[#3a3a3a]">Origins of the Hierarchy</h2>
-                        <p class="text-gray-700 mb-4">
-                            The model is most famously attributed to organizational theorist <strong class="text-[#8C7B5F]">Russell L. Ackoff</strong> in his 1989 paper, "From Data to Wisdom." Ackoff's work articulated the hierarchy in a way that resonated with information science and knowledge management practitioners.
-                        </p>
-                        <p class="text-gray-700 mb-4">
-                            However, he was not the first to propose similar ideas. Early roots can be traced to philosophers and thinkers who explored the progression from raw perception to understanding. For instance, <strong class="text-[#8C7B5F]">T.S. Eliot's</strong> 1934 poem "Choruses from the Rock" contains lines that allude to a similar progression:
-                        </p>
-                        <blockquote class="border-l-4 border-[#C0846E] pl-4 italic text-gray-600 my-4">
-                            "Where is the wisdom we have lost in knowledge? Where is the knowledge we have lost in information?"
-                        </blockquote>
-                         <p class="text-gray-700">
-                           While the DIKW model is widely used, it has also faced criticism for being too simplistic or linear. However, its enduring legacy lies in its ability to provide a clear, intuitive framework for thinking about the process of converting raw data into actionable insight and, ultimately, sound judgment.
-                        </p>
+                <div class="cycle-item flex flex-col items-center gap-4 w-40">
+                    <div class="icon-box w-20 h-20 rounded-full bg-slate-800 border-2 border-green-500 flex items-center justify-center text-3xl shadow-lg shadow-green-500/20 z-10 transition duration-500">
+                        <i class="fa-solid fa-share-nodes"></i>
                     </div>
-                     <div class="text-center">
-                        <h3 class="text-xl font-semibold text-center mb-4 text-[#3a3a3a]">Ackoff's Estimate of the Human Mind</h4>
-                        <p class="text-gray-600 text-sm max-w-md mx-auto mb-4">In his original paper, Ackoff estimated the composition of the average human mind, providing a compelling (though not scientific) visualization of the pyramid's proportions.</p>
-                        <div class="chart-container">
-                            <canvas id="ackoff-chart"></canvas>
+                    <div class="text-center">
+                        <h4 class="font-bold text-lg text-green-400">3. SHARE</h4>
+                        <p class="text-slate-400 text-sm">Teach it</p>
+                    </div>
+                </div>
+
+                <div class="cycle-item flex flex-col items-center gap-4 w-40">
+                    <div class="icon-box w-20 h-20 rounded-full bg-slate-800 border-2 border-amber-500 flex items-center justify-center text-3xl shadow-lg shadow-amber-500/20 z-10 transition duration-500">
+                        <i class="fa-solid fa-rotate"></i>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="font-bold text-lg text-amber-400">4. UPDATE</h4>
+                        <p class="text-slate-400 text-sm">Keep it fresh</p>
+                    </div>
+                </div>
+
+                <div class="cycle-item flex flex-col items-center gap-4 w-40">
+                    <div class="icon-box w-20 h-20 rounded-full bg-slate-800 border-2 border-red-500 flex items-center justify-center text-3xl shadow-lg shadow-red-500/20 z-10 transition duration-500">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="font-bold text-lg text-red-400">5. PROTECT</h4>
+                        <p class="text-slate-400 text-sm">Secure it</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analogies Section -->
+    <section id="analogies" class="py-20 px-4 bg-slate-50">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Analogies for Understanding</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Cooking Analogy -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-orange-400">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 text-xl">
+                            <i class="fa-solid fa-utensils"></i>
                         </div>
+                        <h3 class="text-2xl font-bold text-slate-800">Cooking</h3>
                     </div>
+                    <ul class="space-y-4">
+                        <li class="flex gap-3">
+                            <span class="font-bold text-slate-400 w-24 text-right">Data</span>
+                            <span class="text-slate-700">Ingredients (Flour, Eggs)</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="font-bold text-blue-500 w-24 text-right">Info</span>
+                            <span class="text-slate-700">The Recipe</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="font-bold text-green-600 w-24 text-right">Knowledge</span>
+                            <span class="text-slate-700">Knowing why it rises</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="font-bold text-purple-600 w-24 text-right">Wisdom</span>
+                            <span class="text-slate-700">Knowing when to bake cookies instead</span>
+                        </li>
+                    </ul>
                 </div>
-            </section>
-        </main>
-    </div>
 
-    <script>
-        const contentData = {
-            data: {
-                title: 'Data',
-                question: 'Answers "What?"',
-                description: "Data is the raw, unprocessed collection of facts, figures, and symbols. It lacks context and has no inherent meaning on its own.",
-                example: "The numbers 45, 88, and 92. Standing alone, they are just values."
-            },
-            information: {
-                title: 'Information',
-                question: 'Answers "Who, What, Where, When?"',
-                description: "Information is data that has been organized, structured, or given context to provide meaning. It helps us understand relationships.",
-                example: "The numbers are student scores on a history exam: Alice scored 92, Bob scored 88, and Carol scored 45. Now, the data has context."
-            },
-            knowledge: {
-                title: 'Knowledge',
-                question: 'Answers "How?" or "Why?"',
-                description: "Knowledge is the application of information. It involves understanding patterns and relationships to allow for decision-making and problem-solving.",
-                example: "Analyzing the scores reveals the class average is 75. The teacher knows that while the class performed reasonably well, some students struggled, informing future teaching strategies."
-            },
-            wisdom: {
-                title: 'Wisdom',
-                question: 'Answers "Why do?" or "What is best?"',
-                description: "Wisdom is the highest level, involving the use of knowledge to apply fundamental principles, ethical values, and foresight to a situation, guiding actions toward a future vision.",
-                example: "The wise teacher realizes rote memorization isn't best for long-term learning and decides to incorporate more interactive, project-based assignments to help students truly internalize the concepts."
-            }
-        };
+                <!-- Driving Analogy -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-blue-400">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-xl">
+                            <i class="fa-solid fa-car"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800">Driving</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex gap-3">
+                            <span class="font-bold text-slate-400 w-24 text-right">Remember</span>
+                            <span class="text-slate-700">Knowing the pedals</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="font-bold text-blue-500 w-24 text-right">Understand</span>
+                            <span class="text-slate-700">How brakes work</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="font-bold text-green-600 w-24 text-right">Apply</span>
+                            <span class="text-slate-700">Driving in traffic</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="font-bold text-purple-600 w-24 text-right">Create</span>
+                            <span class="text-slate-700">Designing a new route</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        const navLinks = {
-            hierarchy: document.getElementById('nav-hierarchy'),
-            types: document.getElementById('nav-types'),
-            history: document.getElementById('nav-history')
-        };
-        const contentSections = {
-            hierarchy: document.getElementById('content-hierarchy'),
-            types: document.getElementById('content-types'),
-            history: document.getElementById('content-history')
-        };
-        const pyramidLevels = document.querySelectorAll('.pyramid-level');
-        const contentDisplay = {
-            title: document.getElementById('content-title'),
-            question: document.getElementById('content-question'),
-            description: document.getElementById('content-description'),
-            example: document.getElementById('content-example')
-        };
+    <!-- Gap Analysis -->
+    <section class="py-16 px-4 bg-brand-primary text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6"><i class="fa-solid fa-bridge-water mr-3"></i>What is a Knowledge Gap?</h2>
+            <p class="text-xl opacity-90 mb-8">It is the difference between what you <span class="font-bold underline">know</span> and what you <span class="font-bold underline">need to know</span> to solve a problem.</p>
+            <div class="bg-white/10 p-6 rounded-xl border border-white/20 backdrop-blur-sm inline-block text-left">
+                <h4 class="font-bold mb-2">Example:</h4>
+                <p>You want to cook Thai food but only know how to make sandwiches. The gap is the spices, techniques, and recipes you haven't learned yet.</p>
+            </div>
+        </div>
+    </section>
 
-        let ackoffChartInstance = null;
-        
-        function switchTab(targetId) {
-            Object.values(navLinks).forEach(link => link.classList.remove('active'));
-            Object.values(contentSections).forEach(section => section.classList.add('hidden'));
+    <!-- Footer / Tips -->
+    <footer class="bg-slate-900 text-slate-400 py-16 px-4">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+            <div>
+                <h3 class="text-white text-xl font-bold mb-6"><i class="fa-solid fa-graduation-cap mr-2 text-brand-primary"></i>For Students</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check text-green-500 mt-1"></i>
+                        <span>Build a strong foundation first</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check text-green-500 mt-1"></i>
+                        <span>Practice relentlessly (Hands-on)</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check text-green-500 mt-1"></i>
+                        <span>Share what you learn with others</span>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-white text-xl font-bold mb-6"><i class="fa-solid fa-chalkboard-user mr-2 text-brand-primary"></i>For Teachers</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check text-blue-500 mt-1"></i>
+                        <span>Use real-world examples</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check text-blue-500 mt-1"></i>
+                        <span>Encourage hands-on over passive listening</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check text-blue-500 mt-1"></i>
+                        <span>Teach "how to learn", not just "what to learn"</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-16 pt-8 border-t border-slate-800 text-center text-sm">
+            <p>Generated based on hackandbuild.dev content</p>
+        </div>
+    </footer>
 
-            navLinks[targetId].classList.add('active');
-            contentSections[targetId].classList.remove('hidden');
-
-            if (targetId === 'history' && !ackoffChartInstance) {
-                renderAckoffChart();
-            }
-        }
-
-        function updatePyramidContent(level) {
-            pyramidLevels.forEach(el => el.classList.remove('active'));
-            document.getElementById(`pyramid-${level}`).classList.add('active');
-
-            const data = contentData[level];
-            contentDisplay.title.textContent = data.title;
-            contentDisplay.question.textContent = data.question;
-            contentDisplay.description.textContent = data.description;
-            contentDisplay.example.textContent = data.example;
-        }
-
-        function renderAckoffChart() {
-            const ctx = document.getElementById('ackoff-chart').getContext('2d');
-            if(ctx) {
-                ackoffChartInstance = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Data', 'Information', 'Knowledge', 'Understanding'],
-                        datasets: [{
-                            label: 'Composition of Mind',
-                            data: [40, 30, 20, 10],
-                            backgroundColor: [
-                                '#D9BFA9',
-                                '#C0A98E',
-                                '#A69276',
-                                '#8C7B5F'
-                            ],
-                            borderColor: '#FDFBF8',
-                            borderWidth: 4,
-                            hoverOffset: 10
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-                                    padding: 20,
-                                    color: '#4A4A4A',
-                                    font: {
-                                        size: 14
-                                    }
-                                }
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        return `${context.label}: ${context.raw}%`;
-                                    }
-                                },
-                                titleFont: { size: 16 },
-                                bodyFont: { size: 14 },
-                                padding: 10
-                            }
-                        },
-                        cutout: '60%'
-                    }
-                });
-            }
-        }
-        
-        navLinks.hierarchy.addEventListener('click', (e) => {
-            e.preventDefault();
-            switchTab('hierarchy');
-        });
-        navLinks.types.addEventListener('click', (e) => {
-            e.preventDefault();
-            switchTab('types');
-        });
-        navLinks.history.addEventListener('click', (e) => {
-            e.preventDefault();
-            switchTab('history');
-        });
-
-        pyramidLevels.forEach(level => {
-            level.addEventListener('click', () => {
-                updatePyramidContent(level.dataset.level);
-            });
-        });
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            updatePyramidContent('data');
-            switchTab('hierarchy');
-        });
-    </script>
 </body>
 </html>
