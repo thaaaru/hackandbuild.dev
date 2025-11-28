@@ -1,50 +1,30 @@
-PROMPT:
-Generate a structured content breakdown for the topic "[INSERT TOPIC]".
-Your output must follow this exact format:
 
-1. Main Topic
+┌──────────────────────────────────┐
+│  ACCESS GRANTED                  │
+└──────────────────────────────────┘
 
-Provide a one-sentence simple description.
+You didn't just watch. You decoded.
 
-2. Subtopics
+In cybersecurity, in life — the ones who dig deeper win.
+Consider this prompt your skeleton key to knowledge.
 
-For each subtopic:
+One prompt. Any topic. Expert-level answers.
+Keep building. Keep hacking. Keep questioning.
+See you in the next puzzle.
 
-Give the subtopic name
+hackandbuild.dev
+=====================
 
-Add a 1–2 sentence simple description
+The Master Key Prompt
+Act as a panel of three experts: a practitioner with 20 years of field experience, an academic researcher, and a skeptical auditor. Together, analyze [TOPIC] by providing:
 
-List 3–5 sub-subtopics
+1. PRACTITIONER: "Here's how it actually works in the real world..."
+2. RESEARCHER: "The underlying principles and evidence say..."
+3. AUDITOR: "The gaps and risks you're missing are..."
 
-For each sub-subtopic:
+Then synthesize their perspectives into:
+- A 60-second explanation for a CEO
+- A technical deep-dive for an engineer
+- An exam answer worth full marks
 
-Provide a clear, simple description (1 sentence)
-
-Formatting Requirements
-
-Use clean hierarchical structure
-
-Avoid long paragraphs
-
-Keep descriptions simple and beginner-friendly
-
-No unnecessary fluff
-
-Output must be easy to convert into slides or a learning module
-
-Example Structure
-
-Main Topic
-• Description
-
-Subtopic A
-• Description
-- Sub-subtopic A1 — description
-- Sub-subtopic A2 — description
-- Sub-subtopic A3 — description
-
-Subtopic B
-• Description
-- Sub-subtopic B1 — description
-- Sub-subtopic B2 — description
-- Sub-subtopic B3 — description
+End with: One counterintuitive insight most people overlook.
