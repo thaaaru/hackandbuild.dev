@@ -1,240 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-          <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-X70YJR4WSV');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stuxnet: Step-by-Step Breakdown</title>
-    <!-- Load Tailwind CSS -->
+    <title>Crisis UX: Flood Response Design Principles</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
-        /* Set base dark theme */
-        html, body {
-            background-color: #0c111f; /* A very dark blue, almost black */
-            color: #e0e0e0;
-            scroll-behavior: smooth;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate 900 */
+            color: #f8fafc;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+
+        .phone-mockup {
+            border: 8px solid #334155;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            background: #1e293b;
+        }
+        
+        .thumb-zone-overlay {
+            background: linear-gradient(to top, rgba(34, 197, 94, 0.2) 0%, rgba(34, 197, 94, 0.1) 40%, rgba(239, 68, 68, 0.1) 100%);
+        }
+
+        .pulse-ring {
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
     </style>
-    <!-- Configure Tailwind to use Inter font -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'brand-cyan': '#00d0ff',
-                        'brand-dark': '#0c111f',
-                        'brand-card': '#1a2233',
-                        'brand-border': '#2a344a',
-                    }
-                },
-            },
-        }
-    </script>
-    <!-- Import Inter font from Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body class="bg-brand-dark font-sans p-4 md:p-8">
+<body class="antialiased min-h-screen p-4 md:p-8">
 
-    <div class="container mx-auto max-w-4xl">
+    <!-- Header Section -->
+    <header class="max-w-6xl mx-auto mb-8 md:mb-12 text-center">
+        <div class="inline-block bg-red-600 text-white text-[10px] md:text-xs font-bold px-3 py-1 rounded-full mb-4 tracking-widest uppercase">Design System</div>
+        <!-- RESPONSIVE: Text size scales from 4xl to 7xl -->
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight mb-4 text-white">CRISIS <span class="text-blue-500">UX</span></h1>
+        <p class="text-base md:text-xl text-slate-400 max-w-2xl mx-auto px-4">Design principles for Flood Response & High-Stress Environments.</p>
+    </header>
 
-        <!-- ======== Title Section ======== -->
-        <header class="text-center my-8 md:my-12">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-brand-cyan mb-4">
-                The Stuxnet Cyberattack
-            </h1>
-            <h2 class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-                How the world's first digital weapon sabotaged Iran's nuclear program.
+    <!-- Main Grid -->
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 md:gap-6">
+
+        <!-- Principle 1: Cognitive Tunneling (Large Block) -->
+        <!-- RESPONSIVE: Padding adjusted p-6 to p-8 -->
+        <div class="lg:col-span-8 glass-panel rounded-3xl p-6 md:p-8 relative overflow-hidden group hover:border-blue-500/50 transition-colors">
+            <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+                <svg width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-white"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+            </div>
+            <h2 class="text-xl md:text-2xl font-bold mb-2 flex items-center gap-2">
+                <span class="text-blue-400">01.</span> Combat Cognitive Tunneling
             </h2>
-        </header>
-
-        <!-- ======== Main Timeline Section ======== -->
-        <div class="relative py-12">
+            <p class="text-sm md:text-base text-slate-400 mb-6 md:mb-8">Under stress, user attention narrows. Remove choices.</p>
             
-            <!-- The Vertical Line -->
-            <div class="absolute left-6 md:left-8 top-0 w-1.5 h-full bg-brand-border rounded-full z-0"></div>
-
-            <!-- ======== Step 1: Intelligence Gathering ======== -->
-            <div class="relative mb-8 md:mb-12">
-                <!-- Dot -->
-                <div class="absolute left-6 md:left-8 top-1.5 w-12 h-12 rounded-full bg-brand-card border-4 border-brand-cyan flex items-center justify-center z-10 -translate-x-1/2">
-                    <!-- Icon: Magnifying Glass -->
-                    <svg class="w-6 h-6 text-brand-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                </div>
-                <!-- Content Box -->
-                <div class="ml-16 md:ml-20 pl-6 pr-4 py-4 bg-brand-card rounded-lg shadow-2xl border border-brand-border hover:border-brand-cyan transition-all duration-300">
-                    <span class="text-xs font-bold text-brand-cyan uppercase">Step 1</span>
-                    <h3 class="text-lg font-bold text-white mb-1">Intelligence Gathering</h3>
-                    <p class="text-gray-300 text-sm md:text-base">US/Israel study Iranian centrifuges, acquiring samples and supply chain insights to build replicas.</p>
-                </div>
-            </div>
-
-            <!-- ======== Step 2: Identifying Weakness ======== -->
-            <div class="relative mb-8 md:mb-12">
-                <!-- Dot -->
-                <div class="absolute left-6 md:left-8 top-1.5 w-12 h-12 rounded-full bg-brand-card border-4 border-brand-cyan flex items-center justify-center z-10 -translate-x-1/2">
-                    <!-- Icon: CPU Chip -->
-                    <svg class="w-6 h-6 text-brand-cyan" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-7.5-1.5h1.5m-1.5-6h1.5m1.5-6h1.5m-1.5 6h1.5m1.5 0h1.5m-1.5 6h1.5m-6-1.5h1.5m1.5 0h1.5m-1.5-6h1.5m1.5 6h1.5M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" /></svg>
-                </div>
-                <!-- Content Box -->
-                <div class="ml-16 md:ml-20 pl-6 pr-4 py-4 bg-brand-card rounded-lg shadow-2xl border border-brand-border hover:border-brand-cyan transition-all duration-300">
-                    <span class="text-xs font-bold text-brand-cyan uppercase">Step 2</span>
-                    <h3 class="text-lg font-bold text-white mb-1">Identifying Weakness</h3>
-                    <p class="text-gray-300 text-sm md:text-base">Pinpointing the Siemens PLC (Programmable Logic Controller) systems that manage centrifuge operations.</p>
-                </div>
-            </div>
-
-            <!-- ======== Step 3: Planning Covert Sabotage ======== -->
-            <div class="relative mb-8 md:mb-12">
-                <!-- Dot -->
-                <div class="absolute left-6 md:left-8 top-1.5 w-12 h-12 rounded-full bg-brand-card border-4 border-brand-cyan flex items-center justify-center z-10 -translate-x-1/2">
-                    <!-- Icon: Beaker (Design/Test) -->
-                    <svg class="w-6 h-6 text-brand-cyan" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.5 1.591L5.036 15.02a.75.75 0 0 0 .53 1.28H18.43a.75.75 0 0 0 .53-1.28l-4.214-4.61a2.25 2.25 0 0 1-.5-1.591V3.104A2.25 2.25 0 0 0 12 1.5H9.75A2.25 2.25 0 0 0 9.75 3.104ZM11.25 10.5h1.5m-1.5 3h1.5m-7.5-3h1.5m-1.5 3h1.5m-1.5 3h1.5m1.5-3h1.5" /></svg>
-                </div>
-                <!-- Content Box -->
-                <div class="ml-16 md:ml-20 pl-6 pr-4 py-4 bg-brand-card rounded-lg shadow-2xl border border-brand-border hover:border-brand-cyan transition-all duration-300">
-                    <span class="text-xs font-bold text-brand-cyan uppercase">Step 3</span>
-                    <h3 class="text-lg font-bold text-white mb-1">Planning Covert Sabotage</h3>
-                    <p class="text-gray-300 text-sm md:text-base">Designing malware to subtly alter centrifuge operations (rotor speed) without triggering alarms.</p>
-                </div>
-            </div>
-
-            <!-- ======== Step 4: Infiltration via Contractors ======== -->
-            <div class="relative mb-8 md:mb-12">
-                <!-- Dot -->
-                <div class="absolute left-6 md:left-8 top-1.5 w-12 h-12 rounded-full bg-brand-card border-4 border-brand-cyan flex items-center justify-center z-10 -translate-x-1/2">
-                    <!-- Icon: USB -->
-                    <svg class="w-6 h-6 text-brand-cyan" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15M9 12l3 3m0 0 3-3m-3 3V2.25" /></svg>
-                </div>
-                <!-- Content Box -->
-                <div class="ml-16 md:ml-20 pl-6 pr-4 py-4 bg-brand-card rounded-lg shadow-2xl border border-brand-border hover:border-brand-cyan transition-all duration-300">
-                    <span class="text-xs font-bold text-brand-cyan uppercase">Step 4</span>
-                    <h3 class="text-lg font-bold text-white mb-1">Infiltration via Contractors</h3>
-                    <p class="text-gray-300 text-sm md:text-base">Infection spreads via infected USBs and laptops, "jumping the air-gap" into the secure Natanz facility.</p>
-                </div>
-            </div>
-
-            <!-- ======== Step 5: Payload Execution ======== -->
-            <div class="relative mb-8 md:mb-12">
-                <!-- Dot -->
-                <div class="absolute left-6 md:left-8 top-1.5 w-12 h-12 rounded-full bg-brand-card border-4 border-brand-cyan flex items-center justify-center z-10 -translate-x-1/2">
-                    <!-- Icon: Play/Pause (Man-in-the-Middle) -->
-                    <svg class="w-6 h-6 text-brand-cyan" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" /></svg>
-                </div>
-                <!-- Content Box -->
-                <div class="ml-16 md:ml-20 pl-6 pr-4 py-4 bg-brand-card rounded-lg shadow-2xl border border-brand-border hover:border-brand-cyan transition-all duration-300">
-                    <span class="text-xs font-bold text-brand-cyan uppercase">Step 5</span>
-                    <h3 class="text-lg font-bold text-white mb-1">Payload Execution</h3>
-                    <p class="text-gray-300 text-sm md:text-base">The malware records 21 seconds of "normal" sensor data, then replays it while manipulating centrifuge speeds.</p>
-                </div>
-            </div>
-
-            <!-- ======== Step 6: Physical Damage ======== -->
-            <div class="relative mb-8 md:mb-12">
-                <!-- Dot -->
-                <div class="absolute left-6 md:left-8 top-1.5 w-12 h-12 rounded-full bg-brand-card border-4 border-brand-cyan flex items-center justify-center z-10 -translate-x-1/2">
-                    <!-- Icon: Fire (Damage) -->
-                    <svg class="w-6 h-6 text-brand-cyan" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.287 8.287 0 0 0 3.962-2.555A8.252 8.252 0 0 1 15.362 5.214Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5c-2.219 0-4 1.781-4 4s1.781 4 4 4 4-1.781 4-4-1.781-4-4-4Z" /></svg>
-                </div>
-                <!-- Content Box -->
-                <div class="ml-16 md:ml-20 pl-6 pr-4 py-4 bg-brand-card rounded-lg shadow-2xl border border-brand-border hover:border-brand-cyan transition-all duration-300">
-                    <span class="text-xs font-bold text-brand-cyan uppercase">Step 6</span>
-                    <h3 class="text-lg font-bold text-white mb-1">Physical Damage</h3>
-                    <p class="text-gray-300 text-sm md:text-base">Centrifuges are sped up and slowed down, causing catastrophic failure, all while operators see "all normal" readings.</p>
-                </div>
-            </div>
-
-            <!-- ======== Step 7: Global Discovery ======== -->
-            <div class="relative mb-8 md:mb-12">
-                <!-- Dot -->
-                <div class="absolute left-6 md:left-8 top-1.5 w-12 h-12 rounded-full bg-brand-card border-4 border-brand-cyan flex items-center justify-center z-10 -translate-x-1/2">
-                    <!-- Icon: Globe -->
-                    <svg class="w-6 h-6 text-brand-cyan" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c.24 0 .468-.02.69-.058M12 21c-.24 0-.468-.02-.69-.058m1.38-11.53c.065.205.113.415.142.63m-2.86 0c.03.215.077.425.142.63m2.576 0c.058.18.106.368.142.56m-2.86 0c.036.192.084.37.142.56m2.576 0c.06.18.108.368.142.56m-2.86 0c.036.192.084.37.142.56m2.576 0c.06.18.108.368.142.56m-2.86 0c.036.192.084.37.142.56m0 0L12 12m-2.148 2.148a9.004 9.004 0 0 1-4.606-4.606m4.606 4.606 2.148-2.148m0 0 2.148 2.148m-2.148-2.148 4.606 4.606m-4.606-4.606-2.148 2.148m0 0-4.606-4.606M12 3c.24 0 .468.02.69.058M12 3c-.24 0-.468.02-.69.058m1.38 11.53c.065-.205.113-.415.142-.63m-2.86 0c.03-.215.077-.425.142-.63m2.576 0c.058-.18.106-.368.142-.56m-2.86 0c.036-.192.084-.37.142-.56m2.576 0c.06-.18.108-.368.142-.56m-2.86 0c.036-.192.084-.37.142-.56m2.576 0c.06-.18.108-.368.142-.56m-2.86 0c.036-.192.084-.37.142-.56m0 0L12 12m-2.148-2.148a9.004 9.004 0 0 0-4.606 4.606m4.606-4.606L9.852 9.852m0 0 2.148 2.148m-2.148-2.148L5.246 5.246m4.606 4.606L12 12" /></svg>
-                </div>
-                <!-- Content Box -->
-                <div class="ml-16 md:ml-20 pl-6 pr-4 py-4 bg-brand-card rounded-lg shadow-2xl border border-brand-border hover:border-brand-cyan transition-all duration-300">
-                    <span class="text-xs font-bold text-brand-cyan uppercase">Step 7</span>
-                    <h3 class="text-lg font-bold text-white mb-1">Global Discovery</h3>
-                    <p class="text-gray-300 text-sm md:text-base">Malware leaks globally. Symantec and other researchers identify it as an unprecedentedly advanced weapon using multiple zero-day exploits.</p>
-                </div>
-            </div>
-
-            <!-- ======== Step 8: Attribution ======== -->
-            <div class="relative mb-8 md:mb-12">
-                <!-- Dot -->
-                <div class="absolute left-6 md:left-8 top-1.5 w-12 h-12 rounded-full bg-brand-card border-4 border-brand-cyan flex items-center justify-center z-10 -translate-x-1/2">
-                    <!-- Icon: Flag (Attribution) -->
-                    <svg class="w-6 h-6 text-brand-cyan" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.209-.682L3 4.5M3 15V4.5" /></svg>
-                </div>
-                <!-- Content Box -->
-                <div class="ml-16 md:ml-20 pl-6 pr-4 py-4 bg-brand-card rounded-lg shadow-2xl border border-brand-border hover:border-brand-cyan transition-all duration-300">
-                    <span class="text-xs font-bold text-brand-cyan uppercase">Step 8</span>
-                    <h3 class="text-lg font-bold text-white mb-1">Attribution & Aftermath</h3>
-                    <p class="text-gray-300 text-sm md:text-base">Widely attributed to the US and Israel ("Operation Olympic Games"). Marks the beginning of the cyber-physical warfare era.</p>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- ======== Key Impact Panel ======== -->
-        <div class="bg-brand-card rounded-lg shadow-2xl p-6 md:p-8 mt-8 border border-brand-border">
-            <h3 class="text-2xl md:text-3xl font-bold text-brand-cyan text-center mb-6">
-                Key Impacts
-            </h3>
-            <div class="flex flex-col md:flex-row justify-around items-center space-y-6 md:space-y-0 md:space-x-4">
-                
-                <!-- Impact 1: Destroyed -->
-                <div class="text-center flex flex-col items-center">
-                    <svg class="w-12 h-12 text-brand-cyan mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.287 8.287 0 0 0 3.962-2.555A8.252 8.252 0 0 1 15.362 5.214Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5c-2.219 0-4 1.781-4 4s1.781 4 4 4 4-1.781 4-4-1.781-4-4-4Z" /></svg>
-                    <p class="text-3xl font-bold text-white">~1,000</p>
-                    <p class="text-gray-400">Centrifuges Destroyed</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <!-- Bad Example -->
+                <div class="space-y-2 opacity-50 grayscale hover:grayscale-0 transition-all">
+                    <div class="text-xs text-center uppercase tracking-widest text-red-400 font-bold">Standard UI (Too Complex)</div>
+                    <div class="phone-mockup h-64 w-full flex flex-col p-4 bg-white text-slate-800">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="w-4 h-4 bg-slate-300 rounded"></div>
+                            <div class="w-20 h-2 bg-slate-200 rounded"></div>
+                        </div>
+                        <div class="w-full h-8 bg-slate-100 rounded mb-2"></div>
+                        <div class="grid grid-cols-2 gap-2 mb-2">
+                            <div class="h-20 bg-slate-100 rounded"></div>
+                            <div class="h-20 bg-slate-100 rounded"></div>
+                        </div>
+                        <div class="mt-auto flex justify-between">
+                            <div class="w-8 h-8 bg-slate-200 rounded-full"></div>
+                            <div class="w-8 h-8 bg-slate-200 rounded-full"></div>
+                            <div class="w-8 h-8 bg-slate-200 rounded-full"></div>
+                        </div>
+                    </div>
                 </div>
                 
-                <!-- Impact 2: Delayed -->
-                <div class="text-center flex flex-col items-center">
-                    <svg class="w-12 h-12 text-brand-cyan mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
-                    <p class="text-3xl font-bold text-white">Years</p>
-                    <p class="text-gray-400">Nuclear Program Delayed</p>
+                <!-- Good Example -->
+                <div class="space-y-2">
+                    <div class="text-xs text-center uppercase tracking-widest text-green-400 font-bold">Crisis UI (Focused)</div>
+                    <div class="phone-mockup h-64 w-full flex flex-col relative bg-slate-900">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center p-6">
+                            <button class="w-full h-32 bg-red-600 rounded-2xl flex items-center justify-center shadow-lg shadow-red-900/50 pulse-ring mb-4">
+                                <span class="text-2xl font-black text-white uppercase tracking-wider">SOS</span>
+                            </button>
+                            <button class="w-full h-12 bg-slate-700 rounded-xl flex items-center justify-center text-slate-300 font-bold">
+                                I am Safe
+                            </button>
+                        </div>
+                    </div>
                 </div>
-
-                <!-- Impact 3: Weapon -->
-                <div class="text-center flex flex-col items-center">
-                    <svg class="w-12 h-12 text-brand-cyan mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" /></svg>
-                    <p class="text-3xl font-bold text-white">First</p>
-                    <p class="text-gray-400">Recognized Digital Weapon</p>
-                </div>
-
             </div>
         </div>
 
-        <!-- ======== Takeaway Section ======== -->
-        <footer class="text-center my-12 md:my-16">
-            <div class="flex justify-center space-x-6 mb-4">
-                <!-- Icon: Microchip -->
-                <svg class="w-8 h-8 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-7.5-1.5h1.5m-1.5-6h1.5m1.5-6h1.5m-1.5 6h1.5m1.5 0h1.5m-1.5 6h1.5m-6-1.5h1.5m1.5 0h1.5m-1.5-6h1.5m1.5 6h1.5M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" /></svg>
-                <!-- Icon: Globe -->
-                <svg class="w-8 h-8 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c.24 0 .468-.02.69-.058M12 21c-.24 0-.468-.02-.69-.058m1.38-11.53c.065.205.113.415.142.63m-2.86 0c.03.215.077.425.142.63m2.576 0c.058.18.106.368.142.56m-2.86 0c.036.192.084.37.142.56m2.576 0c.06.18.108.368.142.56m-2.86 0c.036.192.084.37.142.56m2.576 0c.06.18.108.368.142.56m-2.86 0c.036.192.084.37.142.56m0 0L12 12m-2.148 2.148a9.004 9.004 0 0 1-4.606-4.606m4.606 4.606 2.148-2.148m0 0 2.148 2.148m-2.148-2.148 4.606 4.606m-4.606-4.606-2.148 2.148m0 0-4.606-4.606M12 3c.24 0 .468.02.69.058M12 3c-.24 0-.468.02-.69.058m1.38 11.53c.065-.205.113-.415.142-.63m-2.86 0c.03-.215.077-.425.142-.63m2.576 0c.058-.18.106-.368.142-.56m-2.86 0c.036-.192.084-.37.142-.56m2.576 0c.06-.18.108-.368.142-.56m-2.86 0c.036-.192.084-.37.142-.56m2.576 0c.06-.18.108-.368.142-.56m-2.86 0c.036-.192.084-.37.142-.56m0 0L12 12m-2.148-2.148a9.004 9.004 0 0 0-4.606 4.606m4.606-4.606L9.852 9.852m0 0 2.148 2.148m-2.148-2.148L5.246 5.246m4.606 4.606L12 12" /></svg>
-                <!-- Icon: Lock -->
-                <svg class="w-8 h-8 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 0 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" /></svg>
-                <!-- Icon: Explosion -->
-                <svg class="w-8 h-8 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.287 8.287 0 0 0 3.962-2.555A8.252 8.252 0 0 1 15.362 5.214Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5c-2.219 0-4 1.781-4 4s1.781 4 4 4 4-1.781 4-4-1.781-4-4-4Z" /></svg>
+        <!-- Principle 2: Color Semantics (Sidebar) -->
+        <div class="lg:col-span-4 glass-panel rounded-3xl p-6 md:p-8 flex flex-col justify-between">
+            <div>
+                <h2 class="text-xl md:text-2xl font-bold mb-6 flex items-center gap-2">
+                    <span class="text-blue-400">02.</span> Universal Color
+                </h2>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-red-600 shadow-lg shadow-red-900/50 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white">Critical / SOS</div>
+                            <div class="text-xs md:text-sm text-slate-400">Life threatening. Immediate action.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-yellow-500 flex items-center justify-center text-slate-900 flex-shrink-0">
+                            <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white">Supplies Need</div>
+                            <div class="text-xs md:text-sm text-slate-400">Food, Water, Shelter.</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-green-500 flex items-center justify-center text-slate-900 flex-shrink-0">
+                            <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white">Safe / Done</div>
+                            <div class="text-xs md:text-sm text-slate-400">Rescue complete. Area clear.</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p class="text-xl md:text-2xl font-semibold text-gray-300">
-                "Stuxnet redefined modern warfare."
-            </p>
-        </footer>
+            <div class="mt-8 pt-6 border-t border-slate-700">
+                <div class="text-xs uppercase text-slate-500 mb-2">Contrast Ratio</div>
+                <div class="flex items-center justify-between">
+                    <span class="font-mono text-xl md:text-2xl font-bold text-white">AAA</span>
+                    <span class="text-xs md:text-sm text-slate-400 text-right">Use Pure Black (#000000)<br>for OLED power saving</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Principle 3: Thumb Zone (Tall Block) -->
+        <div class="lg:col-span-4 glass-panel rounded-3xl p-6 md:p-8">
+            <h2 class="text-xl md:text-2xl font-bold mb-4 flex items-center gap-2">
+                <span class="text-blue-400">03.</span> The Thumb Zone
+            </h2>
+            <p class="text-slate-400 text-sm mb-6">Users hold wet phones with one hand. Key actions must be at the bottom.</p>
+            
+            <div class="flex justify-center">
+                <div class="phone-mockup h-80 w-48 bg-slate-800 relative">
+                    <!-- Screen UI -->
+                    <div class="absolute top-4 left-4 right-4 h-4 bg-slate-700 rounded opacity-20"></div>
+                    
+                    <!-- Hard to reach area -->
+                    <div class="absolute top-0 w-full h-1/2 bg-red-500/10 flex items-center justify-center border-b border-red-500/20">
+                        <span class="text-red-300 text-xs font-bold uppercase rotate-45 transform">Hard to Reach</span>
+                    </div>
+
+                    <!-- Easy Area -->
+                    <div class="absolute bottom-0 w-full h-1/2 bg-green-500/20 flex flex-col justify-end p-4">
+                         <span class="text-green-300 text-xs font-bold uppercase text-center mb-8">Natural Thumb Zone</span>
+                         <div class="w-full h-10 bg-blue-500 rounded-full shadow-lg flex items-center justify-center text-white text-xs font-bold">
+                            PRIMARY ACTION
+                         </div>
+                    </div>
+                    
+                    <!-- Thumb Graphic -->
+                    <div class="absolute -bottom-4 -right-8 w-32 h-32 opacity-80 pointer-events-none">
+                         <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                             <path d="M100 180 C 140 180, 160 140, 160 100 C 160 80, 140 60, 120 70" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 8"/>
+                         </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Principle 4: Offline First (Wide Block) -->
+        <div class="lg:col-span-8 glass-panel rounded-3xl p-6 md:p-8">
+            <h2 class="text-xl md:text-2xl font-bold mb-6 flex items-center gap-2">
+                <span class="text-blue-400">04.</span> Offline-First Architecture
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4 items-center relative">
+                <!-- Step 1 -->
+                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 text-center relative z-10">
+                    <div class="w-12 h-12 bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-white mb-1">User Taps</h3>
+                    <p class="text-xs text-slate-400">Instant feedback. UI turns Green immediately.</p>
+                </div>
+
+                <!-- RESPONSIVE: Desktop Horizontal Connector -->
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-700 -z-0"></div>
+                <!-- RESPONSIVE: Mobile Vertical Connector -->
+                <div class="md:hidden absolute left-1/2 top-0 bottom-0 w-0.5 bg-slate-700 -z-0 transform -translate-x-1/2"></div>
+
+                <!-- Step 2 -->
+                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 text-center relative z-10">
+                    <div class="w-12 h-12 bg-yellow-500/20 text-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-white mb-1">Local Queue</h3>
+                    <p class="text-xs text-slate-400">Data stored on device. App retries in background.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 text-center relative z-10">
+                    <div class="w-12 h-12 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-white mb-1">Auto-Sync</h3>
+                    <p class="text-xs text-slate-400">Data uploads only when signal is found.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Principle 5: Inputs (Bottom Row) -->
+        <div class="lg:col-span-12 glass-panel rounded-3xl p-6 md:p-8 bg-gradient-to-r from-blue-900/20 to-slate-900">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
+                <div class="text-center md:text-left">
+                    <h2 class="text-xl md:text-2xl font-bold mb-2 flex items-center justify-center md:justify-start gap-2">
+                        <span class="text-blue-400">05.</span> Input Optimization
+                    </h2>
+                    <p class="text-sm text-slate-400 max-w-xl">Typing is impossible in rain. Use Chips, GPS, and Voice.</p>
+                </div>
+                
+                <!-- RESPONSIVE: flex-wrap added, justify-center for mobile -->
+                <div class="flex flex-wrap justify-center md:justify-end gap-3 md:gap-4 w-full md:w-auto">
+                    <div class="px-4 py-2 rounded-full bg-slate-700 border border-slate-600 text-slate-300 text-xs md:text-sm flex items-center gap-2 whitespace-nowrap">
+                        <span class="w-2 h-2 rounded-full bg-red-500"></span> No Typing
+                    </div>
+                    <div class="px-4 py-2 rounded-full bg-blue-600 text-white text-xs md:text-sm shadow-lg shadow-blue-500/20 flex items-center gap-2 whitespace-nowrap">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+                        Voice Input
+                    </div>
+                    <div class="px-4 py-2 rounded-full bg-blue-600 text-white text-xs md:text-sm shadow-lg shadow-blue-500/20 flex items-center gap-2 whitespace-nowrap">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        Auto-GPS
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
+
+    <!-- Footer Checklist -->
+    <footer class="max-w-6xl mx-auto mt-12 mb-8 p-8 border-t border-slate-800">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-sm text-slate-400">
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Navigation</h4>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-green-400">✓ Bottom Tabs</li>
+                    <li class="flex items-center gap-2 text-red-400">× Hamburger Menu</li>
+                    <li class="flex items-center gap-2 text-green-400">✓ Big Back Button</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Visuals</h4>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-green-400">✓ SVGs & Vectors</li>
+                    <li class="flex items-center gap-2 text-red-400">× High Res Photos</li>
+                    <li class="flex items-center gap-2 text-green-400">✓ Dark Mode Default</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Onboarding</h4>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-green-400">✓ Mobile # Auth</li>
+                    <li class="flex items-center gap-2 text-red-400">× Email/Password</li>
+                    <li class="flex items-center gap-2 text-green-400">✓ Guest Mode</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Performance</h4>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-green-400">✓ Skeleton Loaders</li>
+                    <li class="flex items-center gap-2 text-red-400">× Spinning Loaders</li>
+                    <li class="flex items-center gap-2 text-green-400">✓ Native System Fonts</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
