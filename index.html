@@ -431,7 +431,8 @@
             { file: 'ceh_basics_en.html', folder: '', title: 'CEH Basics (English)', description: 'Certified Ethical Hacker basics and fundamentals in English.' },
             { file: 'aimodelcomparison.html', folder: '', title: 'AI Model Comparison', description: 'Comparison of AI models and their capabilities.' },
             { file: 'ai111_model_comparison_new.html', folder: '', title: 'AI Models Comparison (New)', description: 'Updated comparison of AI models including latest features and capabilities.' },
-            { file: 'aimodelcomparison.html', folder: 'AI_Models', title: 'AI Models Comparison', description: 'Comprehensive comparison of leading AI models including ChatGPT, Gemini, Claude, Perplexity, DeepSeek, and Qwen.' }
+            { file: 'aimodelcomparison.html', folder: 'AI_Models', title: 'AI Models Comparison', description: 'Comprehensive comparison of leading AI models including ChatGPT, Gemini, Claude, Perplexity, DeepSeek, and Qwen.' },
+            { file: 'skywork-ai.html', folder: '', title: 'Skywork AI - Productivity Super Agents', description: 'Turn 8 hours of work into 8 minutes. AI-powered tools to transform your workflow with research, document generation, and productivity features.' }
         ];
 
         // FontAwesome icon mapping
@@ -452,6 +453,7 @@
             if(norm.includes("firewall")) return "fa-firewall";
             if(norm.includes("botnet")) return "fa-network-wired";
             if(norm.includes("ceh")) return "fa-certificate";
+            if(norm.includes("skywork")) return "fa-rocket";
             // fallback: book
             return "fa-book";
         }
@@ -482,10 +484,11 @@
             });
 
             normalizedRoadmaps.forEach(roadmap => {
-                const url = roadmap.folder ? `${roadmap.folder}/${roadmap.file}` : `${roadmap.file}`;
-                const title = roadmap.title || formatTitle(roadmap.file);
+                // Support external URLs
+                const url = roadmap.externalUrl || (roadmap.folder ? `${roadmap.folder}/${roadmap.file}` : `${roadmap.file}`);
+                const title = roadmap.title || formatTitle(roadmap.file || 'External Resource');
                 const description = roadmap.description || '';
-                const locationTag = roadmap.folder ? `<span class="location-tag">${roadmap.folder}/</span>` : '';
+                const locationTag = roadmap.externalUrl ? '<span class="location-tag">External</span>' : (roadmap.folder ? `<span class="location-tag">${roadmap.folder}/</span>` : '');
 
                 // Icon logic
                 const iconClass = getTileIconClass(title);
