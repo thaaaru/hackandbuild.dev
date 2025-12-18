@@ -424,8 +424,14 @@
             { file: 'LinuxForCybersecurityModule1.html', folder: '', title: 'Linux for Cybersecurity - Module 1', description: 'Foundation course covering Linux basics, navigation, and essential commands for cybersecurity professionals.' },
             { file: 'linux101-01.html', folder: '' },
             { file: 'soc.html', folder: '' },
-            { file: 'tharaka.html', folder: '' },
             { file: 'owasptop10llm.html', folder: '' },
+            { file: 'stuxnet.html', folder: '' },
+            { file: 'firewall_by_pass_01.html', folder: '' },
+            { file: 'botnets.html', folder: '' },
+            { file: 'ceh_basics_en.html', folder: '', title: 'CEH Basics (English)', description: 'Certified Ethical Hacker basics and fundamentals in English.' },
+            { file: 'ceh_basics_si.html', folder: '', title: 'CEH Basics (Sinhala)', description: 'Certified Ethical Hacker basics and fundamentals in Sinhala.' },
+            { file: 'aimodelcomparison.html', folder: '', title: 'AI Model Comparison', description: 'Comparison of AI models and their capabilities.' },
+            { file: 'ai111_model_comparison_new.html', folder: '', title: 'AI Models Comparison (New)', description: 'Updated comparison of AI models including latest features and capabilities.' },
             { file: 'aimodelcomparison.html', folder: 'AI_Models', title: 'AI Models Comparison', description: 'Comprehensive comparison of leading AI models including ChatGPT, Gemini, Claude, Perplexity, DeepSeek, and Qwen.' }
         ];
 
@@ -443,6 +449,10 @@
             if(norm.includes("soc") || norm.includes("security operations")) return "fa-shield-halved";
             if(norm.includes("owasp")) return "fa-shield";
             if(norm.includes("knowledge")) return "fa-globe";
+            if(norm.includes("stuxnet")) return "fa-bug";
+            if(norm.includes("firewall")) return "fa-firewall";
+            if(norm.includes("botnet")) return "fa-network-wired";
+            if(norm.includes("ceh")) return "fa-certificate";
             // fallback: book
             return "fa-book";
         }
