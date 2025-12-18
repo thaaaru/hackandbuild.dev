@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication Styles - Visual, Auditory, Kinesthetic</title>
+    <style>
+        /* ============================================
+           RESET & BASE STYLES
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Color Scheme */
+            --visual-color: #2563eb;
+            --auditory-color: #10b981;
+            --kinesthetic-color: #f97316;
+            
+            /* Neutral Colors */
+            --bg-light: #ffffff;
+            --bg-dark: #0f172a;
+            --text-light: #1e293b;
+            --text-dark: #e2e8f0;
+            --border-light: #e5e7eb;
+            --border-dark: #334155;
+            
+            /* Typography */
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            --font-mono: 'Hack', 'Courier New', monospace;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--text-light);
+            background: var(--bg-light);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        [data-theme="dark"] {
+            --bg-light: var(--bg-dark);
+            --text-light: var(--text-dark);
+            --border-light: var(--border-dark);
+        }
+
+        [data-theme="dark"] body {
+            background: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        /* ============================================
+           CONTAINER & LAYOUT
+           ============================================ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            padding: 3rem 0;
+        }
+
+        /* ============================================
+           HEADER & NAVIGATION
+           ============================================ */
+        header {
+            background: var(--bg-light);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        [data-theme="dark"] header {
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border-light);
+            color: var(--text-light);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--visual-color);
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* ============================================
+           LANGUAGE TOGGLE
+           ============================================ */
+        .lang-toggle {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--border-light);
+            background: var(--bg-light);
+            color: var(--text-light);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active {
+            background: var(--visual-color);
+            color: white;
+            border-color: var(--visual-color);
+        }
+
+        .lang-btn:hover {
+            border-color: var(--visual-color);
+        }
+
+        /* ============================================
+           BILINGUAL CONTENT BLOCKS
+           ============================================ */
+        .bilingual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .lang-block {
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+        }
+
+        .lang-block h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            opacity: 0.7;
+        }
+
+        .lang-block p {
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .bilingual {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================
+           COMMUNICATION STYLE CARDS
+           ============================================ */
+        .style-section {
+            margin: 4rem 0;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 5px solid;
+        }
+
+        .style-section.visual {
+            background: rgba(37, 99, 235, 0.05);
+            border-color: var(--visual-color);
+        }
+
+        .style-section.auditory {
+            background: rgba(16, 185, 129, 0.05);
+            border-color: var(--auditory-color);
+        }
+
+        .style-section.kinesthetic {
+            background: rgba(249, 115, 22, 0.05);
+            border-color: var(--kinesthetic-color);
+        }
+
+        .style-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .style-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .style-section.visual .style-icon {
+            background: var(--visual-color);
+        }
+
+        .style-section.auditory .style-icon {
+            background: var(--auditory-color);
+        }
+
+        .style-section.kinesthetic .style-icon {
+            background: var(--kinesthetic-color);
+        }
+
+        .style-title {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .style-section.visual .style-title {
+            color: var(--visual-color);
+        }
+
+        .style-section.auditory .style-title {
+            color: var(--auditory-color);
+        }
+
+        .style-section.kinesthetic .style-title {
+            color: var(--kinesthetic-color);
+        }
+
+        /* Definition Block */
+        .definition {
+            margin: 2rem 0;
+        }
+
+        /* Characteristics List */
+        .characteristics {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+        }
+
+        [data-theme="dark"] .characteristics {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .characteristics h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .characteristics ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .characteristics li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .characteristics li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .style-section.visual .characteristics li:before {
+            color: var(--visual-color);
+        }
+
+        .style-section.auditory .characteristics li:before {
+            color: var(--auditory-color);
+        }
+
+        .style-section.kinesthetic .characteristics li:before {
+            color: var(--kinesthetic-color);
+        }
+
+        /* Examples Grid */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .example-card {
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .example-card {
+            background: rgba(30, 41, 59, 0.5);
+            border-color: var(--border-dark);
+        }
+
+        .example-card h5 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .example-card p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Techniques List */
+        .techniques {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .technique-tag {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .style-section.visual .technique-tag {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--visual-color);
+        }
+
+        .style-section.auditory .technique-tag {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--auditory-color);
+        }
+
+        .style-section.kinesthetic .technique-tag {
+            background: rgba(249, 115, 22, 0.1);
+            color: var(--kinesthetic-color);
+        }
+
+        /* ============================================
+           COMPARISON TABLE
+           ============================================ */
+        .comparison-section {
+            margin: 4rem 0;
+            padding: 2rem;
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            overflow-x: auto;
+            display: block;
+        }
+
+        .comparison-table thead {
+            background: var(--bg-light);
+        }
+
+        [data-theme="dark"] .comparison-table thead {
+            background: rgba(30, 41, 59, 0.5);
+        }
+
+        .comparison-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        [data-theme="dark"] .comparison-table tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .style-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge-visual {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--visual-color);
+        }
+
+        .badge-auditory {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--auditory-color);
+        }
+
+        .badge-kinesthetic {
+            background: rgba(249, 115, 22, 0.1);
+            color: var(--kinesthetic-color);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-light);
+            margin-top: 4rem;
+            opacity: 0.7;
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero h2 {
+                font-size: 1.3rem;
+            }
+
+            .style-title {
+                font-size: 1.5rem;
+            }
+
+            .comparison-table {
+                font-size: 0.85rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            section {
+                padding: 2rem 0;
+            }
+        }
+
+        /* ============================================
+           BACK LINK
+           ============================================ */
+        .back-link {
+            margin: 1rem 0;
+        }
+
+        .back-link a {
+            color: var(--visual-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">hack_and_build</div>
+                <button class="theme-toggle" id="themeToggle">Toggle Dark Mode</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>People Communicate Differently</h1>
+            <h2>මිනිසුන් තොරතුරු අවබෝධ කරගන්නේත් පළ කරන්නේත් විවිධ විදිහට</h2>
+            <p>People prefer different communication cues: seeing, hearing, or physical interaction.</p>
+            <p>මිනිසුන් විවිධ සන්නිවේදන සංඥා වලට කැමතියි: දැකීම, ඇසීම, හෝ ශාරීරික අන්තර්ක්‍රියාව.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Back Link -->
+        <div class="back-link">
+            <a href="/">← Back to Roadmaps</a>
+        </div>
+
+        <!-- Visual Communicators -->
+        <section class="style-section visual">
+            <div class="style-header">
+                <div class="style-icon">👁️</div>
+                <h2 class="style-title">Visual Communicators</h2>
+            </div>
+
+            <div class="definition">
+                <div class="bilingual">
+                    <div class="lang-block">
+                        <h3>English</h3>
+                        <p><strong>Definition:</strong> People who understand messages best through images, visuals, layouts, and spatial cues.</p>
+                    </div>
+                    <div class="lang-block">
+                        <h3>සිංහල</h3>
+                        <p><strong>අර්ථ දැක්වීම:</strong> රූප, දෘශ්‍ය, පිරිසැලසුම් සහ අවකාශීය සංඥා හරහා පණිවිඩ හොඳින් අවබෝධ කරගන්නා අය.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="characteristics">
+                <h4>You might be a visual communicator if…</h4>
+                <div class="bilingual">
+                    <div class="lang-block">
+                        <h3>English</h3>
+                        <ul>
+                            <li>You remember faces more than names</li>
+                            <li>You prefer diagrams over long explanations</li>
+                            <li>You say "I see what you mean"</li>
+                        </ul>
+                    </div>
+                    <div class="lang-block">
+                        <h3>සිංහල</h3>
+                        <ul>
+                            <li>ඔබ නම්වලට වඩා මුහුණු මතක තබා ගනීවි</li>
+                            <li>දිගු පැහැදිලි කිරීම්වලට වඩා රූප සටහන් කැමතියි</li>
+                            <li>ඔබ "මට තේරුම් ගියා" කියා පවසනවා</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4>Real-World Communication Examples</h4>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <h5>📊 Business Dashboards</h5>
+                        <p>Charts and graphs in meetings to show performance data</p>
+                    </div>
+                    <div class="example-card">
+                        <h5>📈 Infographics</h5>
+                        <p>Visual explanations of public health data and statistics</p>
+                    </div>
+                    <div class="example-card">
+                        <h5>🔄 Flow Diagrams</h5>
+                        <p>Process workflows showing how systems operate</p>
+                    </div>
+                    <div class="example-card">
+                        <h5>🚦 Road Signs</h5>
+                        <p>Universal symbols and icons for quick recognition</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4>Effective Communication Techniques</h4>
+                <div class="techniques">
+                    <span class="technique-tag">Diagrams & Flowcharts</span>
+                    <span class="technique-tag">Visual Slides</span>
+                    <span class="technique-tag">Whiteboard Sketches</span>
+                    <span class="technique-tag">Icons & Color-coding</span>
+                    <span class="technique-tag">Maps & Layouts</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Auditory Communicators -->
+        <section class="style-section auditory">
+            <div class="style-header">
+                <div class="style-icon">👂</div>
+                <h2 class="style-title">Auditory Communicators</h2>
+            </div>
+
+            <div class="definition">
+                <div class="bilingual">
+                    <div class="lang-block">
+                        <h3>English</h3>
+                        <p><strong>Definition:</strong> People who understand messages best through spoken words, tone, rhythm, and sound.</p>
+                    </div>
+                    <div class="lang-block">
+                        <h3>සිංහල</h3>
+                        <p><strong>අර්ථ දැක්වීම:</strong> කථන වචන, ස්වරය, රිද්මය සහ ශබ්දය හරහා පණිවිඩ හොඳින් අවබෝධ කරගන්නා අය.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="characteristics">
+                <h4>You might be an auditory communicator if…</h4>
+                <div class="bilingual">
+                    <div class="lang-block">
+                        <h3>English</h3>
+                        <ul>
+                            <li>You remember conversations clearly</li>
+                            <li>You focus on tone more than visuals</li>
+                            <li>You say "That sounds right"</li>
+                        </ul>
+                    </div>
+                    <div class="lang-block">
+                        <h3>සිංහල</h3>
+                        <ul>
+                            <li>ඔබ සංවාද පැහැදිලිව මතක තබා ගනීවි</li>
+                            <li>දෘශ්‍යවලට වඩා ස්වරය කෙරෙහි අවධානය යොමු කරයි</li>
+                            <li>ඔබ "එය හරි යනවා" කියා පවසනවා</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4>Real-World Communication Examples</h4>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <h5>💼 Business Meetings</h5>
+                        <p>Verbal briefings and discussions in the workplace</p>
+                    </div>
+                    <div class="example-card">
+                        <h5>🎙️ Podcasts</h5>
+                        <p>Audio content for information and entertainment</p>
+                    </div>
+                    <div class="example-card">
+                        <h5>📞 Phone Calls</h5>
+                        <p>Voice conversations and voice messages</p>
+                    </div>
+                    <div class="example-card">
+                        <h5>📢 Public Speeches</h5>
+                        <p>Announcements and presentations delivered verbally</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4>Effective Communication Techniques</h4>
+                <div class="techniques">
+                    <span class="technique-tag">Clear Verbal Explanations</span>
+                    <span class="technique-tag">Discussions & Q&A</span>
+                    <span class="technique-tag">Voice Notes</span>
+                    <span class="technique-tag">Repetition & Emphasis</span>
+                    <span class="technique-tag">Tone Variation</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kinesthetic Communicators -->
+        <section class="style-section kinesthetic">
+            <div class="style-header">
+                <div class="style-icon">✋</div>
+                <h2 class="style-title">Kinesthetic Communicators</h2>
+            </div>
+
+            <div class="definition">
+                <div class="bilingual">
+                    <div class="lang-block">
+                        <h3>English</h3>
+                        <p><strong>Definition:</strong> People who understand messages best through physical interaction, action, and real-world experience.</p>
+                    </div>
+                    <div class="lang-block">
+                        <h3>සිංහල</h3>
+                        <p><strong>අර්ථ දැක්වීම:</strong> ශාරීරික අන්තර්ක්‍රියාව, ක්‍රියාව සහ සැබෑ ලෝක අත්දැකීම් හරහා පණිවිඩ හොඳින් අවබෝධ කරගන්නා අය.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="characteristics">
+                <h4>You might be a kinesthetic communicator if…</h4>
+                <div class="bilingual">
+                    <div class="lang-block">
+                        <h3>English</h3>
+                        <ul>
+                            <li>You use hand gestures while speaking</li>
+                            <li>You prefer demonstrations over explanations</li>
+                            <li>You say "Let me try it"</li>
+                        </ul>
+                    </div>
+                    <div class="lang-block">
+                        <h3>සිංහල</h3>
+                        <ul>
+                            <li>කතා කරන විට ඔබ අත් සංඥා භාවිතා කරයි</li>
+                            <li>පැහැදිලි කිරීම්වලට වඩා නිරූපණ කැමතියි</li>
+                            <li>ඔබ "මට උත්සාහ කරන්න දෙන්න" කියා පවසනවා</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4>Real-World Communication Examples</h4>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <h5>🎯 Product Demos</h5>
+                        <p>Hands-on demonstrations of how products work</p>
+                    </div>
+                    <div class="example-card">
+                        <h5>🛠️ Training Sessions</h5>
+                        <p>Interactive workshops and practical exercises</p>
+                    </div>
+                    <div class="example-card">
+                        <h5>🎭 Role-Playing</h5>
+                        <p>Simulated customer interactions and scenarios</p>
+                    </div>
+                    <div class="example-card">
+                        <h5>🚶 Walkthroughs</h5>
+                        <p>Physical tours and step-by-step guidance</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4>Effective Communication Techniques</h4>
+                <div class="techniques">
+                    <span class="technique-tag">Live Demonstrations</span>
+                    <span class="technique-tag">Interactive Activities</span>
+                    <span class="technique-tag">Role-Play</span>
+                    <span class="technique-tag">Physical Examples</span>
+                    <span class="technique-tag">Hands-On Practice</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Table -->
+        <section class="comparison-section">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Communication Styles Comparison</h2>
+            <h3 style="text-align: center; margin-bottom: 2rem; opacity: 0.7;">සන්නිවේදන ශෛලීන් සංසන්දනය</h3>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Communication Style<br>සන්නිවේදන ශෛලිය</th>
+                        <th>Best Signal<br>හොඳම සංඥාව</th>
+                        <th>Common Phrase<br>පොදු වාක්‍ය</th>
+                        <th>Example<br>උදාහරණය</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="style-badge badge-visual">Visual</span></td>
+                        <td>Seeing<br>දැකීම</td>
+                        <td>"I see"<br>"මට තේරුම් ගියා"</td>
+                        <td>Charts, diagrams<br>ප්‍රස්ථාර, රූප සටහන්</td>
+                    </tr>
+                    <tr>
+                        <td><span class="style-badge badge-auditory">Auditory</span></td>
+                        <td>Hearing<br>ඇසීම</td>
+                        <td>"I hear you"<br>"මට ඇසුණා"</td>
+                        <td>Meetings, calls<br>සාකච්ඡා, ඇමතුම්</td>
+                    </tr>
+                    <tr>
+                        <td><span class="style-badge badge-kinesthetic">Kinesthetic</span></td>
+                        <td>Doing<br>කිරීම</td>
+                        <td>"Let me try"<br>"මට උත්සාහ කරන්න දෙන්න"</td>
+                        <td>Demos, role-play<br>නිරූපණ, රඟපෑම</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Hack and Build | <a href="/">Back to Home</a></p>
+        </div>
+    </footer>
+
+    <!-- Theme Toggle Script -->
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
+</body>
+</html>
+
