@@ -1,105 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Packet Fragmentation Firewall Bypass</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; color: #374151; }
-        .container { max-width: 960px; margin: 2rem auto; padding: 2rem; background-color: white; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); }
-        h1 { font-size: 2.5rem; font-weight: 700; text-align: center; color: #1f2937; margin-bottom: 1.5rem; }
-        h2 { font-size: 1.75rem; font-weight: 600; color: #1f2937; margin-top: 2rem; margin-bottom: 1rem; }
-        p { line-height: 1.6; margin-bottom: 1rem; }
-        .section { background-color: #f9fafb; border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem; }
-        .section-title { font-weight: 700; color: #1d4ed8; font-size: 1.25rem; margin-bottom: 0.75rem; }
-        .step { display: flex; align-items: flex-start; margin-bottom: 1.5rem; }
-        .step-number { background-color: #3b82f6; color: white; border-radius: 9999px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; margin-right: 1rem; }
-        .step-content strong { color: #1f2937; }
-        .icon { width: 24px; height: 24px; vertical-align: middle; margin-right: 0.5rem; }
-        .box { background-color: #e0f2fe; border: 1px solid #90cdf4; border-radius: 0.5rem; padding: 1rem; margin-top: 1rem; }
-        .box-red { background-color: #fee2e2; border: 1px solid #ef4444; color: #dc2626; }
-        .box-green { background-color: #d1fae5; border: 1px solid #10b981; color: #065f46; }
-        .flex-center { display: flex; justify-content: center; align-items: center; }
-        .arrow { font-size: 2rem; color: #3b82f6; margin: 1rem 0; text-align: center; }
-        .packet-icon { display: inline-block; width: 20px; height: 20px; background-color: #a78bfa; border-radius: 4px; margin: 0 2px; vertical-align: middle; }
-    </style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Packet Fragmentation Firewall Bypass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root { --bg: #060606; --surface: #0a0a0a; --text: #e2e8f0; --dim: #64748b; --accent: #00ff88; --border: #1e293b; --error: #ff3366; --warn: #fbbf24; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+.term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); }
+.term-dot { width: 10px; height: 10px; border-radius: 50%; opacity: 0.6; }
+.term-dot.r { background: var(--error); }
+.term-dot.y { background: var(--warn); }
+.term-dot.g { background: var(--accent); }
+.term-bar a { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.term-bar a:hover { color: var(--accent); }
+.container { max-width: 900px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+h1, h2, h3, h4 { font-family: 'JetBrains Mono', monospace; font-weight: 600; letter-spacing: -0.01em; }
+h1 { font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--accent); }
+h2 { font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--text); }
+h3 { font-size: 1.05rem; margin: 1.5rem 0 0.75rem; color: var(--warn); }
+p { margin-bottom: 1rem; color: var(--dim); }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul, ol { margin: 1rem 0 1rem 1.5rem; color: var(--dim); }
+li { margin: 0.35rem 0; }
+code { font-family: 'JetBrains Mono', monospace; background: var(--surface); border: 1px solid var(--border); padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; color: var(--accent); }
+pre { background: var(--surface); border: 1px solid var(--border); padding: 1rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+pre code { background: none; border: none; padding: 0; color: var(--text); }
+img { max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+th, td { padding: 0.6rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin: 1rem 0; }
+.card h3 { margin-top: 0; }
+hr { border: none; border-top: 1px dashed var(--border); margin: 2rem 0; }
+footer { text-align: center; padding: 2rem; font-size: 0.75rem; color: var(--dim); border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; }
+@media (max-width: 600px) { .container { padding: 2rem 1rem; } h1 { font-size: 1.4rem; } }
+
+</style>
 </head>
 <body>
-    <div class="container">
+<div class="term-bar">
+  <div class="term-dot r"></div>
+  <div class="term-dot y"></div>
+  <div class="term-dot g"></div>
+  <a href="/">← hackandbuild.dev</a>
+</div>
+<div class="container">
+<div>
         <h1>Packet Fragmentation: A Firewall Bypass Technique</h1>
-        <p class="text-center text-lg text-gray-700 mb-8">Understanding how fragmented packets can slip past traditional firewalls.</p>
+        <p>Understanding how fragmented packets can slip past traditional firewalls.</p>
 
-        <div class="section">
-            <div class="section-title">What is Packet Fragmentation?</div>
+        <div>
+            <div>What is Packet Fragmentation?</div>
             <p>Normally, when a large data packet needs to be sent across a network, it's broken down into smaller pieces (fragments) if its size exceeds the Maximum Transmission Unit (MTU) of a network segment. These fragments are then reassembled at the destination.</p>
             <p>Attackers exploit this mechanism by intentionally fragmenting malicious payloads into very small, unusual sizes to evade detection.</p>
         </div>
 
         <h2>How the Bypass Works (Step-by-Step)</h2>
 
-        <div class="step">
-            <div class="step-number">1</div>
-            <div class="step-content">
-                <div class="section-title">The Attacker's Intent</div>
+        <div>
+            <div>1</div>
+            <div>
+                <div>The Attacker's Intent</div>
                 <p>An attacker has a <strong>malicious payload</strong> (e.g., an exploit, malware signature) that they want to deliver to a target system protected by a firewall.</p>
-                <div class="box">
-                    <p class="font-mono text-sm flex-center">
-                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 00-1 1v3a1 1 0 011 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 00-1 1v1a2 2 0 11-4 0v-1a1 1 0 00-1-1H7a1 1 0 01-1-1v-3a1 1 0 011-1h3a1 1 0 001-1V9a1 1 0 01-1-1H7a1 1 0 01-1-1V4a2 2 0 114 0z"></path></svg>
+                <div>
+                    <p>
+                        
                         Original Malicious Payload
                     </p>
                 </div>
             </div>
         </div>
-        <div class="arrow">&#x2193;</div>
+        <div>&#x2193;</div>
 
-        <div class="step">
-            <div class="step-number">2</div>
-            <div class="step-content">
-                <div class="section-title">Intentional Fragmentation</div>
+        <div>
+            <div>2</div>
+            <div>
+                <div>Intentional Fragmentation</div>
                 <p>The attacker intentionally fragments the payload into <strong>numerous, very small packets</strong>. Each fragment might be so small that, individually, it doesn't contain enough data to trigger a security alert or match a known signature on a basic firewall.</p>
-                <div class="box flex-center">
-                    <p class="font-mono text-sm">
-                        Fragment 1 <span class="packet-icon"></span> Fragment 2 <span class="packet-icon"></span> Fragment 3 <span class="packet-icon"></span> ... Fragment N <span class="packet-icon"></span>
+                <div>
+                    <p>
+                        Fragment 1 <span></span> Fragment 2 <span></span> Fragment 3 <span></span> ... Fragment N <span></span>
                     </p>
                 </div>
             </div>
         </div>
-        <div class="arrow">&#x2193;</div>
+        <div>&#x2193;</div>
 
-        <div class="step">
-            <div class="step-number">3</div>
-            <div class="step-content">
-                <div class="section-title">Firewall Encounter (Traditional/Basic)</div>
+        <div>
+            <div>3</div>
+            <div>
+                <div>Firewall Encounter (Traditional/Basic)</div>
                 <p>The fragmented packets arrive at a <strong>traditional or improperly configured firewall</strong>. These firewalls often inspect packets one by one, looking for specific signatures or anomalies.</p>
-                <div class="box box-red">
+                <div>
                     <p>
-                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 0012 9a9 9 0 00-6.364 2.636m12.728 0A9 9 0 0112 15a9 9 0 01-6.364-2.636M12 2v10m-8 4h16"></path></svg>
+                        
                         <strong>Traditional Firewall Logic:</strong> "This tiny packet looks harmless, allow!"
                     </p>
                 </div>
             </div>
         </div>
-        <div class="arrow">&#x2193;</div>
+        <div>&#x2193;</div>
 
-        <div class="step">
-            <div class="step-number">4</div>
-            <div class="step-content">
-                <div class="section-title">Bypass Achieved</div>
+        <div>
+            <div>4</div>
+            <div>
+                <div>Bypass Achieved</div>
                 <p>Since each fragment individually appears benign or lacks a full signature, the firewall fails to detect the threat and allows all fragments to pass through to the target system.</p>
-                <p class="font-semibold text-blue-700">The malicious payload bypasses the firewall undetected!</p>
+                <p>The malicious payload bypasses the firewall undetected!</p>
             </div>
         </div>
-        <div class="arrow">&#x2193;</div>
+        <div>&#x2193;</div>
 
-        <div class="step">
-            <div class="step-number">5</div>
-            <div class="step-content">
-                <div class="section-title">Reassembly and Execution</div>
+        <div>
+            <div>5</div>
+            <div>
+                <div>Reassembly and Execution</div>
                 <p>On the target system, the operating system or application reassembles all the small fragments back into the original, complete <strong>malicious payload</strong>. This payload can then execute, compromise the system, or establish a foothold for the attacker.</p>
-                <div class="box box-red">
-                    <p class="font-mono text-sm flex-center">
-                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.592 1L21 6m-4 5a3 3 0 00-3-3H6.28a1 1 0 00-.974 1.243l1.944 7.778A1 1 0 008.25 18h7.5c.238 0 .47-.059.674-.172l1.944-7.778A1 1 0 0017.72 9H4"></path></svg>
+                <div>
+                    <p>
+                        
                         Reassembled Malicious Payload: ACTIVATED!
                     </p>
                 </div>
@@ -107,20 +133,22 @@
         </div>
 
         <h2>The Solution: Next-Generation Firewalls (NGFW)</h2>
-        <div class="section box-green">
+        <div>
             <p>To combat packet fragmentation attacks, organizations need more advanced firewalls. <strong>Next-Generation Firewalls (NGFWs)</strong> are designed to:</p>
-            <ul class="list-disc pl-5 mt-2">
-                <li><strong class="text-green-800">Reassemble Packets:</strong> They maintain a state table and reassemble all fragmented packets into their original form before inspection.</li>
-                <li><strong class="text-green-800">Perform Deep Packet Inspection (DPI):</strong> They inspect the entire reassembled payload, not just individual fragments or headers, to detect malicious content.</li>
-                <li><strong class="text-green-800">Identify Anomalies:</strong> They can spot unusual fragmentation patterns (e.g., excessively small fragments or fragments out of order) as indicators of potential attack.</li>
-                <li><strong class="text-green-800">Drop Invalid Fragments:</strong> They can be configured to drop any malformed or suspicious fragmented packets.</li>
+            <ul>
+                <li><strong>Reassemble Packets:</strong> They maintain a state table and reassemble all fragmented packets into their original form before inspection.</li>
+                <li><strong>Perform Deep Packet Inspection (DPI):</strong> They inspect the entire reassembled payload, not just individual fragments or headers, to detect malicious content.</li>
+                <li><strong>Identify Anomalies:</strong> They can spot unusual fragmentation patterns (e.g., excessively small fragments or fragments out of order) as indicators of potential attack.</li>
+                <li><strong>Drop Invalid Fragments:</strong> They can be configured to drop any malformed or suspicious fragmented packets.</li>
             </ul>
-            <p class="mt-4 font-semibold text-green-800">Ensure your firewall is properly configured and up-to-date to prevent these types of evasion techniques!</p>
+            <p>Ensure your firewall is properly configured and up-to-date to prevent these types of evasion techniques!</p>
         </div>
 
-        <footer class="text-center mt-12 text-gray-500">
+        <footer>
             <p>&copy; 2025 Defensive Security Insights. For educational purposes only.</p>
         </footer>
     </div>
+</div>
+<footer>Hack and Build © 2025 — MIT License</footer>
 </body>
 </html>
