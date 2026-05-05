@@ -13,7 +13,6 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-/* Terminal nav */
 .term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 100; }
 .term-dot { width: 10px; height: 10px; border-radius: 50%; opacity: 0.6; }
 .term-dot.r { background: var(--error); }
@@ -22,17 +21,13 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .term-bar a { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
 .term-bar a:hover { color: var(--accent); }
 
-/* Layout */
 .container { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
-
-/* Page title */
 .page-title { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
 .page-sub { color: var(--dim); font-size: 0.95rem; margin-bottom: 2.5rem; }
 
 /* TILE GRID */
-.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; }
+.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1rem; }
 
-/* Tile card */
 .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: border-color 0.3s ease; }
 .tile:hover { border-color: rgba(255,255,255,0.15); }
 .tile h2 { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
@@ -48,20 +43,11 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .tile th, .tile td { padding: 0.4rem 0.5rem; text-align: left; border-bottom: 1px solid var(--border); }
 .tile th { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; font-size: 0.8rem; }
 
-/* Full width tiles for large content */
 .tile-wide { grid-column: 1 / -1; }
-
-/* Tag/badge inside tiles */
-.tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; color: var(--dim); margin-bottom: 0.5rem; }
 
 footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; color: var(--dim); border-top: 1px solid var(--border); margin-top: 3rem; font-family: 'JetBrains Mono', monospace; }
 
-@media (max-width: 600px) {
-  .container { padding: 2rem 1rem; }
-  .tile-grid { grid-template-columns: 1fr; }
-  .page-title { font-size: 1.3rem; }
-}
-
+@media (max-width: 600px) { .container { padding: 2rem 1rem; } .tile-grid { grid-template-columns: 1fr; } .page-title { font-size: 1.3rem; } }
 </style>
 </head>
 <body>
@@ -72,62 +58,11 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
   <a href="/">← hackandbuild.dev</a>
 </div>
 <div class="container">
-  <div class="page-title">DFIR Roadmap</div>
-<div class="page-sub">This roadmap provides a comprehensive guide to building a career in Digital Forensics and Incident Response (DFIR). Explore the roles, skills, and certifications you'll need to progress from an aspiring technician to a seasoned expert.</div>
+  <div class="page-title">Digital Forensics Career Roadmap</div>
+<div class="page-sub">At this stage, you move from collecting data to analyzing it. You'll handle more complex cases, specialize in specific areas, and begin to mentor junior team members.</div>
 <div class="tile-grid">
-<div class="tile tile-wide"><h2>Your Career in Digital Forensics</h2><p>
-                This roadmap provides a comprehensive guide to building a career in Digital Forensics and Incident Response (DFIR). Explore the roles, skills, and certifications you'll need to progress from an aspiring technician to a seasoned expert.
-            </p>
-        </div>
+  <div class="tile tile-wide"><h2>Digital Forensics Career Roadmap</h2>
 
-        <!-- Entry Level -->
-        <div id="entry">
-            <div>
-                <span>Stage 1</span>
-                <h3>Foundation Level (0-3 Years)</h3>
-                <p>This is where your journey begins. The focus is on building a strong technical foundation, understanding core forensic principles, and gaining hands-on experience with standard tools of the trade.</p>
-            </div>
-            <div>
-                <div>
-                    <div>
-                        <h4>Common Job Roles</h4>
-                        <ul>
-                            <li>Forensic Technician</li>
-                            <li>eDiscovery Analyst</li>
-                            <li>Junior Security Analyst</li>
-                            <li>IT Support with Forensic Duties</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>Key Certifications</h4>
-                        <ul>
-                            <li>CompTIA Security+</li>
-                            <li>GIAC Foundational Cybersecurity Technologies (GFACT)</li>
-                            <li>GIAC Certified Forensic Examiner (GCFE)</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>Core Skills to Master</h4>
-                        <div>
-                            <div>
-                                <h5>Technical Skills</h5>
-                                <ul>
-                                    <li>Windows/Linux Fundamentals</li>
-                                    <li>File Systems (NTFS, FAT, HFS+)</li>
-                                    <li>Data Acquisition & Imaging</li>
-                                    <li>Chain of Custody Procedures</li>
-                                    <li>Basic Networking Concepts</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5>Tools Proficiency</h5>
-                                <ul>
-                                    <li>EnCase, FTK Imager</li>
-                                    <li>Autopsy, The Sleuth Kit</li>
-                                    <li>Basic Wireshark Usage</li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div>
@@ -273,13 +208,10 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
 
     </main>
 
-    <footer>
-        <div>
-            <p>&copy; 2024 Digital Forensics Career Roadmap. A conceptual guide for aspiring professionals.</p>
-        </div>
-    </footer>
+    
 </div>
-<footer>Hack and Build © 2025 — MIT License</footer></div>
+</div>
+</div></div>
 </div>
 </div>
 <footer>Hack and Build © 2025 — MIT License</footer>
