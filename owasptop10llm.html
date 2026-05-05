@@ -13,7 +13,6 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-/* Terminal nav */
 .term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 100; }
 .term-dot { width: 10px; height: 10px; border-radius: 50%; opacity: 0.6; }
 .term-dot.r { background: var(--error); }
@@ -22,17 +21,13 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .term-bar a { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
 .term-bar a:hover { color: var(--accent); }
 
-/* Layout */
 .container { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
-
-/* Page title */
 .page-title { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
 .page-sub { color: var(--dim); font-size: 0.95rem; margin-bottom: 2.5rem; }
 
 /* TILE GRID */
-.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; }
+.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1rem; }
 
-/* Tile card */
 .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: border-color 0.3s ease; }
 .tile:hover { border-color: rgba(255,255,255,0.15); }
 .tile h2 { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
@@ -48,20 +43,11 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .tile th, .tile td { padding: 0.4rem 0.5rem; text-align: left; border-bottom: 1px solid var(--border); }
 .tile th { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; font-size: 0.8rem; }
 
-/* Full width tiles for large content */
 .tile-wide { grid-column: 1 / -1; }
-
-/* Tag/badge inside tiles */
-.tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; color: var(--dim); margin-bottom: 0.5rem; }
 
 footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; color: var(--dim); border-top: 1px solid var(--border); margin-top: 3rem; font-family: 'JetBrains Mono', monospace; }
 
-@media (max-width: 600px) {
-  .container { padding: 2rem 1rem; }
-  .tile-grid { grid-template-columns: 1fr; }
-  .page-title { font-size: 1.3rem; }
-}
-
+@media (max-width: 600px) { .container { padding: 2rem 1rem; } .tile-grid { grid-template-columns: 1fr; } .page-title { font-size: 1.3rem; } }
 </style>
 </head>
 <body>
@@ -73,42 +59,10 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
 </div>
 <div class="container">
   <div class="page-title">OWASP Top 10 for LLM Applications</div>
-<div class="page-sub">The 10 Most Critical Security Risks (2023 v1.0)</div>
+<div class="page-sub">This occurs when an LLM's output is accepted without proper scrutiny or sanitization and is passed directly to backend systems or frontend code. This can lead to classic web vulnerabilities.</div>
 <div class="tile-grid">
-<div class="tile tile-wide"><h2>What is this?</h2><p>
-                The OWASP Top 10 for Large Language Model (LLM) Applications is a project that identifies and ranks the most critical security vulnerabilities found in applications that use LLMs. This list serves as an essential guide for developers, security professionals, and organizations to understand and mitigate the unique risks associated with this rapidly evolving technology.
-            </p>
-        </div>
+  <div class="tile tile-wide"><h2>OWASP Top 10 for LLM Applications</h2>
 
-        <!-- Accordion for Top 10 List -->
-        <div>
-
-            <!-- LLM01: Prompt Injection -->
-            <div>
-                <button aria-expanded="false">
-                    <span>LLM01: Prompt Injection</span>
-                    <!-- Chevron Icon -->
-                    
-                </button>
-                <div>
-                    <div>
-                        <h3>What it is:</h3>
-                        <p>Manipulating an LLM through "crafty inputs" (prompts) to cause unintended actions. This can be done directly by overwriting system prompts or indirectly by hiding instructions in external data sources (like webpages or documents) that the LLM processes.</p>
-                        
-                        <h3>Examples & Attack Scenarios:</h3>
-                        <ul>
-                            <li>An attacker's direct prompt makes a support chatbot reveal customer data.</li>
-                            <li>A user asks an LLM to summarize a webpage that contains a hidden instruction telling the LLM to send data to the attacker.</li>
-                        </ul>
-
-                        <h3>Prevention Methods:</h3>
-                        <ul>
-                            <li>Enforce privilege controls (human-in-the-loop for sensitive actions).</li>
-                            <li>Clearly segregate external content from user prompts.</li>
-                            <li>Establish trust boundaries between the LLM and external sources.</li>
-                        </ul>
-                    </div>
-                </div>
             </div>
             
             <!-- LLM02: Insecure Output Handling -->
@@ -365,18 +319,12 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
     </main>
 
     <!-- Footer -->
-    <footer>
-        <p>
-            Content based on the <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener noreferrer">OWASP Top 10 for LLM Applications (2023 v1.0)</a>.
-        </p>
-        <p>
-            This page is an unofficial summary for educational purposes.
-        </p>
-    </footer>
+    
 
     <!-- JavaScript for Accordion Functionality -->
 </div>
-<footer>Hack and Build © 2025 — MIT License</footer></div>
+</div>
+</div></div>
 </div>
 </div>
 <footer>Hack and Build © 2025 — MIT License</footer>
