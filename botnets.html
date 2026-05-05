@@ -13,7 +13,6 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-/* Terminal nav */
 .term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 100; }
 .term-dot { width: 10px; height: 10px; border-radius: 50%; opacity: 0.6; }
 .term-dot.r { background: var(--error); }
@@ -22,17 +21,13 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .term-bar a { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
 .term-bar a:hover { color: var(--accent); }
 
-/* Layout */
 .container { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
-
-/* Page title */
 .page-title { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
 .page-sub { color: var(--dim); font-size: 0.95rem; margin-bottom: 2.5rem; }
 
 /* TILE GRID */
-.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; }
+.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1rem; }
 
-/* Tile card */
 .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: border-color 0.3s ease; }
 .tile:hover { border-color: rgba(255,255,255,0.15); }
 .tile h2 { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
@@ -48,20 +43,11 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .tile th, .tile td { padding: 0.4rem 0.5rem; text-align: left; border-bottom: 1px solid var(--border); }
 .tile th { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; font-size: 0.8rem; }
 
-/* Full width tiles for large content */
 .tile-wide { grid-column: 1 / -1; }
-
-/* Tag/badge inside tiles */
-.tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; color: var(--dim); margin-bottom: 0.5rem; }
 
 footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; color: var(--dim); border-top: 1px solid var(--border); margin-top: 3rem; font-family: 'JetBrains Mono', monospace; }
 
-@media (max-width: 600px) {
-  .container { padding: 2rem 1rem; }
-  .tile-grid { grid-template-columns: 1fr; }
-  .page-title { font-size: 1.3rem; }
-}
-
+@media (max-width: 600px) { .container { padding: 2rem 1rem; } .tile-grid { grid-template-columns: 1fr; } .page-title { font-size: 1.3rem; } }
 </style>
 </head>
 <body>
@@ -72,144 +58,26 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
   <a href="/">← hackandbuild.dev</a>
 </div>
 <div class="container">
-  <div class="page-title">The Botnet Economy</div>
-<div class="page-sub">A Look Inside the Business of Cybercrime</div>
+  <div class="page-title">The Botnet Economy: An Infographic</div>
+<div class="page-sub">Less than 10% of nodes are traditional PCs. Most are:</div>
 <div class="tile-grid">
-<div class="tile"><h2>Scale & Lifespan</h2><div>
-                <!-- Card: Scale -->
-                <div>
-                    
-                    <h3>1 Million+ Devices</h3>
-                    <p>Large-scale botnets routinely exceed 1 million infected devices. Early Mirai variants hit ~600k, while modern IoT botnets can reach 1.2M.</p>
-                </div>
-                <!-- Card: Lifespan -->
-                <div>
-                    
-                    <h3>50-90 Day Lifespan</h3>
-                    <p>The average botnet lifespan before disruption. However, P2P (Peer-to-Peer) botnets can persist for years due to harder takedowns.</p>
-                </div>
-                <!-- Card: Cleanup -->
-                <div>
-                    
-                    <h3>Only 1-3% Cleaned</h3>
-                    <p>Only 1-3% of infected devices are ever cleaned manually. Most disappear as users replace old devices or apply patches accidentally.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section: Device Composition -->
-        <div></div>
-<div class="tile"><h2>What's Infected?</h2><div>
-                <h3>Modern Botnet Composition</h3>
+  <div class="tile"><h2>What's Infected?</h2><h3>Modern Botnet Composition</h3>
                 <!-- Bar Chart Diagram -->
                 <div>
                     <!-- 90% Bar -->
                     <div>
                         <div style="width: 90%">
                             <span>90%</span>
-                            <span>IoT & Mobile</span>
-                        </div>
-                    </div>
-                    <!-- 10% Bar -->
-                    <div>
-                        <div style="width: 10%">
-                            <span>10%</span>
-                            <span>PCs</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <p>Less than 10% of nodes are traditional PCs. Most are:</p>
-                
-                <!-- Icon Grid -->
-                <div>
-                    <div>
-                        
-                        <span>Routers</span>
-                    </div>
-                    <div>
-                        
-                        <span>CCTV & DVRs</span>
-                    </div>
-                    <div>
-                        
-                        <span>Cheap Phones</span>
-                    </div>
-                    <div>
-                        
-                        <span>NAS Devices</span>
-                    </div>
-                    <div>
-                        
-                        <span>Smart-Home</span>
-                    </div>
-                </div>
-
-                <div>
-                    <h4>Major Vulnerability</h4>
-                    <p>Many botnets are built on <strong>end-of-life networking gear</strong> (old TP-Link, D-Link, etc.) that stay online for 5-10 years with no updates.</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Section: Pricing -->
-        <div></div>
-<div class="tile"><h2>Dark Web & Telegram Pricing</h2><div>
-                
-                <!-- Card: DDoS -->
+                            <span>IoT & Mobile</span></div>
+  <div class="tile"><h2>Dark Web & Telegram Pricing</h2><!-- Card: DDoS -->
                 <div>
                     <h3>DDoS-as-a-Service</h3>
                     <ul>
                         <li><span>1 Hour Attack:</span> <span>$10 - $25</span></li>
                         <li><span>24 Hours:</span> <span>$80 - $150</span></li>
                         <li><span>Weekly Subscription:</span> <span>$400 - $600</span></li>
-                    </ul>
-                </div>
-                
-                <!-- Card: IoT Rental -->
-                <div>
-                    <h3>IoT Botnet Rental</h3>
-                    <ul>
-                        <li><span>1,000 Bots (daily):</span> <span>$50 - $100</span></li>
-                        <li><span>10,000 Bots (daily):</span> <span>$200 - $400</span></li>
-                        <li><span>50,000+ Bots (daily):</span> <span>$1k - $2k</span></li>
-                    </ul>
-                </div>
-
-                <!-- Card: Premium Rental -->
-                <div>
-                    <h3>Premium (PC) Access</h3>
-                    <ul>
-                        <li><span>Partial Access:</span> <span>$200 - $500</span></li>
-                        <li><span>Full Admin:</span> <span>$1.5k - $3k</span></li>
-                    </ul>
-                </div>
-
-                <!-- Card: Infostealer -->
-                <div>
-                    <h3>Infostealer Combo</h3>
-                    <ul>
-                        <li><span>1k Infected (logs):</span> <span>$300 - $800</span></li>
-                        <li><span>High-Value (US/EU):</span> <span>2-3x Higher</span></li>
-                    </ul>
-                </div>
-                
-                <!-- Card: Loaders -->
-                <div>
-                    <h3>Loaders (Pay-Per-Install)</h3>
-                    <p>Botnets that install other malware.</p>
-                    <ul>
-                        <li><span>Price per Install:</span> <span>$0.10 - $2.00</span></li>
-                        <li>Rates vary by geography (US/EU is highest, South Asia is cheapest).</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- NEW SECTION: Visualizing Botnet Scale -->
-        <div></div>
-<div class="tile"><h2>Visualizing Botnet Scale</h2><div>
-                <p>Botnets range from small rental pools to massive global networks. Here's a comparison of the scales mentioned in the data.</p>
+                    </ul></div>
+  <div class="tile"><h2>Visualizing Botnet Scale</h2><p>Botnets range from small rental pools to massive global networks. Here's a comparison of the scales mentioned in the data.</p>
                 <!-- Bubble comparison chart -->
                 <!-- Note: Sizes are illustrative, not perfectly to scale, to ensure readability. -->
                 <div>
@@ -218,167 +86,19 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                     <div>
                         <div>
                             <div>1k</div>
-                            <div>Small Rental</div>
-                            <div>(e.g., DDoS-for-hire)</div>
-                        </div>
-                    </div>
-                    
-                    <!-- 10k Bots -->
-                    <div>
-                        <div>
-                            <div>10k</div>
-                            <div>Medium Rental</div>
-                            <div>(e.g., Spam, Phishing)</div>
-                        </div>
-                    </div>
-
-                    <!-- 50k Bots -->
-                    <div>
-                        <div>
-                            <div>50k+</div>
-                            <div>Large Rental</div>
-                            <div>(e.g., Infostealing)</div>
-                        </div>
-                    </div>
-                    
-                    <!-- 600k Bots (Mirai) -->
-                    <div>
-                        <div>
-                            <div>~600k</div>
-                            <div>Mirai Botnet</div>
-                            <div>(Dyn DDoS Attack, 2016)</div>
-                        </div>
-                    </div>
-                    
-                    <!-- 1M+ Bots -->
-                    <div>
-                        <div>
-                            <div>1M+</div>
-                            <div>Modern IoT</div>
-                            <div>(Large-scale DDoS)</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section: Operations & Revenue -->
-        <div>
-            <!-- Column: Operational Behaviour -->
-            <div></div>
-<div class="tile"><h2>Operational Behaviour</h2><div>
-                    <div>
+  <div class="tile"><h2>Operational Behaviour</h2><div>
                         
                         <div>
                             <h4>Seasonal Spikes</h4>
-                            <p>Infections surge during Black Friday, Christmas, and Chinese New Year due to new, cheap IoT devices.</p>
-                        </div>
-                    </div>
-                    <div>
-                        
-                        <div>
-                            <h4>Rapid Exploitation</h4>
-                            <p>When a critical CVE (vulnerability) drops, infection campaigns surge within 1-24 hours, often automated.</p>
-                        </div>
-                    </div>
-                    <div>
-                        
-                        <div>
-                            <h4>A/B Testing</h4>
-                            <p>Operators launch different payloads on different geographies to measure infection success rates.</p>
-                        </div>
-                    </div>
-                    <div>
-                        
-                        <div>
-                            <h4>Automated Recon</h4>
-                            <p>Botnets scan the entire IPv4 space every 10-20 minutes via distributed nodes.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Column: Revenue Estimates -->
-            <div></div>
-<div class="tile"><h2>Revenue Estimates (Monthly)</h2><div>
-                    <div>
+                            <p>Infections surge during Black Friday, Christmas, and Chinese New Year due to new, cheap IoT devices.</p></div>
+  <div class="tile"><h2>Revenue Estimates (Monthly)</h2><div>
                         <h3>$8k - $40k</h3>
                         <p>Mid-Size DDoS Botnet</p>
-                        <p>(50k-200k nodes)</p>
-                    </div>
-                    <div>
-                        <h3>$100,000+</h3>
-                        <p>Loaders (Malware Installers)</p>
-                        <p>(When linked to ransomware affiliates)</p>
-                    </div>
-                    <div>
-                        <h3>"Low" (but steady)</h3>
-                        <p>Cryptomining Botnets</p>
-                        <p>(Generates a few thousand USD, but endures for years)</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section: Architecture & Trends -->
-        <div></div>
-<div class="tile"><h2>Architecture & Trends</h2><div>
-
-                <!-- Card: P2P -->
+                        <p>(50k-200k nodes)</p></div>
+  <div class="tile"><h2>Architecture & Trends</h2><!-- Card: P2P -->
                 <div>
                     <h3>30-40% use P2P C2</h3>
-                    <p>Peer-to-Peer Command & Control (C2) is used in 30-40% of botnets. These are significantly harder for CERTs and ISPs to dismantle.</p>
-                </div>
-
-                <!-- Card: Resilience -->
-                <div>
-                    <h3>High Resilience</h3>
-                    <p>Law enforcement disruptions reduce botnet size temporarily, but resilient operators <strong>regrow networks within weeks</strong>.</p>
-                </div>
-
-                <!-- Card: C2 Rotation -->
-                <div>
-                    <h3>50% C2 Rotation (24-48h)</h3>
-                    <p>Half of C2 infrastructure rotates every 1-2 days using fast-flux DNS, compromised WordPress sites, and hacked cloud accounts.</p>
-                </div>
-
-                <!-- Card: Geo Trends -->
-                <div>
-                    <h3>Geographic & Enterprise Trends</h3>
-                    <div>
-                        <div>
-                            <h4>Infection Hotspots</h4>
-                            <p>Density is highest in regions with low-cost IoT, poor vendor security, and long equipment replacement cycles:</p>
-                            <ul>
-                                <li>South Asia</li>
-                                <li>Africa</li>
-                                <li>Latin America</li>
-                                <li>Eastern Europe</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4>"Silent" Enterprise Infections</h4>
-                            <p>In corporate environments, botnets are often found on overlooked legacy devices:</p>
-                            <ul>
-                                <li>- Printers</li>
-                                <li>- IP Phones</li>
-                                <li>- Legacy Linux Servers</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        Infographic based on open-source intelligence (OSINT) and market data.
-    </footer>
-</div>
-<footer>Hack and Build © 2025 — MIT License</footer></div>
+                    <p>Peer-to-Peer Command & Control (C2) is used in 30-40% of botnets. These are significantly harder for CERTs and ISPs to dismantle.</p></div>
 </div>
 </div>
 <footer>Hack and Build © 2025 — MIT License</footer>
