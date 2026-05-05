@@ -13,7 +13,6 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-/* Terminal nav */
 .term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 100; }
 .term-dot { width: 10px; height: 10px; border-radius: 50%; opacity: 0.6; }
 .term-dot.r { background: var(--error); }
@@ -22,17 +21,13 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .term-bar a { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
 .term-bar a:hover { color: var(--accent); }
 
-/* Layout */
 .container { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
-
-/* Page title */
 .page-title { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
 .page-sub { color: var(--dim); font-size: 0.95rem; margin-bottom: 2.5rem; }
 
 /* TILE GRID */
-.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; }
+.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1rem; }
 
-/* Tile card */
 .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: border-color 0.3s ease; }
 .tile:hover { border-color: rgba(255,255,255,0.15); }
 .tile h2 { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
@@ -48,20 +43,11 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .tile th, .tile td { padding: 0.4rem 0.5rem; text-align: left; border-bottom: 1px solid var(--border); }
 .tile th { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; font-size: 0.8rem; }
 
-/* Full width tiles for large content */
 .tile-wide { grid-column: 1 / -1; }
-
-/* Tag/badge inside tiles */
-.tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; color: var(--dim); margin-bottom: 0.5rem; }
 
 footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; color: var(--dim); border-top: 1px solid var(--border); margin-top: 3rem; font-family: 'JetBrains Mono', monospace; }
 
-@media (max-width: 600px) {
-  .container { padding: 2rem 1rem; }
-  .tile-grid { grid-template-columns: 1fr; }
-  .page-title { font-size: 1.3rem; }
-}
-
+@media (max-width: 600px) { .container { padding: 2rem 1rem; } .tile-grid { grid-template-columns: 1fr; } .page-title { font-size: 1.3rem; } }
 </style>
 </head>
 <body>
@@ -72,635 +58,40 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
   <a href="/">← hackandbuild.dev</a>
 </div>
 <div class="container">
-  <div class="page-title">Understanding <span>Knowledge</span></div>
-<div class="page-sub">Knowledge is like cooking. Data is the ingredients, Information is the recipe, and Wisdom is knowing when to bake the cake.</div>
+  <div class="page-title">දැනුම අවබෝධ කරගැනීම</div>
+<div class="page-sub">Understanding & Context. The "how it works" mechanics.</div>
 <div class="tile-grid">
-<div class="tile"><h2>The DIKW Pyramid</h2><p>The hierarchy of value: moving from raw signals to applied judgment.</p>
-                    
-                    <div>
-                        <div>
-                            <div>
-                                <i></i>
-                            </div>
-                            <div>
-                                <h3>Wisdom</h3>
-                                <p>Applied judgment. Knowing "when" and "why" to use knowledge.</p>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <i></i>
-                            </div>
-                            <div>
-                                <h3>Knowledge</h3>
-                                <p>Understanding & Context. The "how it works" mechanics.</p>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <i></i>
-                            </div>
-                            <div>
-                                <h3>Information</h3>
-                                <p>Data with meaning. "What it means."</p>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <i></i>
-                            </div>
-                            <div>
-                                <h3>Data</h3>
-                                <p>Raw facts and numbers. The building blocks.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <div>
-                        <div>
-                            <i></i>
-                            <span>Wisdom</span>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <i></i>
-                            <span>Knowledge</span>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <i></i>
-                            <span>Information</span>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <i></i>
-                            <span>Data</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section 2: 10 Types of Knowledge -->
-        <div id="en-types">
-            <div>
-                <div>
-                    <span>Classification</span></div>
-<div class="tile tile-wide"><h2>10 Types of Knowledge</h2><p>Different ways we store, access, and prove what we know, with examples from Tech & Security.</p>
-                </div>
-
-                <div>
-                    <!-- Cards (Compact version for brevity, but all 10 are here) -->
-                    <!-- Explicit -->
-                    <div>
+  <div class="tile"><h2>10 Types of Knowledge</h2><p>Different ways we store, access, and prove what we know, with examples from Tech & Security.</p></div>
+  <div class="tile"><h2>The Learning Ladder</h2><p>Ascending from basic commands to automation mastery.</p></div>
+  <div class="tile"><h2>Knowledge Management Cycle</h2><div>
                         <div><i></i></div>
-                        <h3>Explicit</h3>
-                        <p>Codified, written down. Documents and databases.</p>
-                        <ul><li><i></i> Security Policies</li><li><i></i> Linux Man Pages</li></ul>
-                    </div>
-                    <!-- Tacit -->
-                    <div>
-                        <div><i></i></div>
-                        <h3>Tacit</h3>
-                        <p>Experience-based. Intuition and mindset.</p>
-                        <ul><li><i></i> Threat Hunting</li><li><i></i> Debugging Sense</li></ul>
-                    </div>
-                    <!-- Procedural -->
-                    <div>
-                        <div><i></i></div>
-                        <h3>Procedural</h3>
-                        <p>Step-by-step "how to". Scripts and processes.</p>
-                        <ul><li><i></i> Incident Response</li><li><i></i> Bash Scripts</li></ul>
-                    </div>
-                    <!-- Declarative -->
-                    <div>
-                        <div><i></i></div>
-                        <h3>Declarative</h3>
-                        <p>Facts and definitions. "Knowing that".</p>
-                        <ul><li><i></i> OSI Model</li><li><i></i> SSH is Port 22</li></ul>
-                    </div>
-                    <!-- Empirical -->
-                    <div>
-                        <div><i></i></div>
-                        <h3>Empirical</h3>
-                        <p>Gained through observation and data analysis.</p>
-                        <ul><li><i></i> Log Analysis</li><li><i></i> Pen-testing</li></ul>
-                    </div>
-                    <!-- Theoretical -->
-                    <div>
-                        <div><i></i></div>
-                        <h3>Theoretical</h3>
-                        <p>Abstract principles. The "why" behind the tech.</p>
-                        <ul><li><i></i> Encryption Math</li><li><i></i> Big O Notation</li></ul>
-                    </div>
-                    <!-- Practical -->
-                    <div>
-                        <div><i></i></div>
-                        <h3>Practical</h3>
-                        <p>Hands-on skill. Physical application.</p>
-                        <ul><li><i></i> Crimping Cables</li><li><i></i> Racking Servers</li></ul>
-                    </div>
-                    <!-- A Priori -->
-                    <div>
-                        <div><i></i></div>
-                        <h3>A Priori</h3>
-                        <p>Independent of experience. Logic and reason.</p>
-                        <ul><li><i></i> Boolean Logic</li><li><i></i> Subnetting Logic</li></ul>
-                    </div>
-                    <!-- A Posteriori -->
-                    <div>
-                        <div><i></i></div>
-                        <h3>A Posteriori</h3>
-                        <p>Derived from experience. "I know because I checked."</p>
-                        <ul><li><i></i> "Server is down"</li><li><i></i> Forensics</li></ul>
-                    </div>
-                    <!-- Linguistic -->
-                    <div>
-                        <div><i></i></div>
-                        <h3>Linguistic</h3>
-                        <p>Understanding syntax, symbols, and languages.</p>
-                        <ul><li><i></i> Code Syntax</li><li><i></i> Regex Patterns</li></ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section 3: Learning Ladder -->
-        <div id="en-ladder">
-            
-            <div>
-                <div>
-                    <span>Bloom's Taxonomy</span></div>
-<div class="tile"><h2>The Learning Ladder</h2><p>Ascending from basic commands to automation mastery.</p>
-                </div>
-
-                <div>
-                    <!-- Step 6 -->
-                    <div>
-                        <div>
-                            <h3><i></i>6. CREATE</h3>
-                            <p>Build a tool. Create a full system monitoring suite.</p>
-                        </div>
-                    </div>
-                    <!-- Step 5 -->
-                    <div>
-                        <div>
-                            <h3><i></i>5. EVALUATE</h3>
-                            <p>Code Review. Is this script secure? Is `rm -rf` dangerous?</p>
-                        </div>
-                    </div>
-                    <!-- Step 4 -->
-                    <div>
-                        <div>
-                            <h3><i></i>4. ANALYZE</h3>
-                            <p>Debugging. Why did the cron job fail? Log parsing.</p>
-                        </div>
-                    </div>
-                    <!-- Step 3 -->
-                    <div>
-                        <div>
-                            <h3><i></i>3. APPLY</h3>
-                            <p>Scripting. Writing a bash script to backup files.</p>
-                        </div>
-                    </div>
-                    <!-- Step 2 -->
-                    <div>
-                        <div>
-                            <h3><i></i>2. UNDERSTAND</h3>
-                            <p>Syntax & Logic. How pipes (`|`) and loops work.</p>
-                        </div>
-                    </div>
-                    <!-- Step 1 -->
-                    <div>
-                        <div>
-                            <h3><i></i>1. REMEMBER</h3>
-                            <p>Commands. Memorizing `ls`, `grep`, `chmod`.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section 4: KM Cycle -->
-        <div id="en-cycle">
-            <div></div>
-<div class="tile"><h2>Knowledge Management Cycle</h2><div>
-                    
-                    <div>
-                        <div><i></i></div>
-                        <div><h4>1. CAPTURE</h4><p>Document it</p></div>
-                    </div>
-                    <div>
-                        <div><i></i></div>
-                        <div><h4>2. STORE</h4><p>Organize it</p></div>
-                    </div>
-                    <div>
-                        <div><i></i></div>
-                        <div><h4>3. SHARE</h4><p>Teach it</p></div>
-                    </div>
-                    <div>
-                        <div><i></i></div>
-                        <div><h4>4. UPDATE</h4><p>Keep it fresh</p></div>
-                    </div>
-                    <div>
-                        <div><i></i></div>
-                        <div><h4>5. PROTECT</h4><p>Secure it</p></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Analogies Section -->
-        <div id="en-analogies">
-            <div></div>
-<div class="tile"><h2>Analogies for Understanding</h2><div>
-                    <!-- Cooking -->
+  <div class="tile"><h2>Analogies for Understanding</h2><!-- Cooking -->
                     <div>
                         <div>
                             <div><i></i></div>
-                            <h3>Cooking</h3>
-                        </div>
-                        <ul>
-                            <li><span>Data</span><span>Ingredients (Flour, Eggs)</span></li>
-                            <li><span>Info</span><span>The Recipe</span></li>
-                            <li><span>Knowledge</span><span>Knowing why it rises</span></li>
-                            <li><span>Wisdom</span><span>Knowing when to bake cookies instead</span></li>
-                        </ul>
-                    </div>
-                    <!-- Linux -->
-                    <div>
-                        <div>
-                            <div><i></i></div>
-                            <h3>Linux System</h3>
-                        </div>
-                        <ul>
-                            <li><span>Data</span><span>Raw Logs / Binary (0s & 1s)</span></li>
-                            <li><span>Info</span><span>`htop` output / Formatted Logs</span></li>
-                            <li><span>Knowledge</span><span>Troubleshooting High Load</span></li>
-                            <li><span>Wisdom</span><span>System Hardening</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Gap Analysis -->
-        <div>
-            <div></div>
-<div class="tile tile-wide"><h2>What is a Knowledge Gap?</h2><p>It is the difference between what you <span>know</span> and what you <span>need to know</span> to solve a problem.</p>
+  <div class="tile"><h2>What is a Knowledge Gap?</h2><p>It is the difference between what you <span>know</span> and what you <span>need to know</span> to solve a problem.</p>
                 <div>
                     <div>
                         <h4><i></i>Everyday Example:</h4>
-                        <p>You want to cook Thai food but only know how to make sandwiches. The gap is the spices and techniques you haven't learned.</p>
-                    </div>
-                    <div>
-                        <h4><i></i>Cybersecurity Example:</h4>
-                        <p>Attackers exploit gaps like zero-day vulnerabilities. Defenders must continuously learn to close them.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer>
-            <div>
-                <div>
-                    <h3><i></i>For Students</h3>
-                    <ul>
-                        <li><i></i><span>Build a strong foundation first</span></li>
-                        <li><i></i><span>Practice relentlessly (Hands-on)</span></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3><i></i>For Teachers</h3>
-                    <ul>
-                        <li><i></i><span>Use real-world examples</span></li>
-                        <li><i></i><span>Teach "how to learn"</span></li>
-                    </ul>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-
-    <!-- ==========================================
-         SINHALA CONTENT 
-    ========================================== -->
-    <div id="content-si">
-        <!-- Navbar -->
-        <nav>
-            <div>
-                <div>
-                    <div>
-                        <i></i>
-                        <span>Knowledge<span>Guide</span></span>
-                    </div>
-                    <div>
-                        <a href="#si-definition">DIKW ආකෘතිය</a>
-                        <a href="#si-types">වර්ග</a>
-                        <a href="#si-ladder">ඉගෙනුම් ඉණිමග</a>
-                        <a href="#si-cycle">චක්‍රය</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Hero Section -->
-        <header>
-            <div>
-                <span>
-                    සිසුන් සහ ගුරුවරුන් සඳහා සරල මාර්ගෝපදේශයකි
-                </span>
-                <h1>
-                    දැනුම <span>අවබෝධ කරගැනීම</span>
-                </h1>
-                <p>
-                    දැනුම ආහාර පිසීම වැනිය. දත්ත යනු අමුද්‍රව්‍යයි, තොරතුරු යනු වට්ටෝරුවයි, ප්‍රඥාව යනු කේක් එකක් සාදනවාද නැත්නම් කුකීස් සාදනවාද යන්න තීරණය කිරීමයි.
-                </p>
-                <div>
-                    <a href="#si-definition">
-                        ඉගෙනීම අරඹන්න
-                    </a>
-                    <a href="#si-analogies">
-                        උදාහරණ බලන්න
-                    </a>
-                </div>
-            </div>
-        </header>
-
-        <!-- Section 1: DIKW Pyramid -->
-        <div id="si-definition">
-            <div>
-                <div></div>
-<div class="tile"><h2>DIKW පිරමීඩය</h2><p>වටිනාකමේ ධුරාවලිය: දත්තවල සිට ව්‍යවහාරික විනිශ්චය දක්වා.</p>
+                        <p>You want to cook Thai food but only know how to make sandwiches. The gap is the spices and techniques you haven't learned.</p></div>
+  <div class="tile"><h2>DIKW පිරමීඩය</h2><p>වටිනාකමේ ධුරාවලිය: දත්තවල සිට ව්‍යවහාරික විනිශ්චය දක්වා.</p>
                     
                     <div>
                         <div>
                             <div><i></i></div>
-                            <div><h3>Wisdom (ප්‍රඥාව)</h3><p>ව්‍යවහාරික විනිශ්චය. දැනුම භාවිතා කළ යුත්තේ "කවදාද" සහ "ඇයි" දැයි දැන ගැනීම.</p></div>
-                        </div>
-                        <div>
-                            <div><i></i></div>
-                            <div><h3>Knowledge (දැනුම)</h3><p>අවබෝධය සහ සන්දර්භය. "එය ක්‍රියා කරන ආකාරය".</p></div>
-                        </div>
-                        <div>
-                            <div><i></i></div>
-                            <div><h3>Information (තොරතුරු)</h3><p>අර්ථයක් සහිත දත්ත. "ඉන් අදහස් වන්නේ කුමක්ද යන්න."</p></div>
-                        </div>
-                        <div>
-                            <div><i></i></div>
-                            <div><h3>Data (දත්ත)</h3><p>අමු දත්ත සහ සංඛ්‍යා. මූලික ගොඩනැගුම් ඒකක.</p></div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div><div><i></i><span>Wisdom</span></div></div>
-                    <div><div><i></i><span>Knowledge</span></div></div>
-                    <div><div><i></i><span>Information</span></div></div>
-                    <div><div><i></i><span>Data</span></div></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section 2: 10 Types of Knowledge -->
-        <div id="si-types">
-            <div>
-                <div>
-                    <span>වර්ගීකරණය</span></div>
-<div class="tile tile-wide"><h2>දැනුම වර්ග 10ක්</h2><p>අප දන්නා දේ ගබඩා කරන, ප්‍රවේශ වන සහ ඔප්පු කරන විවිධ ක්‍රම.</p>
-                </div>
-
-                <div>
-                    <div>
+  <div class="tile"><h2>දැනුම වර්ග 10ක්</h2><p>අප දන්නා දේ ගබඩා කරන, ප්‍රවේශ වන සහ ඔප්පු කරන විවිධ ක්‍රම.</p></div>
+  <div class="tile"><h2>ඉගෙනුම් ඉණිමග</h2><p>මූලික විධානවල සිට ස්වයංක්‍රීයකරණ විශිෂ්ටත්වය දක්වා නැගීම.</p></div>
+  <div class="tile"><h2>දැනුම කළමනාකරණ චක්‍රය</h2><div>
                         <div><i></i></div>
-                        <h3>Explicit (ලිඛිත/පැහැදිලි)</h3>
-                        <p>ලියා ඇති, බෙදා ගැනීමට පහසු. ලේඛන සහ දත්ත සමුදායන්.</p>
-                        <ul><li><i></i> ආරක්ෂක ප්‍රතිපත්ති</li><li><i></i> Linux Man Pages</li></ul>
-                    </div>
-                    <div>
-                        <div><i></i></div>
-                        <h3>Tacit (ව්‍යංග/අත්දැකීම්)</h3>
-                        <p>අත්දැකීම් මත පදනම් වූ, විස්තර කිරීමට අපහසු. බුද්ධිය සහ මානසිකත්වය.</p>
-                        <ul><li><i></i> තර්ජන හඳුනාගැනීමේ ඉව</li><li><i></i> දෝෂ (Bug) සෙවීමේ හැකියාව</li></ul>
-                    </div>
-                    <div>
-                        <div><i></i></div>
-                        <h3>Procedural (ක්‍රියා පටිපාටි)</h3>
-                        <p>පියවරෙන් පියවර "කළ යුතු ආකාරය". Scripts සහ ක්‍රියාවලීන්.</p>
-                        <ul><li><i></i> සිද්ධි ප්‍රතිචාර සැලසුම්</li><li><i></i> Bash Scripts</li></ul>
-                    </div>
-                    <div>
-                        <div><i></i></div>
-                        <h3>Declarative (ප්‍රකාශිත)</h3>
-                        <p>කරුණු සහ නිර්වචන. යමක් සත්‍ය බව "දැන සිටීම".</p>
-                        <ul><li><i></i> OSI ආකෘතියේ ස්ථර</li><li><i></i> SSH යනු Port 22 වේ</li></ul>
-                    </div>
-                    <div>
-                        <div><i></i></div>
-                        <h3>Empirical (ආනුභවික)</h3>
-                        <p>නිරීක්ෂණ සහ දත්ත විශ්ලේෂණය තුළින් ලබාගත් දැනුම.</p>
-                        <ul><li><i></i> සේවාදායක ලොග් විශ්ලේෂණය</li><li><i></i> Pen-testing සොයාගැනීම්</li></ul>
-                    </div>
-                    <div>
-                        <div><i></i></div>
-                        <h3>Theoretical (න්‍යායික)</h3>
-                        <p>වියුක්ත මූලධර්ම සහ ආකෘති. තාක්ෂණය පිටුපස ඇති "ඇයි" යන්න.</p>
-                        <ul><li><i></i> ගුප්තකේතන ගණිතය (Encryption)</li><li><i></i> Big O සංකීර්ණත්වය</li></ul>
-                    </div>
-                    <div>
-                        <div><i></i></div>
-                        <h3>Practical (ප්‍රායෝගික)</h3>
-                        <p>අත්දැකීම් සහිත කුසලතා. භෞතිකව හෝ සෘජුවම භාවිතා කිරීම.</p>
-                        <ul><li><i></i> Ethernet කේබල් සකස් කිරීම</li><li><i></i> සර්වර් (Servers) සවිකිරීම</li></ul>
-                    </div>
-                    <div>
-                        <div><i></i></div>
-                        <h3>A Priori (පූර්ව නිගමන)</h3>
-                        <p>අත්දැකීම් වලින් ස්වායක්තව ලබාගත් දැනුම. තර්කානුකූල නිගමන.</p>
-                        <ul><li><i></i> Boolean තර්කනය</li><li><i></i> Subnetting තර්කනය</li></ul>
-                    </div>
-                    <div>
-                        <div><i></i></div>
-                        <h3>A Posteriori (පශ්චාත් නිගමන)</h3>
-                        <p>අත්දැකීම් හෝ සාක්ෂි මත පදනම් වූ දැනුම.</p>
-                        <ul><li><i></i> "මේ සර්වර් එක වැඩ නැහැ"</li><li><i></i> Forensic සාක්ෂි</li></ul>
-                    </div>
-                    <div>
-                        <div><i></i></div>
-                        <h3>Linguistic (භාෂාමය)</h3>
-                        <p>වාක්‍ය ඛණ්ඩ, සංකේත සහ භාෂා ව්‍යුහයන් අවබෝධ කර ගැනීම.</p>
-                        <ul><li><i></i> Code Syntax</li><li><i></i> Regex රටා</li></ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section 3: Learning Ladder -->
-        <div id="si-ladder">
-            
-            <div>
-                <div>
-                    <span>Bloom's Taxonomy</span></div>
-<div class="tile"><h2>ඉගෙනුම් ඉණිමග</h2><p>මූලික විධානවල සිට ස්වයංක්‍රීයකරණ විශිෂ්ටත්වය දක්වා නැගීම.</p>
-                </div>
-
-                <div>
-                    <!-- Step 6 -->
-                    <div>
-                        <div>
-                            <h3><i></i>6. CREATE (නිර්මාණය)</h3>
-                            <p>මෙවලමක් සාදන්න. සම්පූර්ණ පද්ධති නිරීක්ෂණ කට්ටලයක්.</p>
-                        </div>
-                    </div>
-                    <!-- Step 5 -->
-                    <div>
-                        <div>
-                            <h3><i></i>5. EVALUATE (ඇගයීම)</h3>
-                            <p>කේත සමාලෝචනය (Code Review). මෙම script එක ආරක්ෂිතද?</p>
-                        </div>
-                    </div>
-                    <!-- Step 4 -->
-                    <div>
-                        <div>
-                            <h3><i></i>4. ANALYZE (විශ්ලේෂණය)</h3>
-                            <p>දෝෂ නිරාකරණය (Debugging). Cron job එක අසාර්ථක වූයේ ඇයි?</p>
-                        </div>
-                    </div>
-                    <!-- Step 3 -->
-                    <div>
-                        <div>
-                            <h3><i></i>3. APPLY (යෙදීම)</h3>
-                            <p>Scripting. ලිපිගොනු backup කිරීමට bash script එකක් ලිවීම.</p>
-                        </div>
-                    </div>
-                    <!-- Step 2 -->
-                    <div>
-                        <div>
-                            <h3><i></i>2. UNDERSTAND (අවබෝධය)</h3>
-                            <p>කේත රීති සහ තර්කනය. Loops ක්‍රියා කරන්නේ කෙසේද?</p>
-                        </div>
-                    </div>
-                    <!-- Step 1 -->
-                    <div>
-                        <div>
-                            <h3><i></i>1. REMEMBER (මතකය)</h3>
-                            <p>විධාන. `ls`, `grep`, `chmod`.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section 4: KM Cycle -->
-        <div id="si-cycle">
-            <div></div>
-<div class="tile"><h2>දැනුම කළමනාකරණ චක්‍රය</h2><div>
-                    
-                    <div>
-                        <div><i></i></div>
-                        <div><h4>1. CAPTURE</h4><p>ග්‍රහණය කරගැනීම</p></div>
-                    </div>
-                    <div>
-                        <div><i></i></div>
-                        <div><h4>2. STORE</h4><p>ගබඩා කිරීම</p></div>
-                    </div>
-                    <div>
-                        <div><i></i></div>
-                        <div><h4>3. SHARE</h4><p>බෙදාහදා ගැනීම</p></div>
-                    </div>
-                    <div>
-                        <div><i></i></div>
-                        <div><h4>4. UPDATE</h4><p>යාවත්කාලීන කිරීම</p></div>
-                    </div>
-                    <div>
-                        <div><i></i></div>
-                        <div><h4>5. PROTECT</h4><p>ආරක්ෂා කිරීම</p></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Analogies Section -->
-        <div id="si-analogies">
-            <div></div>
-<div class="tile"><h2>අවබෝධය සඳහා උදාහරණ</h2><div>
-                    <!-- Cooking -->
+  <div class="tile"><h2>අවබෝධය සඳහා උදාහරණ</h2><!-- Cooking -->
                     <div>
                         <div>
                             <div><i></i></div>
-                            <h3>ආහාර පිසීම</h3>
-                        </div>
-                        <ul>
-                            <li><span>Data</span><span>අමුද්‍රව්‍ය (පිටි, බිත්තර)</span></li>
-                            <li><span>Info</span><span>වට්ටෝරුව (Recipe)</span></li>
-                            <li><span>Knowledge</span><span>එය පිපෙන්නේ ඇයිදැයි දැන ගැනීම</span></li>
-                            <li><span>Wisdom</span><span>වෙනුවට කුකීස් සෑදිය යුත්තේ කවදාදැයි දැන ගැනීම</span></li>
-                        </ul>
-                    </div>
-                    <!-- Linux -->
-                    <div>
-                        <div>
-                            <div><i></i></div>
-                            <h3>Linux පද්ධතිය</h3>
-                        </div>
-                        <ul>
-                            <li><span>Data</span><span>අමු ලොග් (0 සහ 1)</span></li>
-                            <li><span>Info</span><span>`htop` / සැකසූ ලොග්</span></li>
-                            <li><span>Knowledge</span><span>අධික CPU භාරය විසඳීම</span></li>
-                            <li><span>Wisdom</span><span>පද්ධති ආරක්ෂණය</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Gap Analysis -->
-        <div>
-            <div></div>
-<div class="tile"><h2>දැනුම පරතරයක් යනු කුමක්ද?</h2><p>එය ගැටලුවක් විසඳීමට ඔබ <span>දන්නා දේ</span> සහ ඔබ <span>දැනගත යුතු දේ</span> අතර වෙනසයි.</p>
+  <div class="tile"><h2>දැනුම පරතරයක් යනු කුමක්ද?</h2><p>එය ගැටලුවක් විසඳීමට ඔබ <span>දන්නා දේ</span> සහ ඔබ <span>දැනගත යුතු දේ</span> අතර වෙනසයි.</p>
                 <div>
                     <div>
                         <h4><i></i>එදිනෙදා උදාහරණයක්:</h4>
-                        <p>ඔබට තායි ආහාර පිසීමට අවශ්‍ය නමුත් ඔබ දන්නේ සැන්ඩ්විච් සාදා ගන්නේ කෙසේද යන්න පමණි. පරතරය යනු ඔබ තවමත් ඉගෙන ගෙන නැති කුළුබඩු, ක්‍රම සහ වට්ටෝරු වේ.</p>
-                    </div>
-                    <div>
-                        <h4><i></i>සයිබර් ආරක්ෂණ උදාහරණයක්:</h4>
-                        <p>ප්‍රහාරකයින් දැනුම හිඩැස් (zero-day vulnerabilities) ගසාකයි. මෙම හිඩැස් වැසීම සඳහා ආරක්ෂකයින් නව තර්ජන ගැන ඉගෙන ගත යුතුය.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer>
-            <div>
-                <div>
-                    <h3><i></i>සිසුන් සඳහා</h3>
-                    <ul>
-                        <li><i></i><span>පළමුව ශක්තිමත් පදනමක් ගොඩනඟා ගන්න</span></li>
-                        <li><i></i><span>නිරන්තරයෙන් පුහුණු වන්න (Hands-on)</span></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3><i></i>ගුරුවරුන් සඳහා</h3>
-                    <ul>
-                        <li><i></i><span>සැබෑ ලෝකයේ උදාහරණ භාවිතා කරන්න</span></li>
-                        <li><i></i><span>"ඉගෙන ගන්නේ කෙසේද" යන්න උගන්වන්න</span></li>
-                    </ul>
-                </div>
-            </div>
-            <div>
-                <p>hackandbuild.dev අන්තර්ගතය පදනම් කරගෙන ජනනය කරන ලදී</p>
-            </div>
-        </footer>
-    </div>
-</div>
-<footer>Hack and Build © 2025 — MIT License</footer></div>
+                        <p>ඔබට තායි ආහාර පිසීමට අවශ්‍ය නමුත් ඔබ දන්නේ සැන්ඩ්විච් සාදා ගන්නේ කෙසේද යන්න පමණි. පරතරය යනු ඔබ තවමත් ඉගෙන ගෙන නැති කුළුබඩු, ක්‍රම සහ වට්ටෝරු වේ.</p></div>
 </div>
 </div>
 <footer>Hack and Build © 2025 — MIT License</footer>
