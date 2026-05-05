@@ -20,7 +20,6 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-/* Terminal nav */
 .term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 100; }
 .term-dot { width: 10px; height: 10px; border-radius: 50%; opacity: 0.6; }
 .term-dot.r { background: var(--error); }
@@ -29,17 +28,13 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .term-bar a { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
 .term-bar a:hover { color: var(--accent); }
 
-/* Layout */
 .container { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
-
-/* Page title */
 .page-title { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
 .page-sub { color: var(--dim); font-size: 0.95rem; margin-bottom: 2.5rem; }
 
 /* TILE GRID */
-.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; }
+.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1rem; }
 
-/* Tile card */
 .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: border-color 0.3s ease; }
 .tile:hover { border-color: rgba(255,255,255,0.15); }
 .tile h2 { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
@@ -55,20 +50,11 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .tile th, .tile td { padding: 0.4rem 0.5rem; text-align: left; border-bottom: 1px solid var(--border); }
 .tile th { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; font-size: 0.8rem; }
 
-/* Full width tiles for large content */
 .tile-wide { grid-column: 1 / -1; }
-
-/* Tag/badge inside tiles */
-.tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; color: var(--dim); margin-bottom: 0.5rem; }
 
 footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; color: var(--dim); border-top: 1px solid var(--border); margin-top: 3rem; font-family: 'JetBrains Mono', monospace; }
 
-@media (max-width: 600px) {
-  .container { padding: 2rem 1rem; }
-  .tile-grid { grid-template-columns: 1fr; }
-  .page-title { font-size: 1.3rem; }
-}
-
+@media (max-width: 600px) { .container { padding: 2rem 1rem; } .tile-grid { grid-template-columns: 1fr; } .page-title { font-size: 1.3rem; } }
 </style>
 </head>
 <body>
@@ -79,96 +65,10 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
   <a href="/">← hackandbuild.dev</a>
 </div>
 <div class="container">
-  <div class="page-title">A Simple Guide: ChatGPT vs. Perplexity vs. Gemini vs. Claude vs. DeepSeek vs. Qwen</div>
-<div class="page-sub">Blog &gt; Comparison</div>
+  <div class="page-title">AI Comparison: ChatGPT vs Perplexity vs Gemini vs Claude vs DeepSeek vs Qwen</div>
+<div class="page-sub">This is the famous "all-around" AI. It's known for being very creative, helping you write code, and having natural, human-like conversations. It can also understand images, hear, and talk back to you.</div>
 <div class="tile-grid">
-<div class="tile tile-wide"><h2>Quick Comparison Table</h2><div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Feature</th>
-                                <th>ChatGPT</th>
-                                <th>Perplexity</th>
-                                <th>Gemini</th>
-                                <th>Claude</th>
-                                <th>DeepSeek</th>
-                                <th>Qwen</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Best For</td>
-                                <td>Creativity & Chat</td>
-                                <td>Research & Facts</td>
-                                <td>Google Integration</td>
-                                <td>Reading Long Docs</td>
-                                <td>Coding & Math</td>
-                                <td>Multilingual Tasks</td>
-                            </tr>
-                            <tr>
-                                <td>Shows Sources?</td>
-                                <td>No</td>
-                                <td>Yes</td>
-                                <td>Sometimes</td>
-                                <td>No</td>
-                                <td>No</td>
-                                <td>No</td>
-                            </tr>
-                            <tr>
-                                <td>Live Web Access</td>
-                                <td>Yes (Paid)</td>
-                                <td>Yes (Always)</td>
-                                <td>Yes (Always)</td>
-                                <td>Yes (Paid)</td>
-                                <td>No</td>
-                                <td>Yes (Paid)</td>
-                            </tr>
-                            <tr>
-                                <td>Specialty</td>
-                                <td>Human-like chat</td>
-                                <td>Factual answers</td>
-                                <td>"All-in-one" Google tool</td>
-                                <td>Safe & thoughtful writing</td>
-                                <td>Open-source code logic</td>
-                                <td>"Sees" images, many languages</td>
-                            </tr>
-                            <tr>
-                                <td>Context Window (Memory)</td>
-                                <td>128K tokens</td>
-                                <td>N/A (Uses other models)</td>
-                                <td>1M+ tokens</td>
-                                <td>200K tokens</td>
-                                <td>128K tokens</td>
-                                <td>128K+ tokens</td>
-                            </tr>
-                            <tr>
-                                <td>Understands Images?</td>
-                                <td>Yes</td>
-                                <td>Yes</td>
-                                <td>Yes</td>
-                                <td>Yes</td>
-                                <td>No</td>
-                                <td>Yes</td>
-                            </tr>
-                            <tr>
-                                <td>Open-Source?</td>
-                                <td>No</td>
-                                <td>No</td>
-                                <td>No</td>
-                                <td>No</td>
-                                <td>Yes (Lite)</td>
-                                <td>Yes (Smaller)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Detailed Breakdowns -->
-
-            <!-- ChatGPT -->
-            <div></div>
-<div class="tile"><h2>What is ChatGPT (from OpenAI)?</h2><p>This is the famous "all-around" AI. It's known for being very creative, helping you write code, and having natural, human-like conversations. It can also understand images, hear, and talk back to you.</p>
+  <div class="tile"><h2>What is ChatGPT (from OpenAI)?</h2><p>This is the famous "all-around" AI. It's known for being very creative, helping you write code, and having natural, human-like conversations. It can also understand images, hear, and talk back to you.</p>
                 
                 <h3>Pros</h3>
                 <ul>
@@ -184,12 +84,8 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                 </ul>
 
                 <h3>Pricing</h3>
-                <p>Offers a powerful free version. A paid "Plus" plan (around $20/month) gives access to the newest models (like GPT-4o) and faster speeds.</p>
-            </div>
-
-            <!-- Perplexity -->
-            <div></div>
-<div class="tile"><h2>What is Perplexity?</h2><p>This is the "answer engine." This AI is built to search the web and give you direct answers. Its best feature is that it shows you its sources (links to websites) so you know where the information came from. It's perfect for research and getting up-to-date facts.</p>
+                <p>Offers a powerful free version. A paid "Plus" plan (around $20/month) gives access to the newest models (like GPT-4o) and faster speeds.</p></div>
+  <div class="tile"><h2>What is Perplexity?</h2><p>This is the "answer engine." This AI is built to search the web and give you direct answers. Its best feature is that it shows you its sources (links to websites) so you know where the information came from. It's perfect for research and getting up-to-date facts.</p>
                 
                 <h3>Pros</h3>
                 <ul>
@@ -205,12 +101,8 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                 </ul>
 
                 <h3>Pricing</h3>
-                <p>Has a great free version. The "Pro" plan (around $20/month) lets you use more advanced models like Claude 3 and GPT-4 for deeper answers.</p>
-            </div>
-
-            <!-- Gemini -->
-            <div></div>
-<div class="tile"><h2>What is Gemini (from Google)?</h2><p>This is Google's powerful AI. It's built right into Google Search and other Google products (like Docs and Gmail). Its biggest strength is its giant "memory" (context window) and its direct connection to Google's live web information.</p>
+                <p>Has a great free version. The "Pro" plan (around $20/month) lets you use more advanced models like Claude 3 and GPT-4 for deeper answers.</p></div>
+  <div class="tile"><h2>What is Gemini (from Google)?</h2><p>This is Google's powerful AI. It's built right into Google Search and other Google products (like Docs and Gmail). Its biggest strength is its giant "memory" (context window) and its direct connection to Google's live web information.</p>
                 
                 <h3>Pros</h3>
                 <ul>
@@ -226,12 +118,8 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                 </ul>
 
                 <h3>Pricing</h3>
-                <p>A very powerful version is free (Gemini 1.5 Flash). The most powerful models are available with the "Gemini Advanced" subscription.</p>
-            </div>
-
-            <!-- Claude -->
-            <div></div>
-<div class="tile"><h2>What is Claude (from Anthropic)?</h2><p>This is the "safe and thoughtful" AI. It's known for being very good at understanding long and difficult documents (like legal contracts or whole books). It writes in a very clear, reliable, and friendly way, and it's designed to be extra safe and helpful.</p>
+                <p>A very powerful version is free (Gemini 1.5 Flash). The most powerful models are available with the "Gemini Advanced" subscription.</p></div>
+  <div class="tile"><h2>What is Claude (from Anthropic)?</h2><p>This is the "safe and thoughtful" AI. It's known for being very good at understanding long and difficult documents (like legal contracts or whole books). It writes in a very clear, reliable, and friendly way, and it's designed to be extra safe and helpful.</p>
                 
                 <h3>Pros</h3>
                 <ul>
@@ -247,12 +135,8 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                 </ul>
 
                 <h3>Pricing</h3>
-                <p>Offers a great free version (Claude 3.5 Sonnet). The "Pro" plan (around $20/month) gives you access to their top models and more usage.</p>
-            </div>
-
-            <!-- DeepSeek -->
-            <div></div>
-<div class="tile"><h2>What is DeepSeek?</h2><p>This is the "coder's AI." It's an open-source model that is specially trained to be amazing at writing and understanding computer code and math. It's known for its powerful logical reasoning abilities.</p>
+                <p>Offers a great free version (Claude 3.5 Sonnet). The "Pro" plan (around $20/month) gives you access to their top models and more usage.</p></div>
+  <div class="tile"><h2>What is DeepSeek?</h2><p>This is the "coder's AI." It's an open-source model that is specially trained to be amazing at writing and understanding computer code and math. It's known for its powerful logical reasoning abilities.</p>
                 
                 <h3>Pros</h3>
                 <ul>
@@ -269,12 +153,8 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                 </ul>
 
                 <h3>Pricing</h3>
-                <p>Free to use as it is open-source. Using it requires technical knowledge and your own computer (or a paid hosting service).</p>
-            </div>
-
-            <!-- Qwen -->
-            <div></div>
-<div class="tile"><h2>What is Qwen (from Alibaba)?</h2><p>This is a powerful "all-in-one" AI from the tech giant Alibaba. It's a strong competitor to ChatGPT and Gemini. It's "multimodal," meaning it can understand text, pictures, and sound all at once, and it's especially good at understanding many different languages.</p>
+                <p>Free to use as it is open-source. Using it requires technical knowledge and your own computer (or a paid hosting service).</p></div>
+  <div class="tile"><h2>What is Qwen (from Alibaba)?</h2><p>This is a powerful "all-in-one" AI from the tech giant Alibaba. It's a strong competitor to ChatGPT and Gemini. It's "multimodal," meaning it can understand text, pictures, and sound all at once, and it's especially good at understanding many different languages.</p>
                 
                 <h3>Pros</h3>
                 <ul>
@@ -290,12 +170,8 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                 </ul>
 
                 <h3>Pricing</h3>
-                <p>It has a mixed model. Smaller versions are open-source (free for developers), while the most powerful models are accessed via Alibaba's paid API.</p>
-            </div>
-
-            <!-- Section 5: Conclusion -->
-            <div></div>
-<div class="tile"><h2>Which AI is Best for Me?</h2><p>There is no single "best" AI. The best one depends on what you want to do.</p>
+                <p>It has a mixed model. Smaller versions are open-source (free for developers), while the most powerful models are accessed via Alibaba's paid API.</p></div>
+  <div class="tile"><h2>Which AI is Best for Me?</h2><p>There is no single "best" AI. The best one depends on what you want to do.</p>
                 <ul>
                     <li>
                         <span>For Creative Writing & Chat:</span>
@@ -320,13 +196,7 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                 </ul>
                 <p>
                     The best way to find your favorite is to try them all. Since most have great free versions, you can ask them all the same question and see which one gives you the best answer for your needs.
-                </p>
-            </div>
-
-        </div>
-    </div>
-</div>
-<footer>Hack and Build © 2025 — MIT License</footer></div>
+                </p></div>
 </div>
 </div>
 <footer>Hack and Build © 2025 — MIT License</footer>
