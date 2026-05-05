@@ -1,186 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Understanding Knowledge / දැනුම අවබෝධ කරගැනීම</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;600;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
-                        sinhala: ['"Noto Sans Sinhala"', 'Outfit', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            light: '#f0f9ff',
-                            primary: '#0ea5e9',
-                            dark: '#0f172a',
-                            accent: '#f59e0b'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-     <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-X70YJR4WSV');
-</script>
-    <style>
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-        }
-        
-        .pyramid-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Understanding Knowledge / දැනුම අවබෝධ කරගැනීම</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root { --bg: #060606; --surface: #0a0a0a; --text: #e2e8f0; --dim: #64748b; --accent: #00ff88; --border: #1e293b; --error: #ff3366; --warn: #fbbf24; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+.term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); }
+.term-dot { width: 10px; height: 10px; border-radius: 50%; opacity: 0.6; }
+.term-dot.r { background: var(--error); }
+.term-dot.y { background: var(--warn); }
+.term-dot.g { background: var(--accent); }
+.term-bar a { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.term-bar a:hover { color: var(--accent); }
+.container { max-width: 900px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+h1, h2, h3, h4 { font-family: 'JetBrains Mono', monospace; font-weight: 600; letter-spacing: -0.01em; }
+h1 { font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--accent); }
+h2 { font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--text); }
+h3 { font-size: 1.05rem; margin: 1.5rem 0 0.75rem; color: var(--warn); }
+p { margin-bottom: 1rem; color: var(--dim); }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul, ol { margin: 1rem 0 1rem 1.5rem; color: var(--dim); }
+li { margin: 0.35rem 0; }
+code { font-family: 'JetBrains Mono', monospace; background: var(--surface); border: 1px solid var(--border); padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; color: var(--accent); }
+pre { background: var(--surface); border: 1px solid var(--border); padding: 1rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+pre code { background: none; border: none; padding: 0; color: var(--text); }
+img { max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+th, td { padding: 0.6rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin: 1rem 0; }
+.card h3 { margin-top: 0; }
+hr { border: none; border-top: 1px dashed var(--border); margin: 2rem 0; }
+footer { text-align: center; padding: 2rem; font-size: 0.75rem; color: var(--dim); border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; }
+@media (max-width: 600px) { .container { padding: 2rem 1rem; } h1 { font-size: 1.4rem; } }
 
-        .pyramid-level {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            cursor: default;
-            position: relative;
-            clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
-        }
-
-        .pyramid-level:hover {
-            transform: scale(1.02);
-            z-index: 10;
-        }
-
-        /* Ladder Styling */
-        .ladder-step {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        .ladder-step:hover {
-            transform: translateX(10px);
-        }
-        .ladder-step::before {
-            content: '';
-            position: absolute;
-            left: -20px;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: #e2e8f0;
-        }
-        .ladder-step::after {
-            content: '';
-            position: absolute;
-            left: -26px;
-            top: 50%;
-            width: 16px;
-            height: 16px;
-            background: #0ea5e9;
-            border-radius: 50%;
-            transform: translateY(-50%);
-            border: 4px solid white;
-        }
-
-        /* Cycle Animation */
-        .cycle-item {
-            transition: all 0.3s ease;
-        }
-        .cycle-item:hover .icon-box {
-            transform: rotate(360deg);
-            background-color: #0ea5e9;
-            color: white;
-        }
-
-        .hero-pattern {
-            background-color: #0f172a;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e293b' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-        
-        /* Language Tab Styles */
-        .lang-tab {
-            @apply px-6 py-2 rounded-t-lg font-bold transition-all duration-300;
-        }
-        .lang-tab.active {
-            @apply bg-white text-brand-primary border-t-4 border-brand-primary shadow-lg;
-        }
-        .lang-tab.inactive {
-            @apply bg-slate-200 text-slate-500 hover:bg-slate-300;
-        }
-    </style>
+</style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans">
-
-    <!-- Language Selection Tabs -->
-    <div class="fixed top-0 left-0 right-0 z-[60] bg-slate-100 border-b border-slate-200 shadow-sm h-14">
-        <div class="max-w-6xl mx-auto px-4 h-full flex items-end gap-2">
-            <button id="btn-en" onclick="switchLang('en')" class="px-6 py-2 rounded-t-lg font-bold transition-all duration-300 bg-white text-brand-primary border-t-4 border-brand-primary shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] translate-y-px">
+<body>
+<div class="term-bar">
+  <div class="term-dot r"></div>
+  <div class="term-dot y"></div>
+  <div class="term-dot g"></div>
+  <a href="/">← hackandbuild.dev</a>
+</div>
+<div class="container">
+<!-- Language Selection Tabs -->
+    <div>
+        <div>
+            <button id="btn-en" onclick="switchLang('en')">
                 🇺🇸 English
             </button>
-            <button id="btn-si" onclick="switchLang('si')" class="px-6 py-2 rounded-t-lg font-bold transition-all duration-300 bg-slate-200 text-slate-500 hover:bg-slate-300 translate-y-px">
+            <button id="btn-si" onclick="switchLang('si')">
                 🇱🇰 සිංහල
             </button>
         </div>
     </div>
 
     <!-- Padding for fixed header -->
-    <div class="h-14"></div>
+    
 
     <!-- ==========================================
          ENGLISH CONTENT 
     ========================================== -->
-    <div id="content-en" class="block">
+    <div id="content-en">
         <!-- Navbar -->
-        <nav class="sticky top-14 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-center h-16">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-brain text-brand-primary text-2xl"></i>
-                        <span class="font-bold text-xl tracking-tight text-slate-900">Knowledge<span class="text-brand-primary">Guide</span></span>
+        <nav>
+            <div>
+                <div>
+                    <div>
+                        <i></i>
+                        <span>Knowledge<span>Guide</span></span>
                     </div>
-                    <div class="hidden md:flex gap-6 text-sm font-semibold text-slate-600">
-                        <a href="#en-definition" class="hover:text-brand-primary transition">DIKW Model</a>
-                        <a href="#en-types" class="hover:text-brand-primary transition">Types</a>
-                        <a href="#en-ladder" class="hover:text-brand-primary transition">Learning Ladder</a>
-                        <a href="#en-cycle" class="hover:text-brand-primary transition">Cycle</a>
+                    <div>
+                        <a href="#en-definition">DIKW Model</a>
+                        <a href="#en-types">Types</a>
+                        <a href="#en-ladder">Learning Ladder</a>
+                        <a href="#en-cycle">Cycle</a>
                     </div>
                 </div>
             </div>
         </nav>
 
         <!-- Hero Section -->
-        <header class="hero-pattern text-white py-20 px-4 text-center">
-            <div class="max-w-4xl mx-auto">
-                <span class="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-300 text-sm font-semibold mb-4 border border-blue-500/30">
+        <header>
+            <div>
+                <span>
                     A Simple Guide for Students & Teachers
                 </span>
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                    Understanding <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Knowledge</span>
+                <h1>
+                    Understanding <span>Knowledge</span>
                 </h1>
-                <p class="text-lg md:text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+                <p>
                     Knowledge is like cooking. Data is the ingredients, Information is the recipe, and Wisdom is knowing when to bake the cake.
                 </p>
-                <div class="flex justify-center gap-4 flex-wrap">
-                    <a href="#en-definition" class="bg-brand-primary hover:bg-sky-600 text-white px-8 py-3 rounded-lg font-semibold transition shadow-lg shadow-sky-500/20">
+                <div>
+                    <a href="#en-definition">
                         Start Learning
                     </a>
-                    <a href="#en-analogies" class="bg-slate-700 hover:bg-slate-600 text-white px-8 py-3 rounded-lg font-semibold transition">
+                    <a href="#en-analogies">
                         View Analogies
                     </a>
                 </div>
@@ -188,321 +113,321 @@
         </header>
 
         <!-- Section 1: DIKW Pyramid -->
-        <section id="en-definition" class="py-20 px-4 bg-white">
-            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div class="card" id="en-definition">
+            <div>
                 <div>
-                    <h2 class="text-3xl font-bold mb-2">The DIKW Pyramid</h2>
-                    <p class="text-slate-600 mb-8">The hierarchy of value: moving from raw signals to applied judgment.</p>
+                    <h2>The DIKW Pyramid</h2>
+                    <p>The hierarchy of value: moving from raw signals to applied judgment.</p>
                     
-                    <div class="space-y-6">
-                        <div class="flex gap-4 items-start">
-                            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0 text-purple-600">
-                                <i class="fa-solid fa-scale-balanced text-xl"></i>
+                    <div>
+                        <div>
+                            <div>
+                                <i></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-lg text-slate-900">Wisdom</h3>
-                                <p class="text-slate-600 text-sm">Applied judgment. Knowing "when" and "why" to use knowledge.</p>
+                                <h3>Wisdom</h3>
+                                <p>Applied judgment. Knowing "when" and "why" to use knowledge.</p>
                             </div>
                         </div>
-                        <div class="flex gap-4 items-start">
-                            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 text-green-600">
-                                <i class="fa-solid fa-lightbulb text-xl"></i>
+                        <div>
+                            <div>
+                                <i></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-lg text-slate-900">Knowledge</h3>
-                                <p class="text-slate-600 text-sm">Understanding & Context. The "how it works" mechanics.</p>
+                                <h3>Knowledge</h3>
+                                <p>Understanding & Context. The "how it works" mechanics.</p>
                             </div>
                         </div>
-                        <div class="flex gap-4 items-start">
-                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 text-blue-600">
-                                <i class="fa-solid fa-chart-bar text-xl"></i>
+                        <div>
+                            <div>
+                                <i></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-lg text-slate-900">Information</h3>
-                                <p class="text-slate-600 text-sm">Data with meaning. "What it means."</p>
+                                <h3>Information</h3>
+                                <p>Data with meaning. "What it means."</p>
                             </div>
                         </div>
-                        <div class="flex gap-4 items-start">
-                            <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 text-red-600">
-                                <i class="fa-solid fa-database text-xl"></i>
+                        <div>
+                            <div>
+                                <i></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-lg text-slate-900">Data</h3>
-                                <p class="text-slate-600 text-sm">Raw facts and numbers. The building blocks.</p>
+                                <h3>Data</h3>
+                                <p>Raw facts and numbers. The building blocks.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="pyramid-container p-8 bg-slate-50 rounded-2xl border border-slate-100 shadow-inner">
-                    <div class="pyramid-level bg-gradient-to-r from-purple-500 to-indigo-600 w-32 h-20 shadow-lg z-40">
-                        <div class="flex flex-col items-center">
-                            <i class="fa-solid fa-crown mb-1 text-yellow-300"></i>
-                            <span class="text-xs tracking-widest uppercase">Wisdom</span>
+                <div>
+                    <div>
+                        <div>
+                            <i></i>
+                            <span>Wisdom</span>
                         </div>
                     </div>
-                    <div class="pyramid-level bg-gradient-to-r from-green-400 to-emerald-600 w-56 h-24 shadow-lg z-30 -mt-1">
-                        <div class="flex flex-col items-center">
-                            <i class="fa-solid fa-network-wired mb-1"></i>
-                            <span class="text-xs tracking-widest uppercase">Knowledge</span>
+                    <div>
+                        <div>
+                            <i></i>
+                            <span>Knowledge</span>
                         </div>
                     </div>
-                    <div class="pyramid-level bg-gradient-to-r from-blue-400 to-cyan-600 w-80 h-28 shadow-lg z-20 -mt-1">
-                        <div class="flex flex-col items-center">
-                            <i class="fa-solid fa-file-lines mb-1"></i>
-                            <span class="text-xs tracking-widest uppercase">Information</span>
+                    <div>
+                        <div>
+                            <i></i>
+                            <span>Information</span>
                         </div>
                     </div>
-                    <div class="pyramid-level bg-gradient-to-r from-red-400 to-rose-600 w-full max-w-sm h-32 shadow-lg z-10 -mt-1">
-                        <div class="flex flex-col items-center">
-                            <i class="fa-solid fa-binary mb-1"></i>
-                            <span class="text-xs tracking-widest uppercase">Data</span>
+                    <div>
+                        <div>
+                            <i></i>
+                            <span>Data</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Section 2: 10 Types of Knowledge -->
-        <section id="en-types" class="py-20 px-4 bg-slate-50">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-16">
-                    <span class="text-brand-primary font-bold tracking-wider uppercase text-sm">Classification</span>
-                    <h2 class="text-3xl md:text-4xl font-bold mt-2">10 Types of Knowledge</h2>
-                    <p class="text-slate-600 mt-4 max-w-2xl mx-auto">Different ways we store, access, and prove what we know, with examples from Tech & Security.</p>
+        <div class="card" id="en-types">
+            <div>
+                <div>
+                    <span>Classification</span>
+                    <h2>10 Types of Knowledge</h2>
+                    <p>Different ways we store, access, and prove what we know, with examples from Tech & Security.</p>
                 </div>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div>
                     <!-- Cards (Compact version for brevity, but all 10 are here) -->
                     <!-- Explicit -->
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white transition"><i class="fa-solid fa-book-open text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">Explicit</h3>
-                        <p class="text-slate-500 text-sm mb-4">Codified, written down. Documents and databases.</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-shield-halved mr-1 text-blue-500"></i> Security Policies</li><li><i class="fa-brands fa-linux mr-1 text-blue-500"></i> Linux Man Pages</li></ul>
+                    <div>
+                        <div><i></i></div>
+                        <h3>Explicit</h3>
+                        <p>Codified, written down. Documents and databases.</p>
+                        <ul><li><i></i> Security Policies</li><li><i></i> Linux Man Pages</li></ul>
                     </div>
                     <!-- Tacit -->
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600 mb-4 group-hover:bg-purple-600 group-hover:text-white transition"><i class="fa-solid fa-user-secret text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">Tacit</h3>
-                        <p class="text-slate-500 text-sm mb-4">Experience-based. Intuition and mindset.</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-radar mr-1 text-purple-500"></i> Threat Hunting</li><li><i class="fa-solid fa-bug mr-1 text-purple-500"></i> Debugging Sense</li></ul>
+                    <div>
+                        <div><i></i></div>
+                        <h3>Tacit</h3>
+                        <p>Experience-based. Intuition and mindset.</p>
+                        <ul><li><i></i> Threat Hunting</li><li><i></i> Debugging Sense</li></ul>
                     </div>
                     <!-- Procedural -->
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600 mb-4 group-hover:bg-amber-600 group-hover:text-white transition"><i class="fa-solid fa-terminal text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">Procedural</h3>
-                        <p class="text-slate-500 text-sm mb-4">Step-by-step "how to". Scripts and processes.</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-list-check mr-1 text-amber-500"></i> Incident Response</li><li><i class="fa-solid fa-play mr-1 text-amber-500"></i> Bash Scripts</li></ul>
+                    <div>
+                        <div><i></i></div>
+                        <h3>Procedural</h3>
+                        <p>Step-by-step "how to". Scripts and processes.</p>
+                        <ul><li><i></i> Incident Response</li><li><i></i> Bash Scripts</li></ul>
                     </div>
                     <!-- Declarative -->
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 mb-4 group-hover:bg-emerald-600 group-hover:text-white transition"><i class="fa-solid fa-server text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">Declarative</h3>
-                        <p class="text-slate-500 text-sm mb-4">Facts and definitions. "Knowing that".</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-network-wired mr-1 text-emerald-500"></i> OSI Model</li><li><i class="fa-solid fa-door-open mr-1 text-emerald-500"></i> SSH is Port 22</li></ul>
+                    <div>
+                        <div><i></i></div>
+                        <h3>Declarative</h3>
+                        <p>Facts and definitions. "Knowing that".</p>
+                        <ul><li><i></i> OSI Model</li><li><i></i> SSH is Port 22</li></ul>
                     </div>
                     <!-- Empirical -->
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-rose-50 rounded-xl flex items-center justify-center text-rose-600 mb-4 group-hover:bg-rose-600 group-hover:text-white transition"><i class="fa-solid fa-microscope text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">Empirical</h3>
-                        <p class="text-slate-500 text-sm mb-4">Gained through observation and data analysis.</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-chart-line mr-1 text-rose-500"></i> Log Analysis</li><li><i class="fa-solid fa-user-shield mr-1 text-rose-500"></i> Pen-testing</li></ul>
+                    <div>
+                        <div><i></i></div>
+                        <h3>Empirical</h3>
+                        <p>Gained through observation and data analysis.</p>
+                        <ul><li><i></i> Log Analysis</li><li><i></i> Pen-testing</li></ul>
                     </div>
                     <!-- Theoretical -->
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 mb-4 group-hover:bg-indigo-600 group-hover:text-white transition"><i class="fa-solid fa-atom text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">Theoretical</h3>
-                        <p class="text-slate-500 text-sm mb-4">Abstract principles. The "why" behind the tech.</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-calculator mr-1 text-indigo-500"></i> Encryption Math</li><li><i class="fa-solid fa-infinity mr-1 text-indigo-500"></i> Big O Notation</li></ul>
+                    <div>
+                        <div><i></i></div>
+                        <h3>Theoretical</h3>
+                        <p>Abstract principles. The "why" behind the tech.</p>
+                        <ul><li><i></i> Encryption Math</li><li><i></i> Big O Notation</li></ul>
                     </div>
                     <!-- Practical -->
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-orange-50 rounded-xl flex items-center justify-center text-orange-600 mb-4 group-hover:bg-orange-600 group-hover:text-white transition"><i class="fa-solid fa-screwdriver-wrench text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">Practical</h3>
-                        <p class="text-slate-500 text-sm mb-4">Hands-on skill. Physical application.</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-ethernet mr-1 text-orange-500"></i> Crimping Cables</li><li><i class="fa-solid fa-server mr-1 text-orange-500"></i> Racking Servers</li></ul>
+                    <div>
+                        <div><i></i></div>
+                        <h3>Practical</h3>
+                        <p>Hands-on skill. Physical application.</p>
+                        <ul><li><i></i> Crimping Cables</li><li><i></i> Racking Servers</li></ul>
                     </div>
                     <!-- A Priori -->
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-teal-50 rounded-xl flex items-center justify-center text-teal-600 mb-4 group-hover:bg-teal-600 group-hover:text-white transition"><i class="fa-solid fa-brain text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">A Priori</h3>
-                        <p class="text-slate-500 text-sm mb-4">Independent of experience. Logic and reason.</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-diagram-project mr-1 text-teal-500"></i> Boolean Logic</li><li><i class="fa-solid fa-sitemap mr-1 text-teal-500"></i> Subnetting Logic</li></ul>
+                    <div>
+                        <div><i></i></div>
+                        <h3>A Priori</h3>
+                        <p>Independent of experience. Logic and reason.</p>
+                        <ul><li><i></i> Boolean Logic</li><li><i></i> Subnetting Logic</li></ul>
                     </div>
                     <!-- A Posteriori -->
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-cyan-50 rounded-xl flex items-center justify-center text-cyan-600 mb-4 group-hover:bg-cyan-600 group-hover:text-white transition"><i class="fa-solid fa-magnifying-glass-chart text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">A Posteriori</h3>
-                        <p class="text-slate-500 text-sm mb-4">Derived from experience. "I know because I checked."</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-triangle-exclamation mr-1 text-cyan-500"></i> "Server is down"</li><li><i class="fa-solid fa-clock-rotate-left mr-1 text-cyan-500"></i> Forensics</li></ul>
+                    <div>
+                        <div><i></i></div>
+                        <h3>A Posteriori</h3>
+                        <p>Derived from experience. "I know because I checked."</p>
+                        <ul><li><i></i> "Server is down"</li><li><i></i> Forensics</li></ul>
                     </div>
                     <!-- Linguistic -->
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-pink-50 rounded-xl flex items-center justify-center text-pink-600 mb-4 group-hover:bg-pink-600 group-hover:text-white transition"><i class="fa-solid fa-language text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">Linguistic</h3>
-                        <p class="text-slate-500 text-sm mb-4">Understanding syntax, symbols, and languages.</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-code mr-1 text-pink-500"></i> Code Syntax</li><li><i class="fa-solid fa-asterisk mr-1 text-pink-500"></i> Regex Patterns</li></ul>
+                    <div>
+                        <div><i></i></div>
+                        <h3>Linguistic</h3>
+                        <p>Understanding syntax, symbols, and languages.</p>
+                        <ul><li><i></i> Code Syntax</li><li><i></i> Regex Patterns</li></ul>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Section 3: Learning Ladder -->
-        <section id="en-ladder" class="py-20 px-4 bg-white relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-1/3 h-full bg-slate-50 -skew-x-12 opacity-50 pointer-events-none"></div>
-            <div class="max-w-4xl mx-auto relative z-10">
-                <div class="text-center mb-12">
-                    <span class="text-brand-primary font-bold tracking-wider uppercase text-sm">Bloom's Taxonomy</span>
-                    <h2 class="text-3xl font-bold mt-2">The Learning Ladder</h2>
-                    <p class="text-slate-600">Ascending from basic commands to automation mastery.</p>
+        <div class="card" id="en-ladder">
+            
+            <div>
+                <div>
+                    <span>Bloom's Taxonomy</span>
+                    <h2>The Learning Ladder</h2>
+                    <p>Ascending from basic commands to automation mastery.</p>
                 </div>
 
-                <div class="space-y-6 ml-4 md:ml-12 border-l-2 border-slate-100 pl-8">
+                <div>
                     <!-- Step 6 -->
-                    <div class="ladder-step flex items-start gap-4">
-                        <div class="flex-1 bg-gradient-to-r from-purple-600 to-purple-800 text-white p-5 rounded-lg shadow-lg">
-                            <h3 class="font-bold text-lg mb-1"><i class="fa-solid fa-wand-magic-sparkles mr-2"></i>6. CREATE</h3>
-                            <p class="text-purple-100 text-sm">Build a tool. Create a full system monitoring suite.</p>
+                    <div>
+                        <div>
+                            <h3><i></i>6. CREATE</h3>
+                            <p>Build a tool. Create a full system monitoring suite.</p>
                         </div>
                     </div>
                     <!-- Step 5 -->
-                    <div class="ladder-step flex items-start gap-4 opacity-90">
-                        <div class="flex-1 bg-white border border-slate-200 p-5 rounded-lg shadow-sm">
-                            <h3 class="font-bold text-purple-700 mb-1"><i class="fa-solid fa-gavel mr-2"></i>5. EVALUATE</h3>
-                            <p class="text-slate-600 text-sm">Code Review. Is this script secure? Is `rm -rf` dangerous?</p>
+                    <div>
+                        <div>
+                            <h3><i></i>5. EVALUATE</h3>
+                            <p>Code Review. Is this script secure? Is `rm -rf` dangerous?</p>
                         </div>
                     </div>
                     <!-- Step 4 -->
-                    <div class="ladder-step flex items-start gap-4 opacity-90">
-                        <div class="flex-1 bg-white border border-slate-200 p-5 rounded-lg shadow-sm">
-                            <h3 class="font-bold text-indigo-600 mb-1"><i class="fa-solid fa-microscope mr-2"></i>4. ANALYZE</h3>
-                            <p class="text-slate-600 text-sm">Debugging. Why did the cron job fail? Log parsing.</p>
+                    <div>
+                        <div>
+                            <h3><i></i>4. ANALYZE</h3>
+                            <p>Debugging. Why did the cron job fail? Log parsing.</p>
                         </div>
                     </div>
                     <!-- Step 3 -->
-                    <div class="ladder-step flex items-start gap-4 opacity-90">
-                        <div class="flex-1 bg-white border border-slate-200 p-5 rounded-lg shadow-sm">
-                            <h3 class="font-bold text-blue-600 mb-1"><i class="fa-solid fa-hand-holding-hand mr-2"></i>3. APPLY</h3>
-                            <p class="text-slate-600 text-sm">Scripting. Writing a bash script to backup files.</p>
+                    <div>
+                        <div>
+                            <h3><i></i>3. APPLY</h3>
+                            <p>Scripting. Writing a bash script to backup files.</p>
                         </div>
                     </div>
                     <!-- Step 2 -->
-                    <div class="ladder-step flex items-start gap-4 opacity-90">
-                        <div class="flex-1 bg-white border border-slate-200 p-5 rounded-lg shadow-sm">
-                            <h3 class="font-bold text-cyan-600 mb-1"><i class="fa-solid fa-comments mr-2"></i>2. UNDERSTAND</h3>
-                            <p class="text-slate-600 text-sm">Syntax & Logic. How pipes (`|`) and loops work.</p>
+                    <div>
+                        <div>
+                            <h3><i></i>2. UNDERSTAND</h3>
+                            <p>Syntax & Logic. How pipes (`|`) and loops work.</p>
                         </div>
                     </div>
                     <!-- Step 1 -->
-                    <div class="ladder-step flex items-start gap-4 opacity-90">
-                        <div class="flex-1 bg-slate-100 border border-slate-200 p-5 rounded-lg">
-                            <h3 class="font-bold text-slate-600 mb-1"><i class="fa-solid fa-memory mr-2"></i>1. REMEMBER</h3>
-                            <p class="text-slate-500 text-sm">Commands. Memorizing `ls`, `grep`, `chmod`.</p>
+                    <div>
+                        <div>
+                            <h3><i></i>1. REMEMBER</h3>
+                            <p>Commands. Memorizing `ls`, `grep`, `chmod`.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Section 4: KM Cycle -->
-        <section id="en-cycle" class="py-20 px-4 bg-slate-900 text-white">
-            <div class="max-w-6xl mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-16">Knowledge Management Cycle</h2>
-                <div class="flex flex-wrap justify-center gap-8 relative">
-                    <div class="hidden lg:block absolute top-1/2 left-10 right-10 h-1 bg-slate-700 -z-10 transform -translate-y-1/2"></div>
-                    <div class="cycle-item flex flex-col items-center gap-4 w-40">
-                        <div class="icon-box w-20 h-20 rounded-full bg-slate-800 border-2 border-brand-primary flex items-center justify-center text-3xl shadow-lg z-10 transition duration-500"><i class="fa-solid fa-camera"></i></div>
-                        <div class="text-center"><h4 class="font-bold text-lg text-brand-primary">1. CAPTURE</h4><p class="text-slate-400 text-sm">Document it</p></div>
+        <div class="card" id="en-cycle">
+            <div>
+                <h2>Knowledge Management Cycle</h2>
+                <div>
+                    
+                    <div>
+                        <div><i></i></div>
+                        <div><h4>1. CAPTURE</h4><p>Document it</p></div>
                     </div>
-                    <div class="cycle-item flex flex-col items-center gap-4 w-40">
-                        <div class="icon-box w-20 h-20 rounded-full bg-slate-800 border-2 border-purple-500 flex items-center justify-center text-3xl shadow-lg z-10 transition duration-500"><i class="fa-solid fa-server"></i></div>
-                        <div class="text-center"><h4 class="font-bold text-lg text-purple-400">2. STORE</h4><p class="text-slate-400 text-sm">Organize it</p></div>
+                    <div>
+                        <div><i></i></div>
+                        <div><h4>2. STORE</h4><p>Organize it</p></div>
                     </div>
-                    <div class="cycle-item flex flex-col items-center gap-4 w-40">
-                        <div class="icon-box w-20 h-20 rounded-full bg-slate-800 border-2 border-green-500 flex items-center justify-center text-3xl shadow-lg z-10 transition duration-500"><i class="fa-solid fa-share-nodes"></i></div>
-                        <div class="text-center"><h4 class="font-bold text-lg text-green-400">3. SHARE</h4><p class="text-slate-400 text-sm">Teach it</p></div>
+                    <div>
+                        <div><i></i></div>
+                        <div><h4>3. SHARE</h4><p>Teach it</p></div>
                     </div>
-                    <div class="cycle-item flex flex-col items-center gap-4 w-40">
-                        <div class="icon-box w-20 h-20 rounded-full bg-slate-800 border-2 border-amber-500 flex items-center justify-center text-3xl shadow-lg z-10 transition duration-500"><i class="fa-solid fa-rotate"></i></div>
-                        <div class="text-center"><h4 class="font-bold text-lg text-amber-400">4. UPDATE</h4><p class="text-slate-400 text-sm">Keep it fresh</p></div>
+                    <div>
+                        <div><i></i></div>
+                        <div><h4>4. UPDATE</h4><p>Keep it fresh</p></div>
                     </div>
-                    <div class="cycle-item flex flex-col items-center gap-4 w-40">
-                        <div class="icon-box w-20 h-20 rounded-full bg-slate-800 border-2 border-red-500 flex items-center justify-center text-3xl shadow-lg z-10 transition duration-500"><i class="fa-solid fa-shield-halved"></i></div>
-                        <div class="text-center"><h4 class="font-bold text-lg text-red-400">5. PROTECT</h4><p class="text-slate-400 text-sm">Secure it</p></div>
+                    <div>
+                        <div><i></i></div>
+                        <div><h4>5. PROTECT</h4><p>Secure it</p></div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Analogies Section -->
-        <section id="en-analogies" class="py-20 px-4 bg-slate-50">
-            <div class="max-w-5xl mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-12">Analogies for Understanding</h2>
-                <div class="grid md:grid-cols-2 gap-8">
+        <div class="card" id="en-analogies">
+            <div>
+                <h2>Analogies for Understanding</h2>
+                <div>
                     <!-- Cooking -->
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-orange-400">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 text-xl"><i class="fa-solid fa-utensils"></i></div>
-                            <h3 class="text-2xl font-bold text-slate-800">Cooking</h3>
+                    <div>
+                        <div>
+                            <div><i></i></div>
+                            <h3>Cooking</h3>
                         </div>
-                        <ul class="space-y-4">
-                            <li class="flex gap-3"><span class="font-bold text-slate-400 w-24 text-right">Data</span><span class="text-slate-700">Ingredients (Flour, Eggs)</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-blue-500 w-24 text-right">Info</span><span class="text-slate-700">The Recipe</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-green-600 w-24 text-right">Knowledge</span><span class="text-slate-700">Knowing why it rises</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-purple-600 w-24 text-right">Wisdom</span><span class="text-slate-700">Knowing when to bake cookies instead</span></li>
+                        <ul>
+                            <li><span>Data</span><span>Ingredients (Flour, Eggs)</span></li>
+                            <li><span>Info</span><span>The Recipe</span></li>
+                            <li><span>Knowledge</span><span>Knowing why it rises</span></li>
+                            <li><span>Wisdom</span><span>Knowing when to bake cookies instead</span></li>
                         </ul>
                     </div>
                     <!-- Linux -->
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-slate-700">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-800 text-xl"><i class="fa-brands fa-linux"></i></div>
-                            <h3 class="text-2xl font-bold text-slate-800">Linux System</h3>
+                    <div>
+                        <div>
+                            <div><i></i></div>
+                            <h3>Linux System</h3>
                         </div>
-                        <ul class="space-y-4">
-                            <li class="flex gap-3"><span class="font-bold text-slate-400 w-24 text-right">Data</span><span class="text-slate-700">Raw Logs / Binary (0s & 1s)</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-blue-500 w-24 text-right">Info</span><span class="text-slate-700">`htop` output / Formatted Logs</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-green-600 w-24 text-right">Knowledge</span><span class="text-slate-700">Troubleshooting High Load</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-purple-600 w-24 text-right">Wisdom</span><span class="text-slate-700">System Hardening</span></li>
+                        <ul>
+                            <li><span>Data</span><span>Raw Logs / Binary (0s & 1s)</span></li>
+                            <li><span>Info</span><span>`htop` output / Formatted Logs</span></li>
+                            <li><span>Knowledge</span><span>Troubleshooting High Load</span></li>
+                            <li><span>Wisdom</span><span>System Hardening</span></li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
         
         <!-- Gap Analysis -->
-        <section class="py-16 px-4 bg-brand-primary text-white">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl font-bold mb-6"><i class="fa-solid fa-bridge-water mr-3"></i>What is a Knowledge Gap?</h2>
-                <p class="text-xl opacity-90 mb-8">It is the difference between what you <span class="font-bold underline">know</span> and what you <span class="font-bold underline">need to know</span> to solve a problem.</p>
-                <div class="grid md:grid-cols-2 gap-6 text-left">
-                    <div class="bg-white/10 p-6 rounded-xl border border-white/20 backdrop-blur-sm">
-                        <h4 class="font-bold mb-2 text-brand-accent"><i class="fa-solid fa-utensils mr-2"></i>Everyday Example:</h4>
-                        <p class="text-sm leading-relaxed">You want to cook Thai food but only know how to make sandwiches. The gap is the spices and techniques you haven't learned.</p>
+        <div class="card">
+            <div>
+                <h2><i></i>What is a Knowledge Gap?</h2>
+                <p>It is the difference between what you <span>know</span> and what you <span>need to know</span> to solve a problem.</p>
+                <div>
+                    <div>
+                        <h4><i></i>Everyday Example:</h4>
+                        <p>You want to cook Thai food but only know how to make sandwiches. The gap is the spices and techniques you haven't learned.</p>
                     </div>
-                    <div class="bg-white/10 p-6 rounded-xl border border-white/20 backdrop-blur-sm">
-                        <h4 class="font-bold mb-2 text-red-300"><i class="fa-solid fa-shield-virus mr-2"></i>Cybersecurity Example:</h4>
-                        <p class="text-sm leading-relaxed">Attackers exploit gaps like zero-day vulnerabilities. Defenders must continuously learn to close them.</p>
+                    <div>
+                        <h4><i></i>Cybersecurity Example:</h4>
+                        <p>Attackers exploit gaps like zero-day vulnerabilities. Defenders must continuously learn to close them.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Footer -->
-        <footer class="bg-slate-900 text-slate-400 py-16 px-4">
-            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+        <footer>
+            <div>
                 <div>
-                    <h3 class="text-white text-xl font-bold mb-6"><i class="fa-solid fa-graduation-cap mr-2 text-brand-primary"></i>For Students</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-green-500 mt-1"></i><span>Build a strong foundation first</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-green-500 mt-1"></i><span>Practice relentlessly (Hands-on)</span></li>
+                    <h3><i></i>For Students</h3>
+                    <ul>
+                        <li><i></i><span>Build a strong foundation first</span></li>
+                        <li><i></i><span>Practice relentlessly (Hands-on)</span></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-white text-xl font-bold mb-6"><i class="fa-solid fa-chalkboard-user mr-2 text-brand-primary"></i>For Teachers</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-blue-500 mt-1"></i><span>Use real-world examples</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-blue-500 mt-1"></i><span>Teach "how to learn"</span></li>
+                    <h3><i></i>For Teachers</h3>
+                    <ul>
+                        <li><i></i><span>Use real-world examples</span></li>
+                        <li><i></i><span>Teach "how to learn"</span></li>
                     </ul>
                 </div>
             </div>
@@ -513,42 +438,42 @@
     <!-- ==========================================
          SINHALA CONTENT 
     ========================================== -->
-    <div id="content-si" class="hidden font-sinhala">
+    <div id="content-si">
         <!-- Navbar -->
-        <nav class="sticky top-14 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-center h-16">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-brain text-brand-primary text-2xl"></i>
-                        <span class="font-bold text-xl tracking-tight text-slate-900">Knowledge<span class="text-brand-primary">Guide</span></span>
+        <nav>
+            <div>
+                <div>
+                    <div>
+                        <i></i>
+                        <span>Knowledge<span>Guide</span></span>
                     </div>
-                    <div class="hidden md:flex gap-6 text-sm font-semibold text-slate-600">
-                        <a href="#si-definition" class="hover:text-brand-primary transition">DIKW ආකෘතිය</a>
-                        <a href="#si-types" class="hover:text-brand-primary transition">වර්ග</a>
-                        <a href="#si-ladder" class="hover:text-brand-primary transition">ඉගෙනුම් ඉණිමග</a>
-                        <a href="#si-cycle" class="hover:text-brand-primary transition">චක්‍රය</a>
+                    <div>
+                        <a href="#si-definition">DIKW ආකෘතිය</a>
+                        <a href="#si-types">වර්ග</a>
+                        <a href="#si-ladder">ඉගෙනුම් ඉණිමග</a>
+                        <a href="#si-cycle">චක්‍රය</a>
                     </div>
                 </div>
             </div>
         </nav>
 
         <!-- Hero Section -->
-        <header class="hero-pattern text-white py-20 px-4 text-center">
-            <div class="max-w-4xl mx-auto">
-                <span class="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-300 text-sm font-semibold mb-4 border border-blue-500/30">
+        <header>
+            <div>
+                <span>
                     සිසුන් සහ ගුරුවරුන් සඳහා සරල මාර්ගෝපදේශයකි
                 </span>
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                    දැනුම <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">අවබෝධ කරගැනීම</span>
+                <h1>
+                    දැනුම <span>අවබෝධ කරගැනීම</span>
                 </h1>
-                <p class="text-lg md:text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+                <p>
                     දැනුම ආහාර පිසීම වැනිය. දත්ත යනු අමුද්‍රව්‍යයි, තොරතුරු යනු වට්ටෝරුවයි, ප්‍රඥාව යනු කේක් එකක් සාදනවාද නැත්නම් කුකීස් සාදනවාද යන්න තීරණය කිරීමයි.
                 </p>
-                <div class="flex justify-center gap-4 flex-wrap">
-                    <a href="#si-definition" class="bg-brand-primary hover:bg-sky-600 text-white px-8 py-3 rounded-lg font-semibold transition shadow-lg shadow-sky-500/20">
+                <div>
+                    <a href="#si-definition">
                         ඉගෙනීම අරඹන්න
                     </a>
-                    <a href="#si-analogies" class="bg-slate-700 hover:bg-slate-600 text-white px-8 py-3 rounded-lg font-semibold transition">
+                    <a href="#si-analogies">
                         උදාහරණ බලන්න
                     </a>
                 </div>
@@ -556,308 +481,278 @@
         </header>
 
         <!-- Section 1: DIKW Pyramid -->
-        <section id="si-definition" class="py-20 px-4 bg-white">
-            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div class="card" id="si-definition">
+            <div>
                 <div>
-                    <h2 class="text-3xl font-bold mb-2">DIKW පිරමීඩය</h2>
-                    <p class="text-slate-600 mb-8">වටිනාකමේ ධුරාවලිය: දත්තවල සිට ව්‍යවහාරික විනිශ්චය දක්වා.</p>
+                    <h2>DIKW පිරමීඩය</h2>
+                    <p>වටිනාකමේ ධුරාවලිය: දත්තවල සිට ව්‍යවහාරික විනිශ්චය දක්වා.</p>
                     
-                    <div class="space-y-6">
-                        <div class="flex gap-4 items-start">
-                            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0 text-purple-600"><i class="fa-solid fa-scale-balanced text-xl"></i></div>
-                            <div><h3 class="font-bold text-lg text-slate-900">Wisdom (ප්‍රඥාව)</h3><p class="text-slate-600 text-sm">ව්‍යවහාරික විනිශ්චය. දැනුම භාවිතා කළ යුත්තේ "කවදාද" සහ "ඇයි" දැයි දැන ගැනීම.</p></div>
+                    <div>
+                        <div>
+                            <div><i></i></div>
+                            <div><h3>Wisdom (ප්‍රඥාව)</h3><p>ව්‍යවහාරික විනිශ්චය. දැනුම භාවිතා කළ යුත්තේ "කවදාද" සහ "ඇයි" දැයි දැන ගැනීම.</p></div>
                         </div>
-                        <div class="flex gap-4 items-start">
-                            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 text-green-600"><i class="fa-solid fa-lightbulb text-xl"></i></div>
-                            <div><h3 class="font-bold text-lg text-slate-900">Knowledge (දැනුම)</h3><p class="text-slate-600 text-sm">අවබෝධය සහ සන්දර්භය. "එය ක්‍රියා කරන ආකාරය".</p></div>
+                        <div>
+                            <div><i></i></div>
+                            <div><h3>Knowledge (දැනුම)</h3><p>අවබෝධය සහ සන්දර්භය. "එය ක්‍රියා කරන ආකාරය".</p></div>
                         </div>
-                        <div class="flex gap-4 items-start">
-                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 text-blue-600"><i class="fa-solid fa-chart-bar text-xl"></i></div>
-                            <div><h3 class="font-bold text-lg text-slate-900">Information (තොරතුරු)</h3><p class="text-slate-600 text-sm">අර්ථයක් සහිත දත්ත. "ඉන් අදහස් වන්නේ කුමක්ද යන්න."</p></div>
+                        <div>
+                            <div><i></i></div>
+                            <div><h3>Information (තොරතුරු)</h3><p>අර්ථයක් සහිත දත්ත. "ඉන් අදහස් වන්නේ කුමක්ද යන්න."</p></div>
                         </div>
-                        <div class="flex gap-4 items-start">
-                            <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 text-red-600"><i class="fa-solid fa-database text-xl"></i></div>
-                            <div><h3 class="font-bold text-lg text-slate-900">Data (දත්ත)</h3><p class="text-slate-600 text-sm">අමු දත්ත සහ සංඛ්‍යා. මූලික ගොඩනැගුම් ඒකක.</p></div>
+                        <div>
+                            <div><i></i></div>
+                            <div><h3>Data (දත්ත)</h3><p>අමු දත්ත සහ සංඛ්‍යා. මූලික ගොඩනැගුම් ඒකක.</p></div>
                         </div>
                     </div>
                 </div>
-                <div class="pyramid-container p-8 bg-slate-50 rounded-2xl border border-slate-100 shadow-inner">
-                    <div class="pyramid-level bg-gradient-to-r from-purple-500 to-indigo-600 w-32 h-20 shadow-lg z-40"><div class="flex flex-col items-center"><i class="fa-solid fa-crown mb-1 text-yellow-300"></i><span class="text-xs tracking-widest uppercase">Wisdom</span></div></div>
-                    <div class="pyramid-level bg-gradient-to-r from-green-400 to-emerald-600 w-56 h-24 shadow-lg z-30 -mt-1"><div class="flex flex-col items-center"><i class="fa-solid fa-network-wired mb-1"></i><span class="text-xs tracking-widest uppercase">Knowledge</span></div></div>
-                    <div class="pyramid-level bg-gradient-to-r from-blue-400 to-cyan-600 w-80 h-28 shadow-lg z-20 -mt-1"><div class="flex flex-col items-center"><i class="fa-solid fa-file-lines mb-1"></i><span class="text-xs tracking-widest uppercase">Information</span></div></div>
-                    <div class="pyramid-level bg-gradient-to-r from-red-400 to-rose-600 w-full max-w-sm h-32 shadow-lg z-10 -mt-1"><div class="flex flex-col items-center"><i class="fa-solid fa-binary mb-1"></i><span class="text-xs tracking-widest uppercase">Data</span></div></div>
+                <div>
+                    <div><div><i></i><span>Wisdom</span></div></div>
+                    <div><div><i></i><span>Knowledge</span></div></div>
+                    <div><div><i></i><span>Information</span></div></div>
+                    <div><div><i></i><span>Data</span></div></div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Section 2: 10 Types of Knowledge -->
-        <section id="si-types" class="py-20 px-4 bg-slate-50">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-16">
-                    <span class="text-brand-primary font-bold tracking-wider uppercase text-sm">වර්ගීකරණය</span>
-                    <h2 class="text-3xl md:text-4xl font-bold mt-2">දැනුම වර්ග 10ක්</h2>
-                    <p class="text-slate-600 mt-4 max-w-2xl mx-auto">අප දන්නා දේ ගබඩා කරන, ප්‍රවේශ වන සහ ඔප්පු කරන විවිධ ක්‍රම.</p>
+        <div class="card" id="si-types">
+            <div>
+                <div>
+                    <span>වර්ගීකරණය</span>
+                    <h2>දැනුම වර්ග 10ක්</h2>
+                    <p>අප දන්නා දේ ගබඩා කරන, ප්‍රවේශ වන සහ ඔප්පු කරන විවිධ ක්‍රම.</p>
                 </div>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white transition"><i class="fa-solid fa-book-open text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">Explicit (ලිඛිත/පැහැදිලි)</h3>
-                        <p class="text-slate-500 text-sm mb-4">ලියා ඇති, බෙදා ගැනීමට පහසු. ලේඛන සහ දත්ත සමුදායන්.</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-shield-halved mr-1 text-blue-500"></i> ආරක්ෂක ප්‍රතිපත්ති</li><li><i class="fa-brands fa-linux mr-1 text-blue-500"></i> Linux Man Pages</li></ul>
+                <div>
+                    <div>
+                        <div><i></i></div>
+                        <h3>Explicit (ලිඛිත/පැහැදිලි)</h3>
+                        <p>ලියා ඇති, බෙදා ගැනීමට පහසු. ලේඛන සහ දත්ත සමුදායන්.</p>
+                        <ul><li><i></i> ආරක්ෂක ප්‍රතිපත්ති</li><li><i></i> Linux Man Pages</li></ul>
                     </div>
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600 mb-4 group-hover:bg-purple-600 group-hover:text-white transition"><i class="fa-solid fa-user-secret text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">Tacit (ව්‍යංග/අත්දැකීම්)</h3>
-                        <p class="text-slate-500 text-sm mb-4">අත්දැකීම් මත පදනම් වූ, විස්තර කිරීමට අපහසු. බුද්ධිය සහ මානසිකත්වය.</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-radar mr-1 text-purple-500"></i> තර්ජන හඳුනාගැනීමේ ඉව</li><li><i class="fa-solid fa-bug mr-1 text-purple-500"></i> දෝෂ (Bug) සෙවීමේ හැකියාව</li></ul>
+                    <div>
+                        <div><i></i></div>
+                        <h3>Tacit (ව්‍යංග/අත්දැකීම්)</h3>
+                        <p>අත්දැකීම් මත පදනම් වූ, විස්තර කිරීමට අපහසු. බුද්ධිය සහ මානසිකත්වය.</p>
+                        <ul><li><i></i> තර්ජන හඳුනාගැනීමේ ඉව</li><li><i></i> දෝෂ (Bug) සෙවීමේ හැකියාව</li></ul>
                     </div>
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600 mb-4 group-hover:bg-amber-600 group-hover:text-white transition"><i class="fa-solid fa-terminal text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">Procedural (ක්‍රියා පටිපාටි)</h3>
-                        <p class="text-slate-500 text-sm mb-4">පියවරෙන් පියවර "කළ යුතු ආකාරය". Scripts සහ ක්‍රියාවලීන්.</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-list-check mr-1 text-amber-500"></i> සිද්ධි ප්‍රතිචාර සැලසුම්</li><li><i class="fa-solid fa-play mr-1 text-amber-500"></i> Bash Scripts</li></ul>
+                    <div>
+                        <div><i></i></div>
+                        <h3>Procedural (ක්‍රියා පටිපාටි)</h3>
+                        <p>පියවරෙන් පියවර "කළ යුතු ආකාරය". Scripts සහ ක්‍රියාවලීන්.</p>
+                        <ul><li><i></i> සිද්ධි ප්‍රතිචාර සැලසුම්</li><li><i></i> Bash Scripts</li></ul>
                     </div>
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 mb-4 group-hover:bg-emerald-600 group-hover:text-white transition"><i class="fa-solid fa-server text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">Declarative (ප්‍රකාශිත)</h3>
-                        <p class="text-slate-500 text-sm mb-4">කරුණු සහ නිර්වචන. යමක් සත්‍ය බව "දැන සිටීම".</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-network-wired mr-1 text-emerald-500"></i> OSI ආකෘතියේ ස්ථර</li><li><i class="fa-solid fa-door-open mr-1 text-emerald-500"></i> SSH යනු Port 22 වේ</li></ul>
+                    <div>
+                        <div><i></i></div>
+                        <h3>Declarative (ප්‍රකාශිත)</h3>
+                        <p>කරුණු සහ නිර්වචන. යමක් සත්‍ය බව "දැන සිටීම".</p>
+                        <ul><li><i></i> OSI ආකෘතියේ ස්ථර</li><li><i></i> SSH යනු Port 22 වේ</li></ul>
                     </div>
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-rose-50 rounded-xl flex items-center justify-center text-rose-600 mb-4 group-hover:bg-rose-600 group-hover:text-white transition"><i class="fa-solid fa-microscope text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">Empirical (ආනුභවික)</h3>
-                        <p class="text-slate-500 text-sm mb-4">නිරීක්ෂණ සහ දත්ත විශ්ලේෂණය තුළින් ලබාගත් දැනුම.</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-chart-line mr-1 text-rose-500"></i> සේවාදායක ලොග් විශ්ලේෂණය</li><li><i class="fa-solid fa-user-shield mr-1 text-rose-500"></i> Pen-testing සොයාගැනීම්</li></ul>
+                    <div>
+                        <div><i></i></div>
+                        <h3>Empirical (ආනුභවික)</h3>
+                        <p>නිරීක්ෂණ සහ දත්ත විශ්ලේෂණය තුළින් ලබාගත් දැනුම.</p>
+                        <ul><li><i></i> සේවාදායක ලොග් විශ්ලේෂණය</li><li><i></i> Pen-testing සොයාගැනීම්</li></ul>
                     </div>
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 mb-4 group-hover:bg-indigo-600 group-hover:text-white transition"><i class="fa-solid fa-atom text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">Theoretical (න්‍යායික)</h3>
-                        <p class="text-slate-500 text-sm mb-4">වියුක්ත මූලධර්ම සහ ආකෘති. තාක්ෂණය පිටුපස ඇති "ඇයි" යන්න.</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-calculator mr-1 text-indigo-500"></i> ගුප්තකේතන ගණිතය (Encryption)</li><li><i class="fa-solid fa-infinity mr-1 text-indigo-500"></i> Big O සංකීර්ණත්වය</li></ul>
+                    <div>
+                        <div><i></i></div>
+                        <h3>Theoretical (න්‍යායික)</h3>
+                        <p>වියුක්ත මූලධර්ම සහ ආකෘති. තාක්ෂණය පිටුපස ඇති "ඇයි" යන්න.</p>
+                        <ul><li><i></i> ගුප්තකේතන ගණිතය (Encryption)</li><li><i></i> Big O සංකීර්ණත්වය</li></ul>
                     </div>
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-orange-50 rounded-xl flex items-center justify-center text-orange-600 mb-4 group-hover:bg-orange-600 group-hover:text-white transition"><i class="fa-solid fa-screwdriver-wrench text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">Practical (ප්‍රායෝගික)</h3>
-                        <p class="text-slate-500 text-sm mb-4">අත්දැකීම් සහිත කුසලතා. භෞතිකව හෝ සෘජුවම භාවිතා කිරීම.</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-ethernet mr-1 text-orange-500"></i> Ethernet කේබල් සකස් කිරීම</li><li><i class="fa-solid fa-server mr-1 text-orange-500"></i> සර්වර් (Servers) සවිකිරීම</li></ul>
+                    <div>
+                        <div><i></i></div>
+                        <h3>Practical (ප්‍රායෝගික)</h3>
+                        <p>අත්දැකීම් සහිත කුසලතා. භෞතිකව හෝ සෘජුවම භාවිතා කිරීම.</p>
+                        <ul><li><i></i> Ethernet කේබල් සකස් කිරීම</li><li><i></i> සර්වර් (Servers) සවිකිරීම</li></ul>
                     </div>
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-teal-50 rounded-xl flex items-center justify-center text-teal-600 mb-4 group-hover:bg-teal-600 group-hover:text-white transition"><i class="fa-solid fa-brain text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">A Priori (පූර්ව නිගමන)</h3>
-                        <p class="text-slate-500 text-sm mb-4">අත්දැකීම් වලින් ස්වායක්තව ලබාගත් දැනුම. තර්කානුකූල නිගමන.</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-diagram-project mr-1 text-teal-500"></i> Boolean තර්කනය</li><li><i class="fa-solid fa-sitemap mr-1 text-teal-500"></i> Subnetting තර්කනය</li></ul>
+                    <div>
+                        <div><i></i></div>
+                        <h3>A Priori (පූර්ව නිගමන)</h3>
+                        <p>අත්දැකීම් වලින් ස්වායක්තව ලබාගත් දැනුම. තර්කානුකූල නිගමන.</p>
+                        <ul><li><i></i> Boolean තර්කනය</li><li><i></i> Subnetting තර්කනය</li></ul>
                     </div>
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-cyan-50 rounded-xl flex items-center justify-center text-cyan-600 mb-4 group-hover:bg-cyan-600 group-hover:text-white transition"><i class="fa-solid fa-magnifying-glass-chart text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">A Posteriori (පශ්චාත් නිගමන)</h3>
-                        <p class="text-slate-500 text-sm mb-4">අත්දැකීම් හෝ සාක්ෂි මත පදනම් වූ දැනුම.</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-triangle-exclamation mr-1 text-cyan-500"></i> "මේ සර්වර් එක වැඩ නැහැ"</li><li><i class="fa-solid fa-clock-rotate-left mr-1 text-cyan-500"></i> Forensic සාක්ෂි</li></ul>
+                    <div>
+                        <div><i></i></div>
+                        <h3>A Posteriori (පශ්චාත් නිගමන)</h3>
+                        <p>අත්දැකීම් හෝ සාක්ෂි මත පදනම් වූ දැනුම.</p>
+                        <ul><li><i></i> "මේ සර්වර් එක වැඩ නැහැ"</li><li><i></i> Forensic සාක්ෂි</li></ul>
                     </div>
-                    <div class="glass-card p-6 rounded-xl hover:shadow-xl transition group">
-                        <div class="w-14 h-14 bg-pink-50 rounded-xl flex items-center justify-center text-pink-600 mb-4 group-hover:bg-pink-600 group-hover:text-white transition"><i class="fa-solid fa-language text-2xl"></i></div>
-                        <h3 class="text-xl font-bold mb-2">Linguistic (භාෂාමය)</h3>
-                        <p class="text-slate-500 text-sm mb-4">වාක්‍ය ඛණ්ඩ, සංකේත සහ භාෂා ව්‍යුහයන් අවබෝධ කර ගැනීම.</p>
-                        <ul class="text-xs text-slate-400 space-y-2"><li><i class="fa-solid fa-code mr-1 text-pink-500"></i> Code Syntax</li><li><i class="fa-solid fa-asterisk mr-1 text-pink-500"></i> Regex රටා</li></ul>
+                    <div>
+                        <div><i></i></div>
+                        <h3>Linguistic (භාෂාමය)</h3>
+                        <p>වාක්‍ය ඛණ්ඩ, සංකේත සහ භාෂා ව්‍යුහයන් අවබෝධ කර ගැනීම.</p>
+                        <ul><li><i></i> Code Syntax</li><li><i></i> Regex රටා</li></ul>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Section 3: Learning Ladder -->
-        <section id="si-ladder" class="py-20 px-4 bg-white relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-1/3 h-full bg-slate-50 -skew-x-12 opacity-50 pointer-events-none"></div>
-            <div class="max-w-4xl mx-auto relative z-10">
-                <div class="text-center mb-12">
-                    <span class="text-brand-primary font-bold tracking-wider uppercase text-sm">Bloom's Taxonomy</span>
-                    <h2 class="text-3xl font-bold mt-2">ඉගෙනුම් ඉණිමග</h2>
-                    <p class="text-slate-600">මූලික විධානවල සිට ස්වයංක්‍රීයකරණ විශිෂ්ටත්වය දක්වා නැගීම.</p>
+        <div class="card" id="si-ladder">
+            
+            <div>
+                <div>
+                    <span>Bloom's Taxonomy</span>
+                    <h2>ඉගෙනුම් ඉණිමග</h2>
+                    <p>මූලික විධානවල සිට ස්වයංක්‍රීයකරණ විශිෂ්ටත්වය දක්වා නැගීම.</p>
                 </div>
 
-                <div class="space-y-6 ml-4 md:ml-12 border-l-2 border-slate-100 pl-8">
+                <div>
                     <!-- Step 6 -->
-                    <div class="ladder-step flex items-start gap-4">
-                        <div class="flex-1 bg-gradient-to-r from-purple-600 to-purple-800 text-white p-5 rounded-lg shadow-lg">
-                            <h3 class="font-bold text-lg mb-1"><i class="fa-solid fa-wand-magic-sparkles mr-2"></i>6. CREATE (නිර්මාණය)</h3>
-                            <p class="text-purple-100 text-sm">මෙවලමක් සාදන්න. සම්පූර්ණ පද්ධති නිරීක්ෂණ කට්ටලයක්.</p>
+                    <div>
+                        <div>
+                            <h3><i></i>6. CREATE (නිර්මාණය)</h3>
+                            <p>මෙවලමක් සාදන්න. සම්පූර්ණ පද්ධති නිරීක්ෂණ කට්ටලයක්.</p>
                         </div>
                     </div>
                     <!-- Step 5 -->
-                    <div class="ladder-step flex items-start gap-4 opacity-90">
-                        <div class="flex-1 bg-white border border-slate-200 p-5 rounded-lg shadow-sm">
-                            <h3 class="font-bold text-purple-700 mb-1"><i class="fa-solid fa-gavel mr-2"></i>5. EVALUATE (ඇගයීම)</h3>
-                            <p class="text-slate-600 text-sm">කේත සමාලෝචනය (Code Review). මෙම script එක ආරක්ෂිතද?</p>
+                    <div>
+                        <div>
+                            <h3><i></i>5. EVALUATE (ඇගයීම)</h3>
+                            <p>කේත සමාලෝචනය (Code Review). මෙම script එක ආරක්ෂිතද?</p>
                         </div>
                     </div>
                     <!-- Step 4 -->
-                    <div class="ladder-step flex items-start gap-4 opacity-90">
-                        <div class="flex-1 bg-white border border-slate-200 p-5 rounded-lg shadow-sm">
-                            <h3 class="font-bold text-indigo-600 mb-1"><i class="fa-solid fa-microscope mr-2"></i>4. ANALYZE (විශ්ලේෂණය)</h3>
-                            <p class="text-slate-600 text-sm">දෝෂ නිරාකරණය (Debugging). Cron job එක අසාර්ථක වූයේ ඇයි?</p>
+                    <div>
+                        <div>
+                            <h3><i></i>4. ANALYZE (විශ්ලේෂණය)</h3>
+                            <p>දෝෂ නිරාකරණය (Debugging). Cron job එක අසාර්ථක වූයේ ඇයි?</p>
                         </div>
                     </div>
                     <!-- Step 3 -->
-                    <div class="ladder-step flex items-start gap-4 opacity-90">
-                        <div class="flex-1 bg-white border border-slate-200 p-5 rounded-lg shadow-sm">
-                            <h3 class="font-bold text-blue-600 mb-1"><i class="fa-solid fa-hand-holding-hand mr-2"></i>3. APPLY (යෙදීම)</h3>
-                            <p class="text-slate-600 text-sm">Scripting. ලිපිගොනු backup කිරීමට bash script එකක් ලිවීම.</p>
+                    <div>
+                        <div>
+                            <h3><i></i>3. APPLY (යෙදීම)</h3>
+                            <p>Scripting. ලිපිගොනු backup කිරීමට bash script එකක් ලිවීම.</p>
                         </div>
                     </div>
                     <!-- Step 2 -->
-                    <div class="ladder-step flex items-start gap-4 opacity-90">
-                        <div class="flex-1 bg-white border border-slate-200 p-5 rounded-lg shadow-sm">
-                            <h3 class="font-bold text-cyan-600 mb-1"><i class="fa-solid fa-comments mr-2"></i>2. UNDERSTAND (අවබෝධය)</h3>
-                            <p class="text-slate-600 text-sm">කේත රීති සහ තර්කනය. Loops ක්‍රියා කරන්නේ කෙසේද?</p>
+                    <div>
+                        <div>
+                            <h3><i></i>2. UNDERSTAND (අවබෝධය)</h3>
+                            <p>කේත රීති සහ තර්කනය. Loops ක්‍රියා කරන්නේ කෙසේද?</p>
                         </div>
                     </div>
                     <!-- Step 1 -->
-                    <div class="ladder-step flex items-start gap-4 opacity-90">
-                        <div class="flex-1 bg-slate-100 border border-slate-200 p-5 rounded-lg">
-                            <h3 class="font-bold text-slate-600 mb-1"><i class="fa-solid fa-memory mr-2"></i>1. REMEMBER (මතකය)</h3>
-                            <p class="text-slate-500 text-sm">විධාන. `ls`, `grep`, `chmod`.</p>
+                    <div>
+                        <div>
+                            <h3><i></i>1. REMEMBER (මතකය)</h3>
+                            <p>විධාන. `ls`, `grep`, `chmod`.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Section 4: KM Cycle -->
-        <section id="si-cycle" class="py-20 px-4 bg-slate-900 text-white">
-            <div class="max-w-6xl mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-16">දැනුම කළමනාකරණ චක්‍රය</h2>
-                <div class="flex flex-wrap justify-center gap-8 relative">
-                    <div class="hidden lg:block absolute top-1/2 left-10 right-10 h-1 bg-slate-700 -z-10 transform -translate-y-1/2"></div>
-                    <div class="cycle-item flex flex-col items-center gap-4 w-40">
-                        <div class="icon-box w-20 h-20 rounded-full bg-slate-800 border-2 border-brand-primary flex items-center justify-center text-3xl shadow-lg z-10 transition duration-500"><i class="fa-solid fa-camera"></i></div>
-                        <div class="text-center"><h4 class="font-bold text-lg text-brand-primary">1. CAPTURE</h4><p class="text-slate-400 text-sm">ග්‍රහණය කරගැනීම</p></div>
+        <div class="card" id="si-cycle">
+            <div>
+                <h2>දැනුම කළමනාකරණ චක්‍රය</h2>
+                <div>
+                    
+                    <div>
+                        <div><i></i></div>
+                        <div><h4>1. CAPTURE</h4><p>ග්‍රහණය කරගැනීම</p></div>
                     </div>
-                    <div class="cycle-item flex flex-col items-center gap-4 w-40">
-                        <div class="icon-box w-20 h-20 rounded-full bg-slate-800 border-2 border-purple-500 flex items-center justify-center text-3xl shadow-lg z-10 transition duration-500"><i class="fa-solid fa-server"></i></div>
-                        <div class="text-center"><h4 class="font-bold text-lg text-purple-400">2. STORE</h4><p class="text-slate-400 text-sm">ගබඩා කිරීම</p></div>
+                    <div>
+                        <div><i></i></div>
+                        <div><h4>2. STORE</h4><p>ගබඩා කිරීම</p></div>
                     </div>
-                    <div class="cycle-item flex flex-col items-center gap-4 w-40">
-                        <div class="icon-box w-20 h-20 rounded-full bg-slate-800 border-2 border-green-500 flex items-center justify-center text-3xl shadow-lg z-10 transition duration-500"><i class="fa-solid fa-share-nodes"></i></div>
-                        <div class="text-center"><h4 class="font-bold text-lg text-green-400">3. SHARE</h4><p class="text-slate-400 text-sm">බෙදාහදා ගැනීම</p></div>
+                    <div>
+                        <div><i></i></div>
+                        <div><h4>3. SHARE</h4><p>බෙදාහදා ගැනීම</p></div>
                     </div>
-                    <div class="cycle-item flex flex-col items-center gap-4 w-40">
-                        <div class="icon-box w-20 h-20 rounded-full bg-slate-800 border-2 border-amber-500 flex items-center justify-center text-3xl shadow-lg z-10 transition duration-500"><i class="fa-solid fa-rotate"></i></div>
-                        <div class="text-center"><h4 class="font-bold text-lg text-amber-400">4. UPDATE</h4><p class="text-slate-400 text-sm">යාවත්කාලීන කිරීම</p></div>
+                    <div>
+                        <div><i></i></div>
+                        <div><h4>4. UPDATE</h4><p>යාවත්කාලීන කිරීම</p></div>
                     </div>
-                    <div class="cycle-item flex flex-col items-center gap-4 w-40">
-                        <div class="icon-box w-20 h-20 rounded-full bg-slate-800 border-2 border-red-500 flex items-center justify-center text-3xl shadow-lg z-10 transition duration-500"><i class="fa-solid fa-shield-halved"></i></div>
-                        <div class="text-center"><h4 class="font-bold text-lg text-red-400">5. PROTECT</h4><p class="text-slate-400 text-sm">ආරක්ෂා කිරීම</p></div>
+                    <div>
+                        <div><i></i></div>
+                        <div><h4>5. PROTECT</h4><p>ආරක්ෂා කිරීම</p></div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Analogies Section -->
-        <section id="si-analogies" class="py-20 px-4 bg-slate-50">
-            <div class="max-w-5xl mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-12">අවබෝධය සඳහා උදාහරණ</h2>
-                <div class="grid md:grid-cols-2 gap-8">
+        <div class="card" id="si-analogies">
+            <div>
+                <h2>අවබෝධය සඳහා උදාහරණ</h2>
+                <div>
                     <!-- Cooking -->
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-orange-400">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 text-xl"><i class="fa-solid fa-utensils"></i></div>
-                            <h3 class="text-2xl font-bold text-slate-800">ආහාර පිසීම</h3>
+                    <div>
+                        <div>
+                            <div><i></i></div>
+                            <h3>ආහාර පිසීම</h3>
                         </div>
-                        <ul class="space-y-4">
-                            <li class="flex gap-3"><span class="font-bold text-slate-400 w-24 text-right">Data</span><span class="text-slate-700">අමුද්‍රව්‍ය (පිටි, බිත්තර)</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-blue-500 w-24 text-right">Info</span><span class="text-slate-700">වට්ටෝරුව (Recipe)</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-green-600 w-24 text-right">Knowledge</span><span class="text-slate-700">එය පිපෙන්නේ ඇයිදැයි දැන ගැනීම</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-purple-600 w-24 text-right">Wisdom</span><span class="text-slate-700">වෙනුවට කුකීස් සෑදිය යුත්තේ කවදාදැයි දැන ගැනීම</span></li>
+                        <ul>
+                            <li><span>Data</span><span>අමුද්‍රව්‍ය (පිටි, බිත්තර)</span></li>
+                            <li><span>Info</span><span>වට්ටෝරුව (Recipe)</span></li>
+                            <li><span>Knowledge</span><span>එය පිපෙන්නේ ඇයිදැයි දැන ගැනීම</span></li>
+                            <li><span>Wisdom</span><span>වෙනුවට කුකීස් සෑදිය යුත්තේ කවදාදැයි දැන ගැනීම</span></li>
                         </ul>
                     </div>
                     <!-- Linux -->
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-slate-700">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-800 text-xl"><i class="fa-brands fa-linux"></i></div>
-                            <h3 class="text-2xl font-bold text-slate-800">Linux පද්ධතිය</h3>
+                    <div>
+                        <div>
+                            <div><i></i></div>
+                            <h3>Linux පද්ධතිය</h3>
                         </div>
-                        <ul class="space-y-4">
-                            <li class="flex gap-3"><span class="font-bold text-slate-400 w-24 text-right">Data</span><span class="text-slate-700">අමු ලොග් (0 සහ 1)</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-blue-500 w-24 text-right">Info</span><span class="text-slate-700">`htop` / සැකසූ ලොග්</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-green-600 w-24 text-right">Knowledge</span><span class="text-slate-700">අධික CPU භාරය විසඳීම</span></li>
-                            <li class="flex gap-3"><span class="font-bold text-purple-600 w-24 text-right">Wisdom</span><span class="text-slate-700">පද්ධති ආරක්ෂණය</span></li>
+                        <ul>
+                            <li><span>Data</span><span>අමු ලොග් (0 සහ 1)</span></li>
+                            <li><span>Info</span><span>`htop` / සැකසූ ලොග්</span></li>
+                            <li><span>Knowledge</span><span>අධික CPU භාරය විසඳීම</span></li>
+                            <li><span>Wisdom</span><span>පද්ධති ආරක්ෂණය</span></li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Gap Analysis -->
-        <section class="py-16 px-4 bg-brand-primary text-white">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl font-bold mb-6"><i class="fa-solid fa-bridge-water mr-3"></i>දැනුම පරතරයක් යනු කුමක්ද?</h2>
-                <p class="text-xl opacity-90 mb-8">එය ගැටලුවක් විසඳීමට ඔබ <span class="font-bold underline">දන්නා දේ</span> සහ ඔබ <span class="font-bold underline">දැනගත යුතු දේ</span> අතර වෙනසයි.</p>
-                <div class="grid md:grid-cols-2 gap-6 text-left">
-                    <div class="bg-white/10 p-6 rounded-xl border border-white/20 backdrop-blur-sm">
-                        <h4 class="font-bold mb-2 text-brand-accent"><i class="fa-solid fa-utensils mr-2"></i>එදිනෙදා උදාහරණයක්:</h4>
-                        <p class="text-sm leading-relaxed">ඔබට තායි ආහාර පිසීමට අවශ්‍ය නමුත් ඔබ දන්නේ සැන්ඩ්විච් සාදා ගන්නේ කෙසේද යන්න පමණි. පරතරය යනු ඔබ තවමත් ඉගෙන ගෙන නැති කුළුබඩු, ක්‍රම සහ වට්ටෝරු වේ.</p>
+        <div class="card">
+            <div>
+                <h2><i></i>දැනුම පරතරයක් යනු කුමක්ද?</h2>
+                <p>එය ගැටලුවක් විසඳීමට ඔබ <span>දන්නා දේ</span> සහ ඔබ <span>දැනගත යුතු දේ</span> අතර වෙනසයි.</p>
+                <div>
+                    <div>
+                        <h4><i></i>එදිනෙදා උදාහරණයක්:</h4>
+                        <p>ඔබට තායි ආහාර පිසීමට අවශ්‍ය නමුත් ඔබ දන්නේ සැන්ඩ්විච් සාදා ගන්නේ කෙසේද යන්න පමණි. පරතරය යනු ඔබ තවමත් ඉගෙන ගෙන නැති කුළුබඩු, ක්‍රම සහ වට්ටෝරු වේ.</p>
                     </div>
-                    <div class="bg-white/10 p-6 rounded-xl border border-white/20 backdrop-blur-sm">
-                        <h4 class="font-bold mb-2 text-red-300"><i class="fa-solid fa-shield-virus mr-2"></i>සයිබර් ආරක්ෂණ උදාහරණයක්:</h4>
-                        <p class="text-sm leading-relaxed">ප්‍රහාරකයින් දැනුම හිඩැස් (zero-day vulnerabilities) ගසාකයි. මෙම හිඩැස් වැසීම සඳහා ආරක්ෂකයින් නව තර්ජන ගැන ඉගෙන ගත යුතුය.</p>
+                    <div>
+                        <h4><i></i>සයිබර් ආරක්ෂණ උදාහරණයක්:</h4>
+                        <p>ප්‍රහාරකයින් දැනුම හිඩැස් (zero-day vulnerabilities) ගසාකයි. මෙම හිඩැස් වැසීම සඳහා ආරක්ෂකයින් නව තර්ජන ගැන ඉගෙන ගත යුතුය.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Footer -->
-        <footer class="bg-slate-900 text-slate-400 py-16 px-4">
-            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+        <footer>
+            <div>
                 <div>
-                    <h3 class="text-white text-xl font-bold mb-6"><i class="fa-solid fa-graduation-cap mr-2 text-brand-primary"></i>සිසුන් සඳහා</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-green-500 mt-1"></i><span>පළමුව ශක්තිමත් පදනමක් ගොඩනඟා ගන්න</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-green-500 mt-1"></i><span>නිරන්තරයෙන් පුහුණු වන්න (Hands-on)</span></li>
+                    <h3><i></i>සිසුන් සඳහා</h3>
+                    <ul>
+                        <li><i></i><span>පළමුව ශක්තිමත් පදනමක් ගොඩනඟා ගන්න</span></li>
+                        <li><i></i><span>නිරන්තරයෙන් පුහුණු වන්න (Hands-on)</span></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-white text-xl font-bold mb-6"><i class="fa-solid fa-chalkboard-user mr-2 text-brand-primary"></i>ගුරුවරුන් සඳහා</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-blue-500 mt-1"></i><span>සැබෑ ලෝකයේ උදාහරණ භාවිතා කරන්න</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-blue-500 mt-1"></i><span>"ඉගෙන ගන්නේ කෙසේද" යන්න උගන්වන්න</span></li>
+                    <h3><i></i>ගුරුවරුන් සඳහා</h3>
+                    <ul>
+                        <li><i></i><span>සැබෑ ලෝකයේ උදාහරණ භාවිතා කරන්න</span></li>
+                        <li><i></i><span>"ඉගෙන ගන්නේ කෙසේද" යන්න උගන්වන්න</span></li>
                     </ul>
                 </div>
             </div>
-            <div class="mt-16 pt-8 border-t border-slate-800 text-center text-sm">
+            <div>
                 <p>hackandbuild.dev අන්තර්ගතය පදනම් කරගෙන ජනනය කරන ලදී</p>
             </div>
         </footer>
     </div>
-
-    <script>
-        function switchLang(lang) {
-            const contentEn = document.getElementById('content-en');
-            const contentSi = document.getElementById('content-si');
-            const btnEn = document.getElementById('btn-en');
-            const btnSi = document.getElementById('btn-si');
-
-            if (lang === 'en') {
-                contentEn.classList.remove('hidden');
-                contentSi.classList.add('hidden');
-                
-                // Update tabs
-                btnEn.classList.add('bg-white', 'text-brand-primary', 'border-t-4', 'border-brand-primary', 'shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]');
-                btnEn.classList.remove('bg-slate-200', 'text-slate-500', 'hover:bg-slate-300');
-                
-                btnSi.classList.add('bg-slate-200', 'text-slate-500', 'hover:bg-slate-300');
-                btnSi.classList.remove('bg-white', 'text-brand-primary', 'border-t-4', 'border-brand-primary', 'shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]');
-            } else {
-                contentEn.classList.add('hidden');
-                contentSi.classList.remove('hidden');
-
-                // Update tabs
-                btnSi.classList.add('bg-white', 'text-brand-primary', 'border-t-4', 'border-brand-primary', 'shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]');
-                btnSi.classList.remove('bg-slate-200', 'text-slate-500', 'hover:bg-slate-300');
-                
-                btnEn.classList.add('bg-slate-200', 'text-slate-500', 'hover:bg-slate-300');
-                btnEn.classList.remove('bg-white', 'text-brand-primary', 'border-t-4', 'border-brand-primary', 'shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]');
-            }
-            window.scrollTo(0, 0);
-        }
-    </script>
+</div>
+<footer>Hack and Build © 2025 — MIT License</footer>
 </body>
 </html>
