@@ -18,36 +18,56 @@
 :root { --bg: #060606; --surface: #0a0a0a; --text: #e2e8f0; --dim: #64748b; --accent: #00ff88; --border: #1e293b; --error: #ff3366; --warn: #fbbf24; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
-.term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* Terminal nav */
+.term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 100; }
 .term-dot { width: 10px; height: 10px; border-radius: 50%; opacity: 0.6; }
 .term-dot.r { background: var(--error); }
 .term-dot.y { background: var(--warn); }
 .term-dot.g { background: var(--accent); }
 .term-bar a { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
 .term-bar a:hover { color: var(--accent); }
-.container { max-width: 900px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
-h1, h2, h3, h4 { font-family: 'JetBrains Mono', monospace; font-weight: 600; letter-spacing: -0.01em; }
-h1 { font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--accent); }
-h2 { font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--text); }
-h3 { font-size: 1.05rem; margin: 1.5rem 0 0.75rem; color: var(--warn); }
-p { margin-bottom: 1rem; color: var(--dim); }
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
-ul, ol { margin: 1rem 0 1rem 1.5rem; color: var(--dim); }
-li { margin: 0.35rem 0; }
-code { font-family: 'JetBrains Mono', monospace; background: var(--surface); border: 1px solid var(--border); padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; color: var(--accent); }
-pre { background: var(--surface); border: 1px solid var(--border); padding: 1rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
-pre code { background: none; border: none; padding: 0; color: var(--text); }
-img { max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0; }
-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
-th, td { padding: 0.6rem; text-align: left; border-bottom: 1px solid var(--border); }
-th { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; }
-.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin: 1rem 0; }
-.card h3 { margin-top: 0; }
-hr { border: none; border-top: 1px dashed var(--border); margin: 2rem 0; }
-footer { text-align: center; padding: 2rem; font-size: 0.75rem; color: var(--dim); border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; }
-@media (max-width: 600px) { .container { padding: 2rem 1rem; } h1 { font-size: 1.4rem; } }
+
+/* Layout */
+.container { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+
+/* Page title */
+.page-title { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
+.page-sub { color: var(--dim); font-size: 0.95rem; margin-bottom: 2.5rem; }
+
+/* TILE GRID */
+.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; }
+
+/* Tile card */
+.tile { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: border-color 0.3s ease; }
+.tile:hover { border-color: rgba(255,255,255,0.15); }
+.tile h2 { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
+.tile h3 { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 600; color: var(--warn); margin: 1rem 0 0.5rem; }
+.tile p, .tile li { color: var(--dim); font-size: 0.9rem; margin-bottom: 0.5rem; }
+.tile ul, .tile ol { margin: 0.5rem 0 0.5rem 1.2rem; }
+.tile li { margin: 0.25rem 0; }
+.tile code { font-family: 'JetBrains Mono', monospace; background: var(--bg); border: 1px solid var(--border); padding: 0.1rem 0.3rem; border-radius: 4px; font-size: 0.8em; color: var(--accent); }
+.tile pre { background: var(--bg); border: 1px solid var(--border); padding: 0.75rem; border-radius: 8px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; margin: 0.75rem 0; }
+.tile pre code { background: none; border: none; padding: 0; color: var(--text); }
+.tile img { max-width: 100%; height: auto; border-radius: 8px; margin: 0.5rem 0; }
+.tile table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.85rem; }
+.tile th, .tile td { padding: 0.4rem 0.5rem; text-align: left; border-bottom: 1px solid var(--border); }
+.tile th { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; font-size: 0.8rem; }
+
+/* Full width tiles for large content */
+.tile-wide { grid-column: 1 / -1; }
+
+/* Tag/badge inside tiles */
+.tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; color: var(--dim); margin-bottom: 0.5rem; }
+
+footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; color: var(--dim); border-top: 1px solid var(--border); margin-top: 3rem; font-family: 'JetBrains Mono', monospace; }
+
+@media (max-width: 600px) {
+  .container { padding: 2rem 1rem; }
+  .tile-grid { grid-template-columns: 1fr; }
+  .page-title { font-size: 1.3rem; }
+}
 
 </style>
 </head>
@@ -59,17 +79,10 @@ footer { text-align: center; padding: 2rem; font-size: 0.75rem; color: var(--dim
   <a href="/">← hackandbuild.dev</a>
 </div>
 <div class="container">
-<div>
-        <header>
-            <h1>📚 Understanding KNOWLEDGE</h1>
-            <p>A Simple Guide for Students and Teachers</p>
-        </header>
-        
-        <div>
-            <!-- What is Knowledge Section -->
-            <div>
-                <h2>🎯 What is Knowledge?</h2>
-                <p>Knowledge is like cooking. <strong>Data</strong> is your ingredients (flour, eggs, sugar). <strong>Information</strong> is the recipe. <strong>Knowledge</strong> is understanding why the recipe works and being able to adjust it. <strong>Wisdom</strong> is knowing when to bake a cake versus cookies based on the occasion.</p>
+  <div class="page-title">📚 Understanding KNOWLEDGE</div>
+<div class="page-sub">A Simple Guide for Students and Teachers</div>
+<div class="tile-grid">
+<div class="tile"><h2>🎯 What is Knowledge?</h2><p>Knowledge is like cooking. <strong>Data</strong> is your ingredients (flour, eggs, sugar). <strong>Information</strong> is the recipe. <strong>Knowledge</strong> is understanding why the recipe works and being able to adjust it. <strong>Wisdom</strong> is knowing when to bake a cake versus cookies based on the occasion.</p>
                 
                 <div>
                     <div>
@@ -92,10 +105,8 @@ footer { text-align: center; padding: 2rem; font-size: 0.75rem; color: var(--dim
             </div>
             
             <!-- Types of Knowledge Section -->
-            <div>
-                <h2>🧩 4 Types of Knowledge</h2>
-                
-                <div>
+            <div></div>
+<div class="tile"><h2>🧩 4 Types of Knowledge</h2><div>
                     <div>
                         <h3>📚 EXPLICIT</h3>
                         <p>Written down, easy to share</p>
@@ -139,9 +150,8 @@ footer { text-align: center; padding: 2rem; font-size: 0.75rem; color: var(--dim
             </div>
             
             <!-- Learning Ladder Section -->
-            <div>
-                <h2>🪜 The Learning Ladder</h2>
-                <p style="margin-bottom: 20px;">Think of learning to drive a car - you start by remembering what parts do, then understanding how they work, then actually using them, and finally creating your own routes.</p>
+            <div></div>
+<div class="tile"><h2>🪜 The Learning Ladder</h2><p style="margin-bottom: 20px;">Think of learning to drive a car - you start by remembering what parts do, then understanding how they work, then actually using them, and finally creating your own routes.</p>
                 
                 <div>
                     <div>
@@ -177,9 +187,8 @@ footer { text-align: center; padding: 2rem; font-size: 0.75rem; color: var(--dim
             </div>
             
             <!-- Knowledge Management Section -->
-            <div>
-                <h2>🔄 Knowledge Management Cycle</h2>
-                <p style="margin-bottom: 20px;">Like organizing your home - you need to capture, store, share, update, and protect your knowledge.</p>
+            <div></div>
+<div class="tile"><h2>🔄 Knowledge Management Cycle</h2><p style="margin-bottom: 20px;">Like organizing your home - you need to capture, store, share, update, and protect your knowledge.</p>
                 
                 <div>
                     <div>
@@ -215,10 +224,8 @@ footer { text-align: center; padding: 2rem; font-size: 0.75rem; color: var(--dim
             </div>
             
             <!-- Simple Analogies Section -->
-            <div>
-                <h2>🎨 Simple Analogies</h2>
-                
-                <div>
+            <div></div>
+<div class="tile"><h2>🎨 Simple Analogies</h2><div>
                     <div>
                         <h3>🍳 Cooking Analogy</h3>
                         <ul>
@@ -242,17 +249,15 @@ footer { text-align: center; padding: 2rem; font-size: 0.75rem; color: var(--dim
             </div>
             
             <!-- Knowledge Gap Section -->
-            <div>
-                <h2>🔍 What is a Knowledge Gap?</h2>
-                <p>A <strong>knowledge gap</strong> is the difference between what you know and what you need to know to solve a problem.</p>
+            <div></div>
+<div class="tile"><h2>🔍 What is a Knowledge Gap?</h2><p>A <strong>knowledge gap</strong> is the difference between what you know and what you need to know to solve a problem.</p>
                 <p style="margin-top: 15px;"><strong>Example:</strong> You want to cook Thai food but only know how to make sandwiches. The gap is all the Thai cooking techniques, ingredients, and recipes you need to learn.</p>
                 <p style="margin-top: 15px;"><strong>In cybersecurity:</strong> Attackers exploit knowledge gaps (like zero-day vulnerabilities). Defenders must continuously learn about new threats, tools, and techniques.</p>
             </div>
             
             <!-- How People Learn Section -->
-            <div>
-                <h2>🎓 How People Learn Best</h2>
-                <p><strong>Learn by doing, not just watching.</strong> This is why you remember how to ride a bike (you practiced) but forget most lectures (you just listened).</p>
+            <div></div>
+<div class="tile"><h2>🎓 How People Learn Best</h2><p><strong>Learn by doing, not just watching.</strong> This is why you remember how to ride a bike (you practiced) but forget most lectures (you just listened).</p>
                 <p style="margin-top: 15px;">Good learning involves:</p>
                 <ul style="margin-left: 40px; margin-top: 10px;">
                     <li>Hands-on practice and experimentation</li>
@@ -264,18 +269,16 @@ footer { text-align: center; padding: 2rem; font-size: 0.75rem; color: var(--dim
             </div>
             
             <!-- Key Takeaway -->
-            <div>
-                <h2>💡 KEY TAKEAWAY</h2>
-                <p>Knowledge is not just memorizing facts.</p>
+            <div></div>
+<div class="tile"><h2>💡 KEY TAKEAWAY</h2><p>Knowledge is not just memorizing facts.</p>
                 <p>It's understanding how things work, being able to use them,</p>
                 <p>and knowing when to apply them wisely.</p>
             </div>
             
             <!-- For Students Box -->
             <div>
-                <div style="background: #e8f5e9; padding: 30px; border-radius: 15px; border-left: 5px solid #27ae60;">
-                    <h2 style="color: #27ae60; border: none; padding: 0;">✨ For Students</h2>
-                    <p style="margin-top: 15px;"><strong>Your job as a student:</strong></p>
+                <div style="background: #e8f5e9; padding: 30px; border-radius: 15px; border-left: 5px solid #27ae60;"></div>
+<div class="tile"><h2>✨ For Students</h2><p style="margin-top: 15px;"><strong>Your job as a student:</strong></p>
                     <ul style="margin-left: 40px; margin-top: 10px;">
                         <li>Build a strong foundation of knowledge</li>
                         <li>Practice relentlessly - do hands-on work</li>
@@ -288,9 +291,8 @@ footer { text-align: center; padding: 2rem; font-size: 0.75rem; color: var(--dim
             
             <!-- For Teachers Box -->
             <div>
-                <div style="background: #fff3e0; padding: 30px; border-radius: 15px; border-left: 5px solid #f39c12;">
-                    <h2 style="color: #e67e22; border: none; padding: 0;">👨‍🏫 For Teachers</h2>
-                    <p style="margin-top: 15px;"><strong>Teaching tips:</strong></p>
+                <div style="background: #fff3e0; padding: 30px; border-radius: 15px; border-left: 5px solid #f39c12;"></div>
+<div class="tile"><h2>👨‍🏫 For Teachers</h2><p style="margin-top: 15px;"><strong>Teaching tips:</strong></p>
                     <ul style="margin-left: 40px; margin-top: 10px;">
                         <li>Use real-world examples and case studies</li>
                         <li>Encourage hands-on practice over passive learning</li>
@@ -308,6 +310,9 @@ footer { text-align: center; padding: 2rem; font-size: 0.75rem; color: var(--dim
             <p style="opacity: 0.7;">Knowledge is power when applied correctly</p>
         </footer>
     </div>
+</div>
+<footer>Hack and Build © 2025 — MIT License</footer></div>
+</div>
 </div>
 <footer>Hack and Build © 2025 — MIT License</footer>
 </body>
