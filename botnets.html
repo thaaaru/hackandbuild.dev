@@ -12,7 +12,6 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-
 .term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 100; }
 .term-dot { width: 10px; height: 10px; border-radius: 50%; opacity: 0.6; }
 .term-dot.r { background: var(--error); }
@@ -20,14 +19,10 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .term-dot.g { background: var(--accent); }
 .term-bar a { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
 .term-bar a:hover { color: var(--accent); }
-
 .container { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
 .page-title { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
 .page-sub { color: var(--dim); font-size: 0.95rem; margin-bottom: 2.5rem; }
-
-/* TILE GRID */
 .tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1rem; }
-
 .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: border-color 0.3s ease; }
 .tile:hover { border-color: rgba(255,255,255,0.15); }
 .tile h2 { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
@@ -42,11 +37,8 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .tile table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.85rem; }
 .tile th, .tile td { padding: 0.4rem 0.5rem; text-align: left; border-bottom: 1px solid var(--border); }
 .tile th { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; font-size: 0.8rem; }
-
 .tile-wide { grid-column: 1 / -1; }
-
 footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; color: var(--dim); border-top: 1px solid var(--border); margin-top: 3rem; font-family: 'JetBrains Mono', monospace; }
-
 @media (max-width: 600px) { .container { padding: 2rem 1rem; } .tile-grid { grid-template-columns: 1fr; } .page-title { font-size: 1.3rem; } }
 </style>
 </head>
@@ -59,7 +51,7 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
 </div>
 <div class="container">
   <div class="page-title">The Botnet Economy: An Infographic</div>
-<div class="page-sub">Less than 10% of nodes are traditional PCs. Most are:</div>
+<div class="page-sub">Botnets range from small rental pools to massive global networks. Here's a comparison of the scales mentioned in the data.</div>
 <div class="tile-grid">
   <div class="tile"><h2>What's Infected?</h2><h3>Modern Botnet Composition</h3>
                 <!-- Bar Chart Diagram -->
@@ -69,6 +61,7 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                         <div style="width: 90%">
                             <span>90%</span>
                             <span>IoT & Mobile</span></div>
+  <div class="tile"></div>
   <div class="tile"><h2>Dark Web & Telegram Pricing</h2><!-- Card: DDoS -->
                 <div>
                     <h3>DDoS-as-a-Service</h3>
@@ -77,6 +70,7 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                         <li><span>24 Hours:</span> <span>$80 - $150</span></li>
                         <li><span>Weekly Subscription:</span> <span>$400 - $600</span></li>
                     </ul></div>
+  <div class="tile"></div>
   <div class="tile"><h2>Visualizing Botnet Scale</h2><p>Botnets range from small rental pools to massive global networks. Here's a comparison of the scales mentioned in the data.</p>
                 <!-- Bubble comparison chart -->
                 <!-- Note: Sizes are illustrative, not perfectly to scale, to ensure readability. -->
@@ -86,19 +80,25 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                     <div>
                         <div>
                             <div>1k</div>
+  <div class="tile"></div>
   <div class="tile"><h2>Operational Behaviour</h2><div>
                         
                         <div>
                             <h4>Seasonal Spikes</h4>
                             <p>Infections surge during Black Friday, Christmas, and Chinese New Year due to new, cheap IoT devices.</p></div>
+  <div class="tile"></div>
   <div class="tile"><h2>Revenue Estimates (Monthly)</h2><div>
                         <h3>$8k - $40k</h3>
                         <p>Mid-Size DDoS Botnet</p>
                         <p>(50k-200k nodes)</p></div>
+  <div class="tile"></div>
   <div class="tile"><h2>Architecture & Trends</h2><!-- Card: P2P -->
                 <div>
                     <h3>30-40% use P2P C2</h3>
                     <p>Peer-to-Peer Command & Control (C2) is used in 30-40% of botnets. These are significantly harder for CERTs and ISPs to dismantle.</p></div>
+</div>
+</div>
+<footer>Hack and Build © 2025 — MIT License</footer></div>
 </div>
 </div>
 <footer>Hack and Build © 2025 — MIT License</footer>
