@@ -13,7 +13,6 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-/* Terminal nav */
 .term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 100; }
 .term-dot { width: 10px; height: 10px; border-radius: 50%; opacity: 0.6; }
 .term-dot.r { background: var(--error); }
@@ -22,17 +21,13 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .term-bar a { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
 .term-bar a:hover { color: var(--accent); }
 
-/* Layout */
 .container { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
-
-/* Page title */
 .page-title { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
 .page-sub { color: var(--dim); font-size: 0.95rem; margin-bottom: 2.5rem; }
 
 /* TILE GRID */
-.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; }
+.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1rem; }
 
-/* Tile card */
 .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: border-color 0.3s ease; }
 .tile:hover { border-color: rgba(255,255,255,0.15); }
 .tile h2 { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
@@ -48,20 +43,11 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .tile th, .tile td { padding: 0.4rem 0.5rem; text-align: left; border-bottom: 1px solid var(--border); }
 .tile th { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; font-size: 0.8rem; }
 
-/* Full width tiles for large content */
 .tile-wide { grid-column: 1 / -1; }
-
-/* Tag/badge inside tiles */
-.tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; color: var(--dim); margin-bottom: 0.5rem; }
 
 footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; color: var(--dim); border-top: 1px solid var(--border); margin-top: 3rem; font-family: 'JetBrains Mono', monospace; }
 
-@media (max-width: 600px) {
-  .container { padding: 2rem 1rem; }
-  .tile-grid { grid-template-columns: 1fr; }
-  .page-title { font-size: 1.3rem; }
-}
-
+@media (max-width: 600px) { .container { padding: 2rem 1rem; } .tile-grid { grid-template-columns: 1fr; } .page-title { font-size: 1.3rem; } }
 </style>
 </head>
 <body>
@@ -72,222 +58,12 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
   <a href="/">← hackandbuild.dev</a>
 </div>
 <div class="container">
-  <div class="page-title">Learn cybersecurity, software, and AI by building</div>
-<div class="page-sub">Clear teaching, careful pacing, and practical projects. Built for Sri Lanka's tech community with real-world applications.</div>
+  <div class="page-title">1index.html</div>
+<div class="page-sub">Campus or team cohorts available. Email hello@hackandbuild.dev</div>
 <div class="tile-grid">
-<div class="tile tile-wide"><h2>Courses</h2><p>Pick a track. Each course includes guided labs, notes, and a small project.</p>
-                </div>
-                <div>
-                    <div>
-                        <h3>Essential Cybersecurity</h3>
-                        <div>
-                            <span>Beginner</span>
-                            <span>24 hours</span>
-                        </div>
-                        <p>Learn the fundamentals of cybersecurity through hands-on labs. Cover network security, threat analysis, and basic incident response.</p>
-                        <div>LKR 12,000</div>
-                        <button>Enroll</button>
-                    </div>
-                    
-                    <div>
-                        <h3>Linux for Everyone</h3>
-                        <div>
-                            <span>Beginner</span>
-                            <span>8 hours</span>
-                        </div>
-                        <p>Master the command line and system administration. Perfect for beginners who want to work with Linux servers and tools.</p>
-                        <div>LKR 6,000</div>
-                        <button>Enroll</button>
-                    </div>
-                    
-                    <div>
-                        <h3>Python for Security</h3>
-                        <div>
-                            <span>Beginner</span>
-                            <span>12 hours</span>
-                        </div>
-                        <p>Write Python scripts for security automation, web scraping, and penetration testing. No prior programming experience needed.</p>
-                        <div>LKR 8,000</div>
-                        <button>Enroll</button>
-                    </div>
-                    
-                    <div>
-                        <h3>Cloud Security Basics</h3>
-                        <div>
-                            <span>Intermediate</span>
-                            <span>12 hours</span>
-                        </div>
-                        <p>Secure cloud infrastructure on AWS and Azure. Learn IAM, encryption, and compliance for Sri Lankan businesses.</p>
-                        <div>LKR 9,500</div>
-                        <button>Enroll</button>
-                    </div>
-                    
-                    <div>
-                        <h3>Windows Forensics 101</h3>
-                        <div>
-                            <span>Beginner</span>
-                            <span>8 hours</span>
-                        </div>
-                        <p>Investigate Windows systems for security incidents. Learn to analyze logs, registry, and file systems.</p>
-                        <div>LKR 7,500</div>
-                        <button>Enroll</button>
-                    </div>
-                </div>
-                <p style="text-align: center; margin-top: 2rem; color: var(--text-secondary); font-size: 0.9rem;">
-                    Campus or team cohorts available. Email <a href="mailto:hello@hackandbuild.dev">hello@hackandbuild.dev</a>
-                </p>
-            </div>
-        </div>
-
-        <div id="method">
-            <div>
-                <div></div>
-<div class="tile"><h2>Our Method</h2><p>Three simple steps to build real skills</p>
-                </div>
-                <div>
-                    <div>
-                        <h3>Explain Clearly</h3>
-                        <ul>
-                            <li>Start with the basics, no jargon</li>
-                            <li>Use real examples from Sri Lankan context</li>
-                        </ul>
-                        <p>We break down complex topics into simple steps. Every concept is explained with practical examples you can relate to.</p>
-                    </div>
-                    
-                    <div>
-                        <h3>Practice Safely</h3>
-                        <ul>
-                            <li>Hands-on labs in isolated environments</li>
-                            <li>Learn from mistakes without breaking anything</li>
-                        </ul>
-                        <p>Practice on our secure lab environments. Make mistakes, learn from them, and build confidence safely.</p>
-                    </div>
-                    
-                    <div>
-                        <h3>Build a Project</h3>
-                        <ul>
-                            <li>Create something you can show employers</li>
-                            <li>Apply skills to solve real problems</li>
-                        </ul>
-                        <p>Every course ends with a practical project. Build your portfolio while learning skills that matter in the workplace.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="schedule">
-            <div>
-                <div></div>
-<div class="tile tile-wide"><h2>Upcoming Sessions</h2><p>Join our next cohort. All times in Asia/Colombo timezone.</p>
-                </div>
-                <table role="table" aria-label="Course schedule">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Course</th>
-                            <th>Format</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Saturday, Jan 18</td>
-                            <td>09:00–12:00</td>
-                            <td>Network Security (intro)</td>
-                            <td>On campus</td>
-                            <td><button style="padding: 0.5rem 1rem; font-size: 0.9rem;">Reserve</button></td>
-                        </tr>
-                        <tr>
-                            <td>Saturday, Jan 18</td>
-                            <td>14:00–16:00</td>
-                            <td>Python for Security</td>
-                            <td>Online</td>
-                            <td><button style="padding: 0.5rem 1rem; font-size: 0.9rem;">Reserve</button></td>
-                        </tr>
-                        <tr>
-                            <td>Sunday, Jan 19</td>
-                            <td>09:00–12:00</td>
-                            <td>Linux for Everyone</td>
-                            <td>Online</td>
-                            <td><button style="padding: 0.5rem 1rem; font-size: 0.9rem;">Reserve</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div id="faq">
-            <div>
-                <div></div>
-<div class="tile"><h2>Frequently Asked Questions</h2></div>
-                <div>
-                    <div>Do I need prior experience?</div>
-                    <p>No! Our beginner courses start from the basics. We'll teach you everything you need to know, step by step.</p>
-                </div>
-                
-                <div>
-                    <div>What if I miss a session?</div>
-                    <p>All sessions are recorded. You can catch up at your own pace and ask questions in our community forum.</p>
-                </div>
-                
-                <div>
-                    <div>Are there Capture The Flag (CTF) competitions?</div>
-                    <p>CTFs are optional but encouraged! We run monthly challenges to practice your skills in a fun, competitive environment.</p>
-                </div>
-                
-                <div>
-                    <div>Can I get a certificate?</div>
-                    <p>Yes! Complete any course and you'll receive a certificate. Perfect for your LinkedIn profile and job applications.</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="enroll">
-            <div>
-                <div></div>
-<div class="tile"><h2>Enroll Now</h2><p>Ready to start learning? Fill out the form below.</p>
-                </div>
-                <form id="enroll-form" aria-label="Enrollment form">
-                    <div>
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" required aria-describedby="name-help">
-                    </div>
-                    
-                    <div>
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required aria-describedby="email-help">
-                    </div>
-                    
-                    <div>
-                        <label for="course">Select Course *</label>
-                        <select id="course" name="course" required>
-                            <option value="">Choose a course...</option>
-                            <option value="essential-cybersecurity">Essential Cybersecurity - LKR 12,000</option>
-                            <option value="linux-everyone">Linux for Everyone - LKR 6,000</option>
-                            <option value="python-security">Python for Security - LKR 8,000</option>
-                            <option value="cloud-security">Cloud Security Basics - LKR 9,500</option>
-                            <option value="windows-forensics">Windows Forensics 101 - LKR 7,500</option>
-                        </select>
-                    </div>
-                    
-                    <button type="submit" style="width: 100%;">Submit Enrollment</button>
-                    
-                    <div id="form-status" style="display: none;" role="status" aria-live="polite"></div>
-                </form>
-            </div>
-        </div>
-    </main>
-
-    <footer role="contentinfo">
-        <div>
-            <p>Building Sri Lanka's next generation of cybersecurity professionals through hands-on learning.</p>
-            <p>Contact us at <a href="mailto:hello@hackandbuild.dev">hello@hackandbuild.dev</a></p>
-            <p>&copy; <span id="current-year"></span> hackandbuild.dev</p>
-        </div>
-    </footer>
-</div>
-<footer>Hack and Build © 2025 — MIT License</footer></div>
+  <div class="tile"><h2>Our Method</h2><p>Three simple steps to build real skills</p></div>
+  <div class="tile"><h2>Upcoming Sessions</h2><p>Join our next cohort. All times in Asia/Colombo timezone.</p></div>
+  <div class="tile"><h2>Enroll Now</h2><p>Ready to start learning? Fill out the form below.</p></div>
 </div>
 </div>
 <footer>Hack and Build © 2025 — MIT License</footer>
