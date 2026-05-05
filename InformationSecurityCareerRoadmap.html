@@ -20,7 +20,6 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-/* Terminal nav */
 .term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 100; }
 .term-dot { width: 10px; height: 10px; border-radius: 50%; opacity: 0.6; }
 .term-dot.r { background: var(--error); }
@@ -29,17 +28,13 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .term-bar a { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
 .term-bar a:hover { color: var(--accent); }
 
-/* Layout */
 .container { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
-
-/* Page title */
 .page-title { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
 .page-sub { color: var(--dim); font-size: 0.95rem; margin-bottom: 2.5rem; }
 
 /* TILE GRID */
-.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; }
+.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1rem; }
 
-/* Tile card */
 .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: border-color 0.3s ease; }
 .tile:hover { border-color: rgba(255,255,255,0.15); }
 .tile h2 { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
@@ -55,20 +50,11 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .tile th, .tile td { padding: 0.4rem 0.5rem; text-align: left; border-bottom: 1px solid var(--border); }
 .tile th { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; font-size: 0.8rem; }
 
-/* Full width tiles for large content */
 .tile-wide { grid-column: 1 / -1; }
-
-/* Tag/badge inside tiles */
-.tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; color: var(--dim); margin-bottom: 0.5rem; }
 
 footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; color: var(--dim); border-top: 1px solid var(--border); margin-top: 3rem; font-family: 'JetBrains Mono', monospace; }
 
-@media (max-width: 600px) {
-  .container { padding: 2rem 1rem; }
-  .tile-grid { grid-template-columns: 1fr; }
-  .page-title { font-size: 1.3rem; }
-}
-
+@media (max-width: 600px) { .container { padding: 2rem 1rem; } .tile-grid { grid-template-columns: 1fr; } .page-title { font-size: 1.3rem; } }
 </style>
 </head>
 <body>
@@ -80,42 +66,21 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
 </div>
 <div class="container">
   <div class="page-title">Information Security Career Roadmap</div>
-<div class="page-sub">A guide to progression, skills, and certifications in Cybersecurity.</div>
 <div class="tile-grid">
-<div class="tile">
-<div>
-  
-  
-  
-  <a href="/">← hackandbuild.dev</a>
-</div>
-<div>
-<div id="app">
-        <header>
-            <h1>
-                Information Security Career Roadmap
-            </h1>
-            <p>
-                A guide to progression, skills, and certifications in Cybersecurity.
-            </p>
-            <div>
-                <label for="sl-toggle">Highlight Sri Lankan Context</label>
-                <input type="checkbox" id="sl-toggle" onchange="toggleSriLankaContext(this.checked)">
-                <div'] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600 cursor-pointer"></div>
-            </div>
+  <div class="tile"><h2>Information Security Career Roadmap</h2>
+
         </header>
 
         <main id="roadmap-container">
             <!-- Roadmap stages will be rendered here -->
         </main>
 
-        <footer>
-            <p>This roadmap is for guidance and is tailored with notes for the Sri Lankan job market.</p>
-        </footer>
+        
     </div>
 </div>
-<footer>Hack and Build © 2025 — MIT License</footer>
+
 </div>
+</div></div>
 </div>
 </div>
 <footer>Hack and Build © 2025 — MIT License</footer>
