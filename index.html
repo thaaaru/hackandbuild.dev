@@ -1,573 +1,594 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hack and Build</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #060606;
+      --surface: #0a0a0a;
+      --text: #e2e8f0;
+      --dim: #64748b;
+      --accent: #00ff88;
+      --border: #1e293b;
+      --error: #ff3366;
+      --warn: #fbbf24;
+      --info: #60a5fa;
+      --cyber: #ff3366;
+      --cyber-dim: rgba(255,51,102,0.08);
+      --ai: #504fed;
+      --ai-dim: rgba(80,79,237,0.08);
+      --linux: #00d4aa;
+      --linux-dim: rgba(0,212,170,0.08);
+      --foundations: #fbbf24;
+      --foundations-dim: rgba(251,191,36,0.08);
+    }
 
-      <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-  gtag('config', 'G-X70YJR4WSV');
-</script>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
 
-      
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Hack and Build - Open learning portal for IT and cybersecurity roadmaps">
-    <title>Hack and Build - Learning Portal</title>
-    <!-- Font Awesome CDN for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- Hack font CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/hack@5.0.16/index.min.css">
-    <style>
-        :root {
-            --bg: #ffffff;
-            --text: #1a1a1a;
-            --accent: #2563eb;
-            --border: #e5e7eb;
-            --card-bg: #f9fafb;
-            --mono: 'Hack', 'Courier New', monospace;
-            --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        }
+    #matrix {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0; opacity: 0.03; pointer-events: none;
+    }
 
-        [data-theme="dark"] {
-            --bg: #0f172a;
-            --text: #e2e8f0;
-            --accent: #60a5fa;
-            --border: #334155;
-            --card-bg: #1e293b;
-        }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px);
+      z-index: 9999; pointer-events: none; opacity: 0.4;
+    }
 
-        body {
-            font-family: var(--sans);
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            transition: background 0.3s, color 0.3s;
-        }
+    .term-section {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 4rem 1.5rem;
+      max-width: 900px; margin: 0 auto;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
+    .term-bar {
+      display: flex; gap: 0.5rem;
+      margin-bottom: 2rem; padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .term-dot { width: 10px; height: 10px; border-radius: 50%; opacity: 0.6; }
+    .term-dot.r { background: var(--error); }
+    .term-dot.y { background: var(--warn); }
+    .term-dot.g { background: var(--accent); }
 
-        header {
-            padding: 0.6rem 0 0.6rem 0;
-            border-bottom: 1px solid var(--border);
-        }
+    .cursor {
+      display: inline-block; width: 8px; height: 1.2em;
+      background: var(--accent);
+      animation: blink 1s step-end infinite;
+      vertical-align: text-bottom; margin-left: 2px;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .type {
+      overflow: hidden; white-space: nowrap;
+      border-right: 2px solid var(--accent);
+      animation: typing 2s steps(30, end) forwards, blink-caret 0.8s step-end infinite;
+      width: 0; display: inline-block;
+    }
+    .type.d1 { animation-delay: 0.5s; }
+    .type.d2 { animation-delay: 2s; }
 
-        .logo {
-            font-family: var(--mono);
-            font-size: 1.18rem;
-            font-weight: bold;
-        }
+    @keyframes typing { from { width: 0; } to { width: 100%; } }
+    @keyframes blink-caret { 50% { border-color: transparent; } }
 
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--border);
-            color: var(--text);
-            padding: 0.35rem 0.8rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.84rem;
-            transition: all 0.2s;
-        }
+    .prompt { color: var(--accent); margin-right: 0.5rem; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
 
-        .theme-toggle:hover {
-            border-color: var(--accent);
-        }
+    .cmd-line {
+      margin: 1.5rem 0; opacity: 0; transform: translateY(10px);
+      animation: fadeUp 0.5s ease forwards;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .cmd-line:nth-child(1) { animation-delay: 0.2s; }
+    .cmd-line:nth-child(2) { animation-delay: 0.6s; }
+    .cmd-line:nth-child(3) { animation-delay: 1.0s; }
+    .cmd-line:nth-child(4) { animation-delay: 1.4s; }
+    .cmd-line:nth-child(5) { animation-delay: 1.8s; }
+    .cmd-line:nth-child(6) { animation-delay: 2.2s; }
 
-        .hero {
-            padding: 2.5rem 0 2rem 0;
-            text-align: center;
-        }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
-        h1 {
-            font-family: var(--mono);
-            font-size: 2.1rem;
-            margin-bottom: 0.35rem;
-        }
+    .output { color: var(--dim); padding-left: 1.5rem; margin: 0.3rem 0 1rem; font-size: 0.9rem; font-family: 'JetBrains Mono', monospace; }
+    .highlight { color: var(--accent); }
+    .warn { color: var(--warn); }
+    .error { color: var(--error); }
 
-        .subtitle {
-            font-size: 1.1rem;
-            color: var(--accent);
-            margin-bottom: 1.1rem;
-        }
+    .tree { list-style: none; padding-left: 0; margin: 0.5rem 0 1.5rem; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; }
+    .tree li { padding: 0.2rem 0; transition: all 0.2s ease; }
+    .tree .area { color: var(--warn); font-weight: 600; margin-top: 0.75rem; }
+    .tree .file { padding-left: 1.5rem; }
+    .tree .meta { float: right; color: var(--dim); font-size: 0.75rem; }
+    .tree li:hover { color: var(--accent); }
+    .tree .file:hover { border-left: 2px solid var(--accent); padding-left: calc(1.5rem - 2px); background: rgba(0,255,136,0.03); }
 
-        .hero p {
-            max-width: 700px;
-            margin: 0 auto 1.1rem;
-            font-size: 1rem;
-        }
+    .divider { border: none; border-top: 1px dashed var(--border); margin: 2rem 0; }
 
-        .cta-buttons {
-            display: flex;
-            gap: 0.7rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+    .scroll-hint {
+      text-align: center; margin-top: 3rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; color: var(--dim);
+      text-transform: uppercase; letter-spacing: 0.2em;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 
-        .btn {
-            padding: 0.58rem 1.15rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s;
-            display: inline-block;
-        }
+    .bento-section {
+      position: relative; z-index: 2;
+      background: linear-gradient(180deg, var(--bg) 0%, #080808 100%);
+      padding: 4rem 0;
+    }
 
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-        }
+    .area-header {
+      max-width: 1400px; margin: 0 auto;
+      padding: 2rem 4vw 0.5rem;
+      display: flex; align-items: baseline; gap: 1rem;
+    }
+    .area-header h2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem; text-transform: uppercase;
+      letter-spacing: 0.2em; font-weight: 600;
+    }
+    .area-header .area-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, currentColor, transparent);
+      opacity: 0.2;
+    }
+    .area-header span { font-size: 0.75rem; color: var(--dim); }
 
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
-        }
+    .area-header.cyber { color: var(--cyber); }
+    .area-header.ai { color: var(--ai); }
+    .area-header.linux { color: var(--linux); }
+    .area-header.foundations { color: var(--foundations); }
 
-        .btn-secondary {
-            border: 1px solid var(--border);
-            color: var(--text);
-        }
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 260px;
+      gap: 1rem;
+      padding: 1rem 4vw 2rem;
+      max-width: 1400px; margin: 0 auto;
+    }
 
-        .btn-secondary:hover {
-            border-color: var(--accent);
-        }
+    .b-item {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px; padding: 1.75rem;
+      position: relative; overflow: hidden;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
 
-        .how-it-works {
-            padding: 2.2rem 0 2rem 0;
-            background: var(--card-bg);
-        }
+    .b-item::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.08), transparent 60%);
+      opacity: 0; transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .b-item:hover::before { opacity: 1; }
+    .b-item:hover {
+      border-color: var(--area-color, rgba(255,255,255,0.15));
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px -20px rgba(0,0,0,0.8);
+    }
 
-        h2 {
-            font-family: var(--mono);
-            font-size: 1.44rem;
-            text-align: center;
-            margin-bottom: 2.1rem;
-        }
+    .bento-cyber .b-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .bento-cyber .b-item:nth-child(2) { grid-column: span 1; grid-row: span 1; }
+    .bento-cyber .b-item:nth-child(3) { grid-column: span 1; grid-row: span 1; }
+    .bento-cyber .b-item:nth-child(4) { grid-column: span 2; grid-row: span 1; }
+    .bento-cyber .b-item:nth-child(5) { grid-column: span 1; grid-row: span 1; }
+    .bento-cyber .b-item:nth-child(6) { grid-column: span 1; grid-row: span 1; }
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.2rem;
-        }
+    .bento-ai .b-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .bento-ai .b-item:nth-child(2) { grid-column: span 1; grid-row: span 1; }
+    .bento-ai .b-item:nth-child(3) { grid-column: span 1; grid-row: span 1; }
+    .bento-ai .b-item:nth-child(4) { grid-column: span 2; grid-row: span 1; }
+    .bento-ai .b-item:nth-child(5) { grid-column: span 2; grid-row: span 1; }
 
-        .card {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.12rem 1.1rem;
-        }
+    .bento-linux .b-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .bento-linux .b-item:nth-child(2) { grid-column: span 1; grid-row: span 1; }
+    .bento-linux .b-item:nth-child(3) { grid-column: span 1; grid-row: span 1; }
+    .bento-linux .b-item:nth-child(4) { grid-column: span 2; grid-row: span 1; }
 
-        .card h3 {
-            font-family: var(--mono);
-            margin-bottom: 0.55rem;
-            color: var(--accent);
-            font-size: 1.01rem;
-        }
+    .bento-foundations .b-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+    .bento-foundations .b-item:nth-child(2) { grid-column: span 2; grid-row: span 1; }
+    .bento-foundations .b-item:nth-child(3) { grid-column: span 1; grid-row: span 1; }
+    .bento-foundations .b-item:nth-child(4) { grid-column: span 1; grid-row: span 1; }
+    .bento-foundations .b-item:nth-child(5) { grid-column: span 2; grid-row: span 1; }
 
-        .roadmaps {
-            padding: 2.5rem 0 2.1rem 0;
-        }
+    .bento-certs .b-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+    .bento-certs .b-item:nth-child(2) { grid-column: span 1; grid-row: span 1; }
+    .bento-certs .b-item:nth-child(3) { grid-column: span 1; grid-row: span 1; }
+    .bento-certs .b-item:nth-child(4) { grid-column: span 2; grid-row: span 1; }
+    .bento-certs .b-item:nth-child(5) { grid-column: span 2; grid-row: span 1; }
 
-        .roadmap-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.08rem;
-            margin-top: 1.33rem;
-        }
+    .b-item[data-area="cyber"] { --area-color: var(--cyber); background: linear-gradient(135deg, var(--cyber-dim), transparent 60%); }
+    .b-item[data-area="ai"] { --area-color: var(--ai); background: linear-gradient(135deg, var(--ai-dim), transparent 60%); }
+    .b-item[data-area="linux"] { --area-color: var(--linux); background: linear-gradient(135deg, var(--linux-dim), transparent 60%); }
+    .b-item[data-area="foundations"] { --area-color: var(--foundations); background: linear-gradient(135deg, var(--foundations-dim), transparent 60%); }
 
-        .roadmap-tile {
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            background: var(--card-bg);
-            padding: 0.9rem 0.95rem 0.85rem 0.95rem;
-            height: 7.1em;
-            max-height: 8.1em;
-            min-height: unset;
-            box-shadow: 0 1px 7px 0 rgba(60, 60, 90, 0.04);
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            gap: 0.85rem;
-            position: relative;
-            cursor: pointer;
-            transition: box-shadow 0.15s, border-color 0.15s, transform 0.11s, background 0.17s;
-            text-decoration: none;
-            color: inherit;
-        }
-        .roadmap-tile:hover {
-            border-color: var(--accent);
-            box-shadow: 0 3px 10px 0 rgba(60, 60, 120, 0.13);
-            background: #eaf1fd;
-            transform: translateY(-1.5px) scale(1.011);
-        }
-        [data-theme="dark"] .roadmap-tile:hover {
-            background: #162039;
-            border-color: #77b3fa;
-        }
-        .roadmap-tile-icon {
-            flex-shrink: 0;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--accent);
-            border-radius: 50%;
-            margin-top: 0.14em;
-        }
-        .roadmap-tile-icon i {
-            color: #fff;
-            font-size: 1.16em;
-        }
-        .roadmap-info {
-            flex: 1 1 auto;
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            overflow: hidden;
-            font-family: var(--mono);
-        }
-        .roadmap-info h3 {
-            margin: 0 0 0.24rem 0;
-            font-size: 1.01rem;
-            font-family: var(--mono);
-            font-weight: 600;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            line-height: 1.22;
-            white-space: normal;
-        }
-        .roadmap-info p {
-            color: var(--text);
-            opacity: 0.8;
-            font-size: 0.93rem;
-            margin: 0.06rem 0 0 0;
-            line-height: 1.18;
-            word-break: break-word;
-            white-space: normal;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .roadmap-info .location-tag {
-            font-size: 0.88rem;
-            color: var(--accent);
-            font-family: var(--mono);
-        }
-        .roadmap-tile-arrow {
-            margin-left: 0.65rem;
-            color: var(--accent);
-            font-size: 1.18em;
-            flex-shrink: 0;
-            transition: transform 0.14s;
-            display: flex;
-            align-items: center;
-            margin-top: 0.13em;
-        }
-        .roadmap-tile:hover .roadmap-tile-arrow {
-            transform: translateX(0.18em);
-        }
-        .loading {
-            text-align: center;
-            padding: 1.4rem;
-            opacity: 0.6;
-        }
+    .b-item .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem; text-transform: uppercase;
+      letter-spacing: 0.15em; color: var(--dim);
+      margin-bottom: 0.5rem; transition: color 0.3s ease;
+    }
+    .b-item:hover .tag { color: rgba(255,255,255,0.7); }
 
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 1.2rem 0 1rem 0;
-            text-align: center;
-            font-size: 0.875rem;
-            opacity: 0.8;
-        }
+    .b-item h3 {
+      font-size: 1.3rem; font-weight: 600;
+      line-height: 1.2; margin-bottom: 0.6rem;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .b-item:hover h3 { transform: translateX(4px); }
 
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
+    .b-item p {
+      font-size: 0.88rem; color: var(--dim);
+      line-height: 1.6; transition: color 0.3s ease;
+    }
+    .b-item:hover p { color: rgba(255,255,255,0.6); }
 
-        footer a:hover {
-            text-decoration: underline;
-        }
+    .b-item .b-icon {
+      font-size: 2.2rem; margin-bottom: 0.75rem;
+      opacity: 0.7; transition: all 0.4s ease;
+    }
+    .b-item:hover .b-icon { opacity: 1; transform: scale(1.1) rotate(-5deg); }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 1.4rem;
-            }
+    .cert-badges {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      margin-top: 0.75rem;
+    }
+    .cert-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem; padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid var(--area-color, rgba(255,255,255,0.15));
+      color: var(--area-color, var(--text));
+      opacity: 0.7; transition: all 0.3s ease;
+    }
+    .b-item:hover .cert-badge {
+      opacity: 1;
+      background: var(--area-color, rgba(255,255,255,0.05));
+    }
 
-            h2 {
-                font-size: 1.05rem;
-            }
+    .b-item.area-card h3 { font-size: 1.8rem; }
+    .area-stats {
+      display: flex; gap: 1.5rem; margin-top: 1rem;
+    }
+    .area-stat { display: flex; flex-direction: column; }
+    .area-stat .num {
+      font-size: 1.5rem; font-weight: 700;
+      line-height: 1; color: var(--area-color, var(--text));
+    }
+    .area-stat .label {
+      font-size: 0.65rem; color: var(--dim);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-top: 0.25rem;
+    }
 
-            .hero {
-                padding: 1.3rem 0 1.2rem 0;
-            }
+    .b-deco {
+      position: absolute; border-radius: 50%;
+      pointer-events: none; transition: all 0.6s ease;
+    }
+    .b-item:hover .b-deco { transform: scale(1.3); }
 
-            .roadmap-list {
-                grid-template-columns: 1fr;
-                gap: 0.75rem;
-            }
-            .roadmap-tile {
-                padding: 0.65rem 0.55rem 0.68rem 0.55rem;
-            }
-        }
-    </style>
+    footer {
+      padding: 3rem 4vw; text-align: center;
+      font-size: 0.8rem; color: var(--dim);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    @media (max-width: 900px) {
+      .bento { grid-template-columns: repeat(2, 1fr) !important; grid-auto-rows: 220px; }
+      .bento .b-item { grid-column: span 1 !important; grid-row: span 1 !important; }
+      .bento .b-item.area-card { grid-column: span 2 !important; }
+    }
+    @media (max-width: 500px) {
+      .bento { grid-template-columns: 1fr !important; }
+      .bento .b-item { grid-column: span 1 !important; }
+      .bento .b-item.area-card { grid-column: span 1 !important; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">hack_and_build</div>
-                <button class="theme-toggle" id="themeToggle">Toggle Dark Mode</button>
-            </div>
+
+  <canvas id="matrix"></canvas>
+
+  <!-- TERMINAL OPENING -->
+  <section class="term-section">
+    <div class="term-bar">
+      <div class="term-dot r"></div>
+      <div class="term-dot y"></div>
+      <div class="term-dot g"></div>
+      <span style="margin-left:auto;font-size:0.7rem;color:var(--dim);font-family:'JetBrains Mono',monospace">hackandbuild@dev:~</span>
+    </div>
+
+    <div class="cmd-line">
+      <span class="prompt">$</span> <span class="type">init hackandbuild.dev</span><span class="cursor"></span>
+    </div>
+
+    <div class="cmd-line">
+      <span class="prompt">$</span> <span class="type d1">loading modules...</span>
+    </div>
+
+    <div class="output cmd-line" style="animation-delay:1.8s">
+      <span class="highlight">[OK]</span> core loaded<br>
+      <span class="highlight">[OK]</span> 4 learning areas indexed<br>
+      <span class="highlight">[OK]</span> 23 roadmaps loaded<br>
+      <span class="warn">[!]</span>  18 certifications mapped
+    </div>
+
+    <div class="cmd-line" style="animation-delay:2.5s">
+      <span class="prompt">$</span> cat manifesto.txt
+    </div>
+
+    <div class="output cmd-line" style="animation-delay:2.8s">
+      Hack and Build is a community for people who want to learn by building.<br><br>
+      We bridge the gap between theory and practice.<br>
+      Roadmaps are organized by domain. Certifications are mapped to each area.<br><br>
+      Pick an area. Follow the path. Earn the cert.
+    </div>
+
+    <hr class="divider">
+
+    <div class="cmd-line" style="animation-delay:3.2s">
+      <span class="prompt">$</span> tree roadmaps/
+    </div>
+
+    <ul class="tree" style="animation-delay:3.4s">
+      <li class="area">├── cybersecurity/ <span class="meta">8 roadmaps</span></li>
+      <li class="file">│   ├── ethical-hacking-pentest.md <span class="meta">24KB</span></li>
+      <li class="file">│   ├── digital-forensics-incident-response.md <span class="meta">18KB</span></li>
+      <li class="file">│   ├── soc-operations.md <span class="meta">16KB</span></li>
+      <li class="file">│   ├── web-app-security-owasp.md <span class="meta">14KB</span></li>
+      <li class="file">│   ├── network-security-firewalls.md <span class="meta">12KB</span></li>
+      <li class="file">│   ├── linux-for-cybersecurity.md <span class="meta">20KB</span></li>
+      <li class="file">│   ├── malware-analysis.md <span class="meta">15KB</span></li>
+      <li class="file">│   └── social-engineering-osint.md <span class="meta">11KB</span></li>
+
+      <li class="area">├── ai-machine-learning/ <span class="meta">6 roadmaps</span></li>
+      <li class="file">│   ├── machine-learning-fundamentals.md <span class="meta">18KB</span></li>
+      <li class="file">│   ├── deep-learning-neural-networks.md <span class="meta">22KB</span></li>
+      <li class="file">│   ├── ai-model-comparison.md <span class="meta">10KB</span></li>
+      <li class="file">│   ├── mlops-deployment.md <span class="meta">14KB</span></li>
+      <li class="file">│   ├── natural-language-processing.md <span class="meta">16KB</span></li>
+      <li class="file">│   └── computer-vision-basics.md <span class="meta">13KB</span></li>
+
+      <li class="area">├── linux-systems/ <span class="meta">4 roadmaps</span></li>
+      <li class="file">│   ├── linux-administration.md <span class="meta">20KB</span></li>
+      <li class="file">│   ├── linux-security-hardening.md <span class="meta">16KB</span></li>
+      <li class="file">│   ├── shell-scripting-automation.md <span class="meta">14KB</span></li>
+      <li class="file">│   └── system-troubleshooting.md <span class="meta">10KB</span></li>
+
+      <li class="area">└── foundations-career/ <span class="meta">5 roadmaps</span></li>
+      <li class="file">    ├── dikw-hierarchy.md <span class="meta">6KB</span></li>
+      <li class="file">    ├── learning-methods.md <span class="meta">8KB</span></li>
+      <li class="file">    ├── communication-styles.md <span class="meta">7KB</span></li>
+      <li class="file">    ├── infosec-career-roadmap.md <span class="meta">12KB</span></li>
+      <li class="file">    └── technical-writing.md <span class="meta">5KB</span></li>
+    </ul>
+
+    <div class="scroll-hint">Scroll to explore ↓</div>
+  </section>
+
+  <!-- BENTO GRID -->
+  <section class="bento-section">
+
+    <div class="area-header cyber">
+      <h2>Cybersecurity</h2>
+      <div class="area-line"></div>
+      <span>8 roadmaps · 7 certs</span>
+    </div>
+    <div class="bento bento-cyber">
+      <article class="b-item area-card" data-area="cyber">
+        <div class="b-deco" style="width:180px;height:180px;background:radial-gradient(circle,rgba(255,51,102,0.15),transparent 70%);bottom:-40px;right:-40px;"></div>
+        <div>
+          <span class="tag">Area Overview</span>
+          <div class="b-icon">🛡️</div>
+          <h3>Cybersecurity</h3>
+          <p>From ethical hacking to incident response. The complete defensive and offensive security curriculum.</p>
+          <div class="area-stats">
+            <div class="area-stat"><span class="num">8</span><span class="label">Roadmaps</span></div>
+            <div class="area-stat"><span class="num">7</span><span class="label">Certs</span></div>
+            <div class="area-stat"><span class="num">120+</span><span class="label">Hours</span></div>
+          </div>
         </div>
-    </header>
+      </article>
+      <article class="b-item" data-area="cyber">
+        <div><span class="tag">Offensive</span><div class="b-icon">🎯</div><h3>Ethical Hacking</h3><p>Recon, scanning, exploitation, reporting.</p></div>
+        <div class="cert-badges"><span class="cert-badge">CEH</span><span class="cert-badge">OSCP</span><span class="cert-badge">eJPT</span></div>
+      </article>
+      <article class="b-item" data-area="cyber">
+        <div><span class="tag">Defensive</span><div class="b-icon">🔍</div><h3>DFIR</h3><p>Forensics and incident response workflows.</p></div>
+        <div class="cert-badges"><span class="cert-badge">GCFA</span><span class="cert-badge">GCIH</span></div>
+      </article>
+      <article class="b-item" data-area="cyber">
+        <div><span class="tag">Operations</span><div class="b-icon">👁️</div><h3>SOC & Monitoring</h3><p>Security Operations Center workflows, SIEM, and threat detection.</p></div>
+        <div class="cert-badges"><span class="cert-badge">Security+</span><span class="cert-badge">GCIH</span></div>
+      </article>
+      <article class="b-item" data-area="cyber">
+        <div><span class="tag">Web</span><div class="b-icon">🌐</div><h3>OWASP Top 10</h3><p>Web application security risks.</p></div>
+        <div class="cert-badges"><span class="cert-badge">CEH</span><span class="cert-badge">OSCP</span></div>
+      </article>
+      <article class="b-item" data-area="cyber">
+        <div><span class="tag">Advanced</span><div class="b-icon">🦠</div><h3>Malware Analysis</h3><p>Reverse engineering and behavior analysis.</p></div>
+        <div class="cert-badges"><span class="cert-badge">GCFA</span></div>
+      </article>
+    </div>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h1>Hack and Build</h1>
-                <p class="subtitle">Share knowledge. Learn deeply. Add value.</p>
-                <p>
-                    Hackandbuild.dev is a community for people who want to learn by building.
-                </p>
-                <p>
-                    We bridge the gap between theory and practice. Here, you learn by doing, turning ideas into real projects.
-                </p>
-                <p>
-                    Each roadmap is a practical guide. Each insight helps you build new skills.
-                </p>
-                <p>
-                    If you believe the best way to gain knowledge is to apply it, this is the place for you.
-                </p>
-                <div class="cta-buttons">
-                    <a href="#roadmaps" class="btn btn-primary">Browse Roadmaps</a>
-                </div>
-            </div>
-        </section>
+    <div class="area-header ai">
+      <h2>AI / Machine Learning</h2>
+      <div class="area-line"></div>
+      <span>6 roadmaps · 4 certs</span>
+    </div>
+    <div class="bento bento-ai">
+      <article class="b-item area-card" data-area="ai">
+        <div class="b-deco" style="width:180px;height:180px;background:radial-gradient(circle,rgba(80,79,237,0.15),transparent 70%);bottom:-40px;right:-40px;"></div>
+        <div>
+          <span class="tag">Area Overview</span>
+          <div class="b-icon">🤖</div>
+          <h3>AI & Machine Learning</h3>
+          <p>From fundamentals to production. Neural networks, model comparison, and MLOps.</p>
+          <div class="area-stats">
+            <div class="area-stat"><span class="num">6</span><span class="label">Roadmaps</span></div>
+            <div class="area-stat"><span class="num">4</span><span class="label">Certs</span></div>
+            <div class="area-stat"><span class="num">90+</span><span class="label">Hours</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="b-item" data-area="ai">
+        <div><span class="tag">Core</span><div class="b-icon">🧠</div><h3>Deep Learning</h3><p>Neural networks from scratch.</p></div>
+        <div class="cert-badges"><span class="cert-badge">TDC</span><span class="cert-badge">GCP-ML</span></div>
+      </article>
+      <article class="b-item" data-area="ai">
+        <div><span class="tag">Practical</span><div class="b-icon">⚖️</div><h3>Model Comparison</h3><p>GPT, Claude, Gemini, DeepSeek.</p></div>
+      </article>
+      <article class="b-item" data-area="ai">
+        <div><span class="tag">Production</span><div class="b-icon">🚀</div><h3>MLOps & Deployment</h3><p>Deploy, monitor, and scale models in production environments.</p></div>
+        <div class="cert-badges"><span class="cert-badge">AWS-MLS</span><span class="cert-badge">GCP-ML</span></div>
+      </article>
+      <article class="b-item" data-area="ai">
+        <div><span class="tag">Specialization</span><div class="b-icon">💬</div><h3>NLP & Computer Vision</h3><p>Language models and image recognition pipelines.</p></div>
+        <div class="cert-badges"><span class="cert-badge">AI-102</span></div>
+      </article>
+    </div>
 
-        <section class="how-it-works">
-            <div class="container">
-                <h2>How It Works</h2>
-                <div class="cards">
-                    <div class="card">
-                        <h3>Learn</h3>
-                        <p>Follow structured roadmaps designed for real-world IT and security careers.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Build</h3>
-                        <p>Apply knowledge through hands-on projects and practical exercises.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Share</h3>
-                        <p>Contribute your own guides and help others on their learning journey.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="area-header linux">
+      <h2>Linux & Systems</h2>
+      <div class="area-line"></div>
+      <span>4 roadmaps · 4 certs</span>
+    </div>
+    <div class="bento bento-linux">
+      <article class="b-item area-card" data-area="linux">
+        <div class="b-deco" style="width:180px;height:180px;background:radial-gradient(circle,rgba(0,212,170,0.15),transparent 70%);bottom:-40px;right:-40px;"></div>
+        <div>
+          <span class="tag">Area Overview</span>
+          <div class="b-icon">🐧</div>
+          <h3>Linux & Systems</h3>
+          <p>Command the machine. Administration, security, and automation.</p>
+          <div class="area-stats">
+            <div class="area-stat"><span class="num">4</span><span class="label">Roadmaps</span></div>
+            <div class="area-stat"><span class="num">4</span><span class="label">Certs</span></div>
+            <div class="area-stat"><span class="num">60+</span><span class="label">Hours</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="b-item" data-area="linux">
+        <div><span class="tag">Admin</span><div class="b-icon">⚙️</div><h3>Linux Administration</h3><p>LPIC-1 level system management.</p></div>
+        <div class="cert-badges"><span class="cert-badge">Linux+</span><span class="cert-badge">LFCS</span><span class="cert-badge">RHCSA</span></div>
+      </article>
+      <article class="b-item" data-area="linux">
+        <div><span class="tag">Security</span><div class="b-icon">🔒</div><h3>Security Hardening</h3><p>SELinux, AppArmor, audit.</p></div>
+        <div class="cert-badges"><span class="cert-badge">RHCE</span><span class="cert-badge">Security+</span></div>
+      </article>
+      <article class="b-item" data-area="linux">
+        <div><span class="tag">Automation</span><div class="b-icon">📜</div><h3>Shell Scripting</h3><p>Bash, awk, sed, and automation pipelines for daily workflows.</p></div>
+      </article>
+    </div>
 
-        <section class="roadmaps" id="roadmaps">
-            <div class="container">
-                <h2>Roadmaps and Guides</h2>
-                <div class="roadmap-list" id="roadmapList">
-                    <div class="loading">Loading roadmaps...</div>
-                </div>
-            </div>
-        </section>
-    </main>
+    <div class="area-header foundations">
+      <h2>Foundations & Career</h2>
+      <div class="area-line"></div>
+      <span>5 roadmaps · meta-skills</span>
+    </div>
+    <div class="bento bento-foundations">
+      <article class="b-item" data-area="foundations">
+        <div><span class="tag">Meta-Learning</span><div class="b-icon">🧩</div><h3>DIKW Hierarchy</h3><p>Data to wisdom. Understanding knowledge management.</p></div>
+      </article>
+      <article class="b-item" data-area="foundations">
+        <div><span class="tag">Meta-Learning</span><div class="b-icon">🎓</div><h3>Learning Methods</h3><p>Spaced repetition, active recall, Feynman technique.</p></div>
+      </article>
+      <article class="b-item" data-area="foundations">
+        <div><span class="tag">Communication</span><div class="b-icon">💬</div><h3>VAK Model</h3><p>Visual, auditory, kinesthetic styles.</p></div>
+      </article>
+      <article class="b-item" data-area="foundations">
+        <div><span class="tag">Career</span><div class="b-icon">🗺️</div><h3>Career Roadmap</h3><p>From help desk to CISO. Role progression guide.</p></div>
+      </article>
+      <article class="b-item" data-area="foundations">
+        <div><span class="tag">Skill</span><div class="b-icon">✍️</div><h3>Technical Writing</h3><p>Documentation, reports, and clear communication for technical audiences.</p></div>
+      </article>
+    </div>
+
+    <div class="area-header" style="color:#fff">
+      <h2>Certifications</h2>
+      <div class="area-line"></div>
+      <span>18 certs across 3 domains</span>
+    </div>
+    <div class="bento bento-certs">
+      <article class="b-item" data-area="cyber">
+        <div><span class="tag">Cybersecurity</span><h3>CEH · OSCP · Security+ · CISSP · GCIH · GCFA · eJPT</h3><p>Entry to advanced offensive and defensive security certifications.</p></div>
+      </article>
+      <article class="b-item" data-area="ai">
+        <div><span class="tag">AI / ML</span><h3>TDC · AWS-MLS</h3><p>Cloud and framework-specific ML certs.</p></div>
+      </article>
+      <article class="b-item" data-area="ai">
+        <div><span class="tag">AI / ML</span><h3>AI-102 · GCP-ML</h3><p>Azure and Google platform certifications.</p></div>
+      </article>
+      <article class="b-item" data-area="linux">
+        <div><span class="tag">Linux</span><h3>Linux+ · LFCS · RHCSA · RHCE</h3><p>Vendor-neutral and Red Hat system administration certs.</p></div>
+      </article>
+      <article class="b-item" data-area="foundations">
+        <div><span class="tag">Career Path</span><h3>Security+ → CISSP → CISM</h3><p>Recommended certification progression for cybersecurity careers.</p></div>
+      </article>
+    </div>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Hack and Build | <a href="#license">MIT License</a> | <a href="mailto:contact@hackandbuild.dev">Contact</a></p>
-        </div>
+      <p>Hack and Build © 2025 — 23 roadmaps · 18 certifications · 270+ hours</p>
     </footer>
+  </section>
 
-    <script>
-        // Theme toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const html = document.documentElement;
+  <script>
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
+    resize(); window.addEventListener('resize', resize);
 
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        html.setAttribute('data-theme', savedTheme);
+    const cols = Math.floor(window.innerWidth / 14);
+    const drops = Array(cols).fill(1);
+    const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
 
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-        });
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(6, 6, 6, 0.05)';
+      ctx.fillRect(0, 0, width, height);
+      ctx.fillStyle = '#00ff88';
+      ctx.font = '12px JetBrains Mono';
+      for (let i = 0; i < drops.length; i++) {
+        const char = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(char, i * 14, drops[i] * 14);
+        if (drops[i] * 14 > height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+    }
+    setInterval(drawMatrix, 50);
 
-        // Default roadmaps list - files in the ROOT directory
-        const defaultRoadmaps = [
-            { file: 'Understanding-Knowledge.html', folder: '' },
-            { file: 'DIKWHierarchy.html', folder: '' },
-            { file: 'LearningMethods.html', folder: '' },
-            { file: 'DigitalForensicsAndIncidentResponse.html', folder: '' },
-            { file: 'EthicalHacking.html', folder: '' },
-            { file: 'InformationSecurityCareerRoadmap.html', folder: '' },
-            { file: 'MachineLearningGuide.html', folder: '' },
-            { file: 'MachineLearning.html', folder: '' },
-            { file: 'SkillsFrameworkForTheInformationAge.html', folder: '' },
-            { file: 'LinuxForCybersecurityModule1.html', folder: '', title: 'Linux for Cybersecurity - Module 1', description: 'Foundation course covering Linux basics, navigation, and essential commands for cybersecurity professionals.' },
-            { file: 'linux101-01.html', folder: '' },
-            { file: 'soc.html', folder: '' },
-            { file: 'owasptop10llm.html', folder: '' },
-            { file: 'stuxnet.html', folder: '' },
-            { file: 'firewall_by_pass_01.html', folder: '' },
-            { file: 'botnets.html', folder: '' },
-            { file: 'ceh_basics_en.html', folder: '', title: 'CEH Basics (English)', description: 'Certified Ethical Hacker basics and fundamentals in English.' },
-            { file: 'aimodelcomparison.html', folder: '', title: 'AI Model Comparison', description: 'Comparison of AI models and their capabilities.' },
-            { file: 'ai111_model_comparison_new.html', folder: '', title: 'AI Models Comparison (New)', description: 'Updated comparison of AI models including latest features and capabilities.' },
-            { file: 'aimodelcomparison.html', folder: 'AI_Models', title: 'AI Models Comparison', description: 'Comprehensive comparison of leading AI models including ChatGPT, Gemini, Claude, Perplexity, DeepSeek, and Qwen.' },
-            { file: 'CommunicationStyles.html', folder: '', title: 'Communication Styles - Visual, Auditory, Kinesthetic', description: 'Learn how people communicate differently through visual, auditory, and kinesthetic preferences. Bilingual guide in English and Sinhala.' }
-        ];
-
-        // FontAwesome icon mapping
-        function getTileIconClass(title) {
-            const norm = title.trim().replace(/\s+/g, ' ').replace(/-/g, ' ').toLowerCase();
-            if(norm.includes("ethical hacking")) return "fa-user-secret";
-            if(norm.includes("information security career roadmap")) return "fa-compass";
-            if(norm.includes("dikw")) return "fa-sitemap";
-            if(norm.includes("learning method")) return "fa-lightbulb";
-            if(norm.includes("machine learning")) return "fa-brain";
-            if(norm === "ml") return "fa-gears";
-            if(norm.includes("ai model")) return "fa-robot";
-            if(norm.includes("linux")) return "fa-terminal";
-            if(norm.includes("soc") || norm.includes("security operations")) return "fa-shield-halved";
-            if(norm.includes("owasp")) return "fa-shield";
-            if(norm.includes("knowledge")) return "fa-globe";
-            if(norm.includes("stuxnet")) return "fa-bug";
-            if(norm.includes("firewall")) return "fa-firewall";
-            if(norm.includes("botnet")) return "fa-network-wired";
-            if(norm.includes("ceh")) return "fa-certificate";
-            if(norm.includes("skywork")) return "fa-rocket";
-            if(norm.includes("communication")) return "fa-comments";
-            // fallback: book
-            return "fa-book";
-        }
-
-        // Format filename to readable title
-        function formatTitle(filename) {
-            return filename
-                .replace('.html', '')
-                .replace(/([A-Z])/g, ' $1')
-                .replace(/[-_]/g, ' ')
-                .trim()
-                .split(' ')
-                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                .join(' ');
-        }
-
-        // Render roadmap items AS CLICKABLE TILES with icon
-        function renderRoadmaps(roadmaps) {
-            const container = document.getElementById('roadmapList');
-            container.innerHTML = '';
-
-            // Normalize roadmaps to objects with file and folder properties
-            const normalizedRoadmaps = roadmaps.map(item => {
-                if (typeof item === 'string') {
-                    return { file: item, folder: '' };
-                }
-                return item;
-            });
-
-            normalizedRoadmaps.forEach(roadmap => {
-                // Support external URLs
-                const url = roadmap.externalUrl || (roadmap.folder ? `${roadmap.folder}/${roadmap.file}` : `${roadmap.file}`);
-                const title = roadmap.title || formatTitle(roadmap.file || 'External Resource');
-                const description = roadmap.description || '';
-                const locationTag = roadmap.externalUrl ? '<span class="location-tag">External</span>' : (roadmap.folder ? `<span class="location-tag">${roadmap.folder}/</span>` : '');
-
-                // Icon logic
-                const iconClass = getTileIconClass(title);
-
-                // Whole tile is a link
-                const tile = document.createElement('a');
-                tile.className = 'roadmap-tile';
-                tile.href = url;
-                tile.setAttribute('target', '_blank');
-                tile.setAttribute('rel', 'noopener noreferrer');
-                tile.innerHTML = `
-                    <span class="roadmap-tile-icon" aria-hidden="true">
-                        <i class="fa-solid ${iconClass}"></i>
-                    </span>
-                    <div class="roadmap-info">
-                        <h3>${title}</h3>
-                        ${locationTag}
-                        ${description ? `<p>${description}</p>` : ''}
-                    </div>
-                    <span class="roadmap-tile-arrow" aria-hidden="true">&rarr;</span>
-                `;
-                container.appendChild(tile);
-            });
-        }
-
-        // Load roadmaps
-        function loadRoadmaps() {
-            try {
-                renderRoadmaps(defaultRoadmaps);
-            } catch (error) {
-                const container = document.getElementById('roadmapList');
-                container.innerHTML = '<div class="loading">Error loading roadmaps. Please refresh the page.</div>';
-            }
-            // Optionally try to load pages.json in the background
-            fetch('pages.json')
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw new Error('No pages.json');
-                })
-                .then(data => {
-                    renderRoadmaps(data.pages || data);
-                })
-                .catch(error => {});
-        }
-
-        // --- Make all .html links open in new tab (even dynamically rendered) ---
-        function setLinksToOpenInNewTab() {
-            document.querySelectorAll('a[href$=".html"]').forEach(function(link) {
-                link.setAttribute('target', '_blank');
-                link.setAttribute('rel', 'noopener noreferrer');
-            });
-        }
-
-        // Patch renderRoadmaps to always set links to open in new tab
-        const origRenderRoadmaps = renderRoadmaps;
-        window.renderRoadmaps = function(...args) {
-            origRenderRoadmaps.apply(this, args);
-            setLinksToOpenInNewTab();
-        };
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            loadRoadmaps();
-            setLinksToOpenInNewTab();
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-    </script>
+    document.querySelectorAll('.b-item').forEach(item => {
+      item.addEventListener('mousemove', (e) => {
+        const rect = item.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        item.style.setProperty('--mx', x + '%');
+        item.style.setProperty('--my', y + '%');
+      });
+    });
+  </script>
 </body>
 </html>
