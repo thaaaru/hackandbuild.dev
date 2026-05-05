@@ -50,10 +50,62 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
   <a href="/">← hackandbuild.dev</a>
 </div>
 <div class="container">
-  <div class="page-title">Linux for Cybersecurity – Module 1: Foundation (Basics & Navigation) | HackAndBuild.dev</div>
-<div class="page-sub">Security Angle: Recognize where attackers hide scripts or modify configs.</div>
+  <div class="page-title">Linux for Cybersecurity – Module 1: Foundation (Basics & Navigation)</div>
+<div class="page-sub">Master Linux from the ground up — the language of ethical hackers and cybersecurity professionals.</div>
 <div class="tile-grid">
-  <div class="tile"><h2>Lessons in Module 1</h2><!-- Lesson 1 -->
+  <div class="tile"><h2>Why Linux Is Non-Negotiable for Cybersecurity</h2><h2>
+                    Why Linux Is Non-Negotiable for Cybersecurity
+                </h2>
+                
+                <div>
+                    <!-- Problem -->
+                    <div>
+                        <h3>Problem</h3>
+                        <p>
+                            Many aspiring ethical hackers skip Linux basics and jump straight to hacking tools.
+                        </p>
+                    </div>
+                    <!-- Impact -->
+                    <div>
+                        <h3>Impact</h3>
+                        <p>
+                            Without understanding the command line, users struggle to analyze logs, manage systems, or investigate incidents effectively.
+                        </p>
+                    </div>
+                    <!-- Mitigation -->
+                    <div>
+                        <h3>Mitigation</h3>
+                        <p>
+                            HackAndBuild.dev bridges that gap by teaching Linux in a cybersecurity-first way — hands-on, concise, and practical.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Learning Outcomes -->
+                <div>
+                    <h3>Learning Outcomes</h3>
+                    <ul>
+                        <li>
+                            <!-- Check Icon -->
+                            
+                            <span>Understand how Linux underpins every cybersecurity tool and operation.</span>
+                        </li>
+                        <li>
+                            
+                            <span>Learn to navigate, configure, and harden systems confidently.</span>
+                        </li>
+                        <li>
+                            
+                            <span>Prepare for ethical hacking labs and SOC environments.</span>
+                        </li>
+                    </ul>
+                </div></div>
+  <div class="tile tile-wide"><h2>Lessons in Module 1</h2><h2>
+                    Lessons in Module 1
+                </h2>
+
+                <div>
+                    <!-- Lesson 1 -->
                     <details open>
                         <summary>
                             <h3>
@@ -70,23 +122,233 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                             </ul>
                             <p>
                                 <strong>Security Angle:</strong> Recognize where attackers hide scripts or modify configs.
-                            </p></div>
-  <div class="tile"></div>
-  <div class="tile"><h2>Recap: Key Takeaways</h2><ul>
+                            </p>
+                        </div>
+                    </details>
+
+                    <!-- Lesson 2 -->
+                    <details>
+                        <summary>
+                            <h3>
+                                2️⃣ Linux Filesystem Deep Dive
+                            </h3>
+                            
+                        </summary>
+                        <div>
+                            <ul>
+                                <li>
+                                    <strong>Directory Hierarchy (FHS):</strong>
+                                    <ul>'] space-y-2 pl-5">
+                                        <li><code>/etc</code>: System configuration files (passwords, service configs).</li>
+                                        <li><code>/var</code>: Variable data, like logs (<code>/var/log</code>) and web content (<code>/var/www</code>).</li>
+                                        <li><code>/usr</code>: User-installed software and binaries.</li>
+                                        <li><code>/home</code>: User's personal directories.</li>
+                                        <li><code>/tmp</code>:
+                                        Temporary files (often world-writable, a common target for attackers).</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <strong>Navigation & Listing Commands:</strong>
+                                    <ul>'] space-y-2 pl-5">
+                                        <li><code>pwd</code>: Print Working Directory (shows where you are).</li>
+                                        <li><code>cd</code>: Change Directory (<code>cd ..</code> to go up, <code>cd ~</code> for home).</li>
+                                        <li><code>ls</code>: List directory contents.
+                                            <ul-'] space-y-1 pl-5">
+                                                <li><code>ls -la</code>: List all files (including hidden) in long format (shows permissions, owner, size).</li>
+                                        <li><code>ls -lR</code>: Recursively list all files in subdirectories.</li>
+                                        <li><code>ls -lt</code>: Sort by modification time (shows newest files first).</li>
+                                            </ul>
+                                        </li>
+                                        <li><code>tree</code>: View directory structure as a tree (may need to be installed).</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p>
+                                <strong>Security Angle:</strong> Recognize where attackers hide scripts (e.g., hidden files in <code>/tmp</code>) or modify configs in <code>/etc</code>.
+                            </p>
+                        </div>
+                    </details>
+                    
+                    <!-- Lesson 3 -->
+                    <details>
+                        <summary>
+                            <h3>
+                                3️⃣ Essential Linux Commands for Daily Use
+                            </h3>
+                            
+                        </summary>
+                        <div>
+                            <ul>
+                                <li>
+                                    <strong>File Operations (View & Edit):</strong>
+                                    <ul>'] space-y-2 pl-5">
+                                        <li><code>cat</code>: Concatenate and print files. Use <code>cat -n</code> to show line numbers.</li>
+                                        <li><code>less</code>: View large files page by page (press 'q' to quit, '/' to search).</li>
+                                        <li><code>head</code> / <code>tail</code>: Show the top or bottom 10 lines of a file.
+                                            <ul-'] space-y-1 pl-5">
+                                                <li><code>tail -n 50</code>: Show the last 50 lines.</li>
+                                                <li><code>tail -f /var/log/auth.log</code>: "Follow" a log file in real-time. (Crucial for SOC analysis).</li>
+                                            </ul>
+                                        </li>
+                                        <li><code>grep</code>: Search for patterns in text.
+                                            <ul-'] space-y-1 pl-5">
+                                                <li><code>grep "Failed password" /var/log/auth.log</code>: Find all failed login attempts.</li>
+                                                <li><code>grep -iR "password" /etc</code>: Recursively search (<code>-R</code>) for "password", ignoring case (<code>-i</code>), in the <code>/etc</code> directory.</li>
+                                            </ul>
+                                        </li>
+                                        <li><code>nano</code>: A simple, beginner-friendly text editor.</li>
+                                        <li><code>vi / vim</code>: A powerful, modal text editor. Essential for servers.</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <strong>File Management (Move, Copy, Delete):</strong>
+                                    <ul>'] space-y-2 pl-5">
+                                        <li><code>mkdir</code>: Make directories. Use <code>mkdir -p "parent/child"</code> to create nested directories.</li>
+                                        <li><code>rmdir</code>: Remove *empty* directories.</li>
+                                        <li><code>cp</code>: Copy files/directories. Use <code>cp -r</code> for recursive copy (directories).</li>
+                                        <li><code>mv</code>: Move or rename files/directories.</li>
+                                        <li><code>rm</code>: Remove files. Use <code>rm -r</code> to remove directories and <code>rm -f</code> to force removal. (Use with caution!)</li>
+                                        <li><code>find</code>: Search for files.
+                                            <ul-'] space-y-1 pl-5">
+                                                <li><coderounded bg-slate-700 px-1.5 py-0.5 font-mono text-sm text-emerald-300">find / -name "config.txt"</code>.</li>
+                                                <li><code>find /tmp -user hacker</code>: Find files in <code>/tmp</code> owned by user 'hacker'.</li>
+                                                <li><code>find / -mmin -60</code>: Find files modified in the last 60 minutes.</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <strong>Command Chaining (Pipes & Redirects):</strong>
+                                    <ul>'] space-y-2 pl-5">
+                                        <li><strong>Pipe <code>|</code></strong>: Sends the output of one command as the input to another. Ex: <code>cat /var/log/syslog | grep "error"</code>.</li>
+                                        <li><strong>Redirect <code>></code></strong>: Overwrites a file with command output.</li>
+                                        <li><strong>Append <code>>></code></strong>: Appends command output to the end of a file.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p>
+                                <strong>Security Angle:</strong> Learn how analysts use <code>grep</code>, <code>tail</code>, and <code>find</code> to hunt for indicators of compromise (IOCs), monitor live logs, and find attacker tools.
+                            </p>
+                        </div>
+                    </details>
+                    
+                    <!-- Lesson 4 -->
+                    <details>
+                        <summary>
+                            <h3>
+                                4️⃣ Managing Users and Groups
+                            </h3>
+                            
+                        </summary>
+                        <div>
+                            <ul>
+                                <li><strong>User Management:</strong>
+                                    <ul>'] space-y-2 pl-5">
+                                        <li><code>useradd hacker</code>: Creates a new user named 'hacker'.</li>
+                                        <li><code>passwd hacker</code>: Set (or change) the password for 'hacker'.</li>
+                                        <li><code>usermod -aG sudo hacker</code>: Add user 'hacker' to the 'sudo' group (grant admin rights).</li>
+                                        <li><code>userdel -r hacker</code>: Remove user 'hacker' and their home directory.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Group Management:</strong>
+                                    <ul>'] space-y-2 pl-5">
+                                        <li><code>groupadd analysts</code>: Create a new group 'analysts'.</li>
+                                        <li><code>gpasswd -a user1 analysts</code>: Add 'user1' to the 'analysts' group.</li>
+                                        <li><code>gpasswd -d user1 analysts</code>: Remove 'user1' from the 'analysts' group.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Privilege Management:</strong>
+                                    <ul>'] space-y-2 pl-5">
+                                        <li><code>sudo [command]</code>: Run a command with root (admin) privileges.</li>
+                                        <li><code>visudo</code> or <code>nano /etc/sudoers</code>: Edit the file that defines who can use <code>sudo</code>. (Very sensitive!)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p>
+                                <strong>Security Angle:</strong> Understand how attackers add rogue users or add themselves to the 'sudo' group to maintain persistent access and escalate privileges.
+                            </p>
+                        </div>
+                    </details>
+                    
+                    <!-- Lesson 5 -->
+                    <details>
+                        <summary>
+                            <h3>
+                                5️⃣ File Permissions and Ownership
+                            </h3>
+                            
+                        </summary>
+                        <div>
+                            <ul>
+                                <li><strong>Understanding Permissions (rwx):</strong>
+                                    <ul>'] space-y-2 pl-5">
+                                        <li>Permissions are set for <strong>U</strong>ser (owner), <strong>G</strong>roup, and <strong>O</strong>ther (everyone else).</li>
+                                        <li><strong>r (read)</strong>: View file contents / list directory contents.</li>
+                                <li><strong>w (write)</strong>: Modify file / create or delete files in directory.</li>
+                                <li><strong>x (execute)</strong>: Run a script / enter a directory (<code>cd</code>).</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Changing Permissions (chmod):</strong>
+                                    <ul>'] space-y-2 pl-5">
+                                        <li><strong>Symbolic Mode:</strong> <code>chmod u+x script.sh</code> (adds execute for user). <code>chmod o-w file.txt</code> (removes write for other).</li>
+                                        <li><strong>Octal (Numeric) Mode:</strong> r=4, w=2, x=1.
+                                            <ul-'] space-y-1 pl-5">
+                                                <li><code>chmod 644 web.config</code> (User=rw-, Group=r--, Other=r--). Common for web files.</li>
+                                                <li><code>chmod 600 key.pem</code> (User=rw-, Group=---, Other=---). This is secure for private keys.</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><strong>Changing Ownership (chown):</strong>
+                                        <li><code>chown -R www-data:www-data /var/www</code>: Recursively set web server user/group for a web directory.</li>
+                                    </ul>
+                                </li>
+                                 <li><code>umask</code>: Sets the default permissions for newly created files (e.g., <code>022</code> is a common default).</li>
+                                <li><strong>Special Permissions (SUID/SGID):</strong>
+                                    <ul>'] space-y-2 pl-5">
+                                        <li><strong>SUID (Set User ID)</strong>: Allows a user to run an executable with the permissions of the *file owner* (often root). Shows as an 's' in the user execute bit (e.g., <code>-rwsr-xr-x</code>).</li>
+                                        <li><strong>Example:</strong> The <code>passwd</code> command uses SUID to let a normal user change their own password in the root-owned <code>/etc/shadow</code> file.</li>
+                                        <li><strong>Attacker Focus:</strong> Attackers search for misconfigured SUID binaries to get a root shell.</li>
+                                        <li><strong>Find SUID files:</strong> <code>find / -perm -u=s -type f 2>/dev/null</code> (find files with SUID bit set, ignore errors).</li>
+                                    </ul>
+                                </li>
+                                <li>Real Case: How misconfigured file access led to the Polkit privilege escalation (CVE-2021-4034).</li>
+                            </ul>
+                            <p>
+                                <strong>Security Angle:</strong> Attackers hunt for world-writable files (<code>chmod 777</code>) to inject malware. Misconfigured SUID bits are a classic and powerful privilege escalation vector.
+                            </p>
+                        </div>
+                    </details>
+                </div></div>
+  <div class="tile"><h2>Recap: Key Takeaways</h2><div>
+                    <!-- Key Takeaways -->
+                    <div>
+                        <h2>Recap: Key Takeaways</h2>
+                        <ul>
                             <li>Linux is the operational backbone of cybersecurity.</li>
                             <li>Secure configuration starts with mastering users and permissions.</li>
                             <li>Real-world attacks often exploit poor Linux hygiene — this module prevents that.</li>
-                        </ul></div>
-  <div class="tile"></div>
-  <div class="tile"><h2>Module 2 – System Operations & Network Basics</h2><p>
+                        </ul>
+                    </div>
+                    <!-- Next Up -->
+                    <div>
+                        <h3>Next Up</h3>
+                        <h2>
+                            Module 2 – System Operations & Network Basics
+                        </h2>
+                        <p>
                             Process management, services, and essential networking tools for defenders.
                         </p>
                         <a href="#">
                             Go to Module 2
                             
-                        </a></div>
-  <div class="tile"></div>
-  <div class="tile"><h2>Resources & Downloads</h2><p>
+                        </a>
+                    </div>
+                </div></div>
+  <div class="tile"><h2>Resources & Downloads</h2><h2>
+                    Resources & Downloads
+                </h2>
+                <p>
                     Tools and references to support your learning.
                 </p>
                 
@@ -110,9 +372,13 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                     <a href="#">
                         
                         <span>TryHackMe: Linux Fundamentals Room</span>
-                    </a></div>
-  <div class="tile"></div>
-  <div class="tile"><h2>About HackAndBuild.dev</h2><p>
+                    </a>
+                </div></div>
+  <div class="tile"><h2>About HackAndBuild.dev</h2><div>
+                    <h2>
+                        About HackAndBuild.dev
+                    </h2>
+                    <p>
                         HackAndBuild.dev is a practical cybersecurity learning initiative by <strong>Tharaka Mahabage</strong>,
                     </p>
                     <p>
@@ -123,10 +389,9 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                         <h3>Mission</h3>
                         <p>
                             To empower learners in Sri Lanka and beyond to build cybersecurity skills through hands-on, short-format learning — from Linux and networking to ethical hacking and red teaming.
-                        </p></div>
-</div>
-</div>
-<footer>Hack and Build © 2025 — MIT License</footer></div>
+                        </p>
+                    </div>
+                </div></div>
 </div>
 </div>
 <footer>Hack and Build © 2025 — MIT License</footer>
