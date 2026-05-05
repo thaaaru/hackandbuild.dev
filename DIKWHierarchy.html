@@ -12,7 +12,6 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-
 .term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 100; }
 .term-dot { width: 10px; height: 10px; border-radius: 50%; opacity: 0.6; }
 .term-dot.r { background: var(--error); }
@@ -20,14 +19,10 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .term-dot.g { background: var(--accent); }
 .term-bar a { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
 .term-bar a:hover { color: var(--accent); }
-
 .container { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
 .page-title { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
 .page-sub { color: var(--dim); font-size: 0.95rem; margin-bottom: 2.5rem; }
-
-/* TILE GRID */
 .tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1rem; }
-
 .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: border-color 0.3s ease; }
 .tile:hover { border-color: rgba(255,255,255,0.15); }
 .tile h2 { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
@@ -42,11 +37,8 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .tile table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.85rem; }
 .tile th, .tile td { padding: 0.4rem 0.5rem; text-align: left; border-bottom: 1px solid var(--border); }
 .tile th { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; font-size: 0.8rem; }
-
 .tile-wide { grid-column: 1 / -1; }
-
 footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; color: var(--dim); border-top: 1px solid var(--border); margin-top: 3rem; font-family: 'JetBrains Mono', monospace; }
-
 @media (max-width: 600px) { .container { padding: 2rem 1rem; } .tile-grid { grid-template-columns: 1fr; } .page-title { font-size: 1.3rem; } }
 </style>
 </head>
@@ -58,40 +50,53 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
   <a href="/">← hackandbuild.dev</a>
 </div>
 <div class="container">
-  <div class="page-title">දැනුම අවබෝධ කරගැනීම</div>
-<div class="page-sub">Understanding & Context. The "how it works" mechanics.</div>
+  <div class="page-title">Understanding Knowledge / දැනුම අවබෝධ කරගැනීම</div>
+<div class="page-sub">Different ways we store, access, and prove what we know, with examples from Tech & Security.</div>
 <div class="tile-grid">
   <div class="tile"><h2>10 Types of Knowledge</h2><p>Different ways we store, access, and prove what we know, with examples from Tech & Security.</p></div>
+  <div class="tile"></div>
   <div class="tile"><h2>The Learning Ladder</h2><p>Ascending from basic commands to automation mastery.</p></div>
+  <div class="tile"></div>
   <div class="tile"><h2>Knowledge Management Cycle</h2><div>
                         <div><i></i></div>
+  <div class="tile"></div>
   <div class="tile"><h2>Analogies for Understanding</h2><!-- Cooking -->
                     <div>
                         <div>
                             <div><i></i></div>
+  <div class="tile"></div>
   <div class="tile"><h2>What is a Knowledge Gap?</h2><p>It is the difference between what you <span>know</span> and what you <span>need to know</span> to solve a problem.</p>
                 <div>
                     <div>
                         <h4><i></i>Everyday Example:</h4>
                         <p>You want to cook Thai food but only know how to make sandwiches. The gap is the spices and techniques you haven't learned.</p></div>
+  <div class="tile"></div>
   <div class="tile"><h2>DIKW පිරමීඩය</h2><p>වටිනාකමේ ධුරාවලිය: දත්තවල සිට ව්‍යවහාරික විනිශ්චය දක්වා.</p>
                     
                     <div>
                         <div>
                             <div><i></i></div>
+  <div class="tile"></div>
   <div class="tile"><h2>දැනුම වර්ග 10ක්</h2><p>අප දන්නා දේ ගබඩා කරන, ප්‍රවේශ වන සහ ඔප්පු කරන විවිධ ක්‍රම.</p></div>
+  <div class="tile"></div>
   <div class="tile"><h2>ඉගෙනුම් ඉණිමග</h2><p>මූලික විධානවල සිට ස්වයංක්‍රීයකරණ විශිෂ්ටත්වය දක්වා නැගීම.</p></div>
+  <div class="tile"></div>
   <div class="tile"><h2>දැනුම කළමනාකරණ චක්‍රය</h2><div>
                         <div><i></i></div>
+  <div class="tile"></div>
   <div class="tile"><h2>අවබෝධය සඳහා උදාහරණ</h2><!-- Cooking -->
                     <div>
                         <div>
                             <div><i></i></div>
+  <div class="tile"></div>
   <div class="tile"><h2>දැනුම පරතරයක් යනු කුමක්ද?</h2><p>එය ගැටලුවක් විසඳීමට ඔබ <span>දන්නා දේ</span> සහ ඔබ <span>දැනගත යුතු දේ</span> අතර වෙනසයි.</p>
                 <div>
                     <div>
                         <h4><i></i>එදිනෙදා උදාහරණයක්:</h4>
                         <p>ඔබට තායි ආහාර පිසීමට අවශ්‍ය නමුත් ඔබ දන්නේ සැන්ඩ්විච් සාදා ගන්නේ කෙසේද යන්න පමණි. පරතරය යනු ඔබ තවමත් ඉගෙන ගෙන නැති කුළුබඩු, ක්‍රම සහ වට්ටෝරු වේ.</p></div>
+</div>
+</div>
+<footer>Hack and Build © 2025 — MIT License</footer></div>
 </div>
 </div>
 <footer>Hack and Build © 2025 — MIT License</footer>
