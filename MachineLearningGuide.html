@@ -20,7 +20,6 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-/* Terminal nav */
 .term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 100; }
 .term-dot { width: 10px; height: 10px; border-radius: 50%; opacity: 0.6; }
 .term-dot.r { background: var(--error); }
@@ -29,17 +28,13 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .term-bar a { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
 .term-bar a:hover { color: var(--accent); }
 
-/* Layout */
 .container { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
-
-/* Page title */
 .page-title { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
 .page-sub { color: var(--dim); font-size: 0.95rem; margin-bottom: 2.5rem; }
 
 /* TILE GRID */
-.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; }
+.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1rem; }
 
-/* Tile card */
 .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: border-color 0.3s ease; }
 .tile:hover { border-color: rgba(255,255,255,0.15); }
 .tile h2 { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
@@ -55,20 +50,11 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .tile th, .tile td { padding: 0.4rem 0.5rem; text-align: left; border-bottom: 1px solid var(--border); }
 .tile th { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; font-size: 0.8rem; }
 
-/* Full width tiles for large content */
 .tile-wide { grid-column: 1 / -1; }
-
-/* Tag/badge inside tiles */
-.tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; color: var(--dim); margin-bottom: 0.5rem; }
 
 footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; color: var(--dim); border-top: 1px solid var(--border); margin-top: 3rem; font-family: 'JetBrains Mono', monospace; }
 
-@media (max-width: 600px) {
-  .container { padding: 2rem 1rem; }
-  .tile-grid { grid-template-columns: 1fr; }
-  .page-title { font-size: 1.3rem; }
-}
-
+@media (max-width: 600px) { .container { padding: 2rem 1rem; } .tile-grid { grid-template-columns: 1fr; } .page-title { font-size: 1.3rem; } }
 </style>
 </head>
 <body>
@@ -79,149 +65,18 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
   <a href="/">← hackandbuild.dev</a>
 </div>
 <div class="container">
-  <div class="page-title">Machine Learning 101</div>
-<div class="page-sub">Machine Learning (ML) is a field of artificial intelligence (AI) that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves.</div>
+  <div class="page-title">What is Machine Learning? | Interactive Guide</div>
+<div class="page-sub">Machine learning is primarily categorized into three types based on the nature of the learning "signal" or "feedback" available to the learning system.</div>
 <div class="tile-grid">
-<div class="tile"><h2>What is Machine Learning?</h2><p>
-                Machine Learning (ML) is a field of artificial intelligence (AI) that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves.
-            </p>
-
-            <div>
-                <h3>The Core Process</h3>
-                <div>
-                    <div>
-                        <div>💾</div>
-                        <h4>Data</h4>
-                        <p>The process starts with a large dataset.</p>
-                    </div>
-                    <div>→</div>
-                    <div>↓</div>
-                    <div>
-                         <div>⚙️</div>
-                        <h4>Algorithm</h4>
-                        <p>An algorithm finds patterns in the data.</p>
-                    </div>
-                     <div>→</div>
-                    <div>↓</div>
-                    <div>
-                         <div>🧠</div>
-                        <h4>Model</h4>
-                        <p>The learned patterns form a trained model.</p>
-                    </div>
-                     <div>→</div>
-                    <div>↓</div>
-                    <div>
-                         <div>💡</div>
-                        <h4>Prediction</h4>
-                        <p>The model makes predictions on new data.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="types"></div>
-<div class="tile tile-wide"><h2>The 3 Main Types of ML</h2><p>Machine learning is primarily categorized into three types based on the nature of the learning "signal" or "feedback" available to the learning system.</p>
+  <div class="tile"><h2>The 3 Main Types of ML</h2><p>Machine learning is primarily categorized into three types based on the nature of the learning "signal" or "feedback" available to the learning system.</p>
             <div>
                 
                 <div>
                     <div>👨‍🏫</div>
-                    <h3>1. Supervised Learning</h3>
-                    <p>Learning with a Teacher</p>
-                    <p>The model is trained on a <span>labeled dataset</span>, which includes both the input and the correct output, much like a student learning from a teacher with an answer key.</p>
-                    <div>
-                        <h4>Common Use Cases:</h4>
-                        <div>
-                            <button data-type="supervised" data-case="classification">Classification</button>
-                            <button data-type="supervised" data-case="regression">Regression</button>
-                        </div>
-                        <div id="supervised-cases">
-                            <div data-case-content="classification">
-                                <p>Predicting a category.</p>
-                                <ul>
-                                    <li>Spam detection in emails</li>
-                                    <li>Image recognition (cat vs. dog)</li>
-                                </ul>
-                            </div>
-                            <div data-case-content="regression">
-                                <p>Predicting a continuous value.</p>
-                                <ul>
-                                    <li>Forecasting house prices</li>
-                                    <li>Predicting stock market trends</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <div>🔎</div>
-                    <h3>2. Unsupervised Learning</h3>
-                    <p>Finding Hidden Patterns</p>
-                    <p>The model works on its own to discover patterns and information from an <span>unlabeled dataset</span>. It's like an explorer finding connections in new territory.</p>
-                    <div>
-                        <h4>Common Use Cases:</h4>
-                        <div>
-                            <button data-type="unsupervised" data-case="clustering">Clustering</button>
-                            <button data-type="unsupervised" data-case="association">Association</button>
-                        </div>
-                        <div id="unsupervised-cases">
-                            <div data-case-content="clustering">
-                                <p>Grouping similar data points.</p>
-                                <ul>
-                                    <li>Customer segmentation</li>
-                                    <li>Social network analysis</li>
-                                </ul>
-                            </div>
-                            <div data-case-content="association">
-                                <p>Discovering relationships.</p>
-                                <ul>
-                                    <li>Market basket analysis ("Buys X, also buys Y")</li>
-                                    <li>Recommendation engines</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <div>🤖</div>
-                    <h3>3. Reinforcement Learning</h3>
-                    <p>Learning from Feedback</p>
-                    <p>An agent learns to make decisions by performing actions and receiving <span>rewards or penalties</span>. It learns the best strategy through trial and error to maximize its reward.</p>
-                    <div>
-                        <h4>Common Use Cases:</h4>
-                         <div>
-                            <p>Sequential decision making.</p>
-                            <ul>
-                                <li>Game playing (Chess, Go)</li>
-                                <li>Robotics and navigation</li>
-                                <li>Autonomous driving systems</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        
-        <div id="comparison"></div>
-<div class="tile"><h2>At a Glance: ML Type Comparison</h2><p>This chart visualizes the key characteristics of each machine learning type, showing how they differ in their approach to data, goals, and feedback mechanisms.</p>
+  <div class="tile"><h2>At a Glance: ML Type Comparison</h2><p>This chart visualizes the key characteristics of each machine learning type, showing how they differ in their approach to data, goals, and feedback mechanisms.</p>
             <div>
                 <div>
-                    <canvas id="mlComparisonChart"></canvas>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <footer>
-        <div>
-            <p>An interactive guide to Machine Learning.</p>
-        </div>
-    </footer>
-</div>
-<footer>Hack and Build © 2025 — MIT License</footer></div>
+                    <canvas id="mlComparisonChart"></canvas></div>
 </div>
 </div>
 <footer>Hack and Build © 2025 — MIT License</footer>
