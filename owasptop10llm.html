@@ -1,89 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OWASP Top 10 for LLM Applications</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Inter font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Use Inter as the default font */
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
 
-        /* Custom styles for the accordion */
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        
-        /* The 'open' class will be toggled by JavaScript */
-        .accordion-content.open {
-            max-height: 1000px; /* Adjust as needed, large enough for content */
-            transition: max-height 0.5s ease-in;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OWASP Top 10 for LLM Applications</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root { --bg: #060606; --surface: #0a0a0a; --text: #e2e8f0; --dim: #64748b; --accent: #00ff88; --border: #1e293b; --error: #ff3366; --warn: #fbbf24; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+.term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); }
+.term-dot { width: 10px; height: 10px; border-radius: 50%; opacity: 0.6; }
+.term-dot.r { background: var(--error); }
+.term-dot.y { background: var(--warn); }
+.term-dot.g { background: var(--accent); }
+.term-bar a { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.term-bar a:hover { color: var(--accent); }
+.container { max-width: 900px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+h1, h2, h3, h4 { font-family: 'JetBrains Mono', monospace; font-weight: 600; letter-spacing: -0.01em; }
+h1 { font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--accent); }
+h2 { font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--text); }
+h3 { font-size: 1.05rem; margin: 1.5rem 0 0.75rem; color: var(--warn); }
+p { margin-bottom: 1rem; color: var(--dim); }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul, ol { margin: 1rem 0 1rem 1.5rem; color: var(--dim); }
+li { margin: 0.35rem 0; }
+code { font-family: 'JetBrains Mono', monospace; background: var(--surface); border: 1px solid var(--border); padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; color: var(--accent); }
+pre { background: var(--surface); border: 1px solid var(--border); padding: 1rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+pre code { background: none; border: none; padding: 0; color: var(--text); }
+img { max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+th, td { padding: 0.6rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin: 1rem 0; }
+.card h3 { margin-top: 0; }
+hr { border: none; border-top: 1px dashed var(--border); margin: 2rem 0; }
+footer { text-align: center; padding: 2rem; font-size: 0.75rem; color: var(--dim); border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; }
+@media (max-width: 600px) { .container { padding: 2rem 1rem; } h1 { font-size: 1.4rem; } }
 
-        /* Rotate the chevron icon */
-        .accordion-toggle.active .icon {
-            transform: rotate(180deg);
-            transition: transform 0.3s;
-        }
-        .accordion-toggle .icon {
-            transition: transform 0.3s;
-        }
-    </style>
+</style>
 </head>
-<body class="bg-gray-50">
-
-    <!-- Header -->
-    <header class="bg-slate-900 text-white p-6 shadow-md sticky top-0 z-50">
-        <div class="container mx-auto max-w-5xl">
-            <h1 class="text-3xl font-bold">OWASP Top 10 for LLM Applications</h1>
-            <p class="text-lg text-slate-300 mt-1">The 10 Most Critical Security Risks (2023 v1.0)</p>
+<body>
+<div class="term-bar">
+  <div class="term-dot r"></div>
+  <div class="term-dot y"></div>
+  <div class="term-dot g"></div>
+  <a href="/">← hackandbuild.dev</a>
+</div>
+<div class="container">
+<!-- Header -->
+    <header>
+        <div>
+            <h1>OWASP Top 10 for LLM Applications</h1>
+            <p>The 10 Most Critical Security Risks (2023 v1.0)</p>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto max-w-5xl p-4 md:p-8">
+    <main>
         
         <!-- Introduction -->
-        <div class="bg-white p-6 rounded-lg shadow-md mb-8">
-            <h2 class="text-2xl font-semibold mb-3 text-slate-800">What is this?</h2>
-            <p class="text-gray-700 leading-relaxed">
+        <div>
+            <h2>What is this?</h2>
+            <p>
                 The OWASP Top 10 for Large Language Model (LLM) Applications is a project that identifies and ranks the most critical security vulnerabilities found in applications that use LLMs. This list serves as an essential guide for developers, security professionals, and organizations to understand and mitigate the unique risks associated with this rapidly evolving technology.
             </p>
         </div>
 
         <!-- Accordion for Top 10 List -->
-        <div class="space-y-4">
+        <div>
 
             <!-- LLM01: Prompt Injection -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <button class="accordion-toggle w-full flex justify-between items-center p-5 text-left" aria-expanded="false">
-                    <span class="text-xl font-semibold text-blue-700">LLM01: Prompt Injection</span>
+            <div>
+                <button aria-expanded="false">
+                    <span>LLM01: Prompt Injection</span>
                     <!-- Chevron Icon -->
-                    <svg class="icon w-6 h-6 text-blue-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg>
+                    
                 </button>
-                <div class="accordion-content">
-                    <div class="p-5 border-t border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">What it is:</h3>
-                        <p class="text-gray-600 mb-4">Manipulating an LLM through "crafty inputs" (prompts) to cause unintended actions. This can be done directly by overwriting system prompts or indirectly by hiding instructions in external data sources (like webpages or documents) that the LLM processes.</p>
+                <div>
+                    <div>
+                        <h3>What it is:</h3>
+                        <p>Manipulating an LLM through "crafty inputs" (prompts) to cause unintended actions. This can be done directly by overwriting system prompts or indirectly by hiding instructions in external data sources (like webpages or documents) that the LLM processes.</p>
                         
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Examples & Attack Scenarios:</h3>
-                        <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                        <h3>Examples & Attack Scenarios:</h3>
+                        <ul>
                             <li>An attacker's direct prompt makes a support chatbot reveal customer data.</li>
                             <li>A user asks an LLM to summarize a webpage that contains a hidden instruction telling the LLM to send data to the attacker.</li>
                         </ul>
 
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Prevention Methods:</h3>
-                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                        <h3>Prevention Methods:</h3>
+                        <ul>
                             <li>Enforce privilege controls (human-in-the-loop for sensitive actions).</li>
                             <li>Clearly segregate external content from user prompts.</li>
                             <li>Establish trust boundaries between the LLM and external sources.</li>
@@ -93,27 +103,25 @@
             </div>
             
             <!-- LLM02: Insecure Output Handling -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <button class="accordion-toggle w-full flex justify-between items-center p-5 text-left" aria-expanded="false">
-                    <span class="text-xl font-semibold text-blue-700">LLM02: Insecure Output Handling</span>
-                    <svg class="icon w-6 h-6 text-blue-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg>
+            <div>
+                <button aria-expanded="false">
+                    <span>LLM02: Insecure Output Handling</span>
+                    
                 </button>
-                <div class="accordion-content">
-                    <div class="p-5 border-t border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">What it is:</h3>
-                        <p class="text-gray-600 mb-4">This occurs when an LLM's output is accepted without proper scrutiny or sanitization and is passed directly to backend systems or frontend code. This can lead to classic web vulnerabilities.</p>
+                <div>
+                    <div>
+                        <h3>What it is:</h3>
+                        <p>This occurs when an LLM's output is accepted without proper scrutiny or sanitization and is passed directly to backend systems or frontend code. This can lead to classic web vulnerabilities.</p>
                         
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Examples & Attack Scenarios:</h3>
-                        <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                        <h3>Examples & Attack Scenarios:</h3>
+                        <ul>
                             <li>LLM output containing JavaScript is rendered in a user's browser, leading to Cross-Site Scripting (XSS).</li>
                             <li>LLM output with a malicious SQL query is passed to a database.</li>
                             <li>LLM output is passed directly to a system shell, resulting in Remote Code Execution (RCE).</li>
                         </ul>
 
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Prevention Methods:</h3>
-                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                        <h3>Prevention Methods:</h3>
+                        <ul>
                             <li>Apply proper input validation on the responses coming from the LLM.</li>
                             <li>Encode all output from the model before rendering it back to the user.</li>
                             <li>Treat LLM output as untrusted user input.</li>
@@ -123,26 +131,24 @@
             </div>
 
             <!-- LLM03: Training Data Poisoning -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <button class="accordion-toggle w-full flex justify-between items-center p-5 text-left" aria-expanded="false">
-                    <span class="text-xl font-semibold text-blue-700">LLM03: Training Data Poisoning</span>
-                    <svg class="icon w-6 h-6 text-blue-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg>
+            <div>
+                <button aria-expanded="false">
+                    <span>LLM03: Training Data Poisoning</span>
+                    
                 </button>
-                <div class="accordion-content">
-                    <div class="p-5 border-t border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">What it is:</h3>
-                        <p class="text-gray-600 mb-4">Manipulating the model's training data or fine-tuning process to introduce vulnerabilities, backdoors, or biases. This compromises the model's security, effectiveness, or ethical behavior from the start.</p>
+                <div>
+                    <div>
+                        <h3>What it is:</h3>
+                        <p>Manipulating the model's training data or fine-tuning process to introduce vulnerabilities, backdoors, or biases. This compromises the model's security, effectiveness, or ethical behavior from the start.</p>
                         
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Examples & Attack Scenarios:</h3>
-                        <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                        <h3>Examples & Attack Scenarios:</h3>
+                        <ul>
                             <li>An attacker creates malicious documents and gets them included in the model's training set.</li>
                             <li>The model trains on falsified or unverified data, leading it to produce biased or incorrect outputs.</li>
                         </ul>
 
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Prevention Methods:</h3>
-                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                        <h3>Prevention Methods:</h3>
+                        <ul>
                             <li>Verify the legitimacy and source of all training data.</li>
                             <li>Use strict vetting and input filters for training data sources.</li>
                             <li>Craft different models with separate, purpose-specific training data.</li>
@@ -152,26 +158,24 @@
             </div>
 
             <!-- LLM04: Model Denial of Service (DoS) -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <button class="accordion-toggle w-full flex justify-between items-center p-5 text-left" aria-expanded="false">
-                    <span class="text-xl font-semibold text-blue-700">LLM04: Model Denial of Service</span>
-                    <svg class="icon w-6 h-6 text-blue-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg>
+            <div>
+                <button aria-expanded="false">
+                    <span>LLM04: Model Denial of Service</span>
+                    
                 </button>
-                <div class="accordion-content">
-                    <div class="p-5 border-t border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">What it is:</h3>
-                        <p class="text-gray-600 mb-4">Attackers make the LLM perform resource-heavy operations, leading to service degradation (slowness) and high costs for the application owner. This is magnified because LLM operations are already very resource-intensive.</p>
+                <div>
+                    <div>
+                        <h3>What it is:</h3>
+                        <p>Attackers make the LLM perform resource-heavy operations, leading to service degradation (slowness) and high costs for the application owner. This is magnified because LLM operations are already very resource-intensive.</p>
                         
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Examples & Attack Scenarios:</h3>
-                        <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                        <h3>Examples & Attack Scenarios:</h3>
+                        <ul>
                             <li>Sending queries that are unusually resource-consuming (e.g., asking for complex, long-form text repeatedly).</li>
                             <li>Overwhelming the LLM with input that exceeds its context window.</li>
                         </ul>
 
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Prevention Methods:</h3>
-                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                        <h3>Prevention Methods:</h3>
+                        <ul>
                             <li>Implement input validation and cap resource use per request.</li>
                             <li>Enforce API rate limits for individual users or IP addresses.</li>
                             <li>Limit the number of queued actions or total actions a user can trigger.</li>
@@ -181,27 +185,25 @@
             </div>
 
             <!-- LLM05: Supply Chain Vulnerabilities -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <button class="accordion-toggle w-full flex justify-between items-center p-5 text-left" aria-expanded="false">
-                    <span class="text-xl font-semibold text-blue-700">LLM05: Supply Chain Vulnerabilities</span>
-                    <svg class="icon w-6 h-6 text-blue-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg>
+            <div>
+                <button aria-expanded="false">
+                    <span>LLM05: Supply Chain Vulnerabilities</span>
+                    
                 </button>
-                <div class="accordion-content">
-                    <div class="p-5 border-t border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">What it is:</h3>
-                        <p class="text-gray-600 mb-4">The LLM application's lifecycle is compromised by vulnerable components. This includes using third-party datasets, pre-trained models, and plugins that may have their own security flaws.</p>
+                <div>
+                    <div>
+                        <h3>What it is:</h3>
+                        <p>The LLM application's lifecycle is compromised by vulnerable components. This includes using third-party datasets, pre-trained models, and plugins that may have their own security flaws.</p>
                         
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Examples & Attack Scenarios:</h3>
-                        <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                        <h3>Examples & Attack Scenarios:</h3>
+                        <ul>
                             <li>Using an outdated or unmaintained third-party package (e.g., a vulnerable Python library).</li>
                             <li>Fine-tuning with a pre-trained model that was poisoned.</li>
                             <li>Attackers tricking developers via a compromised package on PyPi.</li>
                         </ul>
 
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Prevention Methods:</h3>
-                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                        <h3>Prevention Methods:</h3>
+                        <ul>
                             <li>Vet all data sources and use trusted, audited plugins.</li>
                             <li>Use model and code signing for external models.</li>
                             <li>Implement monitoring for vulnerabilities and maintain a patching policy.</li>
@@ -211,27 +213,25 @@
             </div>
 
             <!-- LLM06: Sensitive Information Disclosure -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <button class="accordion-toggle w-full flex justify-between items-center p-5 text-left" aria-expanded="false">
-                    <span class="text-xl font-semibold text-blue-700">LLM06: Sensitive Information Disclosure</span>
-                    <svg class="icon w-6 h-6 text-blue-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg>
+            <div>
+                <button aria-expanded="false">
+                    <span>LLM06: Sensitive Information Disclosure</span>
+                    
                 </button>
-                <div class="accordion-content">
-                    <div class="p-5 border-t border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">What it is:</h3>
-                        <p class="text-gray-600 mb-4">The LLM inadvertently reveals confidential data in its responses. This can include trade secrets, personal data, or proprietary algorithms that it learned during training, leading to data leaks and privacy violations.</p>
+                <div>
+                    <div>
+                        <h3>What it is:</h3>
+                        <p>The LLM inadvertently reveals confidential data in its responses. This can include trade secrets, personal data, or proprietary algorithms that it learned during training, leading to data leaks and privacy violations.</p>
                         
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Examples & Attack Scenarios:</h3>
-                        <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                        <h3>Examples & Attack Scenarios:</h3>
+                        <ul>
                             <li>The model overfits or "memorizes" sensitive data from its training set and repeats it.</li>
                             <li>A legitimate user is accidentally exposed to another user's data.</li>
                             <li>Crafted prompts bypass filters to reveal sensitive data.</li>
                         </ul>
 
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Prevention Methods:</h3>
-                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                        <h3>Prevention Methods:</h3>
+                        <ul>
                             <li>Use data sanitization and scrubbing techniques on training data.</li>
                             <li>Implement robust input validation and output filtering.</li>
                             <li>Apply the rule of least privilege when training models (don't train on data it doesn't need).</li>
@@ -241,26 +241,24 @@
             </div>
 
             <!-- LLM07: Insecure Plugin Design -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <button class="accordion-toggle w-full flex justify-between items-center p-5 text-left" aria-expanded="false">
-                    <span class="text-xl font-semibold text-blue-700">LLM07: Insecure Plugin Design</span>
-                    <svg class="icon w-6 h-6 text-blue-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg>
+            <div>
+                <button aria-expanded="false">
+                    <span>LLM07: Insecure Plugin Design</span>
+                    
                 </button>
-                <div class="accordion-content">
-                    <div class="p-5 border-t border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">What it is:</h3>
-                        <p class="text-gray-600 mb-4">LLM plugins (extensions that let the LLM interact with other systems) can have insecure inputs and insufficient access control. This allows attackers to exploit them to perform unintended, harmful actions.</p>
+                <div>
+                    <div>
+                        <h3>What it is:</h3>
+                        <p>LLM plugins (extensions that let the LLM interact with other systems) can have insecure inputs and insufficient access control. This allows attackers to exploit them to perform unintended, harmful actions.</p>
                         
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Examples & Attack Scenarios:</h3>
-                        <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                        <h3>Examples & Attack Scenarios:</h3>
+                        <ul>
                             <li>A plugin accepts free-form text input, allowing an attacker to pass raw SQL or code.</li>
                             <li>A plugin has authentication but no authorization, allowing any authenticated user to access any function.</li>
                         </ul>
 
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Prevention Methods:</h3>
-                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                        <h3>Prevention Methods:</h3>
+                        <ul>
                             <li>Enforce strict, parameterized inputs (no free-form text into sensitive functions).</li>
                             <li>Conduct thorough security testing (SAST, DAST) on plugins.</li>
                             <li>Require manual user authorization for actions taken by sensitive plugins.</li>
@@ -270,27 +268,25 @@
             </div>
 
             <!-- LLM08: Excessive Agency -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <button class="accordion-toggle w-full flex justify-between items-center p-5 text-left" aria-expanded="false">
-                    <span class="text-xl font-semibold text-blue-700">LLM08: Excessive Agency</span>
-                    <svg class="icon w-6 h-6 text-blue-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg>
+            <div>
+                <button aria-expanded="false">
+                    <span>LLM08: Excessive Agency</span>
+                    
                 </button>
-                <div class="accordion-content">
-                    <div class="p-5 border-t border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">What it is:</h3>
-                        <p class="text-gray-600 mb-4">The LLM-based system is granted excessive functionality, permissions, or autonomy, allowing it to perform actions that lead to unintended consequences. It's "too helpful" and can be tricked into misusing its power.</p>
+                <div>
+                    <div>
+                        <h3>What it is:</h3>
+                        <p>The LLM-based system is granted excessive functionality, permissions, or autonomy, allowing it to perform actions that lead to unintended consequences. It's "too helpful" and can be tricked into misusing its power.</p>
                         
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Examples & Attack Scenarios:</h3>
-                        <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                        <h3>Examples & Attack Scenarios:</h3>
+                        <ul>
                             <li>An LLM agent has access to unnecessary functions from a plugin.</li>
                             <li>A plugin has unneeded permissions on other systems (e.g., admin rights).</li>
                             <li>A personal assistant app with excessive permissions is tricked by a malicious email into sending spam.</li>
                         </ul>
 
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Prevention Methods:</h3>
-                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                        <h3>Prevention Methods:</h3>
+                        <ul>
                             <li>Limit plugins and tools to the minimum necessary functions.</li>
                             <li>Avoid open-ended functions; use granular, specific functions.</li>
                             <li>Require human approval for all sensitive actions and track user authorization.</li>
@@ -300,27 +296,25 @@
             </div>
 
             <!-- LLM09: Overreliance -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <button class="accordion-toggle w-full flex justify-between items-center p-5 text-left" aria-expanded="false">
-                    <span class="text-xl font-semibold text-blue-700">LLM09: Overreliance</span>
-                    <svg class="icon w-6 h-6 text-blue-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg>
+            <div>
+                <button aria-expanded="false">
+                    <span>LLM09: Overreliance</span>
+                    
                 </button>
-                <div class="accordion-content">
-                    <div class="p-5 border-t border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">What it is:</h3>
-                        <p class="text-gray-600 mb-4">Systems or people depending too much on LLMs without proper oversight. This can lead to misinformation, legal issues, and security vulnerabilities due to incorrect, inappropriate, or insecure content generated by the LLM (e.g., "hallucinations").</p>
+                <div>
+                    <div>
+                        <h3>What it is:</h3>
+                        <p>Systems or people depending too much on LLMs without proper oversight. This can lead to misinformation, legal issues, and security vulnerabilities due to incorrect, inappropriate, or insecure content generated by the LLM (e.g., "hallucinations").</p>
                         
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Examples & Attack Scenarios:</h3>
-                        <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                        <h3>Examples & Attack Scenarios:</h3>
+                        <ul>
                             <li>An LLM provides incorrect or nonsensical information that a user trusts.</li>
                             <li>An LLM suggests insecure code, and a developer copies/pastes it directly into production.</li>
                             <li>A developer unknowingly integrates a malicious package suggested by the LLM.</li>
                         </ul>
 
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Prevention Methods:</h3>
-                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                        <h3>Prevention Methods:</h3>
+                        <ul>
                             <li>Regularly monitor and review LLM outputs.</li>
                             <li>Cross-check LLM output with trusted sources (human-in-the-loop).</li>
                             <li>Clearly communicate the LLM's risks and limitations to users.</li>
@@ -331,27 +325,25 @@
             </div>
 
             <!-- LLM10: Model Theft -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <button class="accordion-toggle w-full flex justify-between items-center p-5 text-left" aria-expanded="false">
-                    <span class="text-xl font-semibold text-blue-700">LLM10: Model Theft</span>
-                    <svg class="icon w-6 h-6 text-blue-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg>
+            <div>
+                <button aria-expanded="false">
+                    <span>LLM10: Model Theft</span>
+                    
                 </button>
-                <div class="accordion-content">
-                    <div class="p-5 border-t border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">What it is:</h3>
-                        <p class="text-gray-600 mb-4">Unauthorized access, copying, or exfiltration of proprietary LLM models. This is a significant risk due to the high cost of training models, and it can lead to economic loss and compromised competitive advantage.</p>
+                <div>
+                    <div>
+                        <h3>What it is:</h3>
+                        <p>Unauthorized access, copying, or exfiltration of proprietary LLM models. This is a significant risk due to the high cost of training models, and it can lead to economic loss and compromised competitive advantage.</p>
                         
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Examples & Attack Scenarios:</h3>
-                        <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                        <h3>Examples & Attack Scenarios:</h3>
+                        <ul>
                             <li>An attacker gains unauthorized access to the LLM model repository.</li>
                             <li>A disgruntled employee leaks model artifacts (weights, data).</li>
                             <li>An attacker creates a "shadow model" by repeatedly querying the API to extract its logic.</li>
                         </ul>
 
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Prevention Methods:</h3>
-                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                        <h3>Prevention Methods:</h3>
+                        <ul>
                             <li>Implement strong access controls, authentication, and monitoring.</li>
                             <li>Implement rate limiting on API calls to prevent rapid querying.</li>
                             <li>Use watermarking frameworks in the LLM's lifecycle.</li>
@@ -364,45 +356,17 @@
     </main>
 
     <!-- Footer -->
-    <footer class="text-center p-8 mt-12 border-t border-gray-200">
-        <p class="text-gray-600">
-            Content based on the <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">OWASP Top 10 for LLM Applications (2023 v1.0)</a>.
+    <footer>
+        <p>
+            Content based on the <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener noreferrer">OWASP Top 10 for LLM Applications (2023 v1.0)</a>.
         </p>
-        <p class="text-gray-500 text-sm mt-2">
+        <p>
             This page is an unofficial summary for educational purposes.
         </p>
     </footer>
 
     <!-- JavaScript for Accordion Functionality -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const toggles = document.querySelectorAll('.accordion-toggle');
-
-            // Open the first item by default
-            const firstToggle = toggles[0];
-            if (firstToggle) {
-                firstToggle.classList.add('active');
-                firstToggle.setAttribute('aria-expanded', 'true');
-                firstToggle.nextElementSibling.classList.add('open');
-            }
-
-            // Add click listener to all toggles
-            toggles.forEach(toggle => {
-                toggle.addEventListener('click', () => {
-                    // Toggle the 'active' class on the button
-                    toggle.classList.toggle('active');
-                    
-                    // Toggle the 'aria-expanded' attribute
-                    const isExpanded = toggle.classList.contains('active');
-                    toggle.setAttribute('aria-expanded', isExpanded);
-
-                    // Get the content panel and toggle the 'open' class
-                    const content = toggle.nextElementSibling;
-                    content.classList.toggle('open');
-                });
-            });
-        });
-    </script>
-
+</div>
+<footer>Hack and Build © 2025 — MIT License</footer>
 </body>
 </html>
