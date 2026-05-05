@@ -19,7 +19,6 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-
 .term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 100; }
 .term-dot { width: 10px; height: 10px; border-radius: 50%; opacity: 0.6; }
 .term-dot.r { background: var(--error); }
@@ -27,14 +26,10 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .term-dot.g { background: var(--accent); }
 .term-bar a { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
 .term-bar a:hover { color: var(--accent); }
-
 .container { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
 .page-title { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
 .page-sub { color: var(--dim); font-size: 0.95rem; margin-bottom: 2.5rem; }
-
-/* TILE GRID */
 .tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1rem; }
-
 .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: border-color 0.3s ease; }
 .tile:hover { border-color: rgba(255,255,255,0.15); }
 .tile h2 { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
@@ -49,11 +44,8 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .tile table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.85rem; }
 .tile th, .tile td { padding: 0.4rem 0.5rem; text-align: left; border-bottom: 1px solid var(--border); }
 .tile th { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; font-size: 0.8rem; }
-
 .tile-wide { grid-column: 1 / -1; }
-
 footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; color: var(--dim); border-top: 1px solid var(--border); margin-top: 3rem; font-family: 'JetBrains Mono', monospace; }
-
 @media (max-width: 600px) { .container { padding: 2rem 1rem; } .tile-grid { grid-template-columns: 1fr; } .page-title { font-size: 1.3rem; } }
 </style>
 </head>
@@ -76,17 +68,20 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                             <li>Security policies</li>
                             <li>Recipes in cookbooks</li>
                         </ul></div>
+  <div class="tile"></div>
   <div class="tile"><h2>🪜 The Learning Ladder</h2><p style="margin-bottom: 20px;">Think of learning to drive a car - you start by remembering what parts do, then understanding how they work, then actually using them, and finally creating your own routes.</p>
                 
                 <div>
                     <div>
                         <h3>6. CREATE - Make something new</h3>
                         <p>Design a security system or plan a new driving route</p></div>
+  <div class="tile"></div>
   <div class="tile"><h2>🔄 Knowledge Management Cycle</h2><p style="margin-bottom: 20px;">Like organizing your home - you need to capture, store, share, update, and protect your knowledge.</p>
                 
                 <div>
                     <div>
                         <div>1</div>
+  <div class="tile"></div>
   <div class="tile"><h2>🎨 Simple Analogies</h2><div>
                         <h3>🍳 Cooking Analogy</h3>
                         <ul>
@@ -95,9 +90,11 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                             <li><strong>Knowledge:</strong> Understanding why it works</li>
                             <li><strong>Wisdom:</strong> Knowing when to bake what</li>
                         </ul></div>
+  <div class="tile"></div>
   <div class="tile"><h2>🔍 What is a Knowledge Gap?</h2><p>A <strong>knowledge gap</strong> is the difference between what you know and what you need to know to solve a problem.</p>
                 <p style="margin-top: 15px;"><strong>Example:</strong> You want to cook Thai food but only know how to make sandwiches. The gap is all the Thai cooking techniques, ingredients, and recipes you need to learn.</p>
                 <p style="margin-top: 15px;"><strong>In cybersecurity:</strong> Attackers exploit knowledge gaps (like zero-day vulnerabilities). Defenders must continuously learn about new threats, tools, and techniques.</p></div>
+  <div class="tile"></div>
   <div class="tile"><h2>🎓 How People Learn Best</h2><p><strong>Learn by doing, not just watching.</strong> This is why you remember how to ride a bike (you practiced) but forget most lectures (you just listened).</p>
                 <p style="margin-top: 15px;">Good learning involves:</p>
                 <ul style="margin-left: 40px; margin-top: 10px;">
@@ -107,9 +104,11 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                     <li>Teaching others (best way to solidify knowledge)</li>
                     <li>Making mistakes and learning from them</li>
                 </ul></div>
+  <div class="tile"></div>
   <div class="tile"><h2>💡 KEY TAKEAWAY</h2><p>Knowledge is not just memorizing facts.</p>
                 <p>It's understanding how things work, being able to use them,</p>
                 <p>and knowing when to apply them wisely.</p></div>
+  <div class="tile"></div>
   <div class="tile"><h2>✨ For Students</h2><p style="margin-top: 15px;"><strong>Your job as a student:</strong></p>
                     <ul style="margin-left: 40px; margin-top: 10px;">
                         <li>Build a strong foundation of knowledge</li>
@@ -118,6 +117,7 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                         <li>Share what you learn with others</li>
                         <li>Keep your knowledge current and updated</li>
                     </ul></div>
+  <div class="tile"></div>
   <div class="tile"><h2>👨‍🏫 For Teachers</h2><p style="margin-top: 15px;"><strong>Teaching tips:</strong></p>
                     <ul style="margin-left: 40px; margin-top: 10px;">
                         <li>Use real-world examples and case studies</li>
@@ -127,6 +127,9 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                         <li>Help students identify and bridge their knowledge gaps</li>
                         <li>Teach them how to learn, not just what to learn</li>
                     </ul></div>
+</div>
+</div>
+<footer>Hack and Build © 2025 — MIT License</footer></div>
 </div>
 </div>
 <footer>Hack and Build © 2025 — MIT License</footer>
