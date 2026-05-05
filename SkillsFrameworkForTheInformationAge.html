@@ -13,7 +13,6 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-/* Terminal nav */
 .term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 100; }
 .term-dot { width: 10px; height: 10px; border-radius: 50%; opacity: 0.6; }
 .term-dot.r { background: var(--error); }
@@ -22,17 +21,13 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .term-bar a { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
 .term-bar a:hover { color: var(--accent); }
 
-/* Layout */
 .container { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
-
-/* Page title */
 .page-title { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
 .page-sub { color: var(--dim); font-size: 0.95rem; margin-bottom: 2.5rem; }
 
 /* TILE GRID */
-.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; }
+.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1rem; }
 
-/* Tile card */
 .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: border-color 0.3s ease; }
 .tile:hover { border-color: rgba(255,255,255,0.15); }
 .tile h2 { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
@@ -48,20 +43,11 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .tile th, .tile td { padding: 0.4rem 0.5rem; text-align: left; border-bottom: 1px solid var(--border); }
 .tile th { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; font-size: 0.8rem; }
 
-/* Full width tiles for large content */
 .tile-wide { grid-column: 1 / -1; }
-
-/* Tag/badge inside tiles */
-.tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; color: var(--dim); margin-bottom: 0.5rem; }
 
 footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; color: var(--dim); border-top: 1px solid var(--border); margin-top: 3rem; font-family: 'JetBrains Mono', monospace; }
 
-@media (max-width: 600px) {
-  .container { padding: 2rem 1rem; }
-  .tile-grid { grid-template-columns: 1fr; }
-  .page-title { font-size: 1.3rem; }
-}
-
+@media (max-width: 600px) { .container { padding: 2rem 1rem; } .tile-grid { grid-template-columns: 1fr; } .page-title { font-size: 1.3rem; } }
 </style>
 </head>
 <body>
@@ -72,26 +58,11 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
   <a href="/">← hackandbuild.dev</a>
 </div>
 <div class="container">
-  <div class="page-title">SFIA 8 Framework Explorer</div>
-<div class="page-sub">Welcome to the interactive guide for <span>SFIA 8</span>, the global standard for skills and competency in the digital world. This page is designed to help you understand, explore, and apply the framework with ease.</div>
+  <div class="page-title">Interactive SFIA 8 Framework</div>
+<div class="page-sub">Follow</div>
 <div class="tile-grid">
-<div class="tile tile-wide"><h2>Demystifying Professional Skills</h2><p>
-                Welcome to the interactive guide for <span>SFIA 8</span>, the global standard for skills and competency in the digital world. This page is designed to help you understand, explore, and apply the framework with ease.
-            </p>
-        </div>
+  <div class="tile tile-wide"><h2>Interactive SFIA 8 Framework</h2>
 
-        <div id="structure">
-            <div>
-                <h3>The Framework's Core Structure</h3>
-                <p>SFIA is built on two key pillars: a set of professional skills organized into categories, and seven levels of responsibility. This section provides an overview of how these pillars work together. Interact with the chart and cards to begin your exploration.</p>
-            </div>
-            <div>
-                <div>
-                    <h4>Skills by Category</h4>
-                    <div>
-                        <canvas id="categoriesChart"></canvas>
-                    </div>
-                </div>
                 <div>
                     <h4>The 7 Levels of Responsibility</h4>
                     <div>
@@ -219,13 +190,10 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
         </div>
     </main>
     
-    <footer>
-        <div>
-            <p>Interactive SFIA 8 Infographic. Designed for educational purposes.</p>
-        </div>
-    </footer>
+    
 </div>
-<footer>Hack and Build © 2025 — MIT License</footer></div>
+</div>
+</div></div>
 </div>
 </div>
 <footer>Hack and Build © 2025 — MIT License</footer>
