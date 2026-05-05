@@ -50,14 +50,90 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
   <a href="/">← hackandbuild.dev</a>
 </div>
 <div class="container">
-  <div class="page-title">Crisis UX: Flood Response Design Principles</div>
-<div class="page-sub">Users hold wet phones with one hand. Key actions must be at the bottom.</div>
+  <div class="page-title">CRISIS UX</div>
+<div class="page-sub">Design principles for Flood Response & High-Stress Environments.</div>
 <div class="tile-grid">
+  <div class="tile"><h2>01. Combat Cognitive Tunneling</h2><p>Under stress, user attention narrows. Remove choices.</p>
+            
+            <div>
+                <!-- Bad Example -->
+                <div>
+                    <div>Standard UI (Too Complex)</div>
+                    <div>
+                        <div>
+                            
+                            
+                        </div>
+                        
+                        <div>
+                            
+                            
+                        </div>
+                        <div>
+                            
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Good Example -->
+                <div>
+                    <div>Crisis UI (Focused)</div>
+                    <div>
+                        <div>
+                            <button>
+                                <span>SOS</span>
+                            </button>
+                            <button>
+                                I am Safe
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Principle 2: Color Semantics (Sidebar) -->
+        <div>
+            <div></div>
   <div class="tile"><h2>02. Universal Color</h2><div>
+                    <div>
                         
                         <div>
                             <div>Critical / SOS</div>
-  <div class="tile"></div>
+                            <div>Life threatening. Immediate action.</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        
+                        <div>
+                            <div>Supplies Need</div>
+                            <div>Food, Water, Shelter.</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        
+                        <div>
+                            <div>Safe / Done</div>
+                            <div>Rescue complete. Area clear.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div>Contrast Ratio</div>
+                <div>
+                    <span>AAA</span>
+                    <span>Use Pure Black (#000000)<br>for OLED power saving</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Principle 3: Thumb Zone (Tall Block) -->
+        <div></div>
   <div class="tile"><h2>03. The Thumb Zone</h2><p>Users hold wet phones with one hand. Key actions must be at the bottom.</p>
             
             <div>
@@ -67,16 +143,117 @@ footer { text-align: center; padding: 3rem 1.5rem 2rem; font-size: 0.75rem; colo
                     
                     <!-- Hard to reach area -->
                     <div>
-                        <span>Hard to Reach</span></div>
-  <div class="tile"></div>
-  <div class="tile"><h2>04. Offline-First Architecture</h2><!-- Step 1 -->
+                        <span>Hard to Reach</span>
+                    </div>
+
+                    <!-- Easy Area -->
+                    <div>
+                         <span>Natural Thumb Zone</span>
+                         <div>
+                            PRIMARY ACTION
+                         </div>
+                    </div>
+                    
+                    <!-- Thumb Graphic -->
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Principle 4: Offline First (Wide Block) -->
+        <div></div>
+  <div class="tile"><h2>04. Offline-First Architecture</h2><div>
+                <!-- Step 1 -->
                 <div>
                     
                     <h3>User Taps</h3>
-                    <p>Instant feedback. UI turns Green immediately.</p></div>
-  <div class="tile"></div>
-  <div class="tile"><h2>05. Input Optimization</h2><p>Typing is impossible in rain. Use Chips, GPS, and Voice.</p></div>
-</div>
+                    <p>Instant feedback. UI turns Green immediately.</p>
+                </div>
+
+                <!-- RESPONSIVE: Desktop Horizontal Connector -->
+                
+                <!-- RESPONSIVE: Mobile Vertical Connector -->
+                
+
+                <!-- Step 2 -->
+                <div>
+                    
+                    <h3>Local Queue</h3>
+                    <p>Data stored on device. App retries in background.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div>
+                    
+                    <h3>Auto-Sync</h3>
+                    <p>Data uploads only when signal is found.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Principle 5: Inputs (Bottom Row) -->
+        <div>
+            <div>
+                <div></div>
+  <div class="tile"><h2>05. Input Optimization</h2><p>Typing is impossible in rain. Use Chips, GPS, and Voice.</p>
+                </div>
+                
+                <!-- RESPONSIVE: flex-wrap added, justify-center for mobile -->
+                <div>
+                    <div>
+                        <span></span> No Typing
+                    </div>
+                    <div>
+                        
+                        Voice Input
+                    </div>
+                    <div>
+                        
+                        Auto-GPS
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer Checklist -->
+    <footer>
+        <div>
+            <div>
+                <h4>Navigation</h4>
+                <ul>
+                    <li>✓ Bottom Tabs</li>
+                    <li>× Hamburger Menu</li>
+                    <li>✓ Big Back Button</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Visuals</h4>
+                <ul>
+                    <li>✓ SVGs & Vectors</li>
+                    <li>× High Res Photos</li>
+                    <li>✓ Dark Mode Default</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Onboarding</h4>
+                <ul>
+                    <li>✓ Mobile # Auth</li>
+                    <li>× Email/Password</li>
+                    <li>✓ Guest Mode</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Performance</h4>
+                <ul>
+                    <li>✓ Skeleton Loaders</li>
+                    <li>× Spinning Loaders</li>
+                    <li>✓ Native System Fonts</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 </div>
 <footer>Hack and Build © 2025 — MIT License</footer></div>
 </div>
