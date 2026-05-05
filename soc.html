@@ -2,175 +2,75 @@
 <html lang="en">
 <head>
 
-      <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);} 
-  gtag('js', new Date());
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOC Maturity Model Framework | SFIA-Aligned</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root { --bg: #060606; --surface: #0a0a0a; --text: #e2e8f0; --dim: #64748b; --accent: #00ff88; --border: #1e293b; --error: #ff3366; --warn: #fbbf24; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+.term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); }
+.term-dot { width: 10px; height: 10px; border-radius: 50%; opacity: 0.6; }
+.term-dot.r { background: var(--error); }
+.term-dot.y { background: var(--warn); }
+.term-dot.g { background: var(--accent); }
+.term-bar a { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.term-bar a:hover { color: var(--accent); }
+.container { max-width: 900px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+h1, h2, h3, h4 { font-family: 'JetBrains Mono', monospace; font-weight: 600; letter-spacing: -0.01em; }
+h1 { font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--accent); }
+h2 { font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--text); }
+h3 { font-size: 1.05rem; margin: 1.5rem 0 0.75rem; color: var(--warn); }
+p { margin-bottom: 1rem; color: var(--dim); }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul, ol { margin: 1rem 0 1rem 1.5rem; color: var(--dim); }
+li { margin: 0.35rem 0; }
+code { font-family: 'JetBrains Mono', monospace; background: var(--surface); border: 1px solid var(--border); padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; color: var(--accent); }
+pre { background: var(--surface); border: 1px solid var(--border); padding: 1rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+pre code { background: none; border: none; padding: 0; color: var(--text); }
+img { max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+th, td { padding: 0.6rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin: 1rem 0; }
+.card h3 { margin-top: 0; }
+hr { border: none; border-top: 1px dashed var(--border); margin: 2rem 0; }
+footer { text-align: center; padding: 2rem; font-size: 0.75rem; color: var(--dim); border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; }
+@media (max-width: 600px) { .container { padding: 2rem 1rem; } h1 { font-size: 1.4rem; } }
 
-  gtag('config', 'G-X70YJR4WSV');
-</script>
-
-      
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Security Operations Center (SOC) Maturity Model Framework with SFIA-Aligned Skills and Competency Levels">
-  <title>SOC Maturity Model Framework | SFIA-Aligned</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/hack@5.0.16/index.min.css">
-  <style>
-        :root {
-            --bg: #ffffff;
-            --text: #1a1a1a;
-            --accent: #2563eb;
-            --border: #e5e7eb;
-            --card-bg: #f9fafb;
-            --mono: 'Hack', 'Courier New', monospace;
-            --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        }
-
-        [data-theme="dark"] {
-            --bg: #0f172a;
-            --text: #e2e8f0;
-            --accent: #60a5fa;
-            --border: #334155;
-            --card-bg: #1e293b;
-        }
-
-        body {
-            font-family: var(--sans);
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        header {
-            padding: 0.6rem 0 0.6rem 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: var(--mono);
-            font-size: 1.18rem;
-            font-weight: bold;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--border);
-            color: var(--text);
-            padding: 0.35rem 0.8rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.84rem;
-            transition: all 0.2s;
-        }
-
-        .theme-toggle:hover {
-            border-color: var(--accent);
-        }
-
-        main {
-            padding: 2rem 0 2.2rem 0;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: var(--mono);
-        }
-
-        h1 { font-size: 2rem; margin-bottom: 0.4rem; }
-        h2 { font-size: 1.35rem; margin-top: 1.8rem; margin-bottom: 0.6rem; }
-        h3 { font-size: 1.1rem; margin-top: 1.2rem; margin-bottom: 0.4rem; color: var(--accent); }
-        h4 { font-size: 1rem; margin-top: 1rem; margin-bottom: 0.35rem; }
-
-        .subtitle {
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        hr {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 1.2rem 0;
-        }
-
-        .note {
-            font-size: 0.95rem;
-            opacity: 0.95;
-        }
-
-        .section-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1rem 1rem;
-            margin: 1rem 0;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 0.8rem 0 1.1rem 0;
-            font-size: 0.96rem;
-        }
-        th, td {
-            border: 1px solid var(--border);
-            padding: 0.6rem 0.55rem;
-            vertical-align: top;
-        }
-        th {
-            background: var(--card-bg);
-            text-align: left;
-        }
-        code, .mono { font-family: var(--mono); }
-
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 1.2rem 0 1rem 0;
-            text-align: center;
-            font-size: 0.875rem;
-            opacity: 0.8;
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 1.5rem; }
-            h2 { font-size: 1.05rem; }
-            table { display: block; overflow-x: auto; white-space: nowrap; }
-        }
-  </style>
+</style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <div class="header-content">
-        <div class="logo">hack_and_build</div>
-        <button class="theme-toggle" id="themeToggle">Toggle Dark Mode</button>
+<div class="term-bar">
+  <div class="term-dot r"></div>
+  <div class="term-dot y"></div>
+  <div class="term-dot g"></div>
+  <a href="/">← hackandbuild.dev</a>
+</div>
+<div class="container">
+<header>
+    <div>
+      <div>
+        <div>hack_and_build</div>
+        <button id="themeToggle">Toggle Dark Mode</button>
       </div>
     </div>
   </header>
 
   <main>
-    <div class="container">
-      <section class="hero">
+    <div>
+      <div class="card">
         <h1>Security Operations Center (SOC) Maturity Model Framework</h1>
-        <p class="subtitle">With SFIA-Aligned Skills and Competency Levels</p>
-      </section>
+        <p>With SFIA-Aligned Skills and Competency Levels</p>
+      </div>
 
       <hr>
 
-      <section>
+      <div class="card">
         <h2>SFIA Level Reference Guide</h2>
         <p><strong>Level 1 (Follow):</strong> Works under close supervision, uses limited discretion</p>
         <p><strong>Level 2 (Assist):</strong> Works under general direction, applies knowledge in routine contexts</p>
@@ -179,11 +79,11 @@
         <p><strong>Level 5 (Ensure, Advise):</strong> Ensures correct application of standards, provides authoritative advice</p>
         <p><strong>Level 6 (Initiate, Influence):</strong> Sets policy, initiates and leads activities of strategic importance</p>
         <p><strong>Level 7 (Set Strategy, Inspire):</strong> Sets organizational strategy, inspires the industry</p>
-      </section>
+      </div>
 
       <hr>
 
-      <section>
+      <div class="card">
         <h2><strong>Level 1: Initial (Ad-Hoc)</strong></h2>
         <h3>Organizational Characteristics</h3>
         <p>The SOC operates reactively with minimal formal processes. Security monitoring is inconsistent, with limited tooling and undefined responsibilities. Incident response is chaotic and driven by individual heroics rather than documented procedures.</p>
@@ -247,11 +147,11 @@
 
         <h3>Real-World Example</h3>
         <p>A small healthcare clinic with 200 employees has one IT person handling security reactively, checking antivirus alerts when time permits, with no formal processes or documentation.</p>
-      </section>
+      </div>
 
       <hr>
 
-      <section>
+      <div class="card">
         <h2><strong>Level 2: Developing (Repeatable)</strong></h2>
         <h3>Organizational Characteristics</h3>
         <p>The SOC has defined basic processes and some automation. Security monitoring occurs during business hours with documented escalation paths. Basic playbooks exist for common scenarios.</p>
@@ -298,7 +198,7 @@
             <tr><td><strong>MALW</strong></td><td>Malware analysis*</td><td><strong>Level 2-3</strong></td><td>Assist with or apply basic malware identification and analysis</td></tr>
           </tbody>
         </table>
-        <p class="note">*Note: MALW is not a standard SFIA code but represents specialized security analysis</p>
+        <p>*Note: MALW is not a standard SFIA code but represents specialized security analysis</p>
 
         <h4><strong>SOC Analyst (Tier 3) / Threat Hunter</strong></h4>
         <table>
@@ -359,11 +259,11 @@
 
         <h3>Real-World Example</h3>
         <p>A financial services company with 1,000 employees operates a 5-person SOC (8x5). They use a SIEM with documented playbooks for ransomware, phishing, and DDoS attacks, following standardized procedures with defined escalation paths.</p>
-      </section>
+      </div>
 
       <hr>
 
-      <section>
+      <div class="card">
         <h2><strong>Level 3: Defined (Managed)</strong></h2>
         <h3>Organizational Characteristics</h3>
         <p>The SOC operates 24x7 with clear roles, standardized processes, and continuous improvement. Proactive threat hunting occurs regularly with strong integration across security functions and business units.</p>
@@ -453,7 +353,7 @@
             <tr><td><strong>КОМ</strong></td><td>Communication*</td><td><strong>Level 5</strong></td><td>Ensure effective crisis communication</td></tr>
           </tbody>
         </table>
-        <p class="note">*Note: Using approximation as SFIA doesn't have direct "communication" code</p>
+        <p>*Note: Using approximation as SFIA doesn't have direct "communication" code</p>
 
         <h4><strong>SOC Manager</strong></h4>
         <table>
@@ -518,11 +418,11 @@
 
         <h3>Real-World Example</h3>
         <p>A multinational manufacturing company with 10,000 employees operates a 15-person SOC across two geographies. When behavioral analytics detect anomalous database queries at 2 AM, automated enrichment workflows trigger, SOAR platform creates tickets, and automated containment actions execute while the Tier 2 analyst investigates credential compromise.</p>
-      </section>
+      </div>
 
       <hr>
 
-      <section>
+      <div class="card">
         <h2><strong>Level 4: Managed (Quantitatively Controlled)</strong></h2>
         <h3>Organizational Characteristics</h3>
         <p>The SOC operates as a strategic business enabler with predictable, measurable outcomes. Advanced analytics, machine learning, and threat intelligence drive decision-making. Performance is measured against industry benchmarks with continuous optimization.</p>
@@ -691,11 +591,11 @@
 
         <h3>Real-World Example</h3>
         <p>A global technology company with 50,000 employees operates a 40-person SOC with predictive threat modeling. Machine learning detects credential stuffing patterns before widespread compromise. Automated SOAR playbooks handle 85% of routine incidents. The SOC publishes threat research, shares intelligence with ISACs, and regularly briefs the board with quantified risk metrics. Annual red team exercises show measurable year-over-year improvements in detection and response times.</p>
-      </section>
+      </div>
 
       <hr>
 
-      <section>
+      <div class="card">
         <h2><strong>Level 5: Optimizing (Continuously Improving)</strong></h2>
         <h3>Organizational Characteristics</h3>
         <p>The SOC is an industry leader driving innovation in threat detection and response. Continuous optimization through advanced research, automation, and strategic intelligence. The organization influences industry standards and contributes to the global security community.</p>
@@ -760,11 +660,11 @@
 
         <h3>Real-World Example</h3>
         <p>A Fortune 100 financial institution operates a 100+ person global SOC that has published multiple CVEs, contributes to MITRE ATT&CK, and partners with national CERTs. Their custom ML models predict zero-day exploitation with 72-hour lead time. They've open-sourced threat hunting frameworks used by 500+ organizations globally. The CISO regularly testifies before regulatory bodies on cybersecurity best practices.</p>
-      </section>
+      </div>
 
       <hr>
 
-      <section>
+      <div class="card">
         <h2>Implementation Guidance for Organizations</h2>
         <h3>Assessing Current Maturity</h3>
         <ol>
@@ -812,38 +712,26 @@
           <li>Build partnerships with local universities for talent pipeline</li>
           <li>Account for salary benchmarks appropriate to Sri Lankan market when defining roles</li>
         </ul>
-      </section>
+      </div>
 
       <hr>
 
-      <section>
+      <div class="card">
         <h2>Exam-Style Assessment Questions</h2>
         <p><strong>Question 1:</strong> Analyze a SOC operating with SIEM deployed but no documented playbooks, 8x5 coverage, and manual incident response. Identify the maturity level and list five SFIA skills (with target levels) that must be developed to progress to the next maturity level.</p>
         <p><strong>Question 2:</strong> A SOC Manager (IRMG Level 4, INCA Level 4) wants to implement threat hunting capabilities. Map the required SFIA skills and levels for a new Threat Hunter role at Maturity Level 3. Justify each skill selection.</p>
         <p><strong>Question 3:</strong> Compare the SFIA skill requirements for a Tier 2 SOC Analyst at Maturity Level 2 versus Level 4. Explain how the FORS, EMRG, and PROG skills evolve across these levels.</p>
         <p>This framework provides a structured, SFIA-aligned approach to SOC maturity assessment and workforce development suitable for academic instruction, professional development, and organizational planning.</p>
-      </section>
+      </div>
     </div>
   </main>
 
   <footer>
-    <div class="container">
+    <div>
       <p>&copy; 2025 Hack and Build | <a href="/Users/tharaka/hackandbuild/hackandbuild.dev/index.html">Home</a></p>
     </div>
   </footer>
-
-  <script>
-        const themeToggle = document.getElementById('themeToggle');
-        const html = document.documentElement;
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        html.setAttribute('data-theme', savedTheme);
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-        });
-  </script>
+</div>
+<footer>Hack and Build © 2025 — MIT License</footer>
 </body>
 </html>
-
