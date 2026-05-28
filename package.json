@@ -11,7 +11,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "preview:dev": "npm run build:dev && npm run preview",
-    "test:edge-functions": "cd supabase/edge_function && deno task test"
+    "test:edge-functions": "cd supabase/edge_function && deno task test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -87,8 +89,6 @@
     "tailwindcss": "^3.4.11",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.1",
-    "predeploy": "npm run build",
-      "deploy": "gh-pages -d dist"
+    "vite": "^5.4.1"
   }
 }
